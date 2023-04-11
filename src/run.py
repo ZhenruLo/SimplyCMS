@@ -8,4 +8,4 @@ if __name__ == "__main__":
     # socketio.run(app, host='10.0.0.140', port=443, ssl_context=context, use_reloader=False)
     # socketio.run(app, ssl_context=context, use_reloader=False)
     # socketio.run(app, use_reloader=False)
-    app.run(use_reloader=False)
+    app.run(host='0.0.0.0', port=5000, use_reloader=False)
