@@ -15,10 +15,17 @@ class Config():
     REMEMBER_COOKIE_HTTPONLY = True
     PERMANENT_SESSION_LIFETIME = timedelta(hours=48)
 
-    SQLALCHEMY_DATABASE_URI = "sqlite:///collection.db" 
-    SQLALCHEMY_BINDS = {
-        "admins": "sqlite:///web.db"
-    }
+    if os.environ.get("IN_DOCKER"):
+        SQLALCHEMY_DATABASE_URI = "postgresql://postgres:root@host.docker.internal:5432/collection" 
+        SQLALCHEMY_BINDS = {
+            "web_user": "postgresql://postgres:root@host.docker.internal:5432/web_user"
+        }
+    else:
+        SQLALCHEMY_DATABASE_URI = "postgresql://postgres:root@localhost:5432/collection" 
+        SQLALCHEMY_BINDS = {
+            "web_user": "postgresql://postgres:root@localhost:5432/web_user"
+        }
+        
     SQLALCHEMY_TRACK_MODIFICATIONS = True
 
     CELERY_WORKER_NAME = "celery@server_worker1" 

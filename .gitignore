@@ -3,6 +3,7 @@ __pycache__/
 *.pyc
 *.log
 *.memmap
+*.mako
 *.rdb
 
 #data
@@ -17,6 +18,7 @@ __pycache__/
 *.pem
 *.csv
 server_asset/
+migrations/
 
 #third_party
 *.dll

@@ -1,5 +1,7 @@
 from flask import Blueprint, current_app, render_template
 
+from models import WebUser, db
+
 from .login_form import LoginForm
 
 login_bp = Blueprint(
