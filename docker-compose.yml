@@ -1,0 +1,18 @@
+version: '1'
+
+services:
+  web: 
+    build:
+      context: .
+      dockerfile: .build/werkzeug.DockerFile
+    stop_signal: SIGINT
+    ports:
+      - "5000:5000"
+  postgre_db:
+    build:
+      context: .
+      dockerfile: .build/postgre.DockerFile
+    volumes:
+      - ./postgres:/docker-entrypoint-initdb.d
+    ports:
+      - "5432:5432"
