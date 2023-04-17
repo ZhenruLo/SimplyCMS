@@ -1,1 +1,40 @@
-<!DOCTYPE html>
+{% extends "base.html" %}
+
+{% block title %}Login{% endblock%}
+
+{% block static %}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css" integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+<link rel="stylesheet" href="{{ url_for('login_bp.static', filename='css/login.css') }}"/>  
+{% endblock static %}
+
+{% block content %}
+<div class="main_container">
+    <div class="main_gradient"></div>
+    <div class="main_mask"></div>
+    <div class="content_container">
+        <div class="welcome_container">
+            <i class="welcome_logo fa-solid fa-people-roof"></i>
+            <span class="welcome_text" id="welcome">WELCOME</span>
+            <span class="welcome_text" id="introduction_text">A simple headless cms built with Flask</span>
+        </div>
+        <div class="login_container">
+            <div class="inner_login_container">
+                <span class="welcome_text" id="login_text">USER LOGIN</span>
+                <form autocomplete="off" class="login_form" method="POST">
+                    {{ form.csrf_token() }}
+                    
+                    <fieldset class ="login_fieldset">
+                      {{ form.USERNAME(class="form_textbox login_textbox", placeholder="Username") }}
+                    </fieldset>
+                    
+                    <fieldset class="login_fieldset">
+                      {{ form.PASSWORD(class="form_textbox login_textbox", placeholder="Password") }}
+                    </fieldset>
+                
+                    {{ form.SUBMIT(class="submit_btn login_btn" form="login_form") }}
+                  </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content %}
