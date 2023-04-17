@@ -18,23 +18,28 @@
             <span class="welcome_text" id="introduction_text">A simple headless cms built with Flask</span>
         </div>
         <div class="login_container">
-            <div class="inner_login_container">
-                <span class="welcome_text" id="login_text">USER LOGIN</span>
-                <form autocomplete="off" class="login_form" method="POST">
-                    {{ form.csrf_token() }}
-                    
-                    <fieldset class ="login_fieldset">
-                      {{ form.USERNAME(class="form_textbox login_textbox", placeholder="Username") }}
-                    </fieldset>
-                    
-                    <fieldset class="login_fieldset">
-                      {{ form.PASSWORD(class="form_textbox login_textbox", placeholder="Password") }}
-                    </fieldset>
-                
-                    {{ form.SUBMIT(class="submit_btn login_btn") }}
-                  </form>
-            </div>
+          <button class="test_button"></button>
+          <div class="inner_login_container">
+              <span class="welcome_text" id="login_text">USER LOGIN</span>
+              <form autocomplete="off" class="login_form" method="POST">
+                  {{ form.csrf_token() }}
+                  
+                  <fieldset class ="login_fieldset">
+                    {{ form.USERNAME(class="form_textbox login_textbox", placeholder="Username") }}
+                  </fieldset>
+                  
+                  <fieldset class="login_fieldset">
+                    {{ form.PASSWORD(class="form_textbox login_textbox", placeholder="Password") }}
+                  </fieldset>
+              
+                  {{ form.SUBMIT(class="submit_btn login_btn") }}
+                </form>
+          </div>
         </div>
     </div>
 </div>
 {% endblock content %}
+
+{% block script %}
+<script src="{{ url_for('login_bp.static', filename='js/login.js') }}"></script>
+{% endblock script %}
