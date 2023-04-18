@@ -1,6 +1,8 @@
 from flask import Blueprint, current_app, jsonify, request
 from flask_login import login_required
 
+from models import db, create_model, reflect_database
+
 collection_bp = Blueprint(
     "collection_bp",
     __name__,
@@ -14,10 +16,11 @@ def create_collection():
     result = False
     msg = "Create collection failed."
 
+    reflect_database()
     form_data = dict(request.form)
-
-
-
+    create_model(form_data.get('table_name'))
+    
+    db.create_all()
 
     json_data = {
         "result": result,
