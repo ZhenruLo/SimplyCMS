@@ -2,6 +2,6 @@ FROM postgres:latest
 
 ENV POSTGRES_PASSWORD=root
 ENV POSTGRES_USER=postgres
-ENV POSTGRES_MULTIPLE_DATABASES=collection,web_user
+ENV POSTGRES_DB=collection
 
 EXPOSE 5432
