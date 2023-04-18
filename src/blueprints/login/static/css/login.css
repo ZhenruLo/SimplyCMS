@@ -99,7 +99,6 @@
     text-align: center;
 }
 
-
 .welcome_logo{
     margin-top: 130px;
     font-size: 200px;
@@ -204,10 +203,10 @@ fieldset:hover{
 }
 
 .modal_text{
-    width: calc(100% - 30px);
+    width: calc(100% - 60px);
     color: black;
-    margin-left: 20px;
-    font-size: 15px;
+    margin-left: 5px;
+    font-size: 13px;
 }
 
 .show_modal{
@@ -219,14 +218,8 @@ fieldset:hover{
     cursor: pointer;
     text-align: center;
     transition: all 0.2s ease;
-    margin-right: 10px;
+    margin-right: 5px;
     border-radius: 5px;
-}
-
-.close_modal{
-    color: black;
-    padding: 5px;
-    font-size: 20px;
 }
 
 .mark_div:hover{
@@ -235,4 +228,22 @@ fieldset:hover{
 
 .mark_div:active{
     background-color: #191970;
+}
+
+.close_modal{
+    color: black;
+    padding: 5px;
+    font-size: 20px;
+}
+
+.caution_div{
+    width: 30px;
+    text-align: center;
+    margin-left: 5px;
+}
+
+.caution_model{
+    color: gray;
+    padding: 5px;
+    font-size: 20px;
 }
