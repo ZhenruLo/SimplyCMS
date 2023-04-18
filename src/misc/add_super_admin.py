@@ -21,13 +21,13 @@ def main(username, password):
     salt = salt.decode('utf-8')
 
     if os.environ.get("IN_DOCKER"):
-        host = "host.docker.internal"
+        host = "postgre_db"
     else:
         host = "localhost"
 
     con = psycopg2.connect(
         host=host,
-        database="web_user",
+        database="collection",
         user='postgres',
         password="root")
     cur = con.cursor()

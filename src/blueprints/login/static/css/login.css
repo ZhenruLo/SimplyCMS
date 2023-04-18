@@ -1,3 +1,7 @@
+*{
+    font-family: 'Poppins', sans-serif;
+}
+
 .main_container{
     display: flex;
     align-items: center;
@@ -104,7 +108,6 @@
 
 .welcome_text{
     pointer-events: none;
-    font-family: 'Poppins', sans-serif;
     font-weight: 600;
     user-select: none;
 }
@@ -129,7 +132,7 @@
     color: #322e61;
 }
 
-.login_textbox{
+.form_textbox{
     height: 100%;
     width: 100%;
     padding: 0;
@@ -139,7 +142,8 @@
     font-size: medium;
 }
 
-.login_textbox::placeholder{
+.form_textbox::placeholder{
+    letter-spacing: 5px;
     font-size: 15px;
 }
 
@@ -162,7 +166,7 @@ fieldset:hover{
     border-bottom: thin solid #1E90FF;
 }
 
-.login_btn{
+.submit_btn{
     height: 40px;
     width: 300px;
     margin-top: 40px;
@@ -174,16 +178,64 @@ fieldset:hover{
     transition-duration: 0.4s;
 }
 
-.login_btn:hover{
+.submit_btn:hover{
     background-color: #191970;
     cursor: pointer;
 }
 
-.login_btn:active{
+.submit_btn:active{
     background-color: rgb(228, 228, 255);
 }
 
 .test_button{
     width: 100px;
     height: 100px;
+}
+
+.modal_box{
+    display: inline-flex;
+    align-items: center;
+    z-index: 99;
+    position: fixed;
+    text-align: left;
+    top: 40px;
+    width: 700px;
+    height: 35px;
+    border-radius: 5px;
+    opacity: 0;
+    background-color: rgb(228, 228, 255);
+    transition: all 0.2s ease;
+}
+
+.modal_text{
+    width: calc(100% - 30px);
+    color: black;
+    margin-left: 20px;
+}
+
+.show_modal{
+    opacity: 1;
+}
+
+.mark_div{
+    width: 30px;
+    cursor: pointer;
+    text-align: center;
+    transition: all 0.2s ease;
+    margin-right: 10px;
+    border-radius: 5px;
+}
+
+.close_modal{
+    color: black;
+    padding: 5px;
+    font-size: 20px;
+}
+
+.mark_div:hover{
+    background-color: lightgray;
+}
+
+.mark_div:active{
+    background-color: #191970;
 }
