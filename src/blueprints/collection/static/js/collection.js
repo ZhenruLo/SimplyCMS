@@ -1,9 +1,10 @@
 $(function() {
-    $(".test_button").on("click", function(){
-        console.log("HERE");
+    $("#test_form").submit(function(event){
+        event.preventDefault();
         $.ajax({
             url: "/collection/create",
             method: "POST",
+            data: $(this).serialize(),
             success: function(data) {
                 alert(data.msg);
             },
