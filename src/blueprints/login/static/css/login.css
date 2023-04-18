@@ -104,6 +104,8 @@
     margin-top: 130px;
     font-size: 200px;
     color: white;
+    font-family: "Leckerli One";
+    pointer-events: none;
 }
 
 .welcome_text{
@@ -114,7 +116,6 @@
 
 #welcome{
     letter-spacing: 10px;
-    margin-top: 50px;
     font-size: 40px;
     color: white;
 }
@@ -187,11 +188,6 @@ fieldset:hover{
     background-color: rgb(228, 228, 255);
 }
 
-.test_button{
-    width: 100px;
-    height: 100px;
-}
-
 .modal_box{
     display: inline-flex;
     align-items: center;
@@ -211,6 +207,7 @@ fieldset:hover{
     width: calc(100% - 30px);
     color: black;
     margin-left: 20px;
+    font-size: 15px;
 }
 
 .show_modal{
