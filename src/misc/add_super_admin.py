@@ -27,7 +27,7 @@ def main(username, password):
 
     con = psycopg2.connect(
         host=host,
-        database="collection",
+        database="database",
         user='postgres',
         password="root")
     cur = con.cursor()

@@ -16,9 +16,9 @@ class Config():
     PERMANENT_SESSION_LIFETIME = timedelta(hours=48)
 
     if os.environ.get("IN_DOCKER"):
-        SQLALCHEMY_DATABASE_URI = "postgresql://postgres:root@postgre_db:5432/collection" 
+        SQLALCHEMY_DATABASE_URI = "postgresql://postgres:root@postgre_db:5432/database" 
     else:
-        SQLALCHEMY_DATABASE_URI = "postgresql://postgres:root@localhost:5432/collection" 
+        SQLALCHEMY_DATABASE_URI = "postgresql://postgres:root@localhost:5432/database" 
         
     SQLALCHEMY_TRACK_MODIFICATIONS = True
 

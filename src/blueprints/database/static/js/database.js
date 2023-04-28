@@ -1,5 +1,6 @@
 $(function() {
     $("#test_form").submit(function(event){
+        console.log("Here");
         event.preventDefault();
         $.ajax({
             url: "/collection/create",

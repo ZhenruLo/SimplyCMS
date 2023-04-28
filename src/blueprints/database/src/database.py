@@ -3,18 +3,17 @@ from flask_login import login_required
 
 from models import db, create_model, reflect_database
 
-collection_bp = Blueprint(
-    "collection_bp",
+database_bp = Blueprint(
+    "database_bp",
     __name__,
     static_folder="../static",
-    static_url_path="/collection/static",
+    static_url_path="/database/static",
     template_folder="../templates")
 
-@collection_bp.route("/collection/create", methods=["POST"])
-@login_required
-def create_collection():
+@database_bp.route("/database/create", methods=["POST"])
+def create_database():
     result = False
-    msg = "Create collection failed."
+    msg = "Create database failed."
 
     reflect_database()
     form_data = dict(request.form)
@@ -27,5 +26,5 @@ def create_collection():
         "msg": msg,
     }
 
-    current_app.logger.info(f"Result dict from collection_bp.create_collection, result: {result}, msg: {msg}")
+    current_app.logger.info(f"Result dict from database_bp.create_database, result: {result}, msg: {msg}")
     return jsonify(json_data)
