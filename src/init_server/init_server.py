@@ -9,7 +9,7 @@ from .register_blueprint import register_blueprint
 
 def create_app(config_obj):
     
-    flask_app = Flask(__name__, template_folder=None, static_folder=None)
+    flask_app = Flask(__name__, template_folder="../../public/template", static_folder="../../public/static")
     flask_app.config.from_object(config_obj)
 
     csrf.init_app(flask_app)

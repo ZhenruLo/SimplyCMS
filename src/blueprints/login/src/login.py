@@ -1,7 +1,6 @@
 from flask import (Blueprint, current_app, jsonify, redirect, render_template,
                    url_for)
 from flask_login import login_user
-
 from models import WebUser, db
 from security import check_pw
 
@@ -12,7 +11,7 @@ login_bp = Blueprint(
     __name__,
     static_folder="../static",
     static_url_path="/login/static",
-    template_folder="../templates")
+    template_folder="../template")
 
 @login_bp.route("/login", methods=["GET"])
 def login():
@@ -30,7 +29,7 @@ def verify_login():
         if user and check_pw(form.password.data, user.password.encode('utf-8')):
             login_user(user)
             result = True
-            msg = url_for("index_bp.index")
+            msg = url_for("home_bp.home")
         else:
             msg = "Username or password incorrect, please try again"
             

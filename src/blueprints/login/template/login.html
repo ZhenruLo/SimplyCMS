@@ -3,8 +3,6 @@
 {% block title %}Login{% endblock%}
 
 {% block static %}
-<link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Beau+Rivage"/>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css" integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 <link rel="stylesheet" href="{{ url_for('login_bp.static', filename='css/login.css') }}"/>  
 {% endblock static %}
 
@@ -30,7 +28,7 @@
       <div class="login_container">
         <div class="inner_login_container">
             <span class="welcome_text" id="login_text">USER LOGIN</span>
-            <form autocomplete="off" id="login_form" method="POST">
+            <form autocomplete="off" class="login_form" id="login_form" method="POST">
                 <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
               
                 <fieldset class ="login_fieldset">
