@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+
+{% block static %}
+<link rel="stylesheet" href="static/css/side_base.css"/>
+{% endblock static %}
+
+{% block side %}
+<div class="side_inner_container">
+    <div class="side_header_container">
+        <i class='side_anchor_icon bx bx-menu' id="collapse_menu_btn"></i>
+    </div>
+    <div class="side_content_container">
+        <div class="side_menu_group" id="side_database">
+            <ul class="side_menu_list">
+                <li>
+                    <a class="side_anchor" id="database_anchor" href="">
+                        <i class="side_anchor_icon fa-solid fa-database"></i>
+                        <span class="side_anchor_text">Testing</span>
+                    </a>
+                    <span class="tooltip">Testing</span>
+                </li>
+            </ul>
+        </div>
+        <div class="side_menu_group" id="side_plugin">
+            <ul class="side_menu_list">
+                <li>
+                    <a class="side_anchor" id="database_anchor" href="">
+                        <i class="side_anchor_icon fa-solid fa-layer-group"></i>
+                        <span class="side_anchor_text">Database</span>
+                    </a>
+                    <span class="tooltip">Database</span>
+                </li>
+                <li>
+                    <a class="side_anchor" id="database_anchor" href="">
+                        <i class="side_anchor_icon fa-solid fa-photo-film"></i>
+                        <span class="side_anchor_text">Media</span>
+                    </a>
+                    <span class="tooltip">Media</span>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+{% endblock side %}
+
+{% block script %}
+{% endblock script %}
