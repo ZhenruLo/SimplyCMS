@@ -54,7 +54,7 @@
     border-bottom-left-radius: 10px;
 	background: linear-gradient(-45deg, #cbf6f6, #c1cdfe, #e8c6ff, #aaffeb);
 	background-size: 400% 400%;
-	animation: gradient 15s ease infinite;
+	animation: gradient 10s ease infinite;
 }
 
 @keyframes gradient {
@@ -167,7 +167,7 @@ fieldset.login_fieldset:hover{
     height: 40px;
     width: 100%;
     margin-top: 40px;
-    background-color: #0080ff;
+    background-color: #e8c6ff;
     color: #FFFFFF;
     font-size: 15px;
     border: none;
@@ -176,7 +176,7 @@ fieldset.login_fieldset:hover{
 }
 
 .submit_btn:hover{
-    background-color: #191970;
+    background-color: #ADD8E6;
     cursor: pointer;
 }
 
