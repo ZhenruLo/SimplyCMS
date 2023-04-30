@@ -167,7 +167,7 @@ fieldset.login_fieldset:hover{
     height: 40px;
     width: 100%;
     margin-top: 40px;
-    background-color: #e8c6ff;
+    background-color: #d2c0fb;
     color: #FFFFFF;
     font-size: 15px;
     border: none;
@@ -176,7 +176,7 @@ fieldset.login_fieldset:hover{
 }
 
 .submit_btn:hover{
-    background-color: #ADD8E6;
+    background-color: #adb0e6;
     cursor: pointer;
 }
 

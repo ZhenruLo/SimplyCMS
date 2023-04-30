@@ -1,16 +1,22 @@
-from flask import Blueprint, current_app, jsonify, request
+from flask import Blueprint, current_app, jsonify, render_template, request
 from flask_login import login_required
 
-from models import db, create_model, reflect_database
+from models import create_model, db, reflect_database
 
 database_bp = Blueprint(
     "database_bp",
     __name__,
     static_folder="../static",
     static_url_path="/database/static",
-    template_folder="../templates")
+    template_folder="../template")
+
+@database_bp.route("/database", methods=["GET"])
+@login_required
+def database():
+    return render_template("database.html")
 
 @database_bp.route("/database/create", methods=["POST"])
+@login_required
 def create_database():
     result = False
     msg = "Create database failed."

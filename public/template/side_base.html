@@ -7,35 +7,60 @@
 {% block side %}
 <div class="side_inner_container">
     <div class="side_header_container">
-        <i class='side_anchor_icon bx bx-menu' id="collapse_menu_btn"></i>
+        <a id="home_anchor" href="/home">
+            <span class="logo_text">C</span>
+            <span class="header_text">CMSystem</span>
+        </a>
+        <i class="side_anchor_icon fa-solid fa-bars" id="collapse_menu_btn"></i>
     </div>
     <div class="side_content_container">
-        <div class="side_menu_group" id="side_database">
-            <ul class="side_menu_list">
-                <li>
-                    <a class="side_anchor" id="database_anchor" href="">
-                        <i class="side_anchor_icon fa-solid fa-database"></i>
-                        <span class="side_anchor_text">Testing</span>
-                    </a>
-                    <span class="tooltip">Testing</span>
-                </li>
-            </ul>
-        </div>
         <div class="side_menu_group" id="side_plugin">
             <ul class="side_menu_list">
-                <li>
-                    <a class="side_anchor" id="database_anchor" href="">
+                <li class="side_li">
+                    <a class="side_anchor" id="database_anchor" href="/database">
                         <i class="side_anchor_icon fa-solid fa-layer-group"></i>
                         <span class="side_anchor_text">Database</span>
                     </a>
-                    <span class="tooltip">Database</span>
+                    <span class="tooltip" id="database_tooltip">Database</span>
                 </li>
-                <li>
-                    <a class="side_anchor" id="database_anchor" href="">
+                <li class="side_li">
+                    <a class="side_anchor" id="media_anchor" href="">
                         <i class="side_anchor_icon fa-solid fa-photo-film"></i>
                         <span class="side_anchor_text">Media</span>
                     </a>
-                    <span class="tooltip">Media</span>
+                    <span class="tooltip" id="media_tooltip">Media</span>
+                </li>
+            </ul>
+        </div>
+        <div class="side_menu_group" id="side_administration">
+            <ul class="side_menu_list">
+                <li class="side_li">
+                    <a class="side_anchor" id="dashboard_anchor" href="">
+                        <i class="side_anchor_icon fa-solid fa-chart-pie"></i>
+                        <span class="side_anchor_text">Dashboard</span>
+                    </a>
+                    <span class="tooltip" id="dashboard_tooltip">Dashboard</span>
+                </li>
+                <li class="side_li">
+                    <a class="side_anchor" id="management_anchor" href="">
+                        <i class="side_anchor_icon fa-solid fa-building-user"></i>
+                        <span class="side_anchor_text">Management</span>
+                    </a>
+                    <span class="tooltip" id="management_tooltip">Management</span>
+                </li>
+            </ul>
+        </div>
+        <div class="side_menu_group" id="side_logout">
+            <ul class="side_menu_list">
+                <li class="side_li">
+                    <form class="logout_form" action="{{ url_for('logout_bp.logout') }}" method="POST">
+                        <input id="single_csrf_logout" type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+                        <a class="side_anchor" id="logout_anchor" onclick="this.parentNode.submit();">
+                            <i class="side_anchor_icon fa-solid fa-right-from-bracket"></i>
+                            <span class="side_anchor_text">Log Out</span>
+                        </a>
+                    </form>
+                    <span class="tooltip" id="logout_tooltip">Log Out</span>
                 </li>
             </ul>
         </div>
@@ -44,4 +69,5 @@
 {% endblock side %}
 
 {% block script %}
+<script src="static/js/side.js"></script>
 {% endblock script %}

@@ -1,14 +1,11 @@
 {% extends "side_base.html" %}
 
-{% block title %}Index{% endblock%}
+{% block title %}Home{% endblock%}
 
-{% block content %}
-<form id="test_form">
-    <input class="table_name" type="text" name="table_name">
-    <input class="submit_input" type="submit" name="submit">
-</form>
-{% endblock content %}
+{% block static %}
+{{ super() }}
+{% endblock static %}
 
 {% block script %}
-<script src="{{ url_for('database_bp.static', filename='js/database.js') }}"></script>
+{{ super() }}
 {% endblock script %}

@@ -1,4 +1,6 @@
 $(function() {
+    $("#database_anchor").toggleClass("current_anchor");
+
     $("#test_form").submit(function(event){
         console.log("Here");
         event.preventDefault();
