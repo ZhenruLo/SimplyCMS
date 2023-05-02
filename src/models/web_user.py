@@ -3,7 +3,6 @@ from sqlalchemy import func
 
 
 class WebUser(Base, db.Model):
-    __bind_key__ = 'web_user'
     __tablename__ = 'web_user'
 
     id = db.Column(db.Integer, primary_key = True)

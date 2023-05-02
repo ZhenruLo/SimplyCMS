@@ -9,5 +9,4 @@ RUN pip install -r /headless_cms/.build/requirements.txt
 
 COPY . /headless_cms
 EXPOSE 5000
-CMD [ "python", "src/run.py"]
 

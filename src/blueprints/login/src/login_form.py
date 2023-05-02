@@ -4,16 +4,16 @@ from wtforms.validators import InputRequired
 
 
 class LoginForm(FlaskForm):
-    USERNAME = StringField(
+    username = StringField(
         "Username",
         validators = [InputRequired(), ]
     )
     
-    PASSWORD = PasswordField(
+    password = PasswordField(
         "Password",
         validators = [
             InputRequired(),
         ]
     )
     
-    SUBMIT = SubmitField("Log In")
+    submit = SubmitField("Log In")
