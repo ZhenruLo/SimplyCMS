@@ -1,0 +1,23 @@
+{% extends "side_base.html" %}
+
+{% block static %}
+{{ super() }}
+<link rel="stylesheet" href="static/css/side_panel.css"/>
+{% endblock static %}
+
+{% block side %}
+{{ super() }}
+{% endblock side %}
+
+{% block content %}
+<div class="panel_container" id="left_panel_container">
+
+</div>
+<div class="panel_container" id="right_panel_container">
+
+</div>
+{% endblock content %}
+
+{% block script %}
+{{ super() }}
+{% endblock script %}

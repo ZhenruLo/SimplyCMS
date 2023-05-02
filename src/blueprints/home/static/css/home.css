@@ -8,49 +8,44 @@
     overflow: hidden;
 }
 
-.main_gradient{
-    z-index: 1;
-    position: fixed;
-    width: 130%;
-    height: 83%;
-    background-color: #322e61;
-    transform: translateX(-20%) translateY(-20%) rotate(135deg);
-}
-
 .main_mask{
     z-index: 1;
-    position: fixed;
-    width: 150%;
-    height: 83%;	
-    opacity: 0.2;
-    background: linear-gradient(#ffffff, #11101d);
-    transform: translateX(-1%) translateY(-20%) rotate(135deg);
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(-45deg, rgba(255, 255, 255, 0.2) 40%, rgba(0, 0, 0, 0.2) 75%, transparent 75%)
+}
+
+.context_container{
+    display: inline-flex;
+    flex-direction: column;
+    align-items: flex-end;
+    position:fixed;
+    width: 50%;
+    height: 100%;
+    right: 0;
+    top: 280px;
 }
 
 .home_container{
     z-index: 2;
     width: fit-content;
     height: fit-content;
-    position: absolute;
+    opacity: 1;
+    text-align: right;
 }
 
 .welcome_container{
-    top: 320px;
-    right: 50px;
+    width: 100%;
 }
 
 .description_container{
-    top: 450px;
-    right: 60px;
-    text-align: center;
+    width: 100%;
 }
 
 .start_container{
-    bottom: 150px;
-    right: 100px;
-    border-radius: 20px;
-    border: 1px solid rgba(0, 0, 0, 0.2);
-    padding: 5px 25px;
+    width: 100%;
+    margin-top: 300px;
+    margin-right: 120px;
 }
 
 .welcome_header{
@@ -60,6 +55,7 @@
     letter-spacing: 10px;
     color: black;
     user-select: none;
+    margin-right: 30px;
 }
 
 .description_text{
@@ -69,12 +65,16 @@
     letter-spacing: 1px;
     color: black;
     user-select: none;
+    margin-right: 50px;
 }
 
 .start_anchor{
     width: 100px;
     height: 50px;
     cursor: pointer;
+    border-radius: 20px;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    padding: 8px 15px;
     text-decoration: none;
     user-select: none;
 }
@@ -88,17 +88,17 @@
 }
 
 .start_line{
-    position: absolute;
+    display: inline-block;
     width: 0;
     height: 0;
-    top: 15px;
-    right: 120px;
+    margin-right: 10px;
+    margin-bottom: 5px;
     border-bottom: 1px solid black;
     pointer-events: none;
     user-select: none;
     transition: all 1s ease;
 }
 
-.start_anchor:hover .start_line{
+.start_container:hover .start_line{
     width: 550px;
 }

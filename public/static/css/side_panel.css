@@ -1,0 +1,10 @@
+.panel_container{
+    position: fixed;
+    width: 400px;
+    height: 100%;
+    border-right: 2px solid lightgrey;
+}
+
+#right_panel_container{
+    display: none;
+}

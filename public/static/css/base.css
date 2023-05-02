@@ -8,6 +8,10 @@ body{
     display: flex;
 }
 
+#content{
+    min-width: 1500px;
+}
+
 .page_loader{
     display: flex;
     justify-content: center;
