@@ -26,10 +26,17 @@
     align-items: center;
     justify-content: center;
     height: 580px;
-    width: 780px;
+    /* width: 780px; */
+    width: 0px;
     margin: 0 auto;
     box-shadow: 0 0 1px 1px lightgrey;
     border-radius: 10px;
+    opacity: 1;
+    transition: all 0.5s ease;
+}
+
+.content_container.start{
+    width: 780px;
 }
 
 .welcome_container{
@@ -82,17 +89,34 @@
 }
 
 .welcome_logo{
-    margin-top: 110px;
+    margin-top: 300px;
     font-size: 200px;
     color: white;
     font-family: "Beau Rivage";
     pointer-events: none;
+    opacity: 0;
+    transition: all 1s ease;
+    transition-delay: 0.5s;
+}
+
+.welcome_logo.start{
+    margin-top: 110px;
+    opacity: 1;
 }
 
 .welcome_text{
+    margin-top: 50px;
     pointer-events: none;
     font-weight: 600;
     user-select: none;
+    transition: all 1s ease;
+    opacity: 0;
+    transition-delay: 0.5s;
+}
+
+.welcome_text.start{
+    margin-top: 0;
+    opacity: 1;
 }
 
 #welcome{
@@ -105,6 +129,14 @@
     margin-top: 10px;
     font-size: 10px;
     color: white;
+}
+
+.login_title{
+    margin-top: 200px;
+}
+
+.login_title.start{
+    margin-top: 0px;
 }
 
 #login_text{
@@ -143,6 +175,7 @@ fieldset.login_fieldset{
     border-right: none;
     border-bottom: thin solid #ADD8E6;
     transition-duration: 0.4s;
+    opacity: 0;
 }
 
 fieldset.login_fieldset:hover{
@@ -150,6 +183,10 @@ fieldset.login_fieldset:hover{
     border-left: none;
     border-right: none;
     border-bottom: thin solid #1E90FF;
+}
+
+fieldset.login_fieldset.start{
+    opacity: 1;
 }
 
 .submit_btn{
@@ -162,11 +199,16 @@ fieldset.login_fieldset:hover{
     border: none;
     border-radius: 10px;
     transition-duration: 0.4s;
+    opacity: 0;
 }
 
 .submit_btn:hover{
     background-color: #adb0e6;
     cursor: pointer;
+}
+
+.submit_btn.start{
+    opacity: 1;
 }
 
 .submit_btn:active{
@@ -186,6 +228,7 @@ fieldset.login_fieldset:hover{
     opacity: 0;
     background-color: rgb(228, 228, 255);
     transition: all 0.2s ease;
+    transition-delay: 0.5s;
 }
 
 .modal_text{
@@ -204,6 +247,7 @@ fieldset.login_fieldset:hover{
     cursor: pointer;
     text-align: center;
     transition: all 0.2s ease;
+    transition-delay: 0.5s;
     margin-right: 5px;
     border-radius: 5px;
 }
