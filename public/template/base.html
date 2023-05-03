@@ -17,11 +17,20 @@
         <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Beau+Rivage"/>
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins">
         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Chakra+Petch">
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Chakra+Petch&family=Cinzel">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cinzel">
         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Abel">
         {% block static %}{% endblock static %}
     </head>
     <body>
+        <div class="page_loader">
+            <span class="loading_text" style="--i:1">L</span>
+            <span class="loading_text" style="--i:2">O</span>
+            <span class="loading_text" style="--i:3">A</span>
+            <span class="loading_text" style="--i:4">D</span>
+            <span class="loading_text" style="--i:5">I</span>
+            <span class="loading_text" style="--i:6">N</span>
+            <span class="loading_text" style="--i:7">G</span>
+        </div>
         <div id="side">
             {% block side %}{% endblock side %}
         </div>
@@ -42,6 +51,7 @@
             });
           });
         </script>
+        <script src="static/js/base.js"></script>
         {% block script %}{% endblock script %}
     </body>
 </html>
