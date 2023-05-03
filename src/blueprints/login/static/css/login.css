@@ -8,15 +8,8 @@
     justify-content: center;
     height: 100%;
     width: 100%;
-	background: linear-gradient(-45deg, #ffffff 50%, #322e61 50%);
+	background: linear-gradient(0deg,#ffffff 40%, #e6e4ff 40%);
     overflow: hidden;
-}
-
-.main_mask{
-    z-index: 1;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(-45deg, rgba(255, 255, 255, 0.2) 40%, rgba(0, 0, 0, 0.2) 75%, transparent 75%)
 }
 
 .content_container{
@@ -25,18 +18,18 @@
     position: fixed;
     align-items: center;
     justify-content: center;
+    top: 120px;
     height: 580px;
-    /* width: 780px; */
-    width: 0px;
+    width: 780px;
     margin: 0 auto;
-    box-shadow: 0 0 1px 1px lightgrey;
+    opacity: 0;
     border-radius: 10px;
-    opacity: 1;
-    transition: all 0.5s ease;
+    transition: all 1s ease;
 }
 
 .content_container.start{
-    width: 780px;
+    opacity: 1;
+    box-shadow: 0 0 1px 1px lightgrey, 0 0 1px 1px white;
 }
 
 .welcome_container{
@@ -50,7 +43,14 @@
     border-bottom-left-radius: 10px;
 	background: linear-gradient(-45deg, #cbf6f6, #c1cdfe, #e8c6ff, #aaffeb);
 	background-size: 400% 400%;
-	animation: gradient 10s ease infinite;
+	animation: gradient 5s ease infinite;
+    -webkit-box-reflect: below 3px linear-gradient(transparent 50%, rgba(0, 0, 0, .5));
+    transform: translateX(-100px);
+    transition: all 1s ease;
+}
+
+.welcome_container.start{
+    transform: translateX(0);
 }
 
 @keyframes gradient {
@@ -76,6 +76,13 @@
     background-color: white;
     border-top-right-radius: 10px;
     border-bottom-right-radius: 10px;
+    -webkit-box-reflect: below 3px linear-gradient(transparent 50%, rgba(0, 0, 0, .5));
+    transform: translateX(100px);
+    transition: all 1s ease;
+}
+
+.login_container.start{
+    transform: translateX(0);
 }
 
 .inner_login_container{
@@ -89,34 +96,18 @@
 }
 
 .welcome_logo{
-    margin-top: 300px;
+    margin-top: 110px;
     font-size: 200px;
     color: white;
     font-family: "Beau Rivage";
     pointer-events: none;
-    opacity: 0;
-    transition: all 1s ease;
-    transition-delay: 0.5s;
-}
-
-.welcome_logo.start{
-    margin-top: 110px;
-    opacity: 1;
+    user-select: none;
 }
 
 .welcome_text{
-    margin-top: 50px;
     pointer-events: none;
     font-weight: 600;
     user-select: none;
-    transition: all 1s ease;
-    opacity: 0;
-    transition-delay: 0.5s;
-}
-
-.welcome_text.start{
-    margin-top: 0;
-    opacity: 1;
 }
 
 #welcome{
@@ -129,14 +120,6 @@
     margin-top: 10px;
     font-size: 10px;
     color: white;
-}
-
-.login_title{
-    margin-top: 200px;
-}
-
-.login_title.start{
-    margin-top: 0px;
 }
 
 #login_text{
@@ -175,7 +158,6 @@ fieldset.login_fieldset{
     border-right: none;
     border-bottom: thin solid #ADD8E6;
     transition-duration: 0.4s;
-    opacity: 0;
 }
 
 fieldset.login_fieldset:hover{
@@ -183,10 +165,6 @@ fieldset.login_fieldset:hover{
     border-left: none;
     border-right: none;
     border-bottom: thin solid #1E90FF;
-}
-
-fieldset.login_fieldset.start{
-    opacity: 1;
 }
 
 .submit_btn{
@@ -199,18 +177,12 @@ fieldset.login_fieldset.start{
     border: none;
     border-radius: 10px;
     transition-duration: 0.4s;
-    opacity: 0;
 }
 
 .submit_btn:hover{
     background-color: #adb0e6;
     cursor: pointer;
 }
-
-.submit_btn.start{
-    opacity: 1;
-}
-
 .submit_btn:active{
     background-color: rgb(228, 228, 255);
 }

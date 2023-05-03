@@ -27,8 +27,6 @@ $(function() {
     });
 
     $(".content_container").toggleClass("start");
-    $(".welcome_logo").toggleClass("start");
-    $(".welcome_text").toggleClass("start");
-    $(".login_fieldset").toggleClass("start");
-    $(".submit_btn").toggleClass("start");
+    $(".welcome_container").toggleClass("start");
+    $(".login_container").toggleClass("start");
 });
