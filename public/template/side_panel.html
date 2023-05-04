@@ -10,18 +10,14 @@
 {% endblock side %}
 
 {% block content %}
+<div class="header_container">
+    <i class="header_button fa-solid fa-chevron-left" id="back_button"></i>
+</div>
 <div class="panel_container" id="left_panel_container">
     <div class="panel_header" id="left_panel_header">
     </div>
     <div class="panel_content" id="left_panel_content">
         {% block left_panel %}{% endblock left_panel %}
-    </div>
-</div>
-<div class="panel_container" id="right_panel_container">
-    <div class="panel_header" id="right_panel_header">
-    </div>
-    <div class="panel_content" id="right_panel_content">
-        {% block right_panel %}{% endblock right_panel %}
     </div>
 </div>
 {% endblock content %}
