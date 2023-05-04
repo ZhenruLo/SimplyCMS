@@ -25,7 +25,7 @@ body{
     font-family: 'Chakra Petch', sans-serif;
     color: black;
     letter-spacing: 5px;
-    animation: bar 3s cubic-bezier(.81, .04, .4, .7) infinite;
+    animation: bar 1.5s cubic-bezier(.81, .04, .4, .7) infinite;
     animation-delay: calc(.1s * var(--i));
 }
 
