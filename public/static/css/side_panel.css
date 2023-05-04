@@ -32,3 +32,53 @@
     font-size: 20px;
     color: grey;
 }
+
+.dropdown{
+    position: fixed;
+    right: 20px;
+}
+
+.dropdown_button{
+    padding: 0;
+    border: none;
+    background: none;
+    cursor: pointer;
+    font-family: 'Chakra Petch', sans-serif;
+}
+
+.dropdown_button::after{
+    content: "\f078";
+    font-weight: 900;
+    font-family: "Font Awesome 5 Free";
+    margin-left: 5px;
+}
+
+.dropdown_content{
+    display: none;
+    position: absolute;
+    top: 25px;
+    right: 5px;
+    width: 150px;
+    box-shadow: 0 0 5px 1px rgb(224, 224, 224);
+    border-radius: 2px;
+    background: white;
+    display: none;
+}
+
+.dropdown_content.show{
+    display: block;
+}
+
+.dropdown_content_anchor{
+    display: block;
+    padding: 10px;
+    color: black;
+    font-family: 'Poppins', sans-serif;
+    font-size: 12px;
+    text-decoration: none;
+    transition: all 0.5s ease;
+}
+
+.dropdown_content_anchor:hover{
+    background-color:rgb(231, 231, 231)
+}
