@@ -1,8 +1,16 @@
+@import url("https://use.fontawesome.com/releases/v6.3.0/css/all.css");
+
 .panel_container{
     position: fixed;
     width: 400px;
     height: 100%;
-    border-right: 2px solid lightgrey;
+    background-color: rgb(249, 249, 249);
+}
+
+#left_panel_header{
+    width: inherit;
+    height: 50px;
+    
 }
 
 #right_panel_container{
