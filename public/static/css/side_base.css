@@ -55,7 +55,7 @@
     font-size: 18px;
     color: white;
     line-height: 50px;
-    margin-left: 5px;
+    margin-left: 10px;
     pointer-events: none;
 }
 
@@ -82,7 +82,7 @@
 }
 
 .side_anchor:hover{
-    background-color: rgba(255, 255, 255, 0.1);
+    background-color: rgba(0, 0, 0, 0.05);
 }
 
 @keyframes shine {
@@ -172,8 +172,8 @@
 }
 
 #side.expand{
-    width: 200px;
-    flex: 0 0 200px;
+    width: 250px;
+    flex: 0 0 250px;
 }
 
 #side.expand #home_anchor{
@@ -182,11 +182,11 @@
 }
 
 #side.expand #side_logout{
-    width: 200px;
+    width: 250px;
 }
 
 #side.expand #collapse_menu_btn{
-    left: 170px;
+    left: 220px;
 }
 
 #side.expand .side_anchor_text{
