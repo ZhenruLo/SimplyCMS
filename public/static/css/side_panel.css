@@ -30,10 +30,11 @@
     position: absolute;
     left: 20px;
     font-size: 20px;
-    color: grey;
+    color: rgb(175, 175, 175);
 }
 
 .dropdown{
+    z-index: 999;
     position: fixed;
     right: 20px;
 }
@@ -69,16 +70,24 @@
     display: block;
 }
 
+.dropdown_form{
+    cursor: pointer;
+}
+
 .dropdown_content_anchor{
     display: block;
-    padding: 10px;
+    padding: 5px 10px;
     color: black;
     font-family: 'Poppins', sans-serif;
     font-size: 12px;
     text-decoration: none;
-    transition: all 0.5s ease;
+    transition: all 0.1s ease;
 }
 
 .dropdown_content_anchor:hover{
-    background-color:rgb(231, 231, 231)
+    background-color:rgb(201, 201, 201)
+}
+
+#back_button{
+    cursor: none;
 }
