@@ -25,4 +25,8 @@ $(function() {
     $(".mark_div").on("click", function(){
         $(".modal_box").removeClass("show_modal");
     });
+
+    $(".content_container").toggleClass("start");
+    $(".welcome_container").toggleClass("start");
+    $(".login_container").toggleClass("start");
 });

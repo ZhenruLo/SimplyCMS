@@ -8,39 +8,28 @@
     justify-content: center;
     height: 100%;
     width: 100%;
-	background: linear-gradient(-45deg, #ffffff 50%, #322e61 50%);
+	background: linear-gradient(0deg,#ffffff 40%, #e6e4ff 40%);
     overflow: hidden;
-}
-
-.main_gradient{
-    z-index: 1;
-    position: fixed;
-    width: 130%;
-    height: 83%;
-    background-color: #322e61;
-    transform: translateX(-20%) translateY(-20%) rotate(135deg);
-}
-
-.main_mask{
-    z-index: 1;
-    position: fixed;
-    width: 150%;
-    height: 83%;	
-    opacity: 0.2;
-    background: linear-gradient(#ffffff, #11101d);
-    transform: translateX(-1%) translateY(-20%) rotate(135deg);
 }
 
 .content_container{
     z-index: 1;
     display: flex;
+    position: fixed;
     align-items: center;
     justify-content: center;
+    top: 180px;
     height: 580px;
     width: 780px;
     margin: 0 auto;
-    box-shadow: 0 0 1px 1px lightgrey;
+    opacity: 0;
     border-radius: 10px;
+    transition: all 1s ease;
+}
+
+.content_container.start{
+    opacity: 1;
+    box-shadow: 0 0 10px 1px lightgrey;
 }
 
 .welcome_container{
@@ -54,7 +43,14 @@
     border-bottom-left-radius: 10px;
 	background: linear-gradient(-45deg, #cbf6f6, #c1cdfe, #e8c6ff, #aaffeb);
 	background-size: 400% 400%;
-	animation: gradient 10s ease infinite;
+	animation: gradient 5s ease infinite;
+    -webkit-box-reflect: below 3px linear-gradient(transparent 50%, rgba(0, 0, 0, .5));
+    transform: translateX(-100px);
+    transition: all 1s ease;
+}
+
+.welcome_container.start{
+    transform: translateX(0);
 }
 
 @keyframes gradient {
@@ -80,6 +76,13 @@
     background-color: white;
     border-top-right-radius: 10px;
     border-bottom-right-radius: 10px;
+    -webkit-box-reflect: below 3px linear-gradient(transparent 50%, rgba(0, 0, 0, .5));
+    transform: translateX(100px);
+    transition: all 1s ease;
+}
+
+.login_container.start{
+    transform: translateX(0);
 }
 
 .inner_login_container{
@@ -98,6 +101,7 @@
     color: white;
     font-family: "Beau Rivage";
     pointer-events: none;
+    user-select: none;
 }
 
 .welcome_text{
@@ -179,7 +183,6 @@ fieldset.login_fieldset:hover{
     background-color: #adb0e6;
     cursor: pointer;
 }
-
 .submit_btn:active{
     background-color: rgb(228, 228, 255);
 }
@@ -197,6 +200,7 @@ fieldset.login_fieldset:hover{
     opacity: 0;
     background-color: rgb(228, 228, 255);
     transition: all 0.2s ease;
+    transition-delay: 0.5s;
 }
 
 .modal_text{
@@ -215,6 +219,7 @@ fieldset.login_fieldset:hover{
     cursor: pointer;
     text-align: center;
     transition: all 0.2s ease;
+    transition-delay: 0.5s;
     margin-right: 5px;
     border-radius: 5px;
 }

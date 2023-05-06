@@ -1,0 +1,103 @@
+@import url("https://use.fontawesome.com/releases/v6.3.0/css/all.css");
+
+.header_container{
+    display: flex;
+    position: relative;
+    align-items: center;
+    width: 100%;
+    height: 50px;
+    box-shadow: 0px 0px 5px 2px rgb(218, 218, 218);
+}
+
+.panel_container{
+    position: fixed;
+    width: 350px;
+    height: 100%;
+    border-right: 1px solid lightgrey;
+}
+
+.panel_content{
+    width: inherit;
+    height: 100%;
+}
+
+.panel_header{
+    width: inherit;
+    height: 50px;   
+}
+
+.header_button{
+    position: absolute;
+    left: 20px;
+    font-size: 20px;
+    color: rgb(0, 0, 0);
+}
+
+.dropdown{
+    z-index: 999;
+    position: fixed;
+    right: 20px;
+}
+
+.welcome_dropdown{
+    font-size: small;
+    font-family: 'Chakra Petch', sans-serif;
+}
+
+.dropdown_button{
+    padding: 0;
+    border: none;
+    background: none;
+    cursor: pointer;
+    font-size: medium;
+    font-family: 'Chakra Petch', sans-serif;
+}
+
+.dropdown_button::after{
+    content: "\f078";
+    font-weight: 900;
+    font-family: "Font Awesome 5 Free";
+    margin-left: 5px;
+}
+
+.dropdown_button:hover{
+    border-bottom: 1px solid gray;
+}
+
+.dropdown_content{
+    display: none;
+    position: absolute;
+    top: 25px;
+    right: 5px;
+    width: 150px;
+    box-shadow: 0 0 5px 1px rgb(224, 224, 224);
+    border-radius: 2px;
+    background: white;
+    display: none;
+}
+
+.dropdown_content.show{
+    display: block;
+}
+
+.dropdown_form{
+    cursor: pointer;
+}
+
+.dropdown_content_anchor{
+    display: block;
+    padding: 5px 10px;
+    color: black;
+    font-family: 'Poppins', sans-serif;
+    font-size: 12px;
+    text-decoration: none;
+    transition: all 0.1s ease;
+}
+
+.dropdown_content_anchor:hover{
+    background-color:rgb(201, 201, 201)
+}
+
+#back_button{
+    cursor: pointer;
+}

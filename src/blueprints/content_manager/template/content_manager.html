@@ -1,0 +1,21 @@
+{% extends "side_panel.html" %}
+
+{% block title %}Content Manager{% endblock%}
+
+{% block static %}
+{{ super() }}
+<link rel="stylesheet" href="{{ url_for('content_manager_bp.static', filename='css/content_manager.css') }}"/>
+{% endblock static %}
+
+{% block content %}
+{{ super() }}
+<form id="test_form">
+    <input class="table_name" type="text" name="table_name">
+    <input class="submit_input" type="submit" name="submit">
+</form>
+{% endblock content %}
+
+{% block script %}
+{{ super() }}
+<script src="{{ url_for('content_manager_bp.static', filename='js/content_manager.js') }}"></script>
+{% endblock script %}

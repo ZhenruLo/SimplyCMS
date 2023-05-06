@@ -17,8 +17,6 @@
       <i class="close_modal fa-solid fa-xmark" title="Close"></i>
     </div>
   </div>
-  <div class="main_gradient"></div>
-  <div class="main_mask"></div>
   <div class="content_container">
       <div class="welcome_container">
           <span class="welcome_logo">C</span>
@@ -27,7 +25,7 @@
       </div>
       <div class="login_container">
         <div class="inner_login_container">
-            <span class="welcome_text" id="login_text">USER LOGIN</span>
+            <span class="welcome_text login_title" id="login_text">USER LOGIN</span>
             <form autocomplete="off" class="login_form" id="login_form" method="POST">
                 <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
               

@@ -1,4 +1,4 @@
-{% extends "side_base.html" %}
+{% extends "side_panel.html" %}
 
 {% block title %}Database{% endblock%}
 
@@ -8,10 +8,7 @@
 {% endblock static %}
 
 {% block content %}
-<form id="test_form">
-    <input class="table_name" type="text" name="table_name">
-    <input class="submit_input" type="submit" name="submit">
-</form>
+{{ super() }}
 {% endblock content %}
 
 {% block script %}
