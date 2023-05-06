@@ -29,7 +29,7 @@
 
 .content_container.start{
     opacity: 1;
-    box-shadow: 0 0 1px 1px lightgrey, 0 0 1px 1px white;
+    box-shadow: 0 0 10px 1px lightgrey;
 }
 
 .welcome_container{
