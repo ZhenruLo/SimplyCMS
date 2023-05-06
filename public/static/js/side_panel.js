@@ -9,6 +9,9 @@ $(function(){
         contentType:"application/json",
         success: function(data){
             $(".dropdown_button").html(data['username']);
+            if (data['role']){
+                $("#admin_page_anchor").toggleClass("disabled");
+            }
         },
         error: function(data){
             alert(data.responseText);

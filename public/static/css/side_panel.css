@@ -98,6 +98,12 @@
     background-color:rgb(201, 201, 201)
 }
 
+.dropdown_content_anchor.disabled{
+    color: gray;
+    pointer-events: none;
+    cursor: default;
+}
+
 #back_button{
     cursor: pointer;
 }

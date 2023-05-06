@@ -1,6 +1,7 @@
-from flask import (Blueprint, current_app, jsonify, redirect, render_template, request,
-                   url_for)
-from flask_login import login_required, logout_user, current_user
+from flask import (Blueprint, current_app, jsonify, redirect, render_template,
+                   request, url_for)
+from flask_login import current_user, login_required, logout_user
+from flask_principal import AnonymousIdentity, identity_changed
 
 logout_bp = Blueprint(
     "logout_bp",
@@ -16,5 +17,8 @@ def logout():
 
     if user_id:
         logout_user()
+
+        identity_changed.send(current_app._get_current_object(),
+                          identity=AnonymousIdentity())
         current_app.logger.info("User logout")
     return redirect(url_for("login_bp.login"), 301)
