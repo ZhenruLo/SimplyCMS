@@ -30,7 +30,7 @@
     position: absolute;
     left: 20px;
     font-size: 20px;
-    color: rgb(175, 175, 175);
+    color: rgb(0, 0, 0);
 }
 
 .dropdown{
@@ -39,11 +39,17 @@
     right: 20px;
 }
 
+.welcome_dropdown{
+    font-size: small;
+    font-family: 'Chakra Petch', sans-serif;
+}
+
 .dropdown_button{
     padding: 0;
     border: none;
     background: none;
     cursor: pointer;
+    font-size: medium;
     font-family: 'Chakra Petch', sans-serif;
 }
 
@@ -52,6 +58,10 @@
     font-weight: 900;
     font-family: "Font Awesome 5 Free";
     margin-left: 5px;
+}
+
+.dropdown_button:hover{
+    border-bottom: 1px solid gray;
 }
 
 .dropdown_content{
@@ -89,5 +99,5 @@
 }
 
 #back_button{
-    cursor: none;
+    cursor: pointer;
 }

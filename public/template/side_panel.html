@@ -13,7 +13,8 @@
 <div class="header_container">
     <i class="header_button fa-solid fa-chevron-left" id="back_button"></i>
     <div class="dropdown">
-        <button class="dropdown_button">Welcome</button>
+        <span class="welcome_dropdown">Welcome, </span>
+        <button class="dropdown_button"></button>
         <div class="dropdown_content">
             <a class="dropdown_content_anchor" href="">Administration</a>
             <form class="dropdown_form" action="{{ url_for('logout_bp.logout') }}" method="POST">

@@ -1,6 +1,7 @@
-from flask import (Blueprint, current_app, jsonify, redirect, render_template,
-                   url_for)
-from flask_login import login_user
+from flask import Blueprint, current_app, jsonify, render_template, url_for
+from flask_login import current_user, login_required, login_user
+from flask_negotiate import consumes
+
 from models import WebUser, db
 from security import check_pw
 
@@ -25,8 +26,8 @@ def verify_login():
     msg = "Login failed, please try again"
 
     if form.validate_on_submit():
-        user: 'WebUser' = db.session.query(WebUser).filter(WebUser.username==form.username.data).first()
-        if user and check_pw(form.password.data, user.password.encode('utf-8')):
+        user: "WebUser" = db.session.query(WebUser).filter(WebUser.username==form.username.data).first()
+        if user and check_pw(form.password.data, user.password.encode("utf-8")):
             login_user(user)
             result = True
             msg = url_for("home_bp.home")
@@ -38,6 +39,20 @@ def verify_login():
         "msg": msg,
     }
 
-    current_app.logger.info(f"Result dict from login_bp.verify_login, result: {result}, msg: {msg}")
+    current_app.logger.info(f"Result data from login_bp.verify_login, result: {result}, msg: {msg}")
     return jsonify(json_data)
     
+@login_bp.route("/username", methods=["GET"])
+@login_required
+@consumes("application/json")
+def log_username():
+    user_uuid = current_user.get_id()
+
+    user: "WebUser" = db.session.query(WebUser).filter(WebUser.user_uuid == user_uuid).first()
+    json_data = {
+        "username": user.username,
+    }
+
+    current_app.logger.info(f"Result data from login_bp.log_username, user fetched: {user.username}")
+    return jsonify(json_data)
+
