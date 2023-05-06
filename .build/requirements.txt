@@ -6,4 +6,5 @@ psycopg2==2.9.6
 Flask-SQLAlchemy==3.0.3
 Flask-Migrate==4.0.4
 Flask-Negotiate==0.1.0
+Flask-Principal==0.4.0
 bcrypt==4.0.1
