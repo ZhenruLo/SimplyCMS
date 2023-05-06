@@ -51,6 +51,7 @@ def log_username():
     user: "WebUser" = db.session.query(WebUser).filter(WebUser.user_uuid == user_uuid).first()
     json_data = {
         "username": user.username,
+        "role": user.role,
     }
 
     current_app.logger.info(f"Result data from login_bp.log_username, user fetched: {user.username}")
