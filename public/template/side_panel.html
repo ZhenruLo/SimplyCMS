@@ -24,11 +24,17 @@
         </div>
       </div>
 </div>
-<div class="panel_container" id="left_panel_container">
-    <div class="panel_header" id="left_panel_header">
+<div class="center_container">
+    <div class="panel_container" id="left_panel_container">
+        <div class="panel_header" id="left_panel_header">
+            <span class="panel_header_text"></span>
+        </div>
+        <div class="panel_content" id="left_panel_content">
+            {% block left_panel %}{% endblock left_panel %}
+        </div>
     </div>
-    <div class="panel_content" id="left_panel_content">
-        {% block left_panel %}{% endblock left_panel %}
+    <div class="content_container">
+        {% block center_content %}{% endblock center_content %}
     </div>
 </div>
 {% endblock content %}
