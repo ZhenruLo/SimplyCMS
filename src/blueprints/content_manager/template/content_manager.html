@@ -7,13 +7,16 @@
 <link rel="stylesheet" href="{{ url_for('content_manager_bp.static', filename='css/content_manager.css') }}"/>
 {% endblock static %}
 
-{% block content %}
-{{ super() }}
+{% block left_panel %}
+
+{% endblock left_panel %}
+
+{% block center_content %}
 <form id="test_form">
     <input class="table_name" type="text" name="table_name">
     <input class="submit_input" type="submit" name="submit">
 </form>
-{% endblock content %}
+{% endblock center_content %}
 
 {% block script %}
 {{ super() }}
