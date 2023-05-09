@@ -1,4 +1,4 @@
-from .base_model import Base, create_model, db, reflect_database
+from .base_model import Base, create_model, db, update_model
 from .migrate_init import migrate
 from .web_user import WebUser
 
@@ -8,7 +8,7 @@ __all__ =[
     "migrate",
 
     "create_model",
-    "reflect_database",
+    "update_model",
 
     "WebUser",
 ]

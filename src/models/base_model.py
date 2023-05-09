@@ -2,7 +2,7 @@ from typing import List
 
 from flask_login import UserMixin
 from flask_sqlalchemy import SQLAlchemy
-from sqlalchemy import MetaData
+from sqlalchemy import MetaData, Table, Column, String
 
 db = SQLAlchemy()
 
@@ -25,9 +25,10 @@ def create_model(tablename):
                  'mysecondcolumn': db.Column(db.Integer)}
 
     myclass = type('mytableclass', (db.Model,), attr_dict)
-    return myclass
+    db.create_all()
 
-def reflect_database():
-    metadata = MetaData()
-    metadata.reflect(bind=db.engine)
-    return metadata.tables
+def update_model(tablename):
+    Table(tablename, db.metadata, 
+                  Column("extra_column", String(255)),
+                  extend_existing=True)
+    db.metadata.create_all(db.engine)
