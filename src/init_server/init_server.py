@@ -1,9 +1,11 @@
 from flask import Flask, current_app
 from flask_login import current_user
+from flask_migrate import init, stamp, migrate, upgrade
 from flask_principal import RoleNeed, UserNeed, identity_loaded
 
+from constants import Directory
 from flask_logger import init_logger
-from models import db, migrate
+from models import db, migrate_app
 from security import csrf, login_manager, principals
 
 from .register_blueprint import register_blueprint
@@ -19,10 +21,9 @@ def create_app(config_obj):
     principals.init_app(flask_app)
     
     db.init_app(flask_app)
-    migrate.init_app(flask_app, db)
+    migrate_app.init_app(flask_app, db)
     
     with flask_app.app_context():
-        init_logger()
         db.create_all()
         
         @identity_loaded.connect_via(flask_app)
@@ -35,6 +36,14 @@ def create_app(config_obj):
                 identity.provides.add(RoleNeed(current_user.role))
 
         register_blueprint()
+        
+        if not Directory.GLOBAL_MIGRATE_DIR.exists():
+            init(Directory.GLOBAL_MIGRATE_DIR.as_posix(), multidb=False)
+        stamp(Directory.GLOBAL_MIGRATE_DIR.as_posix())
+        migrate(Directory.GLOBAL_MIGRATE_DIR.as_posix())
+        upgrade(Directory.GLOBAL_MIGRATE_DIR.as_posix())
+        
+        init_logger()
         current_app.logger.info("Blueprints and extra handler registration completed.")
 
     return flask_app

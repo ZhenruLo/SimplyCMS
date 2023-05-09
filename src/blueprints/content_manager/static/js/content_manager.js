@@ -7,6 +7,19 @@ $(function() {
             url: "/content_manager/databases",
             method: "GET",
             success: function(data) {
+                console.log(data["databases"])
+            },
+            error: function(data) {
+                alert(data.responseText);
+            },
+        });
+    });
+
+    $(".test_button1").on("click", function(){
+        $.ajax({
+            url: "/content_manager/databases",
+            method: "PUT",
+            success: function(data) {
                 console.log(data["database"])
             },
             error: function(data) {
@@ -18,7 +31,7 @@ $(function() {
     $("#test_form").submit(function(event){
         event.preventDefault();
         $.ajax({
-            url: "/content_manager/create",
+            url: "/content_manager/databases",
             method: "POST",
             data: $(this).serialize(),
             success: function(data) {
