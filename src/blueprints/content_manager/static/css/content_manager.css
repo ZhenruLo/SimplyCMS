@@ -1,0 +1,33 @@
+#content_manager_left_panel{
+    position: relative;
+    height: 100%;
+}
+
+.left_panel_tab_container{
+    display: flex;
+    height: 30px;
+    flex-direction: row;
+    background: lightgray;
+}
+
+.left_panel_tab{
+    width: 160px;
+    text-align: left;
+    font-size: 17px;
+    font-family: 'Chakra Petch', sans-serif;
+    border: none;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+    background: lightgrey;
+    user-select: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.left_panel_tab:hover{
+    background: rgb(183, 183, 183);
+}
+
+.left_panel_tab.selected_tab{
+    background: white;
+}

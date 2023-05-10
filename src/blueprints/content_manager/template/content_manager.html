@@ -8,17 +8,18 @@
 {% endblock static %}
 
 {% block left_panel %}
-<button class="test_button">Fetch data</button>
-<button class="test_button1">Update data</button>
-<ul class="data_list">
-</ul>
-<form id="test_form">
-    <input class="table_name" type="text" name="table_name">
-    <input class="submit_input" type="submit" name="submit">
-</form>
+<div id="content_manager_left_panel">
+    <div class="left_panel_tab_container">
+        <button class="left_panel_tab selected_tab" id="menu_tab">Menu
+            <
+        </button>
+        <button class="left_panel_tab" id="content_editor_tab">Content Editor</button>
+    </div>
+</div>
 {% endblock left_panel %}
 
 {% block center_content %}
+
 {% endblock center_content %}
 
 {% block script %}
