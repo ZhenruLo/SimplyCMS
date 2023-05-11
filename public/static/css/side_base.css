@@ -7,14 +7,9 @@
 }
 
 #content{
-    height: 0;
-    opacity: 0;
-    transition: all 1s ease;
-}
-
-#content.start{
     opacity: 1;
     height: 100%;
+    transition: all 1s ease;
 }
 
 .side_inner_container{
