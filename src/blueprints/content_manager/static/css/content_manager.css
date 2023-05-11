@@ -8,20 +8,32 @@
     height: 30px;
     flex-direction: row;
     background: lightgray;
+    margin-bottom: 20px;
 }
 
 .left_panel_tab{
-    width: 160px;
     text-align: left;
-    font-size: 17px;
-    font-family: 'Chakra Petch', sans-serif;
     border: none;
-    border-top-left-radius: 15px;
-    border-top-right-radius: 15px;
+    border-top-left-radius: 12px;
+    border-top-right-radius: 12px;
     background: lightgrey;
-    user-select: none;
     cursor: pointer;
     transition: all 0.3s ease;
+}
+
+.left_panel_content_container{
+    display: none;
+    height: 100%;
+}
+
+.left_panel_content_container.selected_panel{
+    display: block;
+}
+
+.tab_text{
+    font-size: 17px;
+    font-family: 'Chakra Petch', sans-serif;
+    user-select: none;
 }
 
 .left_panel_tab:hover{
@@ -30,4 +42,34 @@
 
 .left_panel_tab.selected_tab{
     background: white;
+}
+
+#menu_tab{
+    width: 85%;
+}
+
+#information_tab{
+    width: 15%;
+    text-align: center;
+}
+
+#information_tab .tab_text{
+    font-size: 20px;
+}
+
+.left_panel_menu_row{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 70px;
+}
+
+.left_panel_inner_row{
+    display: flex;
+    flex-direction: row;
+}
+
+.left_panel_row_text{
+    display: flex;
+    flex-direction: column;
 }

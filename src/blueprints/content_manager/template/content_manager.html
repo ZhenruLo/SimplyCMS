@@ -10,10 +10,28 @@
 {% block left_panel %}
 <div id="content_manager_left_panel">
     <div class="left_panel_tab_container">
-        <button class="left_panel_tab selected_tab" id="menu_tab">Menu
-            <
+        <button class="left_panel_tab selected_tab" id="menu_tab">
+            <span class="tab_text">Menu</span>
         </button>
-        <button class="left_panel_tab" id="content_editor_tab">Content Editor</button>
+        <button class="left_panel_tab" id="information_tab">
+            <i class='tab_text bx bx-info-circle' ></i>
+        </button>
+    </div>
+    <div class="left_panel_content_container selected_panel" id="left_panel_menu">
+        <div class="left_panel_menu_row">
+            <div class="left_panel_inner_row">
+                <div class="left_panel_icon_background">
+                    <i class='bx bxs-layer-plus'></i>
+                </div>
+                <div class="left_panel_row_text">
+                    <span class="row_text_title">Testing</span>
+                    <span class="row_text_description">Testing Description</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="left_panel_content_container" id="left_panel_info">
+        <span>TEST</span>
     </div>
 </div>
 {% endblock left_panel %}
