@@ -62,14 +62,34 @@
     justify-content: center;
     align-items: center;
     height: 70px;
+    border: 1px solid green;
 }
 
 .left_panel_inner_row{
     display: flex;
     flex-direction: row;
+    align-items: center;
+    padding: 0 10px;
+    width: 240px;
+    height: inherit;
+    border: 1px solid blue;
+}
+
+.left_panel_icon{
+    font-size: 30px;
 }
 
 .left_panel_row_text{
     display: flex;
     flex-direction: column;
+}
+
+.left_panel_icon_background{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 50px;
+    height: 50px;
+    border: 1px solid cyan;
+    margin-right: 10px;
 }
