@@ -69,6 +69,7 @@
 }
 
 .left_panel_menu_row.selected_row{
+    background-color: rgba(222, 222, 222, 0.3);
     border-right: 3px solid rgb(128, 0, 225);
 }
 
