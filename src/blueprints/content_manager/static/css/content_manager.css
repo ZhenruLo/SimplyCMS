@@ -23,11 +23,12 @@
 
 .left_panel_content_container{
     display: none;
+    flex-direction: column;
     height: 100%;
 }
 
 .left_panel_content_container.selected_panel{
-    display: block;
+    display: flex;
 }
 
 .tab_text{
@@ -61,8 +62,18 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    margin-bottom: 20px;
     height: 70px;
-    border: 1px solid green;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+}
+
+.left_panel_menu_row.selected_row{
+    border-right: 3px solid rgb(128, 0, 225);
+}
+
+.left_panel_menu_row:hover{
+    background-color: rgba(222, 222, 222, 0.5);
 }
 
 .left_panel_inner_row{
@@ -70,26 +81,66 @@
     flex-direction: row;
     align-items: center;
     padding: 0 10px;
-    width: 240px;
+    width: 270px;
     height: inherit;
-    border: 1px solid blue;
+    border-radius: 5px;
 }
 
 .left_panel_icon{
-    font-size: 30px;
+    font-size: 25px;
 }
 
 .left_panel_row_text{
+    width: 190px;
     display: flex;
     flex-direction: column;
+    user-select: none;
+    margin-left: 20px;
 }
 
 .left_panel_icon_background{
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 50px;
-    height: 50px;
-    border: 1px solid cyan;
-    margin-right: 10px;
+    width: 55px;
+    height: 55px;
+    border-radius: 5px;
+}
+
+.row_text_title{
+    font-family: 'Chakra Petch', sans-serif;
+    font-size: medium;
+    user-select: none;
+    margin-bottom: 3px;
+}
+
+.row_text_description{
+    font-size: 10px;
+    font-family: 'Chakra Petch', sans-serif;
+    color: grey;
+    user-select: none;
+}
+
+#icon_background_content{
+    background-color: rgba(0, 0, 255, 0.05);
+}
+
+#icon_content{
+    color: rgb(128, 0, 225);
+}
+
+#icon_background_field{
+    background-color: rgba(0, 217, 255, 0.05);
+}
+
+#icon_field{
+    color: rgb(0, 169, 225);
+}
+
+#icon_background_page{
+    background-color: rgba(11, 202, 212, 0.05);
+}
+
+#icon_page{
+    color: rgb(0, 225, 191);
 }
