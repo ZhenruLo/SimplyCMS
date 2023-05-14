@@ -86,10 +86,10 @@ def init_logger_configuration():
     
 def init_logger():
     init_logger_configuration()
-    mail_handler = init_mail_handler()
+    # mail_handler = init_mail_handler()
     
     root = logging.getLogger()
-    root.addHandler(mail_handler)
+    # root.addHandler(mail_handler)
     
 def init_mail_handler():
     mail_handler = SMTPHandler(
