@@ -54,16 +54,21 @@
     animation: click-animation 0.5s ease;
 }
 
+@keyframes click-animation {
+    0% {
+        transform: translateY(5px);
+    }
+    50% {
+        transform: translateY(-1px);
+    }
+}
+
 .left_panel_tab.selected_tab .tab_icon{
-    color: rgb(144, 0, 255);
+    color: rgb(69, 0, 125);
 }
 
 .left_panel_tab.selected_tab .tab_text{
     color: black;
-}
-
-.left_panel_tab.selected_tab .selected_dot{
-    opacity: 1;
 }
 
 .selected_dot{
@@ -76,9 +81,15 @@
     transition: all 0.3s ease;
 }
 
-@keyframes click-animation {
+.left_panel_tab.selected_tab .selected_dot{
+    opacity: 1;
+    animation: dot-animation 0.5s cubic-bezier(0.5, 1, 0.3, 2);
+    animation-delay: 0.05s;
+}
+
+@keyframes dot-animation {
     0% {
-        transform: translateY(5px) rotate(.05turn);
+        transform: translateY(10px);
     }
 }
 

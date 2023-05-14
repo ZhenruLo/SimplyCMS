@@ -1,6 +1,6 @@
 from flask import Flask, current_app
 from flask_login import current_user
-from flask_migrate import init, stamp, migrate, upgrade
+from flask_migrate import init, migrate, stamp, upgrade
 from flask_principal import RoleNeed, UserNeed, identity_loaded
 
 from constants import Directory
@@ -9,6 +9,7 @@ from models import db, migrate_app
 from security import csrf, login_manager, principals
 
 from .register_blueprint import register_blueprint
+from .register_error_handler import register_error_handler
 
 
 def create_app(config_obj):
@@ -36,7 +37,8 @@ def create_app(config_obj):
                 identity.provides.add(RoleNeed(current_user.role))
 
         register_blueprint()
-        
+        register_error_handler()
+
         if not Directory.GLOBAL_MIGRATE_DIR.exists():
             init(Directory.GLOBAL_MIGRATE_DIR.as_posix(), multidb=False)
         stamp(Directory.GLOBAL_MIGRATE_DIR.as_posix())
