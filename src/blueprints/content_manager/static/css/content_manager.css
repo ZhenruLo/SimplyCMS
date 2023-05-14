@@ -5,20 +5,23 @@
 
 .left_panel_tab_container{
     display: flex;
-    height: 30px;
+    position: relative;
+    height: 50px;
     flex-direction: row;
-    background: lightgray;
-    margin-bottom: 20px;
+    margin: 10px 0 20px 0;
+    justify-content: center;
 }
 
 .left_panel_tab{
-    text-align: left;
+    display: flex;
+    width: 50px;
+    flex-direction: column;
     border: none;
-    border-top-left-radius: 12px;
-    border-top-right-radius: 12px;
-    background: lightgrey;
     cursor: pointer;
-    transition: all 0.3s ease;
+    align-items: center;
+    color: grey;
+    background-color: white;
+    justify-content: space-between;
 }
 
 .left_panel_content_container{
@@ -31,31 +34,52 @@
     display: flex;
 }
 
+.tab_icon{
+    font-size: 25px;
+    transition: all 0.3s ease;
+}
+
 .tab_text{
-    font-size: 17px;
+    font-size: 10px;
     font-family: 'Chakra Petch', sans-serif;
     user-select: none;
+    transition: all 0.3s ease;
 }
 
 .left_panel_tab:hover{
-    background: rgb(183, 183, 183);
+    color: black;
 }
 
 .left_panel_tab.selected_tab{
-    background: white;
+    animation: click-animation 0.5s ease;
 }
 
-#menu_tab{
-    width: 85%;
+.left_panel_tab.selected_tab .tab_icon{
+    color: rgb(144, 0, 255);
 }
 
-#information_tab{
-    width: 15%;
-    text-align: center;
+.left_panel_tab.selected_tab .tab_text{
+    color: black;
 }
 
-#information_tab .tab_text{
-    font-size: 20px;
+.left_panel_tab.selected_tab .selected_dot{
+    opacity: 1;
+}
+
+.selected_dot{
+    opacity: 0;
+    z-index: 2;
+    width: 5px;
+    height: 5px;
+    border-radius: 10px;
+    background-color: rgb(128, 0, 225);
+    transition: all 0.3s ease;
+}
+
+@keyframes click-animation {
+    0% {
+        transform: translateY(5px) rotate(.05turn);
+    }
 }
 
 .left_panel_menu_row{
@@ -65,7 +89,7 @@
     margin-bottom: 20px;
     height: 70px;
     cursor: pointer;
-    transition: all 0.3s ease-in-out;
+    transition: all 0.2s ease;
 }
 
 .left_panel_menu_row.selected_row{
@@ -144,4 +168,12 @@
 
 #icon_page{
     color: rgb(0, 225, 191);
+}
+
+.center_content_container{
+    display: none;
+}
+
+.center_content_container.selected_content{
+    display: block;
 }

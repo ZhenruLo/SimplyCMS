@@ -32,14 +32,14 @@
 .panel_content{
     position: fixed;
     width: inherit;
-    height: calc(100% - 60px);
+    height: calc(100% - 70px);
 }
 
 .panel_header{
     display: flex;
     align-items: center;
     width: inherit;
-    height: 60px;   
+    height: 70px;   
     user-select: none;
     cursor: default;
     border-bottom: 1px solid lightgrey;
