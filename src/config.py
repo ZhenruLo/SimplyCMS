@@ -29,9 +29,9 @@ class Config():
         "worker_concurrency": 1,
     }
     
-    MAIL_SERVER = "smtp.ndrmedical.com"
-    MAIL_SERVER_ERROR = "server-error@ndrmedical.com"
-    MAIL_ADMIN = "zhenru@ndrmedical.com"
+    MAIL_SERVER = None
+    MAIL_SERVER_ERROR = None
+    MAIL_ADMIN = None
     MAIL_PORT = 465
     MAIL_USE_SSL = False
     MAIL_USE_TLS = True
