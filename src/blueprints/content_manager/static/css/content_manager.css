@@ -30,6 +30,10 @@
     height: 100%;
 }
 
+.input_text_box{
+    display: block;
+}
+
 .left_panel_content_container.selected_panel{
     display: flex;
 }

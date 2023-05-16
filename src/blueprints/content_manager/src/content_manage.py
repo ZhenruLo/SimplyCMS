@@ -1,7 +1,7 @@
 from flask import Blueprint, current_app, jsonify, render_template, request
 from flask_login import login_required
 
-from models import create_table, db, get_tables_information, update_table
+from models import create_table, db, get_tables_information, update_table_content
 
 content_manager_bp = Blueprint(
     "content_manager_bp",
@@ -39,13 +39,16 @@ def create_database():
     elif request.method == "POST":
         msg = "Create database failed."
 
-        form_data = dict(request.form)
-        
-        create_table(form_data.get('table_name'))
+        table_name = request.form.get('table_name')
+        check_result = __check_special_char(table_name)
+        if not check_result:
+            create_table(table_name)
 
-        result = True
-        msg = "Databases created"
-
+            result = True
+            msg = "Databases created"
+        else:
+            msg = "Database contain special characters"
+            
         json_data = {
             "result": result,
             "msg": msg,
@@ -54,10 +57,11 @@ def create_database():
     elif request.method == "PUT":
         msg = "Update database failed"
 
-        update_table("testing")
+        for column in request.form:
+            update_table_content("test", column)
         
         result = True
-        msg = "Databases created"
+        msg = "Databases updated"
 
         json_data = {
             "result": result,
@@ -66,3 +70,12 @@ def create_database():
 
     current_app.logger.info(f"Result dict from content_manager_bp.create_database, result: {result}, msg: {msg}")
     return jsonify(json_data)
+
+def __check_special_char(string: str):
+    special_characters = """!@#$%^&*'"()-+?=/,<>"""
+    for char in string:
+        if char in special_characters:
+            print("yes")
+    if any(char in special_characters for char in string):
+        return True
+    return False

@@ -26,7 +26,7 @@ def create_app(config_obj):
     
     with flask_app.app_context():
         db.create_all()
-        
+        db.reflect()
         @identity_loaded.connect_via(flask_app)
         def on_identity_loaded(sender, identity):
             identity.user = current_user

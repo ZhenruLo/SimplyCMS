@@ -28,14 +28,6 @@
                     <i class='left_panel_icon bx bxs-layer-plus' id="icon_content"></i>
                 </div>
                 <div class="left_panel_row_text">
-                    <button class="test_button">Fetch data</button>
-                    <button class="test_button1">Update data</button>
-                    <ul class="data_list">
-                    </ul>
-                    <form id="test_form">
-                        <input class="table_name" type="text" name="table_name">
-                        <input class="submit_input" type="submit" name="submit">
-                    </form>
                     <span class="row_text_description">Create a new content type with different configuration.</span>
                 </div>
             </div>
@@ -73,7 +65,20 @@
 
 {% block center_content %}
 <div class="center_content_container selected_content" id="center_create_content">
-    <span>Create Content</span>
+    <ul class="data_list">
+    </ul>
+    <form id="test_table_name_form">
+        <input class="input_text_box" type="text" name="table_name" placeholder="table_name">
+        <input class="submit_input" type="submit" name="submit" value="table_submit">
+    </form>
+    <form id="test_table_content_form">
+        <input class="input_text_box" type="text" name="int_name" placeholder="int">
+        <input class="input_text_box" type="text" name="varchar_name" placeholder="character varying">
+        <input class="input_text_box" type="text" name="test_name" placeholder="text">
+        <input class="input_text_box" type="text" name="date_name" placeholder="date">
+        <input class="input_text_box" type="text" name="bool_name" placeholder="bool">
+        <input class="submit_input" type="submit" name="submit" value="content_submit">
+    </form>
 </div>
 <div class="center_content_container" id="center_custom_field">
     <span>Create custom field</span>

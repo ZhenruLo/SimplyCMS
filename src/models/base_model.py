@@ -1,11 +1,10 @@
 from typing import List
 
+from constants import Directory
 from flask_login import UserMixin
 from flask_migrate import migrate, upgrade
 from flask_sqlalchemy import SQLAlchemy
-from sqlalchemy import Column, String, Table
-
-from constants import Directory
+from sqlalchemy import Column, Integer, String, Table
 
 db = SQLAlchemy()
 
@@ -22,18 +21,23 @@ class Base(UserMixin):
         db.session.commit()
 
 def create_table(tablename):
-    attr_dict = {'__tablename__': tablename,
-                 'myfirstcolumn': db.Column(db.Integer, primary_key=True),
-                 'mysecondcolumn': db.Column(db.Integer)}
-
-    type('mytableclass', (db.Model,), attr_dict)
+    if tablename in db.metadata.tables.keys():
+        return False
+    
+    Table(tablename, 
+          db.metadata,
+          Column("id", Integer, primary_key=True),
+          )
     migrate(Directory.GLOBAL_MIGRATE_DIR.as_posix())
     upgrade(Directory.GLOBAL_MIGRATE_DIR.as_posix())
+    return True
 
-def update_table(tablename):
-    Table(tablename, db.metadata, 
-                  Column("extra_column", String(255)),
-                  extend_existing=True)
+def update_table_content(tablename, column_info):
+    Table(tablename, 
+          db.metadata, 
+          Column(column_info, String(255)),
+          extend_existing=True
+          )
     migrate(Directory.GLOBAL_MIGRATE_DIR.as_posix())
     upgrade(Directory.GLOBAL_MIGRATE_DIR.as_posix())
 
