@@ -6,13 +6,13 @@ from os import makedirs, path
 import colorlog
 from flask import current_app
 
-LOG_FILE_DIR = "./log"
+LOG_FILE_DIR = './log'
 class RequestFormatter(colorlog.ColoredFormatter):
     def format(self, record):
         return super().format(record)
     
 def init_logger_configuration():
-    log_file_dir = "./log"
+    log_file_dir = './log'
     if not path.exists(log_file_dir):
         makedirs(log_file_dir)
     
@@ -47,7 +47,7 @@ def init_logger_configuration():
                     'class': 'logging.handlers.RotatingFileHandler',
                     'maxBytes': 10*1024*1024, #10mb
                     'backupCount': 10,
-                    'filename': path.join(LOG_FILE_DIR, "server.log"),
+                    'filename': path.join(LOG_FILE_DIR, 'server.log'),
                 },
             },
         'loggers':

@@ -1,57 +1,57 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang='en'>
     <head>
-        <meta charset="utf-8">
+        <meta charset='utf-8'>
         <title>{% block title %} {% endblock title%}</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="apple-touch-icon" sizes="114x114" href="static/images/apple-touch-icon.png"">
-        <link rel="icon" type="image/png" sizes="32x32" href="static/images/favicon-32x32.png">
-        <link rel="icon" type="image/png" sizes="16x16" href="static/images/favicon-16x16.png">
-        <link rel="manifest" href="static/images/site.webmanifest">
-        <link rel="mask-icon" href="static/images/safari-pinned-tab.svg" color="#5bbad5">
-        <meta name="msapplication-TileColor" content="#da532c">
-        <meta name="theme-color" content="#ffffff">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css" integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-        <link rel="stylesheet" type="text/css" href="static/css/base.css">
-        <link rel="stylesheet" type="text/css" href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css">
-        <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Beau+Rivage"/>
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins">
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Chakra+Petch">
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cinzel">
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Abel">
+        <meta name='viewport' content='width=device-width, initial-scale=1'>
+        <link rel='apple-touch-icon' sizes='114x114' href='static/images/apple-touch-icon.png''>
+        <link rel='icon' type='image/png' sizes='32x32' href='static/images/favicon-32x32.png'>
+        <link rel='icon' type='image/png' sizes='16x16' href='static/images/favicon-16x16.png'>
+        <link rel='manifest' href='static/images/site.webmanifest'>
+        <link rel='mask-icon' href='static/images/safari-pinned-tab.svg' color='#5bbad5'>
+        <meta name='msapplication-TileColor' content='#da532c'>
+        <meta name='theme-color' content='#ffffff'>
+        <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css' integrity='sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ==' crossorigin='anonymous' referrerpolicy='no-referrer' />
+        <link rel='stylesheet' type='text/css' href='static/css/base.css'>
+        <link rel='stylesheet' type='text/css' href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css'>
+        <link rel='stylesheet' href='//fonts.googleapis.com/css?family=Beau+Rivage'/>
+        <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Poppins'>
+        <link rel='stylesheet' href='https://fonts.googleapis.com/css2?family=Chakra+Petch'>
+        <link rel='stylesheet' href='https://fonts.googleapis.com/css2?family=Cinzel'>
+        <link rel='stylesheet' href='https://fonts.googleapis.com/css2?family=Abel'>
         {% block static %}{% endblock static %}
     </head>
     <body>
-        <div class="page_loader">
-            <span class="loading_text" style="--i:1">L</span>
-            <span class="loading_text" style="--i:2">O</span>
-            <span class="loading_text" style="--i:3">A</span>
-            <span class="loading_text" style="--i:4">D</span>
-            <span class="loading_text" style="--i:5">I</span>
-            <span class="loading_text" style="--i:6">N</span>
-            <span class="loading_text" style="--i:7">G</span>
+        <div class='page_loader'>
+            <span class='loading_text' style='--i:1'>L</span>
+            <span class='loading_text' style='--i:2'>O</span>
+            <span class='loading_text' style='--i:3'>A</span>
+            <span class='loading_text' style='--i:4'>D</span>
+            <span class='loading_text' style='--i:5'>I</span>
+            <span class='loading_text' style='--i:6'>N</span>
+            <span class='loading_text' style='--i:7'>G</span>
         </div>
-        <div id="side">
+        <div id='side'>
             {% block side %}{% endblock side %}
         </div>
-        <div id="content">
+        <div id='content'>
             {% block content %}{% endblock content%}
         </div>
-        <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+        <script src='https://code.jquery.com/jquery-3.5.1.js'></script>
         <script>
           $(function(){
-            var csrf_token = "{{ csrf_token() }}";
+            var csrf_token = '{{ csrf_token() }}';
         
             $.ajaxSetup({
                 beforeSend: function(xhr, settings) {
                     if (!/^(GET|HEAD|OPTIONS|TRACE)$/i.test(settings.type) && !this.crossDomain) {
-                        xhr.setRequestHeader("X-CSRFToken", csrf_token);
+                        xhr.setRequestHeader('X-CSRFToken', csrf_token);
                     }
                 }
             });
           });
         </script>
-        <script src="static/js/base.js"></script>
+        <script src='static/js/base.js'></script>
         {% block script %}{% endblock script %}
     </body>
 </html>

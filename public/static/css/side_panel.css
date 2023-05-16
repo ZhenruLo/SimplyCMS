@@ -1,4 +1,4 @@
-@import url("https://use.fontawesome.com/releases/v6.3.0/css/all.css");
+@import url('https://use.fontawesome.com/releases/v6.3.0/css/all.css');
 
 .header_container{
     display: flex;
@@ -80,9 +80,9 @@
 }
 
 .dropdown_button::after{
-    content: "\f078";
+    content: '\f078';
     font-weight: 900;
-    font-family: "Font Awesome 5 Free";
+    font-family: 'Font Awesome 5 Free';
     margin-left: 5px;
 }
 

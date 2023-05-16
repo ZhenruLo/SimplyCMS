@@ -20,7 +20,7 @@ class Base(UserMixin):
         db.session.delete(user)
         db.session.commit()
 
-def create_table(tablename):
+def create_table(tablename: str):
     if tablename in db.metadata.tables.keys():
         return False
     
@@ -32,7 +32,7 @@ def create_table(tablename):
     upgrade(Directory.GLOBAL_MIGRATE_DIR.as_posix())
     return True
 
-def update_table_content(tablename, column_info):
+def update_table_content(tablename: str, column_info):
     Table(tablename, 
           db.metadata, 
           Column(column_info, String(255)),

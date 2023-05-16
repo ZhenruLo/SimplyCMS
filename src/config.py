@@ -3,30 +3,29 @@ from datetime import timedelta
 
 
 class Config():
-    DEBUG = False
-    FLASK_ENV = "development"
+    DEBUG = True
     
-    SECRET_KEY = "3dac34eb0fa370731b59ccdc414415e7"
+    SECRET_KEY = '3dac34eb0fa370731b59ccdc414415e7'
     
-    SESSION_PROTECTION = "strong"
+    SESSION_PROTECTION = 'strong'
     REMEMBER_COOKIE_SECURE: True
-    REMEMBER_COOKIE_SAMESITE = "Lax"
+    REMEMBER_COOKIE_SAMESITE = 'Lax'
     
     REMEMBER_COOKIE_HTTPONLY = True
     PERMANENT_SESSION_LIFETIME = timedelta(hours=48)
 
-    if os.environ.get("IN_DOCKER"):
-        SQLALCHEMY_DATABASE_URI = "postgresql://postgres:root@postgre_db:5432/database" 
+    if os.environ.get('IN_DOCKER'):
+        SQLALCHEMY_DATABASE_URI = 'postgresql://postgres:root@postgre_db:5432/database' 
     else:
-        SQLALCHEMY_DATABASE_URI = "postgresql://postgres:root@localhost:5432/database" 
+        SQLALCHEMY_DATABASE_URI = 'postgresql://postgres:root@localhost:5432/database' 
         
     SQLALCHEMY_TRACK_MODIFICATIONS = True
 
-    CELERY_WORKER_NAME = "celery@server_worker1" 
+    CELERY_WORKER_NAME = 'celery@server_worker1' 
     CELERY = {
-        "broker_url": 'redis://localhost:6379/0',
-        "result_backend": 'redis://localhost:6379/0',
-        "worker_concurrency": 1,
+        'broker_url': 'redis://localhost:6379/0',
+        'result_backend': 'redis://localhost:6379/0',
+        'worker_concurrency': 1,
     }
     
     MAIL_SERVER = None

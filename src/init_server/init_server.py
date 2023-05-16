@@ -14,7 +14,7 @@ from .register_error_handler import register_error_handler
 
 def create_app(config_obj):
     
-    flask_app = Flask(__name__, template_folder="../../public/template", static_folder="../../public/static")
+    flask_app = Flask(__name__, template_folder='../../public/template', static_folder='../../public/static')
     flask_app.config.from_object(config_obj)
 
     csrf.init_app(flask_app)
@@ -31,9 +31,9 @@ def create_app(config_obj):
         def on_identity_loaded(sender, identity):
             identity.user = current_user
             
-            if hasattr(current_user, "user_uuid"):
+            if hasattr(current_user, 'user_uuid'):
                 identity.provides.add(UserNeed(current_user.user_uuid))
-            if hasattr(current_user, "role"):
+            if hasattr(current_user, 'role'):
                 identity.provides.add(RoleNeed(current_user.role))
 
         register_blueprint()
@@ -46,6 +46,6 @@ def create_app(config_obj):
         upgrade(Directory.GLOBAL_MIGRATE_DIR.as_posix())
         
         init_logger()
-        current_app.logger.info("Blueprints and extra handler registration completed.")
+        current_app.logger.info('Blueprints and extra handler registration completed.')
 
     return flask_app

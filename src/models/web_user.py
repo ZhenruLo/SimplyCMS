@@ -16,14 +16,14 @@ class WebUser(Base, db.Model):
     user_uuid = db.Column(db.String, server_default = func.abs(func.random()))
 
     def __init__(self, 
-                    user_name: 'str', 
-                    password: 'str', 
-                    salt: 'str', 
-                    email: 'str', 
-                    first_name:'str', 
-                    last_name:'str', 
-                    role:'str', 
-                ):
+                 user_name: str, 
+                 password: str, 
+                 salt: str,
+                 email: str, 
+                 first_name: str, 
+                 last_name: str, 
+                 role: str, 
+                 ):
 
         self.username = user_name
         self.password = password
@@ -33,15 +33,15 @@ class WebUser(Base, db.Model):
         self.last_name = last_name
         self.role = role
 
-    def get_id(self):
+    def get_id(self) -> str:
         return self.user_uuid
 
-    def is_authenticated(self):
+    def is_authenticated(self) -> bool:
         return super().is_authenticated
 
-    def is_active(self):
+    def is_active(self) -> bool:
         return super().is_active
     
-    def is_anonymous(self):
+    def is_anonymous(self) -> bool:
         return super().is_anonymous
     

@@ -1,5 +1,6 @@
 import argparse
 import os
+from typing import Tuple
 
 import bcrypt
 import psycopg2
@@ -10,7 +11,7 @@ parser.add_argument("--password", "-P", help="super admin password")
 parser.add_argument("--role", "-R", help="super admin role")
 args = parser.parse_args()
 
-def hash_pw(password: str):
+def hash_pw(password: str) -> Tuple(str, str):
     salt = bcrypt.gensalt(12)
     encoded_pw = f"{password}".encode("utf-8")
     hashed_pw = bcrypt.hashpw(encoded_pw, salt)

@@ -4,13 +4,13 @@ from .migrate_init import migrate_app
 from .web_user import WebUser
 
 __all__ =[
-    "Base",
-    "db",
-    "migrate_app",
+    'Base',
+    'db',
+    'migrate_app',
 
-    "create_table",
-    "update_table_content",
-    "get_tables_information",
+    'create_table',
+    'update_table_content',
+    'get_tables_information',
 
-    "WebUser",
+    'WebUser',
 ]
