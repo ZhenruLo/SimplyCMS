@@ -21,7 +21,7 @@
     align-items: center;
     color: grey;
     background-color: white;
-    justify-content: space-between;
+    justify-content: space-evenly;
 }
 
 .left_panel_content_container{

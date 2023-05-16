@@ -12,8 +12,7 @@
 .center_container{
     display: flex;
     flex-direction: row;
-    width: 100%;
-    height: calc(100% - 50px); 
+    height: 100%
 }
 
 .panel_container{
@@ -30,26 +29,7 @@
 }
 
 .panel_content{
-    position: fixed;
     width: inherit;
-    height: calc(100% - 70px);
-}
-
-.panel_header{
-    display: flex;
-    align-items: center;
-    width: inherit;
-    height: 70px;   
-    user-select: none;
-    cursor: default;
-    border-bottom: 1px solid lightgrey;
-}
-
-.panel_header_text{    
-    margin-left: 30px;
-    font-size: x-large;
-    color: black;
-    font-family: 'Chakra Petch', sans-serif;
 }
 
 .header_button{
@@ -68,66 +48,6 @@
 .welcome_dropdown{
     font-size: small;
     font-family: 'Chakra Petch', sans-serif;
-}
-
-.dropdown_button{
-    padding: 0;
-    border: none;
-    background: none;
-    cursor: pointer;
-    font-size: medium;
-    font-family: 'Chakra Petch', sans-serif;
-}
-
-.dropdown_button::after{
-    content: '\f078';
-    font-weight: 900;
-    font-family: 'Font Awesome 5 Free';
-    margin-left: 5px;
-}
-
-.dropdown_button:hover{
-    border-bottom: 1px solid gray;
-}
-
-.dropdown_content{
-    display: none;
-    position: absolute;
-    top: 25px;
-    right: 5px;
-    width: 150px;
-    box-shadow: 0 0 5px 1px rgb(224, 224, 224);
-    border-radius: 2px;
-    background: white;
-    display: none;
-}
-
-.dropdown_content.show{
-    display: block;
-}
-
-.dropdown_form{
-    cursor: pointer;
-}
-
-.dropdown_content_anchor{
-    display: block;
-    padding: 5px 10px;
-    color: black;
-    font-family: 'Poppins', sans-serif;
-    font-size: 12px;
-    text-decoration: none;
-    transition: all 0.1s ease;
-}
-
-.dropdown_content_anchor:hover{
-    background-color:rgb(201, 201, 201)
-}
-
-.dropdown_content_anchor.disabled{
-    color: gray;
-    pointer-events: none;
-    cursor: default;
 }
 
 #back_button{
