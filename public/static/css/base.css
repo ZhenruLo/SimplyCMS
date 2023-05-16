@@ -35,3 +35,72 @@ body{
     }
     75%, 100% { transform: none; }
 }
+
+.modal_container{
+    display: flex;
+    position: fixed;
+    width: inherit;
+    justify-content: center;
+}
+
+.modal_box{
+    display: inline-flex;
+    align-items: center;
+    z-index: 99;
+    position: fixed;
+    text-align: left;
+    top: 40px;
+    width: 700px;
+    height: 35px;
+    border-radius: 5px;
+    opacity: 0;
+    background-color: white;
+    box-shadow: 0 0 5px 1px lightgrey;
+    transition: all 0.2s ease;
+}
+
+.modal_text{
+    width: calc(100% - 60px);
+    color: black;
+    margin-left: 5px;
+    font-size: 13px;
+}
+
+.show_modal{
+    opacity: 1;
+}
+
+.mark_div{
+    width: 30px;
+    cursor: pointer;
+    text-align: center;
+    transition: all 0.2s ease;
+    margin-right: 5px;
+    border-radius: 5px;
+}
+
+.mark_div:hover{
+    background-color: lightgray;
+}
+
+.mark_div:active{
+    background-color: #191970;
+}
+
+.close_modal{
+    color: black;
+    padding: 5px;
+    font-size: 20px;
+}
+
+.caution_div{
+    width: 30px;
+    text-align: center;
+    margin-left: 5px;
+}
+
+.caution_model{
+    color: gray;
+    padding: 5px;
+    font-size: 20px;
+}

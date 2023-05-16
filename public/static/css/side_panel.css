@@ -23,13 +23,9 @@
 }
 
 .content_container{
-    width: 100%;
+    width: calc(100% - 300px);
     height: 100%;
     background-color: rgba(211, 211, 211, 0.12);
-}
-
-.panel_content{
-    width: inherit;
 }
 
 .header_button{
