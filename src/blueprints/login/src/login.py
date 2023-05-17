@@ -29,8 +29,12 @@ def verify_login():
     if form.validate_on_submit():
         user: 'WebUser' = db.session.query(WebUser).filter(WebUser.username==form.username.data).first()
         if user and check_pw(form.password.data, user.password.encode('utf-8')):
-            login_user(user)
-            
+            if form.remember.data:
+                remember = True
+            else: 
+                remember = False
+                
+            login_user(user, remember=remember)
             identity_changed.send(current_app._get_current_object(),
                                   identity=Identity(user.user_uuid))
             result = True

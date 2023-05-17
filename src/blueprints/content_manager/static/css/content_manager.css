@@ -6,7 +6,7 @@
 .left_panel_tab_container{
     display: flex;
     position: relative;
-    height: 50px;
+    height: 65px;
     flex-direction: row;
     margin: 10px 0 20px 0;
     justify-content: center;
