@@ -7,6 +7,9 @@ $(function() {
         else if (id === 'information_tab' && $('#'+id).hasClass('selected_tab')) {
             $('#left_panel_info').toggleClass('selected_panel');
         }
+        else if (id === 'history_tab' && $('#'+id).hasClass('selected_tab')) {
+            $('#left_panel_history').toggleClass('selected_panel');
+        }
     };
 
     function openContent(id) {
@@ -24,6 +27,7 @@ $(function() {
             $('#center_create_page').toggleClass('selected_content');
         }
     }
+    $('.left_panel_menu_row').toggleClass('start');
 
     $('.left_panel_tab').on('click', function(event) {
         event.preventDefault();

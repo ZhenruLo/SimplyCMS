@@ -55,10 +55,10 @@
 }
 
 .left_panel_tab.selected_tab{
-    animation: click-animation 0.5s ease;
+    animation: click_animation 0.5s ease;
 }
 
-@keyframes click-animation {
+@keyframes click_animation {
     0% {
         transform: translateY(5px);
     }
@@ -87,11 +87,11 @@
 
 .left_panel_tab.selected_tab .selected_dot{
     opacity: 1;
-    animation: dot-animation 0.5s cubic-bezier(0.5, 1, 0.3, 2);
+    animation: dot_animation 0.5s cubic-bezier(0.5, 1, 0.3, 2);
     animation-delay: 0.05s;
 }
 
-@keyframes dot-animation {
+@keyframes dot_animation {
     0% {
         transform: translateY(10px);
     }
@@ -105,6 +105,16 @@
     height: 70px;
     cursor: pointer;
     transition: all 0.2s ease;
+}
+
+.left_panel_menu_row.start{
+    animation: drop_animation 0.7s ease;
+}
+
+@keyframes drop_animation {
+    0% {
+        transform: translateX(-300px);
+    }
 }
 
 .left_panel_menu_row.selected_row{

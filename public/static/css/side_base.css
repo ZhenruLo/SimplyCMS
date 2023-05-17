@@ -15,6 +15,8 @@
 .side_inner_container{
     width: 100%;
     height: 100%;
+    overflow-y: auto;
+    overflow-x: hidden;
     background: linear-gradient(180deg, #27254d, #c7a0de);
 }
 

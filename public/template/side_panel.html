@@ -18,7 +18,12 @@
         </div>
     </div>
     <div class='content_container'>
-        {% block center_content %}{% endblock center_content %}
+        <div class='content_header_container'>
+            {% block center_header_content %}{% endblock center_header_content %}
+        </div>
+        <div class='content_body_container'>
+            {% block center_body_content %}{% endblock center_body_content %}
+        </div>
     </div>
 </div>
 {% endblock content %}
