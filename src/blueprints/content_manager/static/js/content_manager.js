@@ -1,37 +1,42 @@
 $(function() {
-    function openMenu(id){
+    function openMenu(id) {
         $('.left_panel_content_container').removeClass('selected_panel');
-        if (id === 'menu_tab' && $('#'+id).hasClass('selected_tab')){
+        if (id === 'menu_tab' && $('#'+id).hasClass('selected_tab')) {
             $('#left_panel_menu').toggleClass('selected_panel');
         }
-        else if (id === 'information_tab' && $('#'+id).hasClass('selected_tab')){
+        else if (id === 'information_tab' && $('#'+id).hasClass('selected_tab')) {
             $('#left_panel_info').toggleClass('selected_panel');
         }
     };
 
-    function openContent(id){
+    function openContent(id) {
         $('.center_content_container').removeClass('selected_content');
-        if (id === 'row_create_content' && $('#'+id).hasClass('selected_row')){
+
+        if (id === 'row_create_content' && $('#' + id).hasClass('selected_row')) {
             $('#center_create_content').toggleClass('selected_content');
         }
-        else if (id === 'row_custom_field' && $('#'+id).hasClass('selected_row')){
+
+        else if (id === 'row_custom_field' && $('#' + id).hasClass('selected_row')) {
             $('#center_custom_field').toggleClass('selected_content');
         }
-        else if (id === 'row_create_page' && $('#'+id).hasClass('selected_row')){
+
+        else if (id === 'row_create_page' && $('#' + id).hasClass('selected_row')) {
             $('#center_create_page').toggleClass('selected_content');
         }
     }
 
-    $('.left_panel_tab').on('click', function(event){
+    $('.left_panel_tab').on('click', function(event) {
         event.preventDefault();
         var current_tab = $(this);
+
         $('.left_panel_tab').removeClass('selected_tab')
         current_tab.toggleClass('selected_tab');
         openMenu($(this).attr('id'));
     });
 
-    $('.left_panel_menu_row').on('click', function(event){
+    $('.left_panel_menu_row').on('click', function(event) {
         event.preventDefault();
+
         $('.left_panel_menu_row').removeClass('selected_row');
         $(this).toggleClass('selected_row');
         openContent($(this).attr('id'));
@@ -39,8 +44,9 @@ $(function() {
 
     $('#content_manager_anchor').toggleClass('current_anchor');
 
-    $('#test_table_name_form').submit(function(event){
+    $('#test_table_name_form').submit(function(event) {
         event.preventDefault();
+        
         $.ajax({
             url: '/content_manager/databases',
             method: 'POST',
@@ -54,8 +60,9 @@ $(function() {
         });
     });
 
-    $('#test_table_content_form').submit(function(event){
+    $('#test_table_content_form').submit(function(event) {
         event.preventDefault();
+
         $.ajax({
             url: '/content_manager/databases',
             method: 'PUT',
