@@ -48,7 +48,7 @@ $(function() {
 
     $('#content_manager_anchor').toggleClass('current_anchor');
 
-    $('#test_table_name_form').submit(function(event) {
+    $('#content_manager_form').submit(function(event) {
         event.preventDefault();
         
         $.ajax({

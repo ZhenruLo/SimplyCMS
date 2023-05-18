@@ -4,7 +4,8 @@
 
 {% block static %}
 {{ super() }}
-<link rel='stylesheet' href="{{ url_for('content_manager_bp.static', filename='css/content_manager.css') }}"/>
+<link rel='stylesheet' href="{{ url_for('content_manager_bp.static', filename='css/content_manager_left_panel.css') }}"/>
+<link rel='stylesheet' href="{{ url_for('content_manager_bp.static', filename='css/content_manager_center_header.css') }}"/>
 {% endblock static %}
 
 {% block left_panel %}
@@ -82,11 +83,15 @@
 
 {% block center_body_content %}
 <div class='center_content_container selected_content' id='center_create_content'>
-    <form id='test_table_name_form'>
-        <div class=''
-        <input class='header_content_name' type='text' name='content_name' placeholder='#Enter the content name'>
-        <input class='submit_input' type='submit' name='submit' value='table_submit'> 
-        Create Content
+    <form id='content_manager_form'>
+        <div class='center_content_header_container'>
+            <input class='header_content_name' type='text' name='content_name' placeholder='#Enter the content name'>
+            <i class="fa-regular fa-pen-to-square"></i>
+            <input class='submit_input' type='submit' name='submit' value='table_submit'> 
+        </div>
+        <div class='center_content_body_container'>
+            <span>Create Content</span>
+        </div>
     </form>
 </div>
 
