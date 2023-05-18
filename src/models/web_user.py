@@ -1,5 +1,8 @@
-from .base_model import Base, db
+import uuid
+
 from sqlalchemy import func
+
+from .base_model import Base, db
 
 
 class WebUser(Base, db.Model):
@@ -13,7 +16,8 @@ class WebUser(Base, db.Model):
     first_name = db.Column(db.String)
     last_name = db.Column(db.String)
     role = db.Column(db.String)
-    user_uuid = db.Column(db.String, server_default = func.abs(func.random()))
+    user_uuid = db.Column(db.String, server_default=func.random(), unique=True)
+    created_timestamp = db.Column(db.DateTime, server_default = func.current_timestamp())
 
     def __init__(self, 
                  user_name: str, 

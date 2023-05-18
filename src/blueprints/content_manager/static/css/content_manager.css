@@ -108,7 +108,7 @@
 }
 
 .left_panel_menu_row.start{
-    animation: drop_animation 0.7s ease;
+    animation: drop_animation 0.5s ease;
 }
 
 @keyframes drop_animation {

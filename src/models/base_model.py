@@ -26,7 +26,7 @@ def create_table(tablename: str):
     
     Table(tablename, 
           db.metadata,
-          Column("id", Integer, primary_key=True),
+          Column('id', Integer, primary_key=True),
           )
     migrate(Directory.GLOBAL_MIGRATE_DIR.as_posix())
     upgrade(Directory.GLOBAL_MIGRATE_DIR.as_posix())
