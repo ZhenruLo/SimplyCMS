@@ -27,7 +27,6 @@ $(function() {
             $('#center_create_page').toggleClass('selected_content');
         }
     }
-    $('.left_panel_menu_row').toggleClass('start');
 
     $('.left_panel_tab').on('click', function(event) {
         event.preventDefault();
@@ -47,36 +46,4 @@ $(function() {
     });
 
     $('#content_manager_anchor').toggleClass('current_anchor');
-
-    $('#content_manager_form').submit(function(event) {
-        event.preventDefault();
-        
-        $.ajax({
-            url: '/content_manager/databases',
-            method: 'POST',
-            data: $(this).serialize(),
-            success: function(data) {
-                alert(data.msg);
-            },
-            error: function(data) {
-                alert(data.responseText);
-            },
-        });
-    });
-
-    $('#test_table_content_form').submit(function(event) {
-        event.preventDefault();
-
-        $.ajax({
-            url: '/content_manager/databases',
-            method: 'PUT',
-            data: $(this).serialize(),
-            success: function(data) {
-                alert(data.msg);
-            },
-            error: function(data) {
-                alert(data.responseText);
-            },
-        });
-    });
 });

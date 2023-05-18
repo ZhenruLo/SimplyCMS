@@ -99,6 +99,7 @@
 
 .left_panel_menu_row{
     display: flex;
+    opacity: 0;
     justify-content: center;
     align-items: center;
     margin-bottom: 20px;
@@ -108,14 +109,15 @@
 }
 
 .left_panel_menu_row.start{
-    animation: drop_animation 0.5s ease;
+    opacity: 1;
+    /* animation: drop_animation 0.5s ease; */
 }
 
-@keyframes drop_animation {
+/* @keyframes drop_animation {
     0% {
         transform: translateX(-300px);
     }
-}
+} */
 
 .left_panel_menu_row.selected_row{
     background-color: rgba(222, 222, 222, 0.3);

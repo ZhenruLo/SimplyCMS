@@ -17,9 +17,18 @@
 
 .panel_container{
     display: inline-block;
+    opacity: 0;
     width: 300px;
+    min-width: 300px;
     height: 100%;
     overflow: auto;
+    transform: translateY(-100px);
+    transition: all 0.6s ease-in-out;
+}
+
+.panel_container.start{
+    opacity: 1;
+    transform: translateY(0);
     border-right: 1px solid lightgrey;
 }
 
