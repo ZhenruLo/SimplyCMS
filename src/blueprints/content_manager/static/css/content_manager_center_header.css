@@ -1,3 +1,10 @@
 .center_content_header_container{
+    position: relative;
+    height: 50px;
+    border-bottom: 1px solid;
+}
 
+.save_content_input{
+    position: absolute;
+    right: 0;
 }

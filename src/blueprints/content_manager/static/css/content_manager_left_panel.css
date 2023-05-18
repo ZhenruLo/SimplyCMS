@@ -110,14 +110,14 @@
 
 .left_panel_menu_row.start{
     opacity: 1;
-    /* animation: drop_animation 0.5s ease; */
+    animation: drop_animation 0.5s ease;
 }
 
-/* @keyframes drop_animation {
+@keyframes drop_animation {
     0% {
-        transform: translateX(-300px);
+        transform: translateY(-20px);
     }
-} */
+}
 
 .left_panel_menu_row.selected_row{
     background-color: rgba(222, 222, 222, 0.3);
