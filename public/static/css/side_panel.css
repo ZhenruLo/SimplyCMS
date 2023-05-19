@@ -1,14 +1,5 @@
 @import url('https://use.fontawesome.com/releases/v6.3.0/css/all.css');
 
-.header_container{
-    display: flex;
-    position: relative;
-    align-items: center;
-    width: 100%;
-    height: 50px;
-    box-shadow: 0px 0px 5px 2px rgb(218, 218, 218);
-}
-
 .center_container{
     display: flex;
     flex-direction: row;
@@ -29,7 +20,6 @@
 .panel_container.start{
     opacity: 1;
     transform: translateY(0);
-    border-right: 1px solid lightgrey;
 }
 
 .content_container{

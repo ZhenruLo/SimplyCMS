@@ -3,7 +3,7 @@
     width: 60px;
     flex: 0 0 60px;
     height: 100%;
-    transition: all .2s ease;
+    transition: all .3s ease;
 }
 
 #content{
@@ -21,19 +21,21 @@
 }
 
 .side_header_container{
-    position: relative;
     width: 100%;
     height: 50px;
 }
 
+.side_header_container.start{
+    animation: drop_animation 0.5s ease;
+}
+
 #home_anchor{
+    display: none;
     position: absolute;
     width: fit-content;
     height: fit-content;
-    pointer-events: none;
+    cursor: pointer;
     text-decoration: none;
-    transition: all 0.2s ease;
-    opacity: 0;
 }
 
 .logo_text{
@@ -43,28 +45,28 @@
     color: black;
     padding: 0 8px 0 8px;
     margin-left: 12px;
-    pointer-events: none;
+    user-select: none;
     border-radius: 10px;
     background-color: white;
 }
 
 .header_text{
-    position: absolute;
     font-family: 'Chakra Petch', sans-serif;
     font-size: 18px;
     color: white;
     line-height: 50px;
+    user-select: none;
     margin-left: 10px;
     pointer-events: none;
 }
 
 #collapse_menu_btn{
-    position: absolute;
+    position: relative;
     cursor: pointer;
     line-height: 50px;
     margin: 0;
     left: 24px;
-    transition: all 0.2s ease;
+    transition: all 0.35s ease;
 }
 
 .side_anchor_icon{
@@ -94,6 +96,16 @@
     width: 100%;
     height: calc(100% - 50px);
     min-height: 300px;
+}
+
+.side_content_container.start{
+    animation: drop_animation 0.5s ease;
+}
+
+@keyframes drop_animation {
+    0% {
+        transform: translateY(-20px);
+    }
 }
 
 .side_menu_group{
@@ -146,10 +158,6 @@
     right: 5px;
 }
 
-.dropdown_button:hover{
-    border-bottom: 1px solid gray;
-}
-
 .side_anchor.current_anchor{
     background-color: rgba(255, 255, 255, 0.1);
 }
@@ -199,8 +207,14 @@
 }
 
 #side.expand #home_anchor{
-    pointer-events: auto;
-    opacity: 1;
+    display: inline-block;
+    animation: expand_animation 0.5s ease;
+}
+
+@keyframes expand_animation {
+    0% {
+        transform: translateX(-20px);
+    }
 }
 
 #side.expand #side_logout{

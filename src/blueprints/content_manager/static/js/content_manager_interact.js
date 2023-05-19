@@ -44,6 +44,4 @@ $(function() {
         $(this).toggleClass('selected_row');
         openContent($(this).attr('id'));
     });
-
-    $('#content_manager_anchor').toggleClass('current_anchor');
 });

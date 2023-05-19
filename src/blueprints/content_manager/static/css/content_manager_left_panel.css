@@ -1,11 +1,9 @@
 #content_manager_left_panel{
-    position: relative;
     height: 100%;
 }
 
 .left_panel_tab_container{
     display: flex;
-    position: relative;
     height: 65px;
     flex-direction: row;
     margin: 10px 0 20px 0;

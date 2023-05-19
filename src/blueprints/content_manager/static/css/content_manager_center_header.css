@@ -1,4 +1,6 @@
 .center_content_header_container{
+    display: flex;
+    align-items: center;
     padding: 10px;
     position: relative;
     height: 50px;
@@ -13,6 +15,7 @@
     width: fit-content;
     font-size: 30px;
     height: inherit;
+    user-select: none;
     outline: none;
     border: none;
     background: transparent;
@@ -20,4 +23,31 @@
 
 .content_header_text#content_name_text::placeholder{
     color: rgb(169, 169, 169);
+}
+
+#table_name_edit{
+    display: flex !important;
+    justify-content: center;
+    align-items: center;
+    width: 25px;
+    height: 25px;
+    display: inline-block;
+    user-select: none;
+    cursor: pointer;
+}
+
+#table_name_edit:hover{
+    -webkit-mask-image: linear-gradient(-75deg, rgba(0, 0, 0, 0.6) 30%, #000000 50%, rgba(0,0,0,.6) 70%);
+    -webkit-mask-size: 300%;
+    animation: shine 2s linear infinite;
+}
+
+@keyframes shine {
+    from { -webkit-mask-position: 150%; }
+    to { -webkit-mask-position: -50%; }
+}
+
+#table_name_edit:active{
+    border-radius: 5px;
+    background-color: rgba(185, 185, 185, 0.282);
 }
