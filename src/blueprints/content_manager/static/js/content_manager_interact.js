@@ -44,4 +44,23 @@ $(function() {
         $(this).toggleClass('selected_row');
         openContent($(this).attr('id'));
     });
+
+    $("#table_name_edit").on('click', function() {
+        $('#content_name_text').css('pointer-events', 'initial');
+        $('#content_name_text').focus();
+    });
+
+    $("#content_name_text").on('blur', function() {
+        $('#content_name_text').css('pointer-events', 'none');
+    });
+
+    $('#content_name_text').on('input', function(){
+        var input_length = $(this).val().length;
+        if (input_length === 0){
+            $('#content_name_text').css('width', $('#content_name_text').attr('placeholder').length + 'ch');
+        }
+        else {
+            $(this).css('width', input_length + 'ch');  
+        };
+    });
 });

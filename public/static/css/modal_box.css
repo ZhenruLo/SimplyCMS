@@ -1,24 +1,24 @@
 .modal_container{
+    z-index: -1;
     display: flex;
     position: fixed;
     width: inherit;
     justify-content: center;
+    opacity: 0;
+    transition: all 0.2s ease;
 }
 
 .modal_box{
     display: inline-flex;
     align-items: center;
-    z-index: 99;
     position: fixed;
     text-align: left;
     top: 40px;
     width: 700px;
     height: 35px;
     border-radius: 5px;
-    opacity: 0;
     background-color: white;
     box-shadow: 0 0 5px 1px lightgrey;
-    transition: all 0.2s ease;
 }
 
 .modal_text{
@@ -28,7 +28,8 @@
     font-size: 13px;
 }
 
-.show_modal{
+.modal_container.show_modal{
+    z-index: 99;
     opacity: 1;
 }
 

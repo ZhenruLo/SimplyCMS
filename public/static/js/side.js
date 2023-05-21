@@ -1,7 +1,7 @@
 $(function() {
     $('#database_anchor').removeClass('current_anchor');
-    // $('.side_header_container').toggleClass('start');
-    // $('.side_content_container').toggleClass('start');
+    $('.side_li').toggleClass('start');
+    $('.side_header_container').toggleClass('start');
 
     $('#collapse_menu_btn').on('click', function() {
         $('#side').toggleClass('expand');

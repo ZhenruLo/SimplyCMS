@@ -4,8 +4,9 @@
 
 {% block static %}
 {{ super() }}
-<link rel='stylesheet' href='{{ url_for('content_manager_bp.static', filename='css/content_manager_left_panel.css') }}'/>
-<link rel='stylesheet' href='{{ url_for('content_manager_bp.static', filename='css/content_manager_center_header.css') }}'/>
+<link rel='stylesheet' href="{{ url_for('content_manager_bp.static', filename='css/content_manager_left_panel.css') }}"/>
+<link rel='stylesheet' href="{{ url_for('content_manager_bp.static', filename='css/content_manager_center_header.css') }}"/>
+<link rel='stylesheet' href="{{ url_for('content_manager_bp.static', filename='css/content_manager_inner_body.css') }}"/>
 {% endblock static %}
 
 {% block left_panel %}
@@ -83,16 +84,20 @@
 
 {% block center_body_content %}
 <div class='center_content_container selected_content' id='center_create_content'>
-    <form id='content_manager_form'>
+    <form id='content_manager_form' action='/content_manager/databases' method="POST">
         <div class='center_content_header_container'>
-            <input class='content_header_text' id='content_name_text' type='text' name='content_name' placeholder='#Edit the content name' disabled>
+            <div id='table_name_input'>
+                <input class='content_header_text' id='content_name_text' type='text' name='content_name' placeholder='#ContentName' autocomplete="off">
+            </div>
             <div id='table_name_edit'>
-                <i class='fa-regular fa-pen-to-square'></i>
+                <i class="fa-solid fa-pen"></i>
             </div>
             <input class='content_header_submit' id='content_save' type='submit' name='submit' value='table_submit'> 
         </div>
         <div class='center_content_body_container'>
-            <span>Create Content</span>
+            <div class='inner_body_container'>
+
+            </div>
         </div>
     </form>
 </div>

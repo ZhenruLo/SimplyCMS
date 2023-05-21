@@ -1,5 +1,6 @@
 from flask import Blueprint, current_app, jsonify, render_template, request
 from flask_login import login_required
+
 from models import create_table, get_tables_information, update_table_content
 
 content_manager_bp = Blueprint(
@@ -38,7 +39,7 @@ def create_database():
     elif request.method == 'POST':
         msg = 'Create database failed.'
 
-        table_name = request.form.get('table_name')
+        table_name = request.form.get('content_name')
         check_result = __check_special_char(table_name)
         if not check_result:
             create_table(table_name)

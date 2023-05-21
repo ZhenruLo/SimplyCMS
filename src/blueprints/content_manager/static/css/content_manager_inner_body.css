@@ -1,0 +1,11 @@
+.center_content_body_container{
+    display: flex;
+    justify-content: center;
+}
+
+.inner_body_container{
+    width: 1000px;
+    height: 800px;
+    border-radius: 20px;
+    background-color: white;
+}   

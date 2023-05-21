@@ -12,7 +12,7 @@ $(function() {
                 }
                 else{
                     $('#login_form').trigger('reset');
-                    $('.modal_box').toggleClass('show_modal');
+                    $('.modal_container').toggleClass('show_modal');
                     $('.modal_text').text(data.msg);
                 };
             },
@@ -23,7 +23,7 @@ $(function() {
     });
 
     $('.mark_div').on('click', function() {
-        $('.modal_box').removeClass('show_modal');
+        $('.modal_container').removeClass('show_modal');
     });
 
     $('.content_container').toggleClass('start');

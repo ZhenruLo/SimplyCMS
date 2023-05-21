@@ -98,16 +98,6 @@
     min-height: 300px;
 }
 
-.side_content_container.start{
-    animation: drop_animation 0.5s ease;
-}
-
-@keyframes drop_animation {
-    0% {
-        transform: translateY(-20px);
-    }
-}
-
 .side_menu_group{
     width: 100%;
     border-top: 1px solid white;
@@ -131,6 +121,16 @@
     height: 60px;
     list-style-type: none;
     line-height: 60px;
+}
+
+.side_li.start{
+    animation: drop_animation 0.5s ease;
+}
+
+@keyframes drop_animation {
+    0% {
+        transform: translateY(-20px);
+    }
 }
 
 .side_anchor{
