@@ -45,12 +45,12 @@ $(function() {
         openContent($(this).attr('id'));
     });
 
-    $("#table_name_edit").on('click', function() {
+    $('#table_name_edit').on('click', function() {
         $('#content_name_text').css('pointer-events', 'initial');
         $('#content_name_text').focus();
     });
 
-    $("#content_name_text").on('blur', function() {
+    $('#content_name_text').on('blur', function() {
         $('#content_name_text').css('pointer-events', 'none');
     });
 

@@ -194,11 +194,3 @@
 #icon_page{
     color: rgb(0, 225, 191);
 }
-
-.center_content_container{
-    display: none;
-}
-
-.center_content_container.selected_content{
-    display: block;
-}

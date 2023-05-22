@@ -1,0 +1,48 @@
+.combined_icon{
+    display: flex;
+    flex-direction: row;
+    justify-items: center;
+    align-items: center;
+}
+
+#page_icon{
+    position: relative;
+    font-size: 80px;
+    color: rgba(221, 15, 244, 0.59);
+    transform: rotate(-5deg) rotateY(180deg);
+    right: -5px;
+    opacity: 0;
+    transition: all .5s ease;
+}
+
+.combined_icon.start #page_icon{
+    opacity: 1;
+    animation: come-in-left .5s ease;
+}
+
+@keyframes come-in-left{
+    0% {
+        transform: translateX(-40px) rotateY(1turn);
+    }
+}
+
+#second_page_icon{
+    position: relative;
+    font-size: 100px;
+    color:rgba(104, 8, 195, 0.692);
+    transform: rotate(5deg);
+    right: 5px;
+    opacity: 0;
+    transition: all .5s ease;
+}
+
+.combined_icon.start #second_page_icon{
+    opacity: 1;
+    animation: come-in-right .5s ease;
+}
+
+@keyframes come-in-right{
+    0% {
+        transform: translateX(40px) rotateY(.5turn);
+    }
+}

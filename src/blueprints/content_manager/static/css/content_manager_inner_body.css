@@ -1,11 +1,17 @@
 .center_content_body_container{
+    height: inherit;
     display: flex;
     justify-content: center;
 }
 
 .inner_body_container{
-    width: 1000px;
-    height: 800px;
-    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 90%;
+    height: fit-content;
+    border-radius: 5px;
+    box-shadow: 0 0 4px 1px rgb(221, 221, 221);
     background-color: white;
-}   
+}
