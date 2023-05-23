@@ -29,7 +29,6 @@
 
 .content_container.start{
     opacity: 1;
-    box-shadow: 0 0 10px 1px lightgrey;
 }
 
 .welcome_container{
@@ -43,14 +42,15 @@
     border-bottom-left-radius: 10px;
 	background: linear-gradient(-45deg, #cbf6f6, #c1cdfe, #e8c6ff, #aaffeb);
 	background-size: 400% 400%;
-	animation: gradient 5s ease infinite;
+	animation: gradient 3s ease infinite;
     -webkit-box-reflect: below 3px linear-gradient(transparent 50%, rgba(0, 0, 0, .5));
-    transform: translateX(-100px);
+    transform: translateY(-150px);
     transition: all 1s ease;
 }
 
 .welcome_container.start{
-    transform: translateX(0);
+    transform: translateY(0);
+    box-shadow: 0 0 5px 1px rgba(211, 211, 211, 0.5);
 }
 
 @keyframes gradient {
@@ -77,12 +77,13 @@
     border-top-right-radius: 10px;
     border-bottom-right-radius: 10px;
     -webkit-box-reflect: below 3px linear-gradient(transparent 50%, rgba(0, 0, 0, .5));
-    transform: translateX(100px);
+    transform: translateY(150px);
     transition: all 1s ease;
 }
 
 .login_container.start{
-    transform: translateX(0);
+    transform: translateY(0);
+    box-shadow: 0 0 5px 1px rgba(211, 211, 211, 0.5);
 }
 
 .inner_login_container{

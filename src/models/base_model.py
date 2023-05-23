@@ -19,7 +19,11 @@ class Base(UserMixin):
     def delete(cls, user: List):
         db.session.delete(user)
         db.session.commit()
-
+    
+    @classmethod
+    def to_dict(cls):
+        return {field.name:getattr(cls, field.name) for field in cls.__table__.c}
+    
 def create_table(tablename: str):
     if tablename in db.metadata.tables.keys():
         return False

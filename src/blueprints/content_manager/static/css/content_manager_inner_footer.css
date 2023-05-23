@@ -9,7 +9,7 @@
     background-color: white;
 }
 
-.footer_text_container{
+.footer_text_anchor{
     display: flex;
     font-size: 15px;
     flex-direction: row;
@@ -19,13 +19,19 @@
     height: inherit;
     margin: 15px 0 5px 0;
     padding: 5px 10px;
+    text-decoration: none;
     color: white;
     border-radius: 5px;
-    background-color: rgba(118, 0, 215, 0.586);
+    background-color: rgba(36, 2, 186, 0.586);
+    transition: all 0.2s ease;
 }
 
-.footer_text_container:hover{
-    
+.footer_text_anchor:hover{
+    background-color: rgba(119, 0, 255, 0.692);
+}
+
+.footer_text_anchor:active{
+    transform: scale(0.7)
 }
 
 #inner_body_empty_text{

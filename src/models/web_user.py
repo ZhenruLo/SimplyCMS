@@ -48,4 +48,3 @@ class WebUser(Base, db.Model):
     
     def is_anonymous(self) -> bool:
         return super().is_anonymous
-    

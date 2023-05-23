@@ -1,5 +1,5 @@
 .center_content_header_container{
-    padding: 5% 5% 2% 5%;
+    padding: 3% 5% 2% 5%;
     position: relative;
     height: 50px;
 }
@@ -35,8 +35,9 @@
 #table_name_edit{
     display: inline-flex;
     user-select: none;
-    color: rgb(128, 0, 196);
+    color: rgb(89, 0, 137);
     cursor: pointer;
+    transition: all 0.2s ease;
 }
 
 #table_name_edit:hover{
@@ -52,6 +53,7 @@
 
 #table_name_edit:active{
     color: rgb(104, 104, 104);
+    transform: scale(0.7);
 }
 
 .content_header_text#content_name_text{

@@ -1,4 +1,4 @@
-from typing import Dict
+from typing import Dict, Union
 
 from sqlalchemy import func
 
@@ -14,6 +14,6 @@ class Content(Base, db.Model):
     content_uuid = db.Column(db.String, server_defaul = func.random(), unique=True)
     created_timestamp = db.Column(db.DateTime, server_default = func.current_timestamp())
     
-    def __init__(self, table_name: 'str', column_attrs: Dict[str, Dict[str, bool]]):
+    def __init__(self, table_name: 'str', column_attrs: Union[Dict[str, Dict[str, bool]], None]=None):
         self.table_name = table_name
         self.column_attrs = column_attrs
