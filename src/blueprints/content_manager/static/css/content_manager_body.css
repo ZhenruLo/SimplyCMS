@@ -7,8 +7,10 @@
     display: block;
 }
 
-#content_manager_form{
+.center_body_form{
     display: flex;
     flex-direction: column;
     height: inherit;
+    justify-content: center;
+    align-items: center;
 }

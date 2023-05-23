@@ -26,7 +26,7 @@ $(function() {
         $('.modal_container').removeClass('show_modal');
     });
 
-    $('.content_container').toggleClass('start');
+    $('.login_content_container').toggleClass('start');
     $('.welcome_container').toggleClass('start');
     $('.login_container').toggleClass('start');
 });

@@ -4,18 +4,19 @@
 
 .main_container{
     display: flex;
+    position: fixed;
     align-items: center;
     justify-content: center;
     height: 100%;
     width: 100%;
 	background: linear-gradient(0deg,#ffffff 40%, #e6e4ff 40%);
-    overflow: hidden;
+    overflow: auto;
 }
 
-.content_container{
+.login_content_container{
     z-index: 1;
     display: flex;
-    position: fixed;
+    position: absolute;
     align-items: center;
     justify-content: center;
     top: 180px;
@@ -27,7 +28,7 @@
     transition: all 1s ease;
 }
 
-.content_container.start{
+.login_content_container.start{
     opacity: 1;
 }
 

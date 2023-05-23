@@ -1,6 +1,7 @@
 .center_content_body_container{
     height: inherit;
     display: flex;
+    width: 100%;
     justify-content: center;
 }
 
@@ -11,7 +12,8 @@
     align-items: center;
     width: 90%;
     height: fit-content;
+    min-height: 500px;
     border-radius: 5px;
-    box-shadow: 0 0 4px 1px rgb(221, 221, 221);
+    box-shadow: 0 0 3px 1px rgba(221, 221, 221, 0.5);
     background-color: white;
 }

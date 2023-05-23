@@ -17,24 +17,26 @@
     align-items: center;
     width: inherit;
     height: inherit;
-    margin: 15px 0 5px 0;
+    margin: 30px 5px 5px 5px;
     padding: 5px 10px;
     text-decoration: none;
-    color: white;
+    color: black;
     border-radius: 5px;
-    background-color: rgba(36, 2, 186, 0.586);
+    background-color: rgba(211, 211, 211, 0.318);
     transition: all 0.2s ease;
 }
 
 .footer_text_anchor:hover{
-    background-color: rgba(119, 0, 255, 0.692);
+    color: white;
+    background-color: rgba(44, 0, 94, 0.692);
 }
 
 .footer_text_anchor:active{
     transform: scale(0.7)
 }
 
-#inner_body_empty_text{
+.footer_anchor_text{
+    user-select: none;
     margin-left: 5px;
     font-family: 'Chakra Petch', sans-serif;
 }

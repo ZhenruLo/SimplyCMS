@@ -5,17 +5,17 @@
     align-items: center;
 }
 
-#page_icon{
+.left_single_icon{
     position: relative;
     font-size: 80px;
-    color: rgba(221, 15, 244, 0.59);
+    color: rgba(224, 92, 239, 0.59);
     transform: rotate(-5deg) rotateY(180deg);
     right: -5px;
     opacity: 0;
     transition: all .5s ease;
 }
 
-.combined_icon.start #page_icon{
+.combined_icon.start .left_single_icon{
     opacity: 1;
     animation: come-in-left .5s ease;
 }
@@ -26,7 +26,7 @@
     }
 }
 
-#second_page_icon{
+.right_single_icon{
     position: relative;
     font-size: 100px;
     color:rgba(104, 8, 195, 0.692);
@@ -36,7 +36,7 @@
     transition: all .5s ease;
 }
 
-.combined_icon.start #second_page_icon{
+.combined_icon.start .right_single_icon{
     opacity: 1;
     animation: come-in-right .5s ease;
 }
