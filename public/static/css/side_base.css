@@ -159,7 +159,7 @@
     transition: all 0.2s ease;
 }
 
-.tooltip{
+.side_tooltip{
     z-index: 2;
     position: absolute;
     width: 150px;
@@ -182,7 +182,7 @@
     top: 0;
 }
 
-.side_li:hover .tooltip{
+.side_li:hover .side_tooltip{
     opacity: 1;
     left: 75px;
 }
@@ -222,6 +222,6 @@
     }
 }
 
-#side.expand .tooltip{
+#side.expand .side_tooltip{
     display: none;
 }
