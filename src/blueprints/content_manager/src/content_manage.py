@@ -1,7 +1,7 @@
 from flask import Blueprint, current_app, jsonify, render_template, request
 from flask_login import login_required
-
-from models import create_table, get_tables_information, update_table_content
+from models import (Content, create_table, db, get_tables_information,
+                    update_table_content)
 
 content_manager_bp = Blueprint(
     'content_manager_bp',
@@ -9,6 +9,13 @@ content_manager_bp = Blueprint(
     static_folder='../static',
     static_url_path='/content_manager/static',
     template_folder='../template')
+
+@content_manager_bp.route('/content_manager/table', methods=['GET', 'POST', 'PUT'])
+@login_required
+def fetch_data():
+    all_data = db.session.query(Content.id, Content.table_name, Content.created_timestamp).all()
+    
+    
 
 @content_manager_bp.route('/content_manager', methods=['GET'])
 @login_required
