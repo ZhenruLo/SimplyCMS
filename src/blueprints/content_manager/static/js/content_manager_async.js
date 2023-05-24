@@ -3,7 +3,7 @@ $( function() {
         event.preventDefault();
         
         $.ajax({
-            url: '/content_manager/databases',
+            url: '/content-manager/databases',
             method: 'POST',
             data: $(this).serialize(),
             success: function(data) {
@@ -19,7 +19,7 @@ $( function() {
         event.preventDefault();
 
         $.ajax({
-            url: '/content_manager/databases',
+            url: '/content-manager/databases',
             method: 'PUT',
             data: $(this).serialize(),
             success: function(data) {

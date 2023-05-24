@@ -1,0 +1,7 @@
+div.dataTables_wrapper{
+    padding: 10px 0;
+}
+
+table.dataTable{
+    border-collapse: collapse;
+}

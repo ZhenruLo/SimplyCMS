@@ -10,6 +10,7 @@
 <link rel='stylesheet' href="{{ url_for('content_manager_bp.static', filename='css/content_manager_body.css') }}"/>
 <link rel='stylesheet' href="{{ url_for('content_manager_bp.static', filename='css/content_manager_inner_footer.css') }}"/>
 <link rel='stylesheet' href="{{ url_for('content_manager_bp.static', filename='css/content_manager_combined_icon.css') }}"/>
+<link rel='stylesheet' href="{{ url_for('content_manager_bp.static', filename='css/content_manager_table.css') }}"/>
 {% endblock static %}
 
 {% block left_panel %}
@@ -87,13 +88,14 @@
 
 {% block center_body_content %}
 <div class='center_content_container selected_content' id='center_create_content'>
-    <form class='center_body_form' id='content_manager_form' action='/content_manager/databases' method="POST">
+    <form class='center_body_form' id='content_manager_form' action='/content-manager/databases' method="POST">
         <div class='center_content_header_container'>
         </div>
         <div class='center_content_body_container'>
             <div class='inner_body_container'>
                 <div class='inner_body_table_container'>
-                    <table id='content_table'></table>
+                    <table class='cms_table' id='content_table'>
+                    </table>
                 </div>
                 <div class='inner_body_footer'>
                     <div class='combined_icon'>
@@ -111,7 +113,7 @@
 </div>
 
 <div class='center_content_container' id='center_custom_field'>
-    <form class='center_body_form' id='custom_field_form' action='/content_manager/databases' method="POST">
+    <form class='center_body_form' id='custom_field_form' action='/content-manager/databases' method="POST">
         <div class='center_content_header_container'>
             <div id='table_name_input'>
                 <input class='content_header_text' id='content_name_text' type='text' name='content_name' placeholder='Untitled' autocomplete="off">

@@ -10,19 +10,36 @@ content_manager_bp = Blueprint(
     static_url_path='/content_manager/static',
     template_folder='../template')
 
-@content_manager_bp.route('/content_manager/table', methods=['GET', 'POST', 'PUT'])
+@content_manager_bp.route('/content-manager/table', methods=['GET', 'POST', 'PUT'])
 @login_required
 def fetch_data():
-    all_data = db.session.query(Content.id, Content.table_name, Content.created_timestamp).all()
+    result = False
+    msg = "Content table load failed"
+    dict_list = None
+
+    all_data = db.session.query(Content.content_uuid, Content.id, Content.table_name, Content.created_timestamp).all()
+    dict_list = [data._asdict() for data in all_data]
     
+    if dict_list is not None:
+        result = True
+        msg = "Database load success"
+        
+    result_dict = {
+        "result": result,
+        "msg": msg,
+        "data": dict_list
+    }
+    
+    current_app.logger.info(f"Result dict from dashboard_bp.database, result: {result}, msg: {msg}")
+    return jsonify(result_dict)
     
 
-@content_manager_bp.route('/content_manager', methods=['GET'])
+@content_manager_bp.route('/content-manager', methods=['GET'])
 @login_required
 def content_manager():
     return render_template('content_manager.html')
 
-@content_manager_bp.route('/content_manager/databases', methods=['GET', 'POST', 'PUT'])
+@content_manager_bp.route('/content-manager/databases', methods=['GET', 'POST', 'PUT'])
 @login_required
 def create_database():
     result = False
