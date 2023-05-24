@@ -8,6 +8,12 @@
     flex-direction: row;
     margin: 10px 0 20px 0;
     justify-content: center;
+    transition: all 0.3s ease;
+    opacity: 0;
+}
+
+.left_panel_tab_container.start{
+    opacity: 1;
 }
 
 .left_panel_tab{
@@ -34,6 +40,7 @@
 
 .left_panel_content_container.selected_panel{
     display: flex;
+    animation: opacity-animation 0.5s ease;
 }
 
 .tab_icon{
@@ -53,10 +60,10 @@
 }
 
 .left_panel_tab.selected_tab{
-    animation: click_animation 0.5s ease;
+    animation: bounce-dot-animation 0.5s ease;
 }
 
-@keyframes click_animation {
+@keyframes bounce-dot-animation {
     0% {
         transform: translateY(5px);
     }
@@ -97,42 +104,34 @@
 
 .left_panel_menu_row{
     display: flex;
-    opacity: 0;
-    justify-content: center;
+    position: relative;
+    flex-direction: column;
     align-items: center;
-    margin-bottom: 20px;
-    height: 70px;
-    cursor: pointer;
-    transition: all 0.2s ease;
+    height: fit-content;
+    transition: all 0.5s ease;
 }
 
 .left_panel_menu_row.start{
-    opacity: 1;
-    animation: drop_animation 0.5s ease;
-}
-
-@keyframes drop_animation {
-    0% {
-        transform: translateY(-20px);
-    }
-}
-
-.left_panel_menu_row.selected_row{
-    background-color: rgba(222, 222, 222, 0.3);
-    border-right: 3px solid rgb(128, 0, 225);
-}
-
-.left_panel_menu_row:hover{
-    background-color: rgba(222, 222, 222, 0.5);
+    animation: show-animation-from-top calc(0.1s * var(--t)) ease;
 }
 
 .left_panel_inner_row{
     display: flex;
     flex-direction: row;
     align-items: center;
-    width: 270px;
-    height: inherit;
-    border-radius: 5px;
+    justify-content: center;
+    width: 100%;
+    cursor: pointer;
+    height: 75px;
+    transition: all 0.2s ease;
+}
+
+.left_panel_menu_row.selected_row .left_panel_inner_row{
+    background-color: rgba(222, 222, 222, 0.3);
+}
+
+.left_panel_inner_row:hover{
+    background-color: rgba(222, 222, 222, 0.5);
 }
 
 .left_panel_icon{
@@ -168,6 +167,20 @@
     font-family: 'Chakra Petch', sans-serif;
     color: grey;
     user-select: none;
+}
+
+.current_bar{
+    position: absolute;
+    right: 0;
+    width: 3px;
+    height: inherit;
+    background-color: rgb(128, 0, 225);
+    opacity: 0;
+    transition: all 0.2s ease;
+}
+
+.left_panel_menu_row.selected_row .current_bar{
+    opacity: 1;
 }
 
 #icon_background_content{

@@ -54,18 +54,6 @@
     box-shadow: 0 0 5px 1px rgba(211, 211, 211, 0.5);
 }
 
-@keyframes gradient {
-	0% {
-		background-position: 0% 50%;
-	}
-	50% {
-		background-position: 100% 50%;
-	}
-	100% {
-		background-position: 0% 50%;
-	}
-}
-
 .login_container{
     z-index: 1;
     display: inline-flex;

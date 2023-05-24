@@ -13,13 +13,7 @@
 
 .dropdown_content.show{
     display: inline-block;
-    animation: profile-show-animation 0.2s ease;
-}
-
-@keyframes profile-show-animation {
-    0% {
-        transform: translateX(-150px);
-    }
+    animation: show-animation-from-left 0.2s ease;
 }
 
 .dropdown_form{

@@ -47,11 +47,6 @@
     animation: shine 2s linear infinite;
 }
 
-@keyframes shine {
-    from { -webkit-mask-position: 150%; }
-    to { -webkit-mask-position: -50%; }
-}
-
 #table_name_edit:active{
     color: rgb(104, 104, 104);
     transform: scale(0.7);

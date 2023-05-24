@@ -1,10 +1,11 @@
 $( function() {
     var table = $('#content_table').DataTable({
+        scrollY: '400px',
         scrollCollapse: true,
-        'autoWidth': false,
+        autoWidth: false,
         pageLength: 50,
         lengthMenu: [1, 5, 15, 50, 100],
-        order: [[0, 'asc']],
+        order: [[1, 'asc']],
 
         ajax: {
             url: '/content-manager/table'
@@ -23,12 +24,12 @@ $( function() {
             { 
                 title: 'CONTENT NAME', 
                 data: 'table_name',
-                width: '60%'
+                width: '70%'
             },
             { 
                 title: 'CREATED AT', 
                 data: 'created_timestamp',
-                width: '32%'
+                width: '23%'
             },
             {
                 className: 'dtb dt-delete',

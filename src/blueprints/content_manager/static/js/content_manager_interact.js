@@ -37,12 +37,13 @@ $(function() {
         openMenu($(this).attr('id'));
     });
 
-    $('.left_panel_menu_row').on('click', function(event) {
+    $('.left_panel_inner_row').on('click', function(event) {
+        var closest_row = $(this).closest('.left_panel_menu_row')
         event.preventDefault();
 
         $('.left_panel_menu_row').removeClass('selected_row');
-        $(this).toggleClass('selected_row');
-        openContent($(this).attr('id'));
+        closest_row.toggleClass('selected_row');
+        openContent(closest_row.attr('id'));
     });
 
     $('#table_name_edit').on('click', function() {

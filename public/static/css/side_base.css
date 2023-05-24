@@ -1,9 +1,6 @@
 #side{
     z-index: 5;
-    width: 60px;
-    flex: 0 0 60px;
-    height: 100%;
-    transition: all .2s ease;
+    animation: opacity-animation 0.3s ease;
 }
 
 #content{
@@ -13,10 +10,11 @@
 }
 
 .side_inner_container{
-    width: 100%;
+    width: 60px;
     height: 100%;
     overflow-y: auto;
     overflow-x: hidden;
+    transition: all .2s ease;
     background: linear-gradient(180deg, #27254d, #c7a0de);
 }
 
@@ -80,11 +78,6 @@
 
 .side_anchor:hover{
     background-color: rgba(0, 0, 0, 0.05);
-}
-
-@keyframes shine {
-    from { -webkit-mask-position: 150%; }
-    to { -webkit-mask-position: -50%; }
 }
 
 .side_content_container{
@@ -187,41 +180,29 @@
     left: 75px;
 }
 
-#side.expand{
+.side_inner_container.expand{
     width: 250px;
     flex: 0 0 250px;
 }
 
-#side.expand #home_anchor{
+.side_inner_container.expand #home_anchor{
     display: inline-block;
-    animation: expand_animation 0.5s ease;
+    animation: show-animation-from-left 0.3s ease;
 }
 
-@keyframes expand_animation {
-    0% {
-        transform: translateX(-20px);
-    }
-}
-
-#side.expand #side_logout{
+.side_inner_container.expand #side_logout{
     width: 250px;
 }
 
-#side.expand #collapse_menu_btn{
+.side_inner_container.expand #collapse_menu_btn{
     left: 220px;
 }
 
-#side.expand .side_anchor_text{
+.side_inner_container.expand .side_anchor_text{
     display: inline-block;
-    animation: expand_animation 0.5s ease;
+    animation: show-animation-from-left 0.5s ease;
 }
 
-@keyframes expand_animation {
-    0% {
-        transform: translateX(-20px);
-    }
-}
-
-#side.expand .side_tooltip{
+.side_inner_container.expand .side_tooltip{
     display: none;
 }

@@ -17,13 +17,7 @@
 
 .combined_icon.start .left_single_icon{
     opacity: 1;
-    animation: come-in-left .5s ease;
-}
-
-@keyframes come-in-left{
-    0% {
-        transform: translateX(-40px) rotateY(1turn);
-    }
+    animation: show-animation-from-left-rotate .5s ease;
 }
 
 .right_single_icon{
@@ -38,11 +32,5 @@
 
 .combined_icon.start .right_single_icon{
     opacity: 1;
-    animation: come-in-right .5s ease;
-}
-
-@keyframes come-in-right{
-    0% {
-        transform: translateX(40px) rotateY(.5turn);
-    }
+    animation: show-animation-from-right-rotate .5s ease;
 }
