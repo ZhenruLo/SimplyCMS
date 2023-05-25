@@ -11,8 +11,11 @@
     width: 300px;
     min-width: 300px;
     height: 100%;
-    overflow: auto;
     transition: all 2s ease;
+}
+
+.panel_content{
+    height: inherit;
 }
 
 .content_container{

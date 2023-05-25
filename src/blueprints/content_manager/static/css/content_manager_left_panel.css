@@ -1,19 +1,28 @@
 #content_manager_left_panel{
-    height: 100%;
+    display: flex;
+    flex-direction: column;
+    height: inherit;
 }
 
 .left_panel_tab_container{
     display: flex;
+    opacity: 0;
     height: 65px;
     flex-direction: row;
-    margin: 10px 0 20px 0;
+    padding: 10px 0 20px 0;
     justify-content: center;
     transition: all 0.3s ease;
-    opacity: 0;
+    box-shadow: 0 0 3px 1px rgba(211, 211, 211, 0.65);
+    clip-path: inset(0 0 -3px 0);
 }
 
 .left_panel_tab_container.start{
     opacity: 1;
+}
+
+.left_panel_context_container{
+    height: 100%;
+    overflow: auto;
 }
 
 .left_panel_tab{
@@ -123,6 +132,7 @@
     width: 100%;
     cursor: pointer;
     height: 75px;
+    margin-bottom: 10px;
     transition: all 0.2s ease;
 }
 
