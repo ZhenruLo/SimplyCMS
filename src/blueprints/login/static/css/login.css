@@ -121,14 +121,14 @@
 }
 
 #introduction_text{
-    margin-top: 1rem;
+    margin: 1rem 0 5rem 0;
     font-size: 1rem;
     color: white;
 }
 
 #login_text{
     letter-spacing: 0.5rem;
-    margin-bottom: 5rem;
+    margin: 2rem 0 5rem 0;
     font-size: 3rem;
     color: #322e61;
 }
