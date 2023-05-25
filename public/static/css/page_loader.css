@@ -11,10 +11,10 @@
 
 .loading_text {
     display: inline-block;
-    font-size: 30px;
+    font-size: 3rem;
     font-family: 'Chakra Petch', sans-serif;
     color: black;
-    letter-spacing: 5px;
+    letter-spacing: 0.5rem;
     animation: bar 1.5s cubic-bezier(.81, .04, .4, .7) infinite;
     animation-delay: calc(.1s * var(--i));
 }

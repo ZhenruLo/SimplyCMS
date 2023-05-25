@@ -11,5 +11,25 @@
 
 .left_panel_content_list li{
     display: flex;
+    position: relative;
     flex-direction: row;
+}
+
+.content_list_context{
+    width: 90%;
+    outline: 1px solid blue;
+}
+
+.content_list_index{
+    width: 5%;
+    outline: 1px solid green;
+}
+
+.content_list_more{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 12px;
+    width: 5%;
+    outline: 1px solid cyan;
 }
