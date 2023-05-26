@@ -7,20 +7,23 @@
 }
 
 .panel_container{
-    display: inline-block;
-    width: 300px;
-    min-width: 300px;
+    display: flex;
+    flex-direction: column;
+    width: 30rem;
+    min-width: 30rem;
     height: 100%;
     transition: all 2s ease;
 }
 
 .panel_content{
+    display: flex;
+    flex-direction: column;
     height: inherit;
 }
 
 .content_container{
-    width: calc(100% - 300px);
-    min-width: 1000px;
+    width: calc(100% - 30rem);
+    min-width: 100rem;
     height: 100%;
     background-color: rgba(225, 225, 225, 0.15);
     overflow: auto;
@@ -28,15 +31,9 @@
 
 .header_button{
     position: absolute;
-    left: 20px;
-    font-size: 20px;
+    left: 2rem;
+    font-size: 2rem;
     color: rgb(0, 0, 0);
-}
-
-.dropdown{
-    z-index: 999;
-    position: fixed;
-    right: 20px;
 }
 
 .welcome_dropdown{

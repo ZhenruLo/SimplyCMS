@@ -1,17 +1,17 @@
 .center_content_header_container{
     position: relative;
     width: 90%;
-    height: 50px;
-    margin: 30px 0;
+    height: 5rem;
+    margin: 3rem 0;
 }
 
 #table_submit{
-    padding: 5px 10px;
+    padding: 0.5rem 1rem;
     display: inline-block;
     position: absolute;
     background-color: lightgrey;
-    box-shadow: 0 0 1px 1px lightgrey;
-    border-radius: 5px;
+    box-shadow: 0 0 0.1rem 0.1rem lightgrey;
+    border-radius: 0.5rem;
     right: 0;
     bottom: 30%;
     cursor: pointer;
@@ -21,7 +21,7 @@
     border: none;
     background: none;
     padding: 0;
-    font-size: 15px;
+    font-size: 1.5rem;
     width: inherit;
     height: inherit;
     pointer-events: none;
@@ -53,7 +53,7 @@
 }
 
 .content_header_text#content_name_text{
-    font-size: 30px;
+    font-size: 3rem;
     height: inherit;
     font-family: monospace;
     font-weight: 100;

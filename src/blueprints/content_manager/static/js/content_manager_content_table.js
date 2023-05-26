@@ -3,8 +3,8 @@ $( function() {
         scrollY: '400px',
         scrollCollapse: true,
         autoWidth: false,
-        pageLength: 50,
-        lengthMenu: [1, 5, 15, 50, 100],
+        pageLength: 30,
+        lengthMenu: [1, 5, 15, 30, 50, 100],
         order: [[1, 'asc']],
 
         ajax: {
