@@ -18,7 +18,8 @@ __pycache__/
 *.pem
 *.csv
 server_asset/
-migrations/
+src/migration/
+migration/
 
 #third_party
 *.dll
