@@ -7,8 +7,6 @@ class Config():
     
     SECRET_KEY = '3dac34eb0fa370731b59ccdc414415e7'
     
-    SEND_FILE_MAX_AGE_DEFAULT = 0
-    
     SESSION_PROTECTION = 'strong'
     
     REMEMBER_COOKIE_SECURE: True
