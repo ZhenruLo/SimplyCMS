@@ -14,7 +14,7 @@ from .register_error_handler import register_error_handler
 
 def create_app(config_obj):
     
-    flask_app = Flask(__name__, template_folder='../../public/template', static_folder='../../public/static')
+    flask_app = Flask(__name__, template_folder='../modules/public/template', static_folder='../modules/public/static')
     flask_app.config.from_object(config_obj)
 
     csrf.init_app(flask_app)

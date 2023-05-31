@@ -2,7 +2,7 @@ from flask import current_app
 
 
 def register_blueprint():
-    from blueprints import (content_manager_bp, database_bp, home_bp, index_bp,
+    from modules import (content_manager_bp, database_bp, home_bp, index_bp,
                             login_bp, logout_bp)
     
     current_app.register_blueprint(index_bp)
