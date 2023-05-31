@@ -3,7 +3,7 @@ from flask import Blueprint, current_app, jsonify, render_template, url_for
 from flask_login import current_user, login_required, login_user
 from flask_negotiate import consumes
 from flask_principal import Identity, identity_changed
-from models import WebUser, db
+from database import WebUser, db
 from security import check_pw
 
 from .login_form import LoginForm

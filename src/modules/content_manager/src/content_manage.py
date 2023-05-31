@@ -1,6 +1,6 @@
 from flask import Blueprint, current_app, jsonify, render_template, request
 from flask_login import login_required
-from models import (Content, create_table, db, get_tables_information,
+from database import (Content, create_table, db, get_tables_information,
                     update_table_content)
 
 content_manager_bp = Blueprint(

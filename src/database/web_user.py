@@ -2,7 +2,7 @@ import uuid
 
 from sqlalchemy import func
 
-from .base_model import Base, db
+from .base_db_model import Base, db
 
 
 class WebUser(Base, db.Model):
