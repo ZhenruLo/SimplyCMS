@@ -51,15 +51,26 @@
 }
 
 @keyframes show-animation-from-left-rotate{
-    0% {
+    from {
+        opacity: 0;
         transform: translateX(-0.4rem) rotateY(1turn);
+    }
+
+    to {
+        opacity: 1;
     }
 }
 
 @keyframes show-animation-from-right-rotate{
-    0% {
+    from {
+        opacity: 0;
         transform: translateX(0.4rem) rotateY(.5turn);
     }
+
+    to {
+        opacity: 1;
+    }
+
 }
 
 @keyframes gradient{

@@ -10,5 +10,5 @@ $( function() {
         toggle_pop_up();
     });
 
-    $('.page_loader').css('display','none');
+    $('.page_loader').toggleClass('hide');
 });

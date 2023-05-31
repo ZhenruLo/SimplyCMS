@@ -11,12 +11,9 @@
     color: rgba(224, 92, 239, 0.59);
     transform: rotate(-5deg) rotateY(180deg);
     right: -0.5rem;
-    opacity: 0;
-    transition: all .5s ease;
 }
 
 .combined_icon.start .left_single_icon{
-    opacity: 1;
     animation: show-animation-from-left-rotate .5s ease;
 }
 
@@ -26,11 +23,8 @@
     color:rgba(104, 8, 195, 0.692);
     transform: rotate(5deg);
     right: 0.5rem;
-    opacity: 0;
-    transition: all .5s ease;
 }
 
 .combined_icon.start .right_single_icon{
-    opacity: 1;
     animation: show-animation-from-right-rotate .5s ease;
 }
