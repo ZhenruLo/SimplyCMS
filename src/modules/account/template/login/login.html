@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block title %}Login{% endblock%}
+
+{% block static %}
+<link rel='stylesheet' href="{{ url_for('account_bp.static', filename='css/login/login.css') }}"/>  
+<link rel='stylesheet' href="{{ url_for('account_bp.static', filename='css/login/login_low_res.css') }}"/>  
+{% endblock static %}
+
+{% block content %}
+<div class='main_container'>
+  <div class='login_content_container'>
+    {% include 'sub_template/login_container.html' %}
+    
+    {% include 'sub_template/welcome_container.html' %}
+  </div>
+</div>
+{% endblock content %}
+
+{% block script %}
+<script src="{{ url_for('account_bp.static', filename='js/login/login.js') }}"></script>
+{% endblock script %}

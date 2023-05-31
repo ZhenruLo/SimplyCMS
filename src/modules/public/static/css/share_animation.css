@@ -1,0 +1,86 @@
+@keyframes opacity-animation{
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes show-animation-from-top{
+    from {
+        transform: translateY(-1rem);
+    }
+    to {
+        transform: translateY(0);
+    }
+}
+
+@keyframes show-animation-from-left{
+    from {
+        opacity: 0;
+        transform: translateX(-0.2rem);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes bounce-animation{
+    from {
+        transform: translateY(-0.3rem);
+    }
+    to {
+        transform: translateY(0rem);
+    }
+}
+
+@keyframes rebounce-animation {
+    0% {
+        transform: translateY(0.5rem);
+    }
+    50% {
+        transform: translateY(-1rem);
+    }
+}
+
+@keyframes shine{
+    from { -webkit-mask-position: 150%; }
+    to { -webkit-mask-position: -50%; }
+}
+
+@keyframes show-animation-from-left-rotate{
+    from {
+        opacity: 0;
+        transform: translateX(-0.4rem) rotateY(1turn);
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes show-animation-from-right-rotate{
+    from {
+        opacity: 0;
+        transform: translateX(0.4rem) rotateY(.5turn);
+    }
+
+    to {
+        opacity: 1;
+    }
+
+}
+
+@keyframes gradient{
+	0% {
+		background-position: 0% 50%;
+	}
+	50% {
+		background-position: 100% 50%;
+	}
+	100% {
+		background-position: 0% 50%;
+	}
+}

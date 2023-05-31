@@ -1,7 +1,7 @@
-from config import Config
+from config import DevelopmentConfig
 from init_server import create_app
 
-app = create_app(Config)
+app = create_app(DevelopmentConfig)
 
 if __name__ == '__main__':
     context = ('./server_asset/server.crt', './server_asset/server.key')

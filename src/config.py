@@ -1,9 +1,9 @@
-import os
 from datetime import timedelta
 
 
 class Config():
-    DEBUG = True
+    DEBUG = False
+    TESTING = False
     
     SECRET_KEY = '3dac34eb0fa370731b59ccdc414415e7'
     
@@ -15,10 +15,7 @@ class Config():
     
     PERMANENT_SESSION_LIFETIME = timedelta(hours=48)
 
-    if os.environ.get('IN_DOCKER'):
-        SQLALCHEMY_DATABASE_URI = 'postgresql://postgres:root@postgre_db:5432/database' 
-    else:
-        SQLALCHEMY_DATABASE_URI = 'postgresql://postgres:root@localhost:5432/database' 
+    SQLALCHEMY_DATABASE_URI = 'postgresql://postgres:root@localhost:5432/database' 
         
     SQLALCHEMY_TRACK_MODIFICATIONS = True
     
@@ -30,3 +27,12 @@ class Config():
     MAIL_USE_TLS = True
     
     JSON_SORT_KEYS = False
+
+class ProductionConfig(Config):
+    DEBUG = False
+    SQLALCHEMY_DATABASE_URI = 'postgresql://postgres:root@postgre_db:5432/database' 
+
+class DevelopmentConfig(Config):
+    DEBUG = True
+    DEVELOPMENT = True
+    ENV = 'development'
