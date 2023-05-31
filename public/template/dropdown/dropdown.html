@@ -1,0 +1,8 @@
+<div class='dropdown_content'>
+    <a class='dropdown_content_anchor' id='profile_anchor' href=''>Profile</a>
+    <a class='dropdown_content_anchor disabled' id='admin_page_anchor' href='/database'>Administration</a>
+    <form class='dropdown_form' action="{{ url_for('logout_bp.logout') }}" method='POST'>
+        <input id='single_csrf_logout' type='hidden' name='csrf_token' value='{{ csrf_token() }}'>
+        <a class='dropdown_content_anchor' onclick='this.parentNode.submit();'>Log Out</a>
+    </form>
+</div>

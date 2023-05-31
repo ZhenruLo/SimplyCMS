@@ -5,11 +5,7 @@ $(function() {
         $('.side_inner_container').toggleClass('expand');
         $('#content').toggleClass('collapse');
     });
-
-    $('.dropdown_button').on('click', function() {
-        $('.dropdown_content').toggleClass('show');
-    });
-
+    
     $.ajax({
         url: '/username',
         method: 'GET',
