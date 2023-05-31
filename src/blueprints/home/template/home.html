@@ -1,22 +1,23 @@
-{% extends "side_base.html" %}
+{% extends 'side_base.html' %}
 
 {% block title %}Home{% endblock%}
 
 {% block content %}
-<div class="home_main_container">
-    <div class="main_mask">
-        <div class="context_container">
-            <div class="home_container welcome_container">
-                <h1 class="welcome_header">MANAGE YOUR CONTENT</h1>
+{{ super() }}
+<div class='home_main_container'>
+    <div class='main_mask'>
+        <div class='context_container'>
+            <div class='home_container welcome_container'>
+                <h1 class='welcome_header'>MANAGE YOUR CONTENT</h1>
             </div>
-            <div class="home_container description_container">
-                <span class="description_text">This is an on developing headless cms project for learning & research purpose</span><br>
-                <span class="description_text">Please feels free to check it out</span>
+            <div class='home_container description_container'>
+                <span class='description_text'>This is an on developing headless cms project for learning & research purpose</span><br>
+                <span class='description_text'>Please feels free to check it out</span>
             </div>
-            <div class="home_container start_container">
-                <span class="start_line"></span>
-                <a class="start_anchor" href="/database">
-                    <span class="start_text">Start</span>
+            <div class='home_container start_container'>
+                <span class='start_line'></span>
+                <a class='start_anchor' href='/database'>
+                    <span class='start_text'>Start</span>
                 </a>
             </div>
         </div>
@@ -26,7 +27,7 @@
 
 {% block static %}
 {{ super() }}
-<link rel="stylesheet" type="text/css" href="{{ url_for('home_bp.static', filename='css/home.css') }}">
+<link rel='stylesheet' type='text/css' href="{{ url_for('home_bp.static', filename='css/home.css') }}">
 {% endblock static %}
 
 {% block script %}

@@ -1,0 +1,57 @@
+@keyframes opacity-animation{
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes show-animation-from-top{
+    from {
+        transform: translateY(-0.2rem);
+    }
+    to {
+        transform: translateY(0);
+    }
+}
+
+@keyframes show-animation-from-left{
+    from {
+        opacity: 0;
+        transform: translateX(-0.2rem);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes shine{
+    from { -webkit-mask-position: 150%; }
+    to { -webkit-mask-position: -50%; }
+}
+
+@keyframes show-animation-from-left-rotate{
+    0% {
+        transform: translateX(-0.4rem) rotateY(1turn);
+    }
+}
+
+@keyframes show-animation-from-right-rotate{
+    0% {
+        transform: translateX(0.4rem) rotateY(.5turn);
+    }
+}
+
+@keyframes gradient{
+	0% {
+		background-position: 0% 50%;
+	}
+	50% {
+		background-position: 100% 50%;
+	}
+	100% {
+		background-position: 0% 50%;
+	}
+}

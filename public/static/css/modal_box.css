@@ -1,0 +1,70 @@
+.modal_container{
+    z-index: -1;
+    display: flex;
+    position: absolute;
+    width: inherit;
+    top: 4rem;
+    justify-content: center;
+    opacity: 0;
+    transition: all 0.2s ease;
+}
+
+.modal_box{
+    display: flex;
+    align-items: center;
+    text-align: left;
+    width: 70rem;
+    height: 3.5rem;
+    border-radius: 0.5rem;
+    background-color: white;
+    box-shadow: 0 0 0.5rem 0.1rem lightgrey;
+}
+
+.modal_text{
+    width: 100%;
+    color: black;
+    margin-left: 0.5rem;
+    font-size: 1.3rem;
+    user-select: none;
+}
+
+.modal_container.show_modal{
+    z-index: 99;
+    opacity: 1;
+}
+
+.mark_div{
+    width: 3rem;
+    flex: 0 0 3rem;
+    cursor: pointer;
+    text-align: center;
+    transition: all 0.1s ease;
+    margin-right: 0.5rem;
+    border-radius: 0.5rem;
+}
+
+.mark_div:hover{
+    background-color: lightgray;
+}
+
+.mark_div:active{
+    background-color: #191970;
+}
+
+.close_modal{
+    color: black;
+    padding: 0.5rem;
+    font-size: 2rem;
+}
+
+.caution_div{
+    width: 3rem;
+    text-align: center;
+    margin-left: 0.5rem;
+}
+
+.caution_model{
+    color: gray;
+    padding: 0.5rem;
+    font-size: 2rem;
+}

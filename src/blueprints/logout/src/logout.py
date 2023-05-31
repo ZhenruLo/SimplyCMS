@@ -4,13 +4,13 @@ from flask_login import current_user, login_required, logout_user
 from flask_principal import AnonymousIdentity, identity_changed
 
 logout_bp = Blueprint(
-    "logout_bp",
+    'logout_bp',
     __name__,
-    static_folder="../static",
-    static_url_path="/logout/static",
-    template_folder="../template")
+    static_folder='../static',
+    static_url_path='/logout/static',
+    template_folder='../template')
 
-@logout_bp.route("/logout", methods=["POST"])
+@logout_bp.route('/logout', methods=['POST'])
 @login_required
 def logout():
     user_id = current_user.get_id()
@@ -20,5 +20,5 @@ def logout():
 
         identity_changed.send(current_app._get_current_object(),
                           identity=AnonymousIdentity())
-        current_app.logger.info("User logout")
-    return redirect(url_for("login_bp.login"), 301)
+        current_app.logger.info('User logout')
+    return redirect(url_for('login_bp.login'), 301)

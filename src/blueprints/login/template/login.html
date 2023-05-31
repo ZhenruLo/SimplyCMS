@@ -1,46 +1,38 @@
-{% extends "base.html" %}
+{% extends 'base.html' %}
 
 {% block title %}Login{% endblock%}
 
 {% block static %}
-<link rel="stylesheet" href="{{ url_for('login_bp.static', filename='css/login.css') }}"/>  
+<link rel='stylesheet' href="{{ url_for('login_bp.static', filename='css/login.css') }}"/>  
+<link rel='stylesheet' href="{{ url_for('login_bp.static', filename='css/login_low_res.css') }}"/>  
 {% endblock static %}
 
 {% block content %}
-<div class="main_container">
-  <div class="modal_box">
-    <div class="caution_div">
-      <i class="caution_model fa-solid fa-circle-exclamation"></i>
+<div class='main_container'>
+  <div class='login_content_container'>
+    <div class='welcome_container'>
+        <span class='welcome_logo'>C</span>
+        <span class='welcome_text' id='welcome'>WELCOME</span>
+        <span class='welcome_text' id='introduction_text'>A simple headless-CMS built with Flask</span>
     </div>
-    <span class="modal_text"></span>
-    <div class="mark_div">
-      <i class="close_modal fa-solid fa-xmark" title="Close"></i>
+    <div class='login_container'>
+      <div class='inner_login_container'>
+        <span class='welcome_text login_title' id='login_text'>USER LOGIN</span>
+        <form autocomplete='off' class='login_form' id='login_form' method='POST'>
+          <input type='hidden' name='csrf_token' value='{{ csrf_token() }}'>
+        
+          <fieldset class ='login_fieldset'>
+            <input class='form_textbox' id='username_textbox' type='text' name='username' placeholder='Username' required>
+          </fieldset>
+          
+          <fieldset class='login_fieldset'>
+            <input class='form_textbox' id='password_textbox' type='password' name='password' placeholder='Password' required>
+          </fieldset>
+      
+          <input class='submit_btn' id='login_btn' type='submit' name='Log In'>
+        </form>
+      </div>
     </div>
-  </div>
-  <div class="content_container">
-      <div class="welcome_container">
-          <span class="welcome_logo">C</span>
-          <span class="welcome_text" id="welcome">WELCOME</span>
-          <span class="welcome_text" id="introduction_text">A simple headless cms built with Flask</span>
-      </div>
-      <div class="login_container">
-        <div class="inner_login_container">
-            <span class="welcome_text login_title" id="login_text">USER LOGIN</span>
-            <form autocomplete="off" class="login_form" id="login_form" method="POST">
-                <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
-              
-                <fieldset class ="login_fieldset">
-                  <input class="form_textbox" id="username_textbox" type="text" name="username" placeholder="Username" required>
-                </fieldset>
-                
-                <fieldset class="login_fieldset">
-                  <input class="form_textbox" id="password_textbox" type="password" name="password" placeholder="Password" required>
-                </fieldset>
-            
-                <input class="submit_btn" id="login_btn" type="submit" name="Log In">
-              </form>
-        </div>
-      </div>
   </div>
 </div>
 {% endblock content %}

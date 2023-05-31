@@ -1,19 +1,26 @@
 from flask_wtf import FlaskForm
-from wtforms import PasswordField, StringField, SubmitField
-from wtforms.validators import InputRequired
+from wtforms import PasswordField, StringField, SubmitField, BooleanField
+from wtforms.validators import InputRequired, Optional
 
 
 class LoginForm(FlaskForm):
     username = StringField(
-        "Username",
+        'Username',
         validators = [InputRequired(), ]
     )
     
     password = PasswordField(
-        "Password",
+        'Password',
         validators = [
             InputRequired(),
         ]
     )
     
-    submit = SubmitField("Log In")
+    remember = BooleanField(
+        'Remember',
+        validators = [
+            Optional(),
+        ]
+    )
+    
+    submit = SubmitField('Log In')

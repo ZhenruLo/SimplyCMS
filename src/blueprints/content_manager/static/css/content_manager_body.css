@@ -1,0 +1,16 @@
+.center_content_container{
+    display: none;
+    height: inherit;
+}
+
+.center_content_container.selected_content{
+    display: block;
+}
+
+.center_body_form{
+    display: flex;
+    flex-direction: column;
+    height: inherit;
+    justify-content: center;
+    align-items: center;
+}

@@ -1,10 +1,10 @@
-{% extends "side_panel.html" %}
+{% extends 'side_panel.html' %}
 
 {% block title %}Database{% endblock%}
 
 {% block static %}
 {{ super() }}
-<link rel="stylesheet" href="{{ url_for('database_bp.static', filename='css/database.css') }}"/>
+<link rel='stylesheet' href="{{ url_for('database_bp.static', filename='css/database.css') }}"/>
 {% endblock static %}
 
 {% block content %}

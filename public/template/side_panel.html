@@ -1,8 +1,8 @@
-{% extends "side_base.html" %}
+{% extends 'side_base.html' %}
 
 {% block static %}
 {{ super() }}
-<link rel="stylesheet" href="static/css/side_panel.css"/>
+<link rel='stylesheet' href='static/css/side_panel.css'/>
 {% endblock static %}
 
 {% block side %}
@@ -10,30 +10,20 @@
 {% endblock side %}
 
 {% block content %}
-<div class="header_container">
-    <i class="header_button fa-solid fa-chevron-left" id="back_button"></i>
-    <div class="dropdown">
-        <span class="welcome_dropdown">Welcome, </span>
-        <button class="dropdown_button"></button>
-        <div class="dropdown_content">
-            <a class="dropdown_content_anchor disabled" id="admin_page_anchor" href="/database">Administration</a>
-            <form class="dropdown_form" action="{{ url_for('logout_bp.logout') }}" method="POST">
-                <input id="single_csrf_logout" type="hidden" name="csrf_token" value="{{ csrf_token() }}">
-                <a class="dropdown_content_anchor" onclick="this.parentNode.submit();">Log Out</a>
-            </form>
+{{ super() }}
+<div class='center_container'>
+    <div class='panel_container' id='left_panel_container'>
+        <div class='panel_content' id='left_panel_content'>
+            {% block left_panel %}{% endblock left_panel %}
         </div>
-      </div>
-</div>
-<div class="panel_container" id="left_panel_container">
-    <div class="panel_header" id="left_panel_header">
     </div>
-    <div class="panel_content" id="left_panel_content">
-        {% block left_panel %}{% endblock left_panel %}
+    <div class='content_container'>
+        {% block center_body_content %}{% endblock center_body_content %}
     </div>
 </div>
 {% endblock content %}
 
 {% block script %}
 {{ super() }}
-<script src="/static/js/side_panel.js"></script>
+<script src='/static/js/side_panel.js'></script>
 {% endblock script %}
