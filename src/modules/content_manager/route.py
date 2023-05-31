@@ -1,14 +1,14 @@
+from database import (Content, create_table, db, get_tables_information,
+                      update_table_content)
 from flask import Blueprint, current_app, jsonify, render_template, request
 from flask_login import login_required
-from database import (Content, create_table, db, get_tables_information,
-                    update_table_content)
 
 content_manager_bp = Blueprint(
     'content_manager_bp',
     __name__,
-    static_folder='../static',
+    static_folder='static',
     static_url_path='/content_manager/static',
-    template_folder='../template')
+    template_folder='template')
 
 @content_manager_bp.route('/content-manager/table', methods=['GET', 'POST', 'PUT'])
 @login_required

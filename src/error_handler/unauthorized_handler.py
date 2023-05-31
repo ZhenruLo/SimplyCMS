@@ -19,7 +19,7 @@ def refresh_required(e):
 def unaunthenticated(e):
     
     current_app.logger.error(f'401 Unauthorised error')
-    return redirect(url_for('login_bp.login'), 301)
+    return redirect(url_for('account_bp.login'), 301)
 
 def media_type_not_supported(e):
     

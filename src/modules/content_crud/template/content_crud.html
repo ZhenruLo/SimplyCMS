@@ -4,7 +4,7 @@
 
 {% block static %}
 {{ super() }}
-<link rel='stylesheet' href="{{ url_for('database_bp.static', filename='css/database.css') }}"/>
+<link rel='stylesheet' href="{{ url_for('content_crud_bp.static', filename='css/database.css') }}"/>
 {% endblock static %}
 
 {% block content %}
@@ -13,5 +13,5 @@
 
 {% block script %}
 {{ super() }}
-<script src="{{ url_for('database_bp.static', filename='js/database.js') }}"></script>
+<script src="{{ url_for('content_crud_bp.static', filename='js/database.js') }}"></script>
 {% endblock script %}

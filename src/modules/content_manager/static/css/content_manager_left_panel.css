@@ -66,19 +66,11 @@
 
 .left_panel_tab:hover{
     color: black;
+    animation: bounce-animation 0.5s ease;
 }
 
 .left_panel_tab.selected_tab{
-    animation: bounce-dot-animation 0.5s ease;
-}
-
-@keyframes bounce-dot-animation {
-    0% {
-        transform: translateY(0.5rem);
-    }
-    50% {
-        transform: translateY(-1rem);
-    }
+    animation: rebounce-animation 0.5s ease;
 }
 
 .left_panel_tab.selected_tab .tab_icon{
@@ -121,7 +113,7 @@
 }
 
 .left_panel_menu_row.start{
-    animation: show-animation-from-top calc(0.1s * var(--t)) ease;
+    animation: show-animation-from-top calc(0.2s * var(--t)) ease;
 }
 
 .left_panel_inner_row{

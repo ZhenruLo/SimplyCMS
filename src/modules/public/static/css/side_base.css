@@ -124,12 +124,6 @@
     cursor: pointer;
 }
 
-.logout_form{
-    position: relative;
-    width: inherit;
-    height: inherit;
-}
-
 .dropdown_button{
     padding: 0;
     border: none;

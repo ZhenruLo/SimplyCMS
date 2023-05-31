@@ -64,13 +64,10 @@
         <div class='side_menu_group' id='side_logout'>
             <ul class='side_menu_list'>
                 <li class='side_li'>
-                    <form class='logout_form' action="{{ url_for('logout_bp.logout') }}" method='POST'>
-                        <input id='single_csrf_logout' type='hidden' name='csrf_token' value='{{ csrf_token() }}'>
-                        <a role="button" class='side_anchor dropdown_button' id='logout_anchor'>
-                            <i class="side_anchor_icon fa-solid fa-user"></i>
-                            <span class='side_anchor_text'></span>
-                        </a>
-                    </form>
+                    <a role="button" class='side_anchor dropdown_button' id='logout_anchor'>
+                        <i class="side_anchor_icon fa-solid fa-user"></i>
+                        <span class='side_anchor_text'></span>
+                    </a>
                     <span class='side_tooltip' id='logout_tooltip'>Profile</span>
                 </li>
             </ul>

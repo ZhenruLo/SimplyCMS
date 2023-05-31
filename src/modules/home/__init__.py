@@ -1,4 +1,4 @@
-from .src import home_bp
+from .route import home_bp
 
 __all__ = [
     'home_bp',

@@ -9,7 +9,7 @@
 
 @keyframes show-animation-from-top{
     from {
-        transform: translateY(-0.2rem);
+        transform: translateY(-1rem);
     }
     to {
         transform: translateY(0);
@@ -24,6 +24,24 @@
     to {
         opacity: 1;
         transform: translateX(0);
+    }
+}
+
+@keyframes bounce-animation{
+    from {
+        transform: translateY(-0.3rem);
+    }
+    to {
+        transform: translateY(0rem);
+    }
+}
+
+@keyframes rebounce-animation {
+    0% {
+        transform: translateY(0.5rem);
+    }
+    50% {
+        transform: translateY(-1rem);
     }
 }
 
