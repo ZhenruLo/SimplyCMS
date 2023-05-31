@@ -183,6 +183,7 @@
 
 {% block script %}
 {{ super() }}
+<script src="{{ url_for('content_manager_bp.static', filename='js/content_manager_functions.js') }}"></script>
 <script src="{{ url_for('content_manager_bp.static', filename='js/content_manager_interact.js') }}"></script>
 <script src="{{ url_for('content_manager_bp.static', filename='js/content_manager_start.js') }}"></script>
 <script src="{{ url_for('content_manager_bp.static', filename='js/content_manager_async.js') }}"></script>
