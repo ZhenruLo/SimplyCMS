@@ -2,7 +2,7 @@ $(function() {
     $('#login_form').submit(function(event) {
         event.preventDefault();
         $.ajax({
-            url: '/login/verify',
+            url: '/login/info',
             contentType: 'application/x-www-form-urlencoded',
             method: 'POST',
             data: $(this).serialize(),

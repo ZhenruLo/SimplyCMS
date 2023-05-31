@@ -12,7 +12,7 @@ $(function() {
         contentType:'application/json',
         success: function(data) {
             $('#logout_anchor .side_anchor_text').text('Hi, '+data['username']);
-            if (data['role']) {
+            if (data['result']) {
                 $('#admin_page_anchor').toggleClass('disabled');
             }
         },

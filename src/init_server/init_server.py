@@ -5,7 +5,7 @@ from flask_principal import RoleNeed, UserNeed, identity_loaded
 
 from constants import Directory
 from flask_logger import init_logger
-from database import db, migrate_app
+from models import db, migrate_app
 from security import csrf, login_manager, principals
 
 from .register_blueprint import register_blueprint

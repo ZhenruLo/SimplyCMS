@@ -1,18 +1,10 @@
-from database import (Content, create_table, db, get_tables_information,
-                      update_table_content)
-from flask import Blueprint, current_app, jsonify, render_template, request
-from flask_login import login_required
+from flask import request
 
-content_manager_bp = Blueprint(
-    'content_manager_bp',
-    __name__,
-    static_folder='static',
-    static_url_path='/content_manager/static',
-    template_folder='template')
+from models import (Content, create_table, db, get_tables_information,
+                    update_table_content)
 
-@content_manager_bp.route('/content-manager/table', methods=['GET', 'POST', 'PUT'])
-@login_required
-def fetch_data():
+
+def fetch_table_data():
     result = False
     msg = "Content table load failed"
     dict_list = None
@@ -24,25 +16,17 @@ def fetch_data():
         result = True
         msg = "Database load success"
         
-    result_dict = {
+    json_data = {
         "result": result,
         "msg": msg,
         "data": dict_list
     }
     
-    current_app.logger.info(f"Result dict from dashboard_bp.database, result: {result}, msg: {msg}")
-    return jsonify(result_dict)
-    
+    return json_data
 
-@content_manager_bp.route('/content-manager', methods=['GET'])
-@login_required
-def content_manager():
-    return render_template('content_manager.html')
-
-@content_manager_bp.route('/content-manager/databases', methods=['GET', 'POST', 'PUT'])
-@login_required
 def create_database():
     result = False
+
     if request.method == 'GET':
         msg = 'Fetch databases failed.'
         databases = None
@@ -57,8 +41,6 @@ def create_database():
             'msg': msg,
             'databases': list(databases.keys()),
         }
-
-        current_app.logger.info(f'Result dict from content_manager_bp.databases, result: {result}, msg: {msg}')
 
     elif request.method == 'POST':
         msg = 'Create database failed.'
@@ -92,8 +74,7 @@ def create_database():
             'msg': msg,
         }
 
-    current_app.logger.info(f'Result dict from content_manager_bp.create_database, result: {result}, msg: {msg}')
-    return jsonify(json_data)
+    return json_data
 
 def __check_special_char(string: str) -> bool:
     special_characters = '''!@#$%^&*''()-+?=/,<>'''
