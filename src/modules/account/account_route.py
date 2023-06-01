@@ -26,7 +26,6 @@ def verify_login():
     
 @account_bp.route('/username', methods=['GET'])
 @login_required
-@consumes('application/json')
 def username():
     json_data = get_username()
 

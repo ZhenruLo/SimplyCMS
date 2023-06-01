@@ -9,9 +9,8 @@ $(function() {
     $.ajax({
         url: '/username',
         method: 'GET',
-        contentType:'application/json',
         success: function(data) {
-            $('#logout_anchor .side_anchor_text').text('Hi, '+data['username']);
+            $('#logout_anchor .side_anchor_text').text('Hi, ' + data['username']);
             if (data['result']) {
                 $('#admin_page_anchor').toggleClass('disabled');
             }

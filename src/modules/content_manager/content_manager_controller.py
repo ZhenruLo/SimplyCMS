@@ -1,12 +1,33 @@
-from flask import request
+from typing import Dict, List, Union
 
+from flask import request
 from models import (Content, create_table, db, get_tables_information,
                     update_table_content)
 
 
-def fetch_table_data():
+def fetch_table_info() -> Dict[str, Union[bool, str]]:
     result = False
-    msg = "Content table load failed"
+    msg = "Fail to fetch content table info"
+    dict_list = None
+
+    all_data = db.session.query(Content.content_uuid, Content.table_name).all()
+    dict_list = [data._asdict() for data in all_data]
+    
+    if dict_list is not None:
+        result = True
+        msg = "Table data load success"
+        
+    json_data = {
+        "result": result,
+        "msg": msg,
+        "data": dict_list,
+    }
+    
+    return json_data
+    
+def fetch_table_data() -> Dict[str, Union[bool, str]]:
+    result = False
+    msg = "Fail to fetch content table data"
     dict_list = None
 
     all_data = db.session.query(Content.content_uuid, Content.id, Content.table_name, Content.created_timestamp).all()
@@ -14,17 +35,17 @@ def fetch_table_data():
     
     if dict_list is not None:
         result = True
-        msg = "Database load success"
+        msg = "Table data load success"
         
     json_data = {
         "result": result,
         "msg": msg,
-        "data": dict_list
+        "data": dict_list,
     }
     
     return json_data
 
-def create_database():
+def process_database() -> Dict[str, Union[bool, str, List[str]]]:
     result = False
 
     if request.method == 'GET':
