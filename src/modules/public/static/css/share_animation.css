@@ -36,6 +36,15 @@
     }
 }
 
+@keyframes bounce-from-left-animation{
+    from {
+        transform: translateX(-0.3rem);
+    }
+    to {
+        transform: translateX(0rem);
+    }
+}
+
 @keyframes rebounce-animation{
     0% {
         transform: translateY(0.5rem);

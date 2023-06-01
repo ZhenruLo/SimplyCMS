@@ -38,8 +38,6 @@ function createContentItem(table_name, table_uuid) {
 
     $('<li>').attr({'class': 'content_list_item', 'id': 'content_list_item_' + current_list_id}).appendTo('.left_panel_content_list');
 
-    $('<div>').attr({'class': 'content_selected_line'}).appendTo('#content_list_item_' + current_list_id);
-
     $('<input>').attr({'class': 'content_uuid', 'id': 'content_uuid_' + current_list_id, 'type': 'hidden', 'value': table_uuid }).appendTo('#content_list_item_' + current_list_id);
 
     $('<div>').attr({'class': 'content_list_index', 'id': 'index_'+current_list_id}).appendTo('#content_list_item_' + current_list_id);
@@ -50,9 +48,34 @@ function createContentItem(table_name, table_uuid) {
 
     $('<div>').attr({'class': 'content_list_more', 'id': 'more_' + current_list_id}).appendTo('#content_list_item_' + current_list_id);
     $('<i>').attr({'class': 'fa-solid fa-ellipsis-vertical'}).appendTo('#more_' + current_list_id)
+
+    $('<div>').attr({'class': 'content_selected_line'}).appendTo('#content_list_item_' + current_list_id);
 }
 
+function refreshContentItem() {
+    $('ul.left_panel_content_list').empty();
+
+    $.ajax({
+        url: '/content-manager/table-info',
+        method: 'GET',
+        success: function(data) {
+            if (data['result']) {
+                var table_list = data['data']
+                $.each(table_list, function(key, value){
+                    createContentItem(value['table_name'], value['content_uuid']);
+                })
+                $('.count_num').text($(".left_panel_content_list li").length);
+            }
+        },
+        error: function(data) {
+            alert(data.responseText);
+        }
+    })
+};
+
 $( function() {
+    refreshContentItem();
+
     $('.left_panel_menu_row').toggleClass('start');
     $('.left_panel_tab_container').toggleClass('start');
     
@@ -78,20 +101,4 @@ $( function() {
         $('.content_list_item').removeClass('selected_row');
         $(this).addClass("selected_row");
     });
-
-    $.ajax({
-        url: '/content-manager/table-info',
-        method: 'GET',
-        success: function(data) {
-            if (data['result']) {
-                var table_list = data['data']
-                $.each(table_list, function(key, value){
-                    createContentItem(value['table_name'], value['content_uuid']);
-                })
-            }
-        },
-        error: function(data) {
-            alert(data.responseText);
-        }
-    })
 });
