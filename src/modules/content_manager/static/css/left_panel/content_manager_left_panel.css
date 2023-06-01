@@ -99,7 +99,7 @@
 
 @keyframes dot_animation {
     0% {
-        transform: translateY(10px);
+        transform: translateY(1rem);
     }
 }
 
@@ -123,8 +123,8 @@
     justify-content: center;
     width: 100%;
     cursor: pointer;
-    height: 75px;
-    margin-bottom: 10px;
+    height: 7.5rem;
+    margin-bottom: 1rem;
     transition: all 0.2s ease;
 }
 
@@ -137,15 +137,15 @@
 }
 
 .left_panel_icon{
-    font-size: 25px;
+    font-size: 2.5rem;
 }
 
 .left_panel_row_text{
-    width: 190px;
+    width: 19rem;
     display: flex;
     flex-direction: column;
     user-select: none;
-    margin-left: 20px;
+    margin-left: 2rem;
 }
 
 .left_panel_icon_background{
