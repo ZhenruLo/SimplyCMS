@@ -156,7 +156,7 @@
 }
 
 .side_tooltip{
-    display: flex;
+    display: none;
     justify-content: center;
     align-items: center;
     z-index: 2;
@@ -169,16 +169,14 @@
     background-color: #27254d;
     margin-top: 1.5rem;
     font-size: 1.5rem;
-    left: 6rem;
-    opacity: 0;
+    left: 7.5rem;
     font-family: 'Poppins', sans-serif;
     text-align: center;
-    transition: all 0.3s ease;
 }
 
 .side_li:hover .side_tooltip{
-    opacity: 1;
-    left: 7.5rem;
+    display: flex;
+    animation: show-animation-from-left 0.5s ease;
 }
 
 .side_inner_container.expand{
