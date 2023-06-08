@@ -52,6 +52,12 @@
     animation: opacity-animation 0.5s ease;
 }
 
+.left_panel_content_container.selected_panel#left_panel_content_type .content_list_item{
+    --horizontal: -2rem;
+    --is_visible: 0;
+    animation: show-from-left-or-right 0.2s ease;
+}
+
 .tab_icon{
     font-size: 2.5rem;
     transition: all 0.3s ease;
@@ -66,11 +72,14 @@
 
 .left_panel_tab:hover{
     color: black;
-    animation: bounce-animation 0.5s ease;
+    --vertical: 0.3rem;
+    animation: bounce-from-top-or-bottom 0.5s ease;
 }
 
 .left_panel_tab.selected_tab{
-    animation: rebounce-animation 0.5s ease;
+    --vertical: 0.5rem;
+    --vrebounce: -1rem;
+    animation: rebounce-from-top-or-bottom 0.5s ease;
 }
 
 .left_panel_tab.selected_tab .tab_icon{
@@ -113,7 +122,9 @@
 }
 
 .left_panel_menu_row.start{
-    animation: show-animation-from-top calc(0.2s * var(--t)) ease;
+    --vertical: -2rem;
+    --is_visible: 0;
+    animation: show-from-top-or-bottom calc(0.1s * var(--t)) ease;
 }
 
 .left_panel_inner_row{

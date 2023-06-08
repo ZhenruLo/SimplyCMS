@@ -1,3 +1,4 @@
+import math
 from typing import Dict, List, Union
 
 from flask import request
@@ -5,42 +6,69 @@ from models import (Content, create_table, db, get_tables_information,
                     update_table_content)
 
 
-def fetch_table_info() -> Dict[str, Union[bool, str]]:
+def count_table_info() -> Dict[str, Union[bool, str]]:
     result = False
-    msg = "Fail to fetch content table info"
-    dict_list = None
+    msg = 'Fail to count content table info'
+    max_page = 0
 
-    all_data = db.session.query(Content.content_uuid, Content.table_name).all()
-    dict_list = [data._asdict() for data in all_data]
+    count = db.session.query(Content).count()
     
-    if dict_list is not None:
+    if count is not None:
+        max_page = math.ceil(count/20)
         result = True
-        msg = "Table data load success"
+        msg = 'Table count load success'
         
     json_data = {
-        "result": result,
-        "msg": msg,
-        "data": dict_list,
+        'result': result,
+        'msg': msg,
+        'data': count,
+        'max_page': max_page,
+    }
+    
+    return json_data
+
+def fetch_table_info() -> Dict[str, Union[bool, str]]:
+    result = False
+    msg = 'Fail to fetch content table info'
+    dict_list = None
+
+    try: 
+        offset = (int(request.values['page']) - 1) * 20
+        all_data = db.session.query(Content.content_uuid, Content.table_name).offset(offset).limit(20)
+        dict_list = [data._asdict() for data in all_data]
+        
+        if dict_list is not None:
+            result = True
+            msg = 'Table data load success'
+            
+    except Exception as err:
+        msg = 'Invalid page value'
+        
+        
+    json_data = {
+        'result': result,
+        'msg': msg,
+        'data': dict_list,
     }
     
     return json_data
     
 def fetch_table_data() -> Dict[str, Union[bool, str]]:
     result = False
-    msg = "Fail to fetch content table data"
+    msg = 'Fail to fetch content table data'
     dict_list = None
 
-    all_data = db.session.query(Content.content_uuid, Content.id, Content.table_name, Content.created_timestamp).all()
+    all_data = db.session.query(Content.content_uuid, Content.id, Content.table_name, Content.route_name, Content.created_timestamp).all()
     dict_list = [data._asdict() for data in all_data]
     
     if dict_list is not None:
         result = True
-        msg = "Table data load success"
+        msg = 'Table data load success'
         
     json_data = {
-        "result": result,
-        "msg": msg,
-        "data": dict_list,
+        'result': result,
+        'msg': msg,
+        'data': dict_list,
     }
     
     return json_data

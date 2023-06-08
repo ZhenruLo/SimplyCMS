@@ -2,7 +2,7 @@ $( function() {
     var table = $('#content_table').DataTable({
         scrollY: '400px',
         scrollCollapse: true,
-        autoWidth: false,
+        // autoWidth: false,
         pageLength: 30,
         lengthMenu: [1, 5, 15, 30, 50, 100],
         order: [[1, 'asc']],
@@ -24,12 +24,17 @@ $( function() {
             { 
                 title: 'CONTENT NAME', 
                 data: 'table_name',
-                width: '70%'
+                width: '40%'
+            },
+            {
+                title: 'ROUTE NAME', 
+                data: 'route_name',
+                width: '33%'
             },
             { 
                 title: 'CREATED AT', 
                 data: 'created_timestamp',
-                width: '23%'
+                width: '20%'
             },
             {
                 className: 'dtb dt-delete',

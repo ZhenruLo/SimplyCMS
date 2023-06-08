@@ -12,12 +12,17 @@
 <link rel='stylesheet' href="{{ url_for('content_manager_bp.static', filename='css/center_body/content_manager_inner_footer.css') }}"/>
 <link rel='stylesheet' href="{{ url_for('content_manager_bp.static', filename='css/center_body/content_manager_combined_icon.css') }}"/>
 <link rel='stylesheet' href="{{ url_for('content_manager_bp.static', filename='css/center_body/content_manager_table.css') }}"/>
-<link rel='stylesheet' href="{{ url_for('content_manager_bp.static', filename='css/pop_up/content_manager_popup.css') }}"/>
+<link rel='stylesheet' href="{{ url_for('content_manager_bp.static', filename='css/pop_up/content_manager_pop_up.css') }}"/>
 {% endblock static %}
 
 {% block pop_up %}
-<div class='content_manager_popup' id='create_content_popup'>
-    
+<div class='content_manager_pop_up' id='create_content_pop_up'>
+    <div class='pop_up_header'>
+        <span class='pop_up_header_text'>Initialization</span>
+    </div>
+    <div class='pop_up_body'>
+        
+    </div>
 </div>
 {% endblock pop_up %}
 
@@ -56,6 +61,6 @@
 <script src="{{ url_for('content_manager_bp.static', filename='js/content_manager.js') }}"></script>
 <script src="{{ url_for('content_manager_bp.static', filename='js/content_manager_left_panel.js') }}"></script>
 <script src="{{ url_for('content_manager_bp.static', filename='js/content_manager_center_body.js') }}"></script>
-<script src="{{ url_for('content_manager_bp.static', filename='js/content_manager_popup.js') }}"></script>
+<script src="{{ url_for('content_manager_bp.static', filename='js/content_manager_pop_up.js') }}"></script>
 <script src="{{ url_for('content_manager_bp.static', filename='js/content_manager_content_table.js') }}"></script>
 {% endblock script %}

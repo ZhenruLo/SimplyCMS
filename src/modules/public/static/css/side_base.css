@@ -176,7 +176,9 @@
 
 .side_li:hover .side_tooltip{
     display: flex;
-    animation: show-animation-from-left 0.5s ease;
+    --horizontal: -0.2rem;
+    --is_visible: 0;
+    animation:show-from-left-or-right 0.5s ease;
 }
 
 .side_inner_container.expand{
@@ -186,7 +188,9 @@
 
 .side_inner_container.expand #home_anchor{
     display: block;
-    animation: show-animation-from-left 1s ease;
+    --horizontal: -0.2rem;
+    --is_visible: 0;
+    animation:show-from-left-or-right 0.5s ease;
 }
 
 .side_inner_container.expand #side_logout{
@@ -199,7 +203,9 @@
 
 .side_inner_container.expand .side_anchor_text{
     display: block;
-    animation: show-animation-from-left 1s ease;
+    --horizontal: -0.2rem;
+    --is_visible: 0;
+    animation:show-from-left-or-right 0.5s ease;
 }
 
 .side_inner_container.expand .side_tooltip{

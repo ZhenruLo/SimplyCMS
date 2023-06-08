@@ -35,7 +35,7 @@
 
 .left_panel_content_inner_container{
     width: 100%;
-    height: fit-content;
+    height: 70rem;
     max-height: 100%;
     overflow: auto;
 }
@@ -50,7 +50,7 @@
     display: flex;
     position: relative;
     flex-direction: row;
-    height: 3rem;
+    height: 3.5rem;
     user-select: none;
     cursor: pointer;
     transition: all 0.2s ease;
@@ -68,13 +68,18 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    padding-left: 3rem;
+    padding-left: 2rem;
+    color: blueviolet;
     width: 9%;
     height: 100%;
     font-size: 0.4rem;
+    transition: all 0.2s ease;
 }
 
 .content_list_item.selected_row .content_list_index{
+    padding-left: 3rem;
+    --horizontal: -0.5rem;
+    --hrebounce: 0.5rem;
     animation: rebounce-from-left-animation 0.5s ease;
 }
 
@@ -84,8 +89,9 @@
     align-items: center;
     width: 80%;
     height: 100%;
-    font-size: 1.3rem;
-    font-family: 'Chakra Petch', sans-serif;
+    font-size: 1.1rem;
+    font-family: 'Poppins', sans-serif;
+    
 }
 
 .content_list_more{
@@ -122,8 +128,8 @@
     height: 3rem;
     user-select: none;
     cursor: pointer;
-    margin: 1rem 0;
-    transition: all 0.2s ease;
+    margin-bottom: 1rem;
+    transition: all 0.1s ease;
     color: blue;
 }
 
@@ -132,7 +138,7 @@
 }
 
 .content_create_content:active{
-    transform: scale(0.95)
+    background-color: lightgray;
 }
 
 #create_content_icon{
@@ -143,4 +149,35 @@
 
 #create_content_context{
     width: 91%;
+}
+
+.left_panel_content_pagination{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    margin: 0 1.5rem;
+    align-items: center;
+    height: 3rem;
+}
+
+.pagination_anchor{
+    display: flex;
+    border-radius: 0.5rem;
+    justify-content: center;
+    align-items: center;
+    width: 3rem;
+    height: 3rem;
+    font-size: 1.5rem;
+    margin-top: 2rem;
+    transition: all 0.1s ease;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.pagination_anchor:hover{
+    background-color: rgba(190, 190, 190, 0.5);
+}
+
+.pagination_anchor:active{
+    background-color: gray;
 }

@@ -7,19 +7,21 @@
     }
 }
 
-@keyframes show-animation-from-top{
+@keyframes show-from-top-or-bottom{
     from {
-        transform: translateY(-1rem);
+        opacity: var(--is_visible);
+        transform: translateY(var(--vertical));
     }
     to {
+        opacity: 1;
         transform: translateY(0);
     }
 }
 
-@keyframes show-animation-from-left{
+@keyframes show-from-left-or-right{
     from {
-        opacity: 0;
-        transform: translateX(-0.2rem);
+        opacity: var(--is_visible);
+        transform: translateX(var(--horizontal));
     }
     to {
         opacity: 1;
@@ -27,68 +29,58 @@
     }
 }
 
-@keyframes bounce-animation{
+@keyframes bounce-from-top-or-bottom{
     from {
-        transform: translateY(-0.3rem);
+        transform: translateY(var(--vertical));
     }
     to {
         transform: translateY(0rem);
     }
 }
 
-@keyframes bounce-from-left-animation{
+@keyframes bounce-from-left-or-right{
     from {
-        transform: translateX(-0.3rem);
+        transform: translateY(var(--horizontal));
     }
     to {
-        transform: translateX(0rem);
+        transform: translateY(0rem);
     }
 }
 
-@keyframes rebounce-animation{
+@keyframes rebounce-from-top-or-bottom{
     0% {
-        transform: translateY(0.5rem);
+        transform: translateY(var(--vertical));
     }
     50% {
-        transform: translateY(-1rem);
+        transform: translateY(var(--vrebounce));
     }
 }
 
-@keyframes rebounce-from-left-animation{
+@keyframes rebounce-from-left-or-right{
     0% {
-        transform: translateX(-0.5rem);
+        transform: translateY(var(--horizontal));
     }
     50% {
-        transform: translateX(0.5rem);
+        transform: translateY(var(--hrebounce));
     }
 }
+
+@keyframes show-rotate-from-left-or-right{
+    from {
+        opacity: var(--is_visible);
+        transform: translateX(var(--h-rotate)) rotateY(var(--v-rotate));
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+/* -------------------------------------------------------------- */
 
 @keyframes shine{
     from { -webkit-mask-position: 150%; }
     to { -webkit-mask-position: -50%; }
-}
-
-@keyframes show-animation-from-left-rotate{
-    from {
-        opacity: 0;
-        transform: translateX(-0.4rem) rotateY(1turn);
-    }
-
-    to {
-        opacity: 1;
-    }
-}
-
-@keyframes show-animation-from-right-rotate{
-    from {
-        opacity: 0;
-        transform: translateX(0.4rem) rotateY(.5turn);
-    }
-
-    to {
-        opacity: 1;
-    }
-
 }
 
 @keyframes gradient{

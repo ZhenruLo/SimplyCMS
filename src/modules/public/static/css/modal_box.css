@@ -1,12 +1,10 @@
 .modal_container{
-    z-index: -1;
-    display: flex;
+    z-index: 99;
+    display: none;
     position: absolute;
     width: inherit;
     top: 4rem;
     justify-content: center;
-    opacity: 0;
-    transition: all 0.2s ease;
 }
 
 .modal_box{
@@ -29,8 +27,8 @@
 }
 
 .modal_container.show_modal{
-    z-index: 99;
-    opacity: 1;
+    display: flex;
+    animation: opacity-animation 0.2s ease;
 }
 
 .mark_div{

@@ -14,7 +14,10 @@
 }
 
 .combined_icon.start .left_single_icon{
-    animation: show-animation-from-left-rotate .5s ease;
+    --h-rotate: 0.4rem;
+    --v-rotate: 1turn;
+    --is_visible: 0;
+    animation: show-rotate-from-left-or-right .5s ease;
 }
 
 .right_single_icon{
@@ -26,5 +29,8 @@
 }
 
 .combined_icon.start .right_single_icon{
-    animation: show-animation-from-right-rotate .5s ease;
+    --h-rotate: 0.4rem;
+    --v-rotate: 0.5turn;
+    --is_visible: 0;
+    animation: show-rotate-from-left-or-right .5s ease;
 }

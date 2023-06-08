@@ -12,7 +12,9 @@ $(function() {
                 }
                 else{
                     $('#login_form').trigger('reset');
-                    $('.modal_container').toggleClass('show_modal');
+                    if (!$('.modal_container').hasClass('show_modal')) {
+                        $('.modal_container').addClass('show_modal');
+                    };
                     $('.modal_text').text(data.msg);
                 };
             },

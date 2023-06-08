@@ -12,7 +12,9 @@
 
 .dropdown_content.show{
     display: inline-block;
-    animation: show-animation-from-left 0.2s ease;
+    --horizontal: -0.2rem;
+    --is_visible: 0;
+    animation: show-from-left-or-right 0.2s ease;
 }
 
 .dropdown_form{
