@@ -14,7 +14,7 @@ function openMenu(id) {
 
     else if (id === 'history_tab' && $('#' + id).hasClass('selected_tab')) {
         $('#left_panel_history').toggleClass('selected_panel');
-    }
+    };
 };
 
 function openContent(id) {
@@ -30,8 +30,8 @@ function openContent(id) {
 
     else if (id === 'row_create_page' && $('#' + id).hasClass('selected_row')) {
         $('#center_create_page').toggleClass('selected_body');
-    }
-}
+    };
+};
 
 function createContentItem(table_name, table_uuid) {
     var current_list_id = $(".left_panel_content_list li").length;
@@ -55,45 +55,47 @@ function createContentItem(table_name, table_uuid) {
     $('<i>').attr({'class': 'fa-solid fa-ellipsis-vertical'}).appendTo('#more_' + current_list_id)
 
     $('<div>').attr({'class': 'content_selected_line'}).appendTo('#content_list_item_' + current_list_id);
-}
+};
 
 function processPaginationButton(left_panel_current_page, max_page) {
     var backward_anchor =  $('.pagination_anchor#backward_anchor')
     var forward_anchor =  $('.pagination_anchor#forward_anchor')
-
-    console.log(left_panel_current_page)
-    console.log(max_page)
-    if (left_panel_current_page <= 1) {
-        backward_anchor.css({
-            'pointer-events': 'none',
-            'color': 'gray',
-        });
-        forward_anchor.css({
-            'pointer-events': 'initial',
-            'color': 'black',
-        });
-    }
-    else if (left_panel_current_page >= max_page){
-        backward_anchor.css({
-            'pointer-events': 'initial',
-            'color': 'black',
-        });
-        forward_anchor.css({
-            'pointer-events': 'none',
-            'color': 'gray',
-        });
+    if (max_page === 0){
+        $('.left_panel_content_pagination').css('display', 'none');
     }
     else {
-        backward_anchor.css({
-            'pointer-events': 'initial',
-            'color': 'black',
-        });
-        forward_anchor.css({
-            'pointer-events': 'initial',
-            'color': 'black',
-        });
-    }
-}
+        if (left_panel_current_page <= 1) {
+            backward_anchor.css({
+                'pointer-events': 'none',
+                'color': 'gray',
+            });
+            forward_anchor.css({
+                'pointer-events': 'initial',
+                'color': 'black',
+            });
+        }
+        else if (left_panel_current_page >= max_page){
+            backward_anchor.css({
+                'pointer-events': 'initial',
+                'color': 'black',
+            });
+            forward_anchor.css({
+                'pointer-events': 'none',
+                'color': 'gray',
+            });
+        }
+        else {
+            backward_anchor.css({
+                'pointer-events': 'initial',
+                'color': 'black',
+            });
+            forward_anchor.css({
+                'pointer-events': 'initial',
+                'color': 'black',
+            });
+        };
+    };
+};
 
 function refreshContentItem(page) {
     $('ul.left_panel_content_list').empty();
@@ -131,12 +133,12 @@ function refreshContentItem(page) {
             }
             else {
                 alert(data['msg']);
-            }
+            };
         },
         error: function(data) {
             alert(data.responseText);
-        }
-    })
+        },
+    });
 };
 
 $( function() {

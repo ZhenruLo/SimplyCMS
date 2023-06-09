@@ -1,4 +1,4 @@
-from config import Config
+from config import ProductionConfig
 from init_server import create_app
 
-app = create_app(Config)
+app = create_app(ProductionConfig)
