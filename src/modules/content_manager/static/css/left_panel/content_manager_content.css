@@ -138,7 +138,7 @@
 }
 
 .content_create_content:active{
-    background-color: lightgray;
+    transform: scale(0.97);
 }
 
 #create_content_icon{

@@ -18,10 +18,28 @@
 {% block pop_up %}
 <div class='content_manager_pop_up' id='create_content_pop_up'>
     <div class='pop_up_header'>
-        <span class='pop_up_header_text'>Initialization</span>
+        <span class='pop_up_header_text'>Initial Settings</span>
     </div>
     <div class='pop_up_body'>
-        
+        <form id='content_creator_form' action='' method='POST'>
+            <input id='single_csrf_content_creator' type='hidden' name='csrf_token' value='{{ csrf_token() }}'>
+
+            <div class='content_creator_form_body'>
+                <fieldset class='content_creator_fieldset'>
+                    <legend class='content_legend'>Display Name</legend>
+                    <input class='content_creator_input' id='content_display_name' type='text' name='table_name'>
+                </fieldset>
+                
+                <fieldset class='content_creator_fieldset'>
+                    <legend class='content_legend'>Route Name</legend>
+                    <input class='content_creator_input' id='content_route_name' type='text' name='route_name'>
+                </fieldset>
+            </div>
+
+            <div class='content_creator_form_footer'>
+                <input class='submit_btn' id='content_creator_submit' type='submit' name='submit' value='Create Content'>
+            </div>
+        </form>
     </div>
 </div>
 {% endblock pop_up %}

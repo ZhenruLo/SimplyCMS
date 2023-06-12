@@ -22,7 +22,7 @@ $( function() {
         };
     });
 
-    $('#content_manager_form').submit(function(event) {
+    $('#custom_field_container').submit(function(event) {
         event.preventDefault();
         
         $.ajax({
