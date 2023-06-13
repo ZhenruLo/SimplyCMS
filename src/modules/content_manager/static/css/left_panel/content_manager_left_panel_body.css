@@ -1,38 +1,3 @@
-.left_panel_content_header{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    width: 100%;
-    height: 7rem;
-}
-
-.content_header_text{
-    letter-spacing: 0.2rem;
-    margin-left: 2.5rem;
-    user-select: none;
-    font-family: 'Chakra Petch', sans-serif;
-    font-size: 1.7rem;
-    font-weight: 600;
-    color: blueviolet;
-}
-
-.content_count{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    user-select: none;
-    width: 2rem;
-    height: 2rem;
-    margin-right: 1rem;
-    border-radius: 0.5rem;
-    background-color: lightgray;
-}
-
-.count_num{
-    font-family: 'Chakra Petch', sans-serif;
-    font-weight: 600;
-}
-
 .left_panel_content_inner_container{
     width: 100%;
     height: 70rem;
@@ -54,6 +19,12 @@
     user-select: none;
     cursor: pointer;
     transition: all 0.2s ease;
+}
+
+.left_panel_content_container.selected_panel#left_panel_content_type .content_list_item{
+    --vertical: -1rem;
+    --is_visible: 0;
+    animation: show-from-top-or-bottom 0.5s ease;
 }
 
 .content_list_item:hover .content_list_index{
@@ -131,6 +102,12 @@
     margin-bottom: 1rem;
     transition: all 0.1s ease;
     color: blue;
+}
+
+.selected_panel .content_create_content{
+    --vertical: -1rem;
+    --is_visible: 1;
+    animation: show-from-top-or-bottom 0.375s ease;
 }
 
 .content_create_content:hover #create_content_context{

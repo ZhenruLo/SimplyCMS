@@ -5,6 +5,7 @@
 
 .center_content_container.selected_body{
     display: block;
+    animation: opacity-animation 0.5s ease;
 }
 
 .center_body_container{

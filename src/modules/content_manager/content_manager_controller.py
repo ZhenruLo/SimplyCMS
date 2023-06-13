@@ -2,7 +2,8 @@ import math
 from typing import TYPE_CHECKING, Dict, List, Union
 
 from flask import request
-from models import (Content, create_table, db, get_tables_information,
+
+from models import (Content, create_table, db, get_all_tables_information,
                     update_table_content)
 
 from .content_manager_form import ContentManagerForm
@@ -84,7 +85,7 @@ def process_database() -> Dict[str, Union[bool, str, List[str]]]:
         msg = 'Fetch databases failed.'
         databases = None
         
-        databases = get_tables_information()
+        databases = get_all_tables_information()
 
         result = True
         msg = 'Databases fetched'

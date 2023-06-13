@@ -52,12 +52,6 @@
     animation: opacity-animation 0.5s ease;
 }
 
-.left_panel_content_container.selected_panel#left_panel_content_type .content_list_item{
-    --horizontal: -2rem;
-    --is_visible: 0;
-    animation: show-from-left-or-right 0.2s ease;
-}
-
 .tab_icon{
     font-size: 2.5rem;
     transition: all 0.3s ease;

@@ -1,15 +1,27 @@
 var left_panel_current_page = 1;
 
+function clearSelectedRow() {
+    $('.left_panel_menu_row').removeClass('selected_row');
+    $('.content_list_item').removeClass('selected_row');
+};
+
+function selectedRow(left_panel_row) {
+    clearSelectedRow();
+    $(left_panel_row).addClass('selected_row');
+};
+
 function openMenu(id) {
     $('.left_panel_content_container').removeClass('selected_panel');
     if (id === 'menu_tab' && $('#' + id).hasClass('selected_tab')) {
         $('#left_panel_menu').addClass('selected_panel');
         selectedRow('#row_create_content');
+        openContent('row_create_content');
     }
 
     else if (id === 'content_tab' && $('#' + id).hasClass('selected_tab')) {
         $('#left_panel_content_type').addClass('selected_panel');
         selectedRow('.left_panel_content_list li:first');
+        openContentBuilder('.left_panel_content_list li:first');
     }
 
     else if (id === 'information_tab' && $('#' + id).hasClass('selected_tab')) {
@@ -40,26 +52,36 @@ function openContent(id) {
 function openTab(id) {
     $('.left_panel_tab').removeClass('selected_tab');
     $(id).addClass('selected_tab');
-}
-
-function clearSelectedRow() {
-    $('.left_panel_menu_row').removeClass('selected_row');
-    $('.content_list_item').removeClass('selected_row');
-}
-
-function selectedRow(left_panel_row) {
-    clearSelectedRow();
-    $(left_panel_row).addClass('selected_row');
-}
+};
 
 function openContentBuilder(content_row) {
+    $('.center_content_container').removeClass('selected_body');
+
     selectedRow(content_row);
-}
+    $('#center_content_builder').addClass('selected_body');
+    refreshContentBuilderPage();
+};
+
+function refreshContentBuilderPage() {
+    var current_list = $('.content_list_item.selected_row')
+
+    $.ajax({
+        url: '/content-manager/databases',
+        method: 'GET',
+        data: current_list.find('.content_uuid').val(),
+        success: function(data) {
+            console.log(data['databases']);
+        },
+        error: function(data) {
+            alert(data.responseText);
+        },
+    });
+};
 
 function createContentItem(table_name, table_uuid, selected_row) {
     var current_list_id = $(".left_panel_content_list li").length;
-
-    if (selected_row) {
+    
+    if (selected_row || (!selected_row && current_list_id === 0)) {
         $('<li>').attr({'class': 'content_list_item selected_row', 'id': 'content_list_item_' + current_list_id}).appendTo('.left_panel_content_list');
     }
     else {
@@ -143,17 +165,19 @@ function refreshContentItem(page, selected_content_uuid) {
                     success: function(data) {
                         if (data['result']) {
                             var table_list = data['data']
+
                             $.each(table_list, function(key, value){
                                 var table_name = value['table_name'];
                                 var content_uuid = value['content_uuid'];
                                 
-                                if (content_uuid == selected_content_uuid || selected_content_uuid == null) {
+                                if (content_uuid === selected_content_uuid) {
                                     createContentItem(table_name, content_uuid, true);
                                 }
                                 else {
                                     createContentItem(table_name, content_uuid, false);
                                 }
                             })
+                            refreshContentBuilderPage();
                         }
                         else {
                             alert(data['msg']);

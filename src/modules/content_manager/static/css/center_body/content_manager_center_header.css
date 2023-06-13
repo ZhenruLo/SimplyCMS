@@ -5,6 +5,12 @@
     margin: 3rem 0;
 }
 
+.selected_body .center_content_header_container{    
+    --is_visible: 1;
+    --vertical: -2rem;
+    animation: show-from-top-or-bottom 0.25s ease;
+}
+
 #table_submit{
     padding: 0.5rem 1rem;
     display: inline-block;

@@ -1,10 +1,11 @@
 from typing import List
 
-from constants import Directory
 from flask_login import UserMixin
 from flask_migrate import migrate, upgrade
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import Column, Integer, String, Table
+
+from constants import Directory
 
 db = SQLAlchemy()
 
@@ -45,6 +46,6 @@ def update_table_content(tablename: str, column_info):
     migrate(Directory.GLOBAL_MIGRATE_DIR.as_posix())
     upgrade(Directory.GLOBAL_MIGRATE_DIR.as_posix())
 
-def get_tables_information():
+def get_all_tables_information():
     tables = db.metadata.tables
     return tables

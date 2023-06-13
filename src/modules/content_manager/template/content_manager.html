@@ -5,9 +5,11 @@
 {% block static %}
 {{ super() }}
 <link rel='stylesheet' href="{{ url_for('content_manager_bp.static', filename='css/left_panel/content_manager_menu.css') }}"/>
-<link rel='stylesheet' href="{{ url_for('content_manager_bp.static', filename='css/left_panel/content_manager_content.css') }}"/>
+<link rel='stylesheet' href="{{ url_for('content_manager_bp.static', filename='css/left_panel/content_manager_left_panel_header.css') }}"/>
+<link rel='stylesheet' href="{{ url_for('content_manager_bp.static', filename='css/left_panel/content_manager_left_panel_body.css') }}"/>
 <link rel='stylesheet' href="{{ url_for('content_manager_bp.static', filename='css/center_body/content_manager_center_header.css') }}"/>
 <link rel='stylesheet' href="{{ url_for('content_manager_bp.static', filename='css/center_body/content_manager_inner_body.css') }}"/>
+<link rel='stylesheet' href="{{ url_for('content_manager_bp.static', filename='css/center_body/content_manager_center_body.css') }}"/>
 <link rel='stylesheet' href="{{ url_for('content_manager_bp.static', filename='css/center_body/content_manager_body.css') }}"/>
 <link rel='stylesheet' href="{{ url_for('content_manager_bp.static', filename='css/center_body/content_manager_inner_footer.css') }}"/>
 <link rel='stylesheet' href="{{ url_for('content_manager_bp.static', filename='css/center_body/content_manager_combined_icon.css') }}"/>
