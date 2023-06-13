@@ -1,10 +1,14 @@
 import math
-from typing import Dict, List, Union
+from typing import TYPE_CHECKING, Dict, List, Union
 
 from flask import request
 from models import (Content, create_table, db, get_tables_information,
                     update_table_content)
 
+from .content_manager_form import ContentManagerForm
+
+if TYPE_CHECKING:
+    from flask_wtf import FlaskForm
 
 def count_table_info() -> Dict[str, Union[bool, str]]:
     result = False
@@ -58,7 +62,7 @@ def fetch_table_data() -> Dict[str, Union[bool, str]]:
     msg = 'Fail to fetch content table data'
     dict_list = None
 
-    all_data = db.session.query(Content.content_uuid, Content.id, Content.table_name, Content.route_name, Content.created_timestamp).all()
+    all_data = db.session.query(Content.content_uuid, Content.table_name, Content.route_name, Content.created_timestamp).all()
     dict_list = [data._asdict() for data in all_data]
     
     if dict_list is not None:
@@ -93,20 +97,35 @@ def process_database() -> Dict[str, Union[bool, str, List[str]]]:
 
     elif request.method == 'POST':
         msg = 'Create database failed.'
+        table_uuid = None
+        form: 'FlaskForm' = ContentManagerForm()
+        
+        if form.validate_on_submit():
+            table_name = request.form.get('table_name')
+            route_name = request.form.get('route_name')
+            check_table_result = __check_special_char(table_name)
+            check_route_result = __check_special_char(route_name) 
 
-        table_name = request.form.get('content_name')
-        check_result = __check_special_char(table_name)
-        if not check_result:
-            create_table(table_name)
+            if not check_route_result and not check_table_result:
+                table_count = db.session.query(Content).filter(Content.table_name==table_name).count()
+                route_count = db.session.query(Content).filter(Content.route_name==route_name).count()
+                
+                if (table_count == 0 and route_count == 0):
+                    Content.add(table_name=table_name, route_name=route_name)
+                    # create_table(table_name)
 
-            result = True
-            msg = 'Databases created'
-        else:
-            msg = 'Database contain special characters'
+                    table_uuid = db.session.query(Content.content_uuid).filter(Content.table_name==table_name).scalar()
+                    result = True
+                    msg = 'Databases created'
+                else:
+                    msg = 'Duplicate display name, please enter another value.' if table_count == 0 else 'Duplicate route name, please enter another value.'
+            else:
+                msg = 'Database contain special characters'
             
         json_data = {
             'result': result,
             'msg': msg,
+            'table_uuid': table_uuid,
         }
 
     elif request.method == 'PUT':

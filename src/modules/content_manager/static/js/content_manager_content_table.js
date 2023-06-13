@@ -18,8 +18,9 @@ $( function() {
             },
             { 
                 title: 'ID', 
-                data: 'id',
-                width: '5%'
+                width: '5%',
+                data: null,
+                render: (data, type, row, meta) => meta.row + 1,
             },
             { 
                 title: 'CONTENT NAME', 

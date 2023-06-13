@@ -17,7 +17,7 @@
     animation: show-from-left-or-right 0.2s ease;
 }
 
-.dropdown_form{
+#dropdown_form{
     cursor: pointer;
 }
 

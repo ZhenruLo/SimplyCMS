@@ -1,16 +1,19 @@
+from typing import TYPE_CHECKING
+
+from constants import WebUserRole
 from flask import current_app, url_for
 from flask_login import current_user, login_user, logout_user
 from flask_principal import AnonymousIdentity, Identity, identity_changed
-
-from constants import WebUserRole
 from models import WebUser, db
 from security import check_pw
 
-from .form import LoginForm
+from .account_form import LoginForm
 
+if TYPE_CHECKING:
+    from flask_wtf import FlaskForm
 
 def check_login_info():
-    form = LoginForm()
+    form: 'FlaskForm' = LoginForm()
     result = False
     msg = 'Login failed, please try again'
 

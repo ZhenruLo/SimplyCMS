@@ -22,19 +22,32 @@ $( function() {
         };
     });
 
-    $('#custom_field_container').submit(function(event) {
+    $('.footer_text_anchor').on('click', function(event) {
         event.preventDefault();
-        
+
+        toggle_pop_up();
+    });
+
+    $('#content_creator_form').submit(function(event) {
+        event.preventDefault();
+
+        $('.pop_up_background').click();
+
         $.ajax({
             url: '/content-manager/databases',
             method: 'POST',
             data: $(this).serialize(),
             success: function(data) {
-                alert(data.msg);
+                if (data['result']) {
+                    table_uuid = data['table_uuid'];
+
+                    $("#content_table").DataTable().ajax.reload(null, false);
+                    refreshContentItem(left_panel_current_page, table_uuid);
+                };
             },
             error: function(data) {
                 alert(data.responseText);
-            },
-        });
-    });
+            }
+        })
+    })
 });
