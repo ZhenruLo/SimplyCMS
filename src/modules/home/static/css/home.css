@@ -1,4 +1,4 @@
-.home_main_container{
+.home-main-container{
     display: flex;
     align-items: center;
     justify-content: center;
@@ -8,14 +8,14 @@
     overflow: hidden;
 }
 
-.main_mask{
+.main-mask{
     z-index: 1;
     width: 100%;
     height: 100%;
     background: linear-gradient(-45deg, rgba(255, 255, 255, 0.2) 40%, rgba(0, 0, 0, 0.2) 75%, transparent 75%)
 }
 
-.context_container{
+.context-container{
     display: inline-flex;
     flex-direction: column;
     align-items: flex-end;
@@ -26,7 +26,7 @@
     top: 280px;
 }
 
-.home_container{
+.home-container{
     z-index: 2;
     width: fit-content;
     height: fit-content;
@@ -34,21 +34,21 @@
     text-align: right;
 }
 
-.welcome_container{
+.welcome-container{
     width: 100%;
 }
 
-.description_container{
+.description-container{
     width: 100%;
 }
 
-.start_container{
+.start-container{
     width: 100%;
     margin-top: 300px;
     margin-right: 120px;
 }
 
-.welcome_header{
+.welcome-header{
     font-size: 60px;
     font-family: 'Abel', sans-serif;
     font-weight: 600;
@@ -58,7 +58,7 @@
     margin-right: 30px;
 }
 
-.description_text{
+.description-text{
     font-size: 18px;
     font-family: 'Abel', sans-serif;
     font-weight: 600;
@@ -68,7 +68,7 @@
     margin-right: 50px;
 }
 
-.start_anchor{
+.start-anchor{
     width: 100px;
     height: 50px;
     cursor: pointer;
@@ -79,7 +79,7 @@
     user-select: none;
 }
 
-.start_text{
+.start-text{
     font-size: 20px;
     font-family: 'Chakra Petch', sans-serif;
     font-weight: 800;
@@ -87,7 +87,7 @@
     color: black;
 }
 
-.start_line{
+.start-line{
     display: inline-block;
     width: 0;
     height: 0;
@@ -99,6 +99,6 @@
     transition: all 1s ease;
 }
 
-.start_container:hover .start_line{
+.start-container:hover .start-line{
     width: 550px;
 }

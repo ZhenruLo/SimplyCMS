@@ -1,0 +1,47 @@
+.content-manager-pop-up{
+    display: none;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 50rem;
+    height: fit-content;
+    background-color: white;
+    box-shadow: 0 0 0.2rem 0.1rem lightgray;
+}
+
+.content-manager-pop-up.show{
+    display: flex;
+}
+
+.pop-up-header{
+    display: flex;
+    align-items: center;
+    width: inherit;
+    height: 7rem;
+    box-shadow: 0 0 0.3rem 0.1rem rgba(211, 211, 211, 0.65);
+}
+
+.pop-up-header-text{
+    font-size: 3rem;
+    font-family: 'Chakra Petch', sans-serif;
+}
+
+.pop-up-body{
+    width: inherit;
+    height: fit-content;
+    padding-top: 1rem;
+}
+
+#content-creator-form{
+    display: flex;
+    flex-direction: column;
+}
+
+.content-creator-form-body{
+    display: flex;
+    flex-direction: row;
+}
+
+.content-creator-form-footer{
+    width: inherit;
+    margin-top: 5rem;
+}

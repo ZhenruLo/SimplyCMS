@@ -2,9 +2,7 @@ import math
 from typing import TYPE_CHECKING, Dict, List, Union
 
 from flask import request
-
-from models import (Content, create_table, db, get_all_tables_information,
-                    update_table_content)
+from models import Content, create_table, db, update_table_content
 
 from .content_manager_form import ContentManagerForm
 
@@ -32,9 +30,9 @@ def count_table_info() -> Dict[str, Union[bool, str]]:
     
     return json_data
 
-def fetch_table_info() -> Dict[str, Union[bool, str]]:
+def fetch_table_title() -> Dict[str, Union[bool, str]]:
     result = False
-    msg = 'Fail to fetch content table info'
+    msg = 'Fail to fetch content table title'
     dict_list = None
 
     try: 
@@ -78,23 +76,34 @@ def fetch_table_data() -> Dict[str, Union[bool, str]]:
     
     return json_data
 
+def process_database_content() -> Dict[str, Union[bool, str, List[str]]]:
+    result = False
+    
+    if request.method == 'GET':
+        msg = 'Fetch database info failed.'
+        database = None
+        
+        selected_content_uuid = request.args.get('content_uuid') 
+        
+        database_row = Content.fetch_one(Content.content_uuid, selected_content_uuid, Content.content_uuid, Content.table_name, Content.route_name, Content.column_attrs)
+        database = database_row._asdict()
+
+        result = True
+        msg = 'Database info fetched'
+
+    json_data = {
+        'result': result,
+        'msg': msg,
+        'database': database,
+    }
+        
+    return json_data
+        
 def process_database() -> Dict[str, Union[bool, str, List[str]]]:
     result = False
 
     if request.method == 'GET':
-        msg = 'Fetch databases failed.'
-        databases = None
-        
-        databases = get_all_tables_information()
-
-        result = True
-        msg = 'Databases fetched'
-
-        json_data = {
-            'result': result,
-            'msg': msg,
-            'databases': list(databases.keys()),
-        }
+        pass
 
     elif request.method == 'POST':
         msg = 'Create database failed.'

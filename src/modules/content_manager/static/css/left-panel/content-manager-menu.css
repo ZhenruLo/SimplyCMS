@@ -1,0 +1,214 @@
+#content-manager-left-panel{
+    display: flex;
+    flex-direction: column;
+    height: inherit;
+}
+
+.left-panel-tab-container{
+    display: flex;
+    height: 6.5rem;
+    flex-direction: row;
+    padding: 1.5rem 0;
+    justify-content: center;
+    background-color: white;
+    box-shadow: 0 0 0.3rem 0.1rem rgba(211, 211, 211, 0.65);
+    clip-path: inset(0 0 -0.3rem 0);
+}
+
+.left-panel-tab-container.start{
+    animation: opacity-animation 0.5s ease;
+}
+
+.left-panel-context-container{
+    height: 100%;
+    overflow: auto;
+}
+
+.left-panel-tab{
+    display: flex;
+    width: 5rem;
+    flex-direction: column;
+    border: none;
+    cursor: pointer;
+    align-items: center;
+    color: grey;
+    background-color: transparent;
+    justify-content: space-evenly;
+}
+
+.left-panel-content-container{
+    display: none;
+    flex-direction: column;
+    height: 100%;
+}
+
+.input-text-box{
+    display: block;
+}
+
+.left-panel-content-container.selected-panel{
+    display: flex;
+    animation: opacity-animation 0.5s ease;
+}
+
+.tab-icon{
+    font-size: 2.5rem;
+    transition: all 0.3s ease;
+}
+
+.tab-text{
+    font-size: 1rem;
+    font-family: 'Chakra Petch', sans-serif;
+    user-select: none;
+    transition: all 0.3s ease;
+}
+
+.left-panel-tab:hover{
+    color: black;
+    --vertical: 0.3rem;
+    animation: bounce-from-top-or-bottom 0.5s ease;
+}
+
+.left-panel-tab.selected-tab{
+    --vertical: 0.5rem;
+    --vRebounce: -1rem;
+    animation: rebounce-from-top-or-bottom 0.5s ease;
+}
+
+.left-panel-tab.selected-tab .tab-icon{
+    color: rgb(110, 0, 199)
+}
+
+.left-panel-tab.selected-tab .tab-text{
+    color: black;
+}
+
+.selected-dot{
+    opacity: 0;
+    z-index: 2;
+    width: 0.5rem;
+    height: 0.5rem;
+    border-radius: 1rem;
+    background-color: rgb(128, 0, 225);
+    transition: all 0.3s ease;
+}
+
+.left-panel-tab.selected-tab .selected-dot{
+    opacity: 1;
+    animation: dot-animation 0.5s cubic-bezier(0.5, 1, 0.3, 2);
+    animation-delay: 0.05s;
+}
+
+@keyframes dot-animation {
+    0% {
+        transform: translateY(1rem);
+    }
+}
+
+.left-panel-menu-row{
+    display: flex;
+    position: relative;
+    flex-direction: column;
+    align-items: center;
+    height: fit-content;
+    transition: all 0.5s ease;
+}
+
+.left-panel-menu-row.start{
+    --vertical: -2rem;
+    --isVisible: 0;
+    animation: show-from-top-or-bottom calc(0.1s * var(--t)) ease;
+}
+
+.left-panel-inner-row{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    cursor: pointer;
+    height: 7.5rem;
+    margin-bottom: 1rem;
+    transition: all 0.2s ease;
+}
+
+.left-panel-menu-row.selected-row .left-panel-inner-row{
+    background-color: rgba(222, 222, 222, 0.3);
+}
+
+.left-panel-inner-row:hover{
+    background-color: rgba(222, 222, 222, 0.5);
+}
+
+.left-panel-icon{
+    font-size: 2.5rem;
+}
+
+.left-panel-row-text{
+    width: 19rem;
+    display: flex;
+    flex-direction: column;
+    user-select: none;
+    margin-left: 2rem;
+}
+
+.left-panel-icon-background{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 5.5rem;
+    height: 5.5rem;
+    border-radius: 0.5rem;
+}
+
+.row-text-title{
+    font-family: 'Chakra Petch', sans-serif;
+    font-size: medium;
+    user-select: none;
+    margin-bottom: 0.3rem;
+}
+
+.row-text-description{
+    font-size: 1rem;
+    font-family: 'Chakra Petch', sans-serif;
+    color: grey;
+    user-select: none;
+}
+
+.current-bar{
+    position: absolute;
+    right: 0;
+    width: 0.3rem;
+    height: inherit;
+    background-color: rgb(128, 0, 225);
+    opacity: 0;
+    transition: all 0.2s ease;
+}
+
+.left-panel-menu-row.selected-row .current-bar{
+    opacity: 1;
+}
+
+#icon-background-content{
+    background-color: rgba(0, 0, 255, 0.05);
+}
+
+#icon-content{
+    color: rgb(128, 0, 225);
+}
+
+#icon-background-field{
+    background-color: rgba(0, 217, 255, 0.05);
+}
+
+#icon-field{
+    color: rgb(0, 169, 225);
+}
+
+#icon-background-page{
+    background-color: rgba(11, 202, 212, 0.05);
+}
+
+#icon-page{
+    color: rgb(0, 225, 191);
+}

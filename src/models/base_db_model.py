@@ -1,11 +1,10 @@
 from typing import List
 
+from constants import Directory
 from flask_login import UserMixin
 from flask_migrate import migrate, upgrade
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import Column, Integer, String, Table
-
-from constants import Directory
 
 db = SQLAlchemy()
 
@@ -21,6 +20,10 @@ class Base(UserMixin):
         db.session.delete(user)
         db.session.commit()
     
+    @classmethod
+    def fetch_one(cls, cls_column_name: 'str', value, *required_args: List['str']) -> 'Base':
+        return db.session.query(*required_args).filter(cls_column_name == value).one()
+        
     @classmethod
     def to_dict(cls):
         return {field.name:getattr(cls, field.name) for field in cls.__table__.c}

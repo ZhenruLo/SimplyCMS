@@ -1,0 +1,17 @@
+{% extends 'side-panel.html' %}
+
+{% block title %}Database{% endblock%}
+
+{% block static %}
+{{ super() }}
+<link rel='stylesheet' href="{{ url_for('content_crud_bp.static', filename='css/database.css') }}"/>
+{% endblock static %}
+
+{% block content %}
+{{ super() }}
+{% endblock content %}
+
+{% block script %}
+{{ super() }}
+<script src="{{ url_for('content_crud_bp.static', filename='js/database.js') }}"></script>
+{% endblock script %}

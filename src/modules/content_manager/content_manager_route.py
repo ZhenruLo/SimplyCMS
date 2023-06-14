@@ -1,8 +1,9 @@
 from flask import Blueprint, current_app, jsonify, render_template
 from flask_login import login_required
 
-from .content_manager_controller import (fetch_table_data, fetch_table_info,
-                                         process_database, count_table_info)
+from .content_manager_controller import (count_table_info, fetch_table_data,
+                                         fetch_table_title, process_database,
+                                         process_database_content)
 
 content_manager_bp = Blueprint(
     'content_manager_bp',
@@ -16,8 +17,8 @@ content_manager_bp = Blueprint(
 @login_required
 def content_manager():
     
-    current_app.logger.info(f'Render content_manager.html')
-    return render_template('content_manager.html')
+    current_app.logger.info(f'Render content-manager.html')
+    return render_template('content-manager.html')
 
 @content_manager_bp.route('/content-manager/table-count', methods=['GET'])
 @login_required
@@ -27,12 +28,12 @@ def table_count():
     current_app.logger.info(f"Result dict from dashboard_bp.table_count, result: {json_data['result']}, msg: {json_data['msg']}")
     return jsonify(json_data)
 
-@content_manager_bp.route('/content-manager/table-info', methods=['GET'])
+@content_manager_bp.route('/content-manager/table-title', methods=['GET'])
 @login_required
-def table_info():
-    json_data = fetch_table_info()
+def table_title():
+    json_data = fetch_table_title()
     
-    current_app.logger.info(f"Result dict from dashboard_bp.table_info, result: {json_data['result']}, msg: {json_data['msg']}")
+    current_app.logger.info(f"Result dict from dashboard_bp.table_title, result: {json_data['result']}, msg: {json_data['msg']}")
     return jsonify(json_data)
     
 @content_manager_bp.route('/content-manager/table', methods=['GET'])
@@ -50,3 +51,12 @@ def database():
 
     current_app.logger.info(f"Result dict from content_manager_bp.database, result: {json_data['result']}, msg: {json_data['msg']}")
     return jsonify(json_data)
+
+@content_manager_bp.route('/content-manager/database-content', methods=['GET', 'POST'])
+@login_required
+def database_content():
+    json_data = process_database_content()
+    
+    current_app.logger.info(f"Result dict from content_manager_bp.database_content, result: {json_data['result']}, msg: {json_data['msg']}")
+    return jsonify(json_data)
+    

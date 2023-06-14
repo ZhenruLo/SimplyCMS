@@ -1,7 +1,6 @@
 from flask import (Blueprint, abort, current_app, jsonify, redirect,
                    render_template, url_for)
 from flask_login import login_required
-from flask_negotiate import consumes
 
 from .account_controller import check_login_info, get_username, log_out
 

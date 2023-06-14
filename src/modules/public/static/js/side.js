@@ -1,8 +1,8 @@
 $(function() {
-    $('#database_anchor').removeClass('current_anchor');
+    $('#database-anchor').removeClass('current-anchor');
 
-    $('#collapse_menu_btn').on('click', function() {
-        $('.side_inner_container').toggleClass('expand');
+    $('#collapse-menu-btn').on('click', function() {
+        $('.side-inner-container').toggleClass('expand');
         $('#content').toggleClass('collapse');
     });
     
@@ -10,9 +10,9 @@ $(function() {
         url: '/username',
         method: 'GET',
         success: function(data) {
-            $('#logout_anchor .side_anchor_text').text('Hi, ' + data['username']);
+            $('#logout-anchor .side-anchor-text').text('Hi, ' + data['username']);
             if (data['result']) {
-                $('#admin_page_anchor').toggleClass('disabled');
+                $('#admin-page-anchor').toggleClass('disabled');
             }
         },
         error: function(data) {

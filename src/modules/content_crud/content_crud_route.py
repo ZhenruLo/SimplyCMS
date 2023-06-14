@@ -13,4 +13,4 @@ content_crud_bp = Blueprint(
 @login_required
 @admin_permission.require()
 def database():
-    return render_template('content_crud.html')
+    return render_template('content-crud.html')

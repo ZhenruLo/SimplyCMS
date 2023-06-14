@@ -12,11 +12,11 @@
         <meta name='msapplication-TileColor' content='#da532c'>
         <meta name='theme-color' content='#ffffff'>
         <link rel='stylesheet' type='text/css' href='static/css/base.css'>
-        <link rel='stylesheet' type='text/css' href='static/css/page_loader.css'>
-        <link rel='stylesheet' type='text/css' href='static/css/modal_box.css'>
-        <link rel='stylesheet' type='text/css' href='static/css/custom_datatable.css'>
-        <link rel='stylesheet' type='text/css' href='static/css/share_animation.css'>
-        <link rel='stylesheet' type='text/css' href='static/css/base_pop_up.css'>
+        <link rel='stylesheet' type='text/css' href='static/css/page-loader.css'>
+        <link rel='stylesheet' type='text/css' href='static/css/modal-box.css'>
+        <link rel='stylesheet' type='text/css' href='static/css/custom-datatable.css'>
+        <link rel='stylesheet' type='text/css' href='static/css/share-animation.css'>
+        <link rel='stylesheet' type='text/css' href='static/css/base-pop-up.css'>
         {% block static %}{% endblock static %}
         <link rel='stylesheet' href='//fonts.googleapis.com/css?family=Beau+Rivage'/>
         <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Poppins'>
@@ -28,20 +28,20 @@
         <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css' integrity='sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ==' crossorigin='anonymous' referrerpolicy='no-referrer' />
     </head>
     <body>
-        {% include 'modal_box.html' %}
+        {% include 'modal-box.html' %}
 
-        <div class='page_loader'>
-            <span class='loading_text' style='--i:1'>L</span>
-            <span class='loading_text' style='--i:2'>O</span>
-            <span class='loading_text' style='--i:3'>A</span>
-            <span class='loading_text' style='--i:4'>D</span>
-            <span class='loading_text' style='--i:5'>I</span>
-            <span class='loading_text' style='--i:6'>N</span> 
-            <span class='loading_text' style='--i:7'>G</span>
+        <div class='page-loader'>
+            <span class='loading-text' style='--i:1'>L</span>
+            <span class='loading-text' style='--i:2'>O</span>
+            <span class='loading-text' style='--i:3'>A</span>
+            <span class='loading-text' style='--i:4'>D</span>
+            <span class='loading-text' style='--i:5'>I</span>
+            <span class='loading-text' style='--i:6'>N</span> 
+            <span class='loading-text' style='--i:7'>G</span>
         </div>
 
-        <div class='pop_up_background'>
-            <div class='pop_up_base_body'>
+        <div class='pop-up-background'>
+            <div class='pop-up-base-body'>
                 {% block pop_up %}{% endblock pop_up %} 
             </div>
         </div>
@@ -57,12 +57,12 @@
         <script src='https://code.jquery.com/jquery-3.5.1.js'></script>
         <script>
           $(function() {
-            var csrf_token = '{{ csrf_token() }}';
+            var csrfToken = '{{ csrf_token() }}';
         
             $.ajaxSetup({
                 beforeSend: function(xhr, settings) {
                     if (!/^(GET|HEAD|OPTIONS|TRACE)$/i.test(settings.type) && !this.crossDomain) {
-                        xhr.setRequestHeader('X-CSRFToken', csrf_token);
+                        xhr.setRequestHeader('X-CSRFToken', csrfToken);
                     }
                 }
             });

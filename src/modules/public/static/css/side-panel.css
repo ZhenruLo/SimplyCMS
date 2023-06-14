@@ -1,0 +1,30 @@
+@import url('https://use.fontawesome.com/releases/v6.3.0/css/all.css');
+
+.center-container{
+    display: flex;
+    flex-direction: row;
+    height: 100%;
+}
+
+.panel-container{
+    display: flex;
+    flex-direction: column;
+    width: 30rem;
+    min-width: 30rem;
+    height: 100%;
+    transition: all 2s ease;
+}
+
+.panel-content{
+    display: flex;
+    flex-direction: column;
+    height: inherit;
+}
+
+.content-container{
+    width: calc(100% - 30rem);
+    min-width: 100rem;
+    height: 100%;
+    background-color: rgba(225, 225, 225, 0.15);
+    overflow: auto;
+}

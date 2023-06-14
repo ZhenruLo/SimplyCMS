@@ -1,0 +1,96 @@
+@keyframes opacity-animation{
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes show-from-top-or-bottom{
+    from {
+        opacity: var(--isVisible);
+        transform: translateY(var(--vertical));
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes show-from-left-or-right{
+    from {
+        opacity: var(--isVisible);
+        transform: translateX(var(--horizontal));
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes bounce-from-top-or-bottom{
+    from {
+        transform: translateY(var(--vertical));
+    }
+    to {
+        transform: translateY(0rem);
+    }
+}
+
+@keyframes bounce-from-left-or-right{
+    from {
+        transform: translateY(var(--horizontal));
+    }
+    to {
+        transform: translateY(0rem);
+    }
+}
+
+@keyframes rebounce-from-top-or-bottom{
+    0% {
+        transform: translateY(var(--vertical));
+    }
+    50% {
+        transform: translateY(var(--vRebounce));
+    }
+}
+
+@keyframes rebounce-from-left-or-right{
+    0% {
+        transform: translateY(var(--horizontal));
+    }
+    50% {
+        transform: translateY(var(--hRebounce));
+    }
+}
+
+@keyframes show-rotate-from-left-or-right{
+    from {
+        opacity: var(--isVisible);
+        transform: translateX(var(--horizonRotate)) rotateY(var(--verticalRotate));
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+/* -------------------------------------------------------------- */
+
+@keyframes shine{
+    from { -webkit-mask-position: 150%; }
+    to { -webkit-mask-position: -50%; }
+}
+
+@keyframes gradient{
+	0% {
+		background-position: 0% 50%;
+	}
+	50% {
+		background-position: 100% 50%;
+	}
+	100% {
+		background-position: 0% 50%;
+	}
+}
