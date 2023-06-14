@@ -72,7 +72,6 @@ function refreshContentBuilderPage() {
         success: function(data) {
             if (data['result']) {
                 let contentInfo = data['database'];
-                let nameLength = contentInfo['table_name'].length;
 
                 $('#content-name-text').text(contentInfo['table_name']);
             };
@@ -87,24 +86,24 @@ function createContentItem(tableName, tableUuid, selectedRow) {
     let currentListLength = $(".left-panel-content-list li").length;
     
     if (selectedRow || (!selectedRow && currentListLength === 0)) {
-        $('<li>').attr({'class': 'content-list-item selected-row', 'id': 'content-list-item-' + currentListLength}).appendTo('.left-panel-content-list');
+        $('<li>').prop({'class': 'content-list-item selected-row', 'id': 'content-list-item-' + currentListLength}).appendTo('.left-panel-content-list');
     }
     else {
-        $('<li>').attr({'class': 'content-list-item', 'id': 'content-list-item-' + currentListLength}).appendTo('.left-panel-content-list');
+        $('<li>').prop({'class': 'content-list-item', 'id': 'content-list-item-' + currentListLength}).appendTo('.left-panel-content-list');
     }
 
-    $('<input>').attr({'class': 'content-uuid', 'id': 'content-uuid-' + currentListLength, 'type': 'hidden', 'value': tableUuid }).appendTo('#content-list-item-' + currentListLength);
+    $('<input>').prop({'class': 'content-uuid', 'id': 'content-uuid-' + currentListLength, 'type': 'hidden', 'value': tableUuid }).appendTo('#content-list-item-' + currentListLength);
 
-    $('<div>').attr({'class': 'content-list-index', 'id': 'index-'+currentListLength}).appendTo('#content-list-item-' + currentListLength);
-    $('<i>').attr({'class': 'content-list-index-icon fa-solid fa-circle'}).appendTo('#index-' + currentListLength)
+    $('<div>').prop({'class': 'content-list-index', 'id': 'index-'+currentListLength}).appendTo('#content-list-item-' + currentListLength);
+    $('<i>').prop({'class': 'content-list-index-icon fa-solid fa-circle'}).appendTo('#index-' + currentListLength)
 
-    $('<div>').attr({'class': 'content-list-context', 'id': 'context-' + currentListLength}).appendTo('#content-list-item-' + currentListLength);
-    $('<span>').attr({'class': 'content-list-context-text'}).text(tableName).appendTo('#context-' + currentListLength)
+    $('<div>').prop({'class': 'content-list-context', 'id': 'context-' + currentListLength}).appendTo('#content-list-item-' + currentListLength);
+    $('<span>').prop({'class': 'content-list-context-text'}).text(tableName).appendTo('#context-' + currentListLength)
 
-    $('<div>').attr({'class': 'content-list-more', 'id': 'more-' + currentListLength}).appendTo('#content-list-item-' + currentListLength);
-    $('<i>').attr({'class': 'fa-solid fa-ellipsis-vertical'}).appendTo('#more-' + currentListLength)
+    $('<div>').prop({'class': 'content-list-more', 'id': 'more-' + currentListLength}).appendTo('#content-list-item-' + currentListLength);
+    $('<i>').prop({'class': 'fa-solid fa-ellipsis-vertical'}).appendTo('#more-' + currentListLength)
 
-    $('<div>').attr({'class': 'content-selected-line'}).appendTo('#content-list-item-' + currentListLength);
+    $('<div>').prop({'class': 'content-selected-line'}).appendTo('#content-list-item-' + currentListLength);
 };
 
 function processPaginationButton(leftPanelCurrentPage, maxPage) {
@@ -214,7 +213,7 @@ $( function() {
         event.preventDefault();
         
         openTab(this);
-        openMenu($(this).attr('id'));
+        openMenu($(this).prop('id'));
     });
 
     $('.left-panel-inner-row').on('click', function(event) {
@@ -222,7 +221,7 @@ $( function() {
         let closestRow = $(this).closest('.left-panel-menu-row');
 
         selectRow(closestRow);
-        openContent(closestRow.attr('id'));
+        openContent(closestRow.prop('id'));
     });
 
     $('.left-panel-content-list').on('click', 'li.content-list-item', function() {

@@ -1,10 +1,9 @@
 $( function() {
     var table = $('#content-table').DataTable({
-        scrollY: '400px',
+        scrollY: '710px',
         scrollCollapse: true,
-        // autoWidth: false,
-        pageLength: 30,
-        lengthMenu: [1, 5, 15, 30, 50, 100],
+        autoWidth: true,
+        pageLength: 20,
         order: [[1, 'asc']],
 
         ajax: {
@@ -17,23 +16,23 @@ $( function() {
                 visible: false
             },
             { 
-                title: 'ID', 
+                title: 'Id', 
                 width: '5%',
                 data: null,
                 render: (data, type, row, meta) => meta.row + 1,
             },
             { 
-                title: 'CONTENT NAME', 
+                title: 'Content Name', 
                 data: 'table_name',
                 width: '40%'
             },
             {
-                title: 'ROUTE NAME', 
+                title: 'Route Name', 
                 data: 'route_name',
                 width: '33%'
             },
             { 
-                title: 'CREATED AT', 
+                title: 'Created At', 
                 data: 'created_timestamp',
                 width: '20%'
             },
@@ -52,5 +51,9 @@ $( function() {
                 width: '1%',
             },
         ],
+
+        drawCallback: function(settings) {
+            $('.dataTables_filter label input').prop('placeholder', 'Type here to search for content');
+        },
     });
 });

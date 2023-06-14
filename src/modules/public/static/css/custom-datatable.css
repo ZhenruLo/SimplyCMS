@@ -1,7 +1,110 @@
-div.dataTables_wrapper{
-    padding: 0.1rem 0;
-}
+/* div.dataTables_wrapper{
+} */
 
 table.dataTable{
     border-collapse: collapse;
+}
+
+table.dataTable th{
+    color: rgb(92, 92, 92);
+    font-weight: 500;
+    font-size: 1.2rem;
+    font-family: 'Poppins', sans-serif;
+    padding: 1rem 1.5rem;
+}
+
+table.dataTable td{
+    color: rgb(0, 0, 0);
+    font-weight: 500;
+    font-size: 1.2rem;
+    font-family: 'Roboto', sans-serif;
+    padding: 1rem 1.5rem;
+    border-bottom: 1px solid rgba(231, 231, 231, 0.8);
+}
+
+.dataTables_scrollHead{
+    background-color: rgba(238, 238, 238, 0.5);
+}
+
+table.dataTable>tbody>tr.even>*{
+    box-shadow: none !important;
+}
+
+.dataTables_paginate{
+    margin: 0 0 1rem 0 !important;
+}
+
+.dataTables_paginate ul{
+    list-style-type: none;
+}
+
+.dataTables_paginate ul li{
+    float: left;
+    padding: 1rem;
+    transition: all 0.2s ease;
+}
+
+.dataTables_paginate ul li:hover{
+    outline: 1px solid rgba(231, 231, 231, 0.8);
+}
+
+.dataTables_paginate ul li:active{
+    outline: 1px solid black;
+}
+
+.dataTables_paginate ul li a{
+    color: black;
+    text-decoration: none;
+}
+
+.dataTables_paginate ul li.current{
+    background-color: rgba(231, 231, 231, 0.8);
+}
+
+.dataTables_paginate ul li.unavailable{
+    pointer-events: none;
+}
+
+.dataTables_paginate ul li.unavailable a{
+    color: lightgrey;
+}
+
+.dataTables_length{
+    display: none;
+}
+
+.dataTables_filter label #text{
+    display: none;
+}
+
+.dataTables_filter label{
+    visibility: hidden;
+    display: flex;
+    flex-direction: column-reverse;
+    width: 100%
+}
+
+div.dataTables_wrapper div.dataTables_filter input{
+    visibility: visible;
+    width: 100%;
+    margin: 0 !important;
+    padding: 1rem;
+    border: none;
+    background-color: blueviolet;
+    transition: all 0.2s ease;
+}
+
+div.dataTables_wrapper div.dataTables_filter input::placeholder{
+    font-family: 'Roboto', sans-serif;
+    color: lightgray;
+}
+
+div.dataTables_wrapper div.dataTables_filter input:focus{
+    outline: none;
+}
+
+.dataTables_info{
+    font-family: 'Roboto', sans-serif;
+    color: black;
+    font-size: 1rem;
 }

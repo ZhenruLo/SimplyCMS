@@ -3,11 +3,10 @@
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
-    width: 90%;
+    width: 97%;
     height: fit-content;
     min-height: 35rem;
-    margin-top: 5rem;
-    border-radius: 0.5rem;
+    margin-top: 2rem;
     box-shadow: 0 0 0.3rem 0.1rem rgba(221, 221, 221, 0.7);
     background-color: white;
 }
