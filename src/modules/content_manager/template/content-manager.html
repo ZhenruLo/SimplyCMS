@@ -24,6 +24,10 @@
 <div class='content-manager-pop-up' id='update-display-pop-up'>
     {% include 'pop-up/display-update-pop-up.html' %}
 </div>
+
+<div class='content-manager-pop-up' id='description-pop-up'>
+    {% include 'pop-up/description-pop-up.html' %}
+</div>
 {% endblock pop_up %}
 
 {% block left_panel %}
@@ -64,6 +68,7 @@
 {{ super() }}
 <script src="{{ url_for('content_manager_bp.static', filename='js/content-manager.js') }}"></script>
 <script src="{{ url_for('content_manager_bp.static', filename='js/content-manager-left-panel.js') }}"></script>
+<script src="{{ url_for('content_manager_bp.static', filename='js/content-manager-center-header.js') }}"></script>
 <script src="{{ url_for('content_manager_bp.static', filename='js/content-manager-center-body.js') }}"></script>
 <script src="{{ url_for('content_manager_bp.static', filename='js/content-manager-pop-up.js') }}"></script>
 <script src="{{ url_for('content_manager_bp.static', filename='js/content-manager-content-table.js') }}"></script>

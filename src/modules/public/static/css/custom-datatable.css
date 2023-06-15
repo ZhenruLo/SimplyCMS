@@ -6,7 +6,7 @@ table.dataTable{
 }
 
 table.dataTable th{
-    color: rgb(92, 92, 92);
+    color: rgb(128, 128, 128);
     font-weight: 500;
     font-size: 1.2rem;
     font-family: 'Poppins', sans-serif;
@@ -14,16 +14,16 @@ table.dataTable th{
 }
 
 table.dataTable td{
-    color: rgb(0, 0, 0);
+    color: rgb(64, 64, 64);
     font-weight: 500;
     font-size: 1.2rem;
     font-family: 'Roboto', sans-serif;
     padding: 1rem 1.5rem;
-    border-bottom: 1px solid rgba(231, 231, 231, 0.8);
+    border-bottom: 0.1rem solid rgba(231, 231, 231, 0.8);
 }
 
 .dataTables_scrollHead{
-    background-color: rgba(238, 238, 238, 0.5);
+    background-color: rgba(246, 231, 255, 0.15);
 }
 
 table.dataTable>tbody>tr.even>*{
@@ -45,11 +45,11 @@ table.dataTable>tbody>tr.even>*{
 }
 
 .dataTables_paginate ul li:hover{
-    outline: 1px solid rgba(231, 231, 231, 0.8);
+    outline: 0.1rem solid rgba(231, 231, 231, 0.8);
 }
 
 .dataTables_paginate ul li:active{
-    outline: 1px solid black;
+    outline: 0.1rem solid black;
 }
 
 .dataTables_paginate ul li a{
@@ -78,10 +78,12 @@ table.dataTable>tbody>tr.even>*{
 }
 
 .dataTables_filter label{
-    visibility: hidden;
+    background-color: rgba(228, 183, 255, 0.2);
+    color: rgba(228, 183, 255, 0.001);
     display: flex;
     flex-direction: column-reverse;
-    width: 100%
+    width: 100%;
+    user-select: none;
 }
 
 div.dataTables_wrapper div.dataTables_filter input{
@@ -90,13 +92,13 @@ div.dataTables_wrapper div.dataTables_filter input{
     margin: 0 !important;
     padding: 1rem;
     border: none;
-    background-color: blueviolet;
+    background-color: #e8c6ff;
     transition: all 0.2s ease;
 }
 
 div.dataTables_wrapper div.dataTables_filter input::placeholder{
     font-family: 'Roboto', sans-serif;
-    color: lightgray;
+    color: white;
 }
 
 div.dataTables_wrapper div.dataTables_filter input:focus{

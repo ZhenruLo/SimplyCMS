@@ -3,6 +3,7 @@ from typing import TYPE_CHECKING, Dict, List, Union
 
 from flask import request
 from models import Content, create_table, db, update_table_content
+from werkzeug.utils import secure_filename
 
 from .content_manager_form import ContentManagerForm
 
@@ -61,7 +62,7 @@ def fetch_table_data() -> Dict[str, Union[bool, str]]:
     msg = 'Fail to fetch content table data'
     dict_list = None
 
-    all_data = db.session.query(Content.content_uuid, Content.table_name, Content.route_name, Content.created_timestamp).all()
+    all_data = db.session.query(Content.content_uuid, Content.table_name, Content.route_name, Content.description, Content.created_timestamp).all()
     dict_list = [data._asdict() for data in all_data]
     
     if dict_list is not None:
@@ -85,7 +86,7 @@ def process_database_content() -> Dict[str, Union[bool, str, List[str]]]:
         
         selected_content_uuid = request.args.get('content_uuid') 
         
-        database_row = Content.fetch_one(Content.content_uuid, selected_content_uuid, Content.content_uuid, Content.table_name, Content.route_name, Content.column_attrs)
+        database_row = Content.fetch_one(Content.content_uuid, selected_content_uuid, Content.content_uuid, Content.table_name, Content.route_name, Content.description, Content.column_attrs)
         database = database_row._asdict()
 
         result = True
@@ -111,8 +112,10 @@ def process_database() -> Dict[str, Union[bool, str, List[str]]]:
         form: 'FlaskForm' = ContentManagerForm()
         
         if form.validate_on_submit():
-            table_name = request.form.get('table_name')
-            route_name = request.form.get('route_name')
+            table_name = secure_filename(request.form.get('table_name'))
+            route_name = secure_filename(request.form.get('route_name'))
+            description = secure_filename(request.form.get('description'))
+            
             check_table_result = __check_special_char(table_name)
             check_route_result = __check_special_char(route_name) 
 
@@ -121,7 +124,7 @@ def process_database() -> Dict[str, Union[bool, str, List[str]]]:
                 route_count = db.session.query(Content).filter(Content.route_name==route_name).count()
                 
                 if (table_count == 0 and route_count == 0):
-                    Content.add(table_name=table_name, route_name=route_name)
+                    Content.add(table_name=table_name, route_name=route_name, description=description)
                     # create_table(table_name)
 
                     table_uuid = db.session.query(Content.content_uuid).filter(Content.table_name==table_name).scalar()

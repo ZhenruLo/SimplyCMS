@@ -23,7 +23,7 @@
     width: 50%;
     height: 100%;
     right: 0;
-    top: 280px;
+    top: 28rem;
 }
 
 .home-container{
@@ -44,46 +44,46 @@
 
 .start-container{
     width: 100%;
-    margin-top: 300px;
-    margin-right: 120px;
+    margin-top: 30rem;
+    margin-right: 12rem;
 }
 
 .welcome-header{
-    font-size: 60px;
+    font-size: 6rem;
     font-family: 'Abel', sans-serif;
     font-weight: 600;
-    letter-spacing: 10px;
+    letter-spacing: 1rem;
     color: black;
     user-select: none;
-    margin-right: 30px;
+    margin-right: 3rem;
 }
 
 .description-text{
-    font-size: 18px;
+    font-size: 1.8rem;
     font-family: 'Abel', sans-serif;
     font-weight: 600;
-    letter-spacing: 1px;
+    letter-spacing: 0.1rem;
     color: black;
     user-select: none;
-    margin-right: 50px;
+    margin-right: 5rem;
 }
 
 .start-anchor{
-    width: 100px;
-    height: 50px;
+    width: 10rem;
+    height: 5rem;
     cursor: pointer;
-    border-radius: 20px;
-    border: 1px solid rgba(0, 0, 0, 0.2);
-    padding: 8px 15px;
+    border-radius: 2rem;
+    border: 0.1rem solid rgba(0, 0, 0, 0.2);
+    padding: 0.8rem 1.5rem;
     text-decoration: none;
     user-select: none;
 }
 
 .start-text{
-    font-size: 20px;
+    font-size: 2rem;
     font-family: 'Chakra Petch', sans-serif;
     font-weight: 800;
-    letter-spacing: 1px;
+    letter-spacing: 0.1rem;
     color: black;
 }
 
@@ -91,14 +91,14 @@
     display: inline-block;
     width: 0;
     height: 0;
-    margin-right: 10px;
-    margin-bottom: 5px;
-    border-bottom: 1px solid black;
+    margin-right: 1rem;
+    margin-bottom: 0.5rem;
+    border-bottom: 0.1rem solid black;
     pointer-events: none;
     user-select: none;
     transition: all 1s ease;
 }
 
 .start-container:hover .start-line{
-    width: 550px;
+    width: 55rem;
 }

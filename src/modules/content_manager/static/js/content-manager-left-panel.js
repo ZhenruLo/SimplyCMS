@@ -74,6 +74,12 @@ function refreshContentBuilderPage() {
                 let contentInfo = data['database'];
 
                 $('#content-name-text').text(contentInfo['table_name']);
+                if (contentInfo['description']) {
+                    $('.header-description-text').text(contentInfo['description']);
+                }
+                else {
+                    $('.header-description-text').text('No description');
+                }
             };
         },
         error: function(data) {
