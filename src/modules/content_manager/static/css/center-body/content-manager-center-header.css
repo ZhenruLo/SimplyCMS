@@ -108,7 +108,7 @@
 }
 
 .header-text-anchor:hover{
-    background-color: whitesmoke;
+    border-bottom: 0.5rem solid rgb(179, 0, 255);
 }
 
 .header-text-anchor:active{

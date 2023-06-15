@@ -1,6 +1,8 @@
-function openPopUp(containerId) {
+function openPopUp(containerId, title) {
     $('.content-manager-pop-up').removeClass('show');
     $(containerId).addClass('show');
+
+    $('.pop-up-header-text').text(title);
 }
 
 $( function() {

@@ -28,7 +28,7 @@ $( function() {
         event.preventDefault();
 
         togglePopUp();
-        openPopUp('#description-pop-up');
+        openPopUp('#description-pop-up', 'Description');
         
         $('#full-description-text').text($('.header-description-text').text()); 
     });

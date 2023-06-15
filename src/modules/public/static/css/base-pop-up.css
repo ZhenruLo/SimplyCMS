@@ -17,7 +17,9 @@
 }
 
 .pop-up-base-body{
-    width: fit-content;
+    display: flex;
+    flex-direction: column;
+    width: 60rem;
     height: fit-content;
 }
 
@@ -25,4 +27,21 @@
     --horizontal: -0.2rem;
     --isVisible: 0;
     animation: show-from-left-or-right 0.2s ease;
+}
+
+.pop-up-header{
+    display: flex;
+    align-items: center;
+    width: inherit;
+    height: 3.5rem;
+    color: white;
+    background-color: rgb(209, 191, 249);
+    border-top-left-radius: 1rem;
+    border-top-right-radius: 1rem;
+}
+
+.pop-up-header-text{
+    font-size: 1.75rem;
+    padding: 1rem 2rem;
+    font-family: 'Chakra Petch', sans-serif;
 }

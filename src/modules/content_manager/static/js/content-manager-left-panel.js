@@ -250,13 +250,13 @@ $( function() {
         event.preventDefault();
 
         togglePopUp();
-        openPopUp('#create-content-pop-up');
+        openPopUp('#create-content-pop-up', 'Content initial configurations');
     });
 
     $('#table-name-edit').on('click', function(event) {
         event.preventDefault();
 
         togglePopUp();
-        openPopUp('#update-display-pop-up')
+        openPopUp('#update-display-pop-up', 'Update content configurations')
     })
 });
