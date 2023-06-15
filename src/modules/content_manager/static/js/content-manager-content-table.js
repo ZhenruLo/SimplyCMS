@@ -1,6 +1,6 @@
 $( function() {
     var table = $('#content-table').DataTable({
-        scrollY: '710px',
+        scrollY: '630px',
         scrollCollapse: true,
         autoWidth: true,
         pageLength: 20,
