@@ -1,4 +1,4 @@
-.pop-up-background{
+.pop-up-background  {
     z-index: 999999;
     display: none;
     flex-wrap: wrap;
@@ -11,37 +11,48 @@
     background-color: rgba(44, 44, 44, 0.5);
 }
 
-.pop-up-background.show{
+.pop-up-background.show  {
     display: flex;
     animation: opacity-animation 0.2s ease;
 }
 
-.pop-up-base-body{
+.pop-up-base-body {
     display: flex;
     flex-direction: column;
     width: 60rem;
     height: fit-content;
 }
 
-.pop-up-background.show .pop-up-base-body{
+.pop-up-background.show .pop-up-base-body {
     --horizontal: -0.2rem;
     --isVisible: 0;
     animation: show-from-left-or-right 0.2s ease;
 }
 
-.pop-up-header{
+.pop-up-header {
     display: flex;
     align-items: center;
     width: inherit;
     height: 3.5rem;
     color: white;
-    background-color: rgb(209, 191, 249);
-    border-top-left-radius: 1rem;
-    border-top-right-radius: 1rem;
+    background-color: rgb(195, 167, 255);
+    border-top-left-radius: 0.5rem;
+    border-top-right-radius: 0.5rem;
 }
 
-.pop-up-header-text{
-    font-size: 1.75rem;
+.pop-up-header-text {
+    font-size: 1.5rem;
     padding: 1rem 2rem;
     font-family: 'Chakra Petch', sans-serif;
+    user-select: none;
+}
+
+.pop-up-body {
+    width: inherit;
+    height: fit-content;
+    word-wrap: break-word;
+    padding: 1rem 0;
+    background-color: white;
+    border-bottom-left-radius: 0.5rem;
+    border-bottom-right-radius: 0.5rem;
 }

@@ -1,11 +1,11 @@
-/* div.dataTables_wrapper{
+/* div.dataTables_wrapper {
 } */
 
-table.dataTable{
+table.dataTable {
     border-collapse: collapse;
 }
 
-table.dataTable th{
+table.dataTable th {
     color: rgb(128, 128, 128);
     font-weight: 500;
     font-size: 1.2rem;
@@ -13,7 +13,7 @@ table.dataTable th{
     padding: 1rem 1.5rem;
 }
 
-table.dataTable td{
+table.dataTable td {
     color: rgb(64, 64, 64);
     font-weight: 500;
     font-size: 1.2rem;
@@ -22,62 +22,62 @@ table.dataTable td{
     border-bottom: 0.1rem solid rgba(231, 231, 231, 0.8);
 }
 
-.dataTables_scrollHead{
+.dataTables_scrollHead {
     background-color: rgba(246, 231, 255, 0.15);
 }
 
-table.dataTable>tbody>tr.even>*{
+table.dataTable>tbody>tr.even>* {
     box-shadow: none !important;
 }
 
-.dataTables_paginate{
+.dataTables_paginate {
     margin: 0 0 1rem 0 !important;
 }
 
-.dataTables_paginate ul{
+.dataTables_paginate ul {
     list-style-type: none;
 }
 
-.dataTables_paginate ul li{
+.dataTables_paginate ul li {
     float: left;
     padding: 1rem;
     transition: all 0.2s ease;
 }
 
-.dataTables_paginate ul li:hover{
+.dataTables_paginate ul li:hover {
     outline: 0.1rem solid rgba(231, 231, 231, 0.8);
 }
 
-.dataTables_paginate ul li:active{
+.dataTables_paginate ul li:active {
     outline: 0.1rem solid black;
 }
 
-.dataTables_paginate ul li a{
+.dataTables_paginate ul li a {
     color: black;
     text-decoration: none;
 }
 
-.dataTables_paginate ul li.current{
+.dataTables_paginate ul li.current {
     background-color: rgba(231, 231, 231, 0.8);
 }
 
-.dataTables_paginate ul li.unavailable{
+.dataTables_paginate ul li.unavailable {
     pointer-events: none;
 }
 
-.dataTables_paginate ul li.unavailable a{
+.dataTables_paginate ul li.unavailable a {
     color: lightgrey;
 }
 
-.dataTables_length{
+.dataTables_length {
     display: none;
 }
 
-.dataTables_filter label #text{
+.dataTables_filter label #text {
     display: none;
 }
 
-.dataTables_filter label{
+.dataTables_filter label {
     background-color: rgba(228, 183, 255, 0.2);
     color: rgba(228, 183, 255, 0.001);
     display: flex;
@@ -86,7 +86,7 @@ table.dataTable>tbody>tr.even>*{
     user-select: none;
 }
 
-div.dataTables_wrapper div.dataTables_filter input{
+div.dataTables_wrapper div.dataTables_filter input {
     visibility: visible;
     width: 100%;
     margin: 0 !important;
@@ -96,16 +96,16 @@ div.dataTables_wrapper div.dataTables_filter input{
     transition: all 0.2s ease;
 }
 
-div.dataTables_wrapper div.dataTables_filter input::placeholder{
+div.dataTables_wrapper div.dataTables_filter input::placeholder {
     font-family: 'Roboto', sans-serif;
     color: white;
 }
 
-div.dataTables_wrapper div.dataTables_filter input:focus{
+div.dataTables_wrapper div.dataTables_filter input:focus {
     outline: none;
 }
 
-.dataTables_info{
+.dataTables_info {
     font-family: 'Roboto', sans-serif;
     color: black;
     font-size: 1rem;

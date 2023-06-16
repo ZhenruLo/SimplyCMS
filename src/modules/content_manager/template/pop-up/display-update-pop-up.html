@@ -1,21 +1,19 @@
-<div class='pop-up-body'>
-    <form id='update-display-form' action='' method='POST'>
-        <input id='single-csrf-display-update' type='hidden' name='csrf_token' value='{{ csrf_token() }}'>
+<form id='update-display-form' action='' method='POST'>
+    <input id='single-csrf-display-update' type='hidden' name='csrf_token' value='{{ csrf_token() }}'>
 
-        <div class='content-creator-form-body'>
-            <fieldset class='content-creator-fieldset'>
-                <legend class='content-legend'>Display Name</legend>
-                <input class='content-creator-input' id='update-display-name' type='text' name='table_name'>
-            </fieldset>
-            
-            <fieldset class='content-creator-fieldset'>
-                <legend class='content-legend'>Route Name</legend>
-                <input class='content-creator-input' id='update-route-name' type='text' name='route_name'>
-            </fieldset>
-        </div>
+    <div class='content-creator-form-body'>
+        <fieldset class='content-creator-fieldset'>
+            <legend class='content-legend'>Display Name</legend>
+            <input class='content-creator-input' id='update-display-name' type='text' name='table_name'>
+        </fieldset>
+        
+        <fieldset class='content-creator-fieldset'>
+            <legend class='content-legend'>Route Name</legend>
+            <input class='content-creator-input' id='update-route-name' type='text' name='route_name'>
+        </fieldset>
+    </div>
 
-        <div class='content-creator-form-footer'>
-            <input class='submit-btn' id='update-display-submit' type='submit' name='submit' value='Update Content'>
-        </div>
-    </form>
-</div>
+    <div class='content-creator-form-footer'>
+        <input class='submit-btn' id='update-display-submit' type='submit' name='submit' value='Update Content'>
+    </div>
+</form>

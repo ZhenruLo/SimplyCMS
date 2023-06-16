@@ -1,4 +1,4 @@
-@keyframes opacity-animation{
+@keyframes opacity-animation {
     from {
         opacity: 0;
     }
@@ -7,7 +7,16 @@
     }
 }
 
-@keyframes show-from-top-or-bottom{
+@keyframes spin-animation {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(1turn);
+    }
+}
+
+@keyframes show-from-top-or-bottom {
     from {
         opacity: var(--isVisible);
         transform: translateY(var(--vertical));
@@ -18,7 +27,7 @@
     }
 }
 
-@keyframes show-from-left-or-right{
+@keyframes show-from-left-or-right {
     from {
         opacity: var(--isVisible);
         transform: translateX(var(--horizontal));
@@ -29,7 +38,7 @@
     }
 }
 
-@keyframes bounce-from-top-or-bottom{
+@keyframes bounce-from-top-or-bottom {
     from {
         transform: translateY(var(--vertical));
     }
@@ -38,7 +47,7 @@
     }
 }
 
-@keyframes bounce-from-left-or-right{
+@keyframes bounce-from-left-or-right {
     from {
         transform: translateY(var(--horizontal));
     }
@@ -47,7 +56,7 @@
     }
 }
 
-@keyframes rebounce-from-top-or-bottom{
+@keyframes rebounce-from-top-or-bottom {
     0% {
         transform: translateY(var(--vertical));
     }
@@ -56,7 +65,7 @@
     }
 }
 
-@keyframes rebounce-from-left-or-right{
+@keyframes rebounce-from-left-or-right {
     0% {
         transform: translateY(var(--horizontal));
     }
@@ -65,7 +74,7 @@
     }
 }
 
-@keyframes show-rotate-from-left-or-right{
+@keyframes show-rotate-from-left-or-right {
     from {
         opacity: var(--isVisible);
         transform: translateX(var(--horizonRotate)) rotateY(var(--verticalRotate));
@@ -78,12 +87,12 @@
 
 /* -------------------------------------------------------------- */
 
-@keyframes shine{
+@keyframes shine {
     from { -webkit-mask-position: 150%; }
     to { -webkit-mask-position: -50%; }
 }
 
-@keyframes gradient{
+@keyframes gradient {
 	0% {
 		background-position: 0% 50%;
 	}

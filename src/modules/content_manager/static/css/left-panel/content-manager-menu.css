@@ -1,10 +1,10 @@
-#content-manager-left-panel{
+#content-manager-left-panel {
     display: flex;
     flex-direction: column;
     height: inherit;
 }
 
-.left-panel-tab-container{
+.left-panel-tab-container {
     display: flex;
     height: 9.5rem;
     min-height: 9.5rem;
@@ -15,15 +15,15 @@
     clip-path: inset(0 0 -0.3rem 0);
 }
 
-.left-panel-tab-container.start{
+.left-panel-tab-container.start {
     animation: opacity-animation 0.5s ease;
 }
 
-.left-panel-context-container{
+.left-panel-context-container {
     overflow: auto;
 }
 
-.left-panel-tab{
+.left-panel-tab {
     display: flex;
     width: 5rem;
     flex-direction: column;
@@ -35,54 +35,54 @@
     justify-content: space-evenly;
 }
 
-.left-panel-content-container{
+.left-panel-content-container {
     display: none;
     flex-direction: column;
     height: 100%;
 }
 
-.input-text-box{
+.input-text-box {
     display: block;
 }
 
-.left-panel-content-container.selected-panel{
+.left-panel-content-container.selected-panel {
     display: flex;
     animation: opacity-animation 0.5s ease;
 }
 
-.tab-icon{
+.tab-icon {
     font-size: 2.5rem;
     transition: all 0.3s ease;
 }
 
-.tab-text{
+.tab-text {
     font-size: 1rem;
     font-family: 'Chakra Petch', sans-serif;
     user-select: none;
     transition: all 0.3s ease;
 }
 
-.left-panel-tab:hover{
+.left-panel-tab:hover {
     color: black;
     --vertical: 0.3rem;
     animation: bounce-from-top-or-bottom 0.5s ease;
 }
 
-.left-panel-tab.selected-tab{
+.left-panel-tab.selected-tab {
     --vertical: 0.5rem;
     --vRebounce: -1rem;
     animation: rebounce-from-top-or-bottom 0.5s ease;
 }
 
-.left-panel-tab.selected-tab .tab-icon{
+.left-panel-tab.selected-tab .tab-icon {
     color: rgb(110, 0, 199)
 }
 
-.left-panel-tab.selected-tab .tab-text{
+.left-panel-tab.selected-tab .tab-text {
     color: black;
 }
 
-.selected-dot{
+.selected-dot {
     opacity: 0;
     z-index: 2;
     width: 0.5rem;
@@ -92,7 +92,7 @@
     transition: all 0.3s ease;
 }
 
-.left-panel-tab.selected-tab .selected-dot{
+.left-panel-tab.selected-tab .selected-dot {
     opacity: 1;
     animation: dot-animation 0.5s cubic-bezier(0.5, 1, 0.3, 2);
     animation-delay: 0.05s;
@@ -104,7 +104,7 @@
     }
 }
 
-.left-panel-menu-row{
+.left-panel-menu-row {
     display: flex;
     position: relative;
     flex-direction: column;
@@ -113,13 +113,13 @@
     transition: all 0.5s ease;
 }
 
-.left-panel-menu-row.start{
+.left-panel-menu-row.start {
     --vertical: -2rem;
     --isVisible: 0;
     animation: show-from-top-or-bottom calc(0.1s * var(--t)) ease;
 }
 
-.left-panel-inner-row{
+.left-panel-inner-row {
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -131,19 +131,19 @@
     transition: all 0.2s ease;
 }
 
-.left-panel-menu-row.selected-row .left-panel-inner-row{
+.left-panel-menu-row.selected-row .left-panel-inner-row {
     background-color: rgba(222, 222, 222, 0.3);
 }
 
-.left-panel-inner-row:hover{
+.left-panel-inner-row:hover {
     background-color: rgba(222, 222, 222, 0.5);
 }
 
-.left-panel-icon{
+.left-panel-icon {
     font-size: 2.5rem;
 }
 
-.left-panel-row-text{
+.left-panel-row-text {
     width: 19rem;
     display: flex;
     flex-direction: column;
@@ -151,7 +151,7 @@
     margin-left: 2rem;
 }
 
-.left-panel-icon-background{
+.left-panel-icon-background {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -160,21 +160,21 @@
     border-radius: 0.5rem;
 }
 
-.row-text-title{
+.row-text-title {
     font-family: 'Chakra Petch', sans-serif;
     font-size: medium;
     user-select: none;
     margin-bottom: 0.3rem;
 }
 
-.row-text-description{
+.row-text-description {
     font-size: 1rem;
     font-family: 'Chakra Petch', sans-serif;
     color: grey;
     user-select: none;
 }
 
-.current-bar{
+.current-bar {
     position: absolute;
     right: 0;
     width: 0.3rem;
@@ -184,30 +184,30 @@
     transition: all 0.2s ease;
 }
 
-.left-panel-menu-row.selected-row .current-bar{
+.left-panel-menu-row.selected-row .current-bar {
     opacity: 1;
 }
 
-#icon-background-content{
+#icon-background-content {
     background-color: rgba(0, 0, 255, 0.05);
 }
 
-#icon-content{
+#icon-content {
     color: rgb(128, 0, 225);
 }
 
-#icon-background-field{
+#icon-background-field {
     background-color: rgba(0, 217, 255, 0.05);
 }
 
-#icon-field{
+#icon-field {
     color: rgb(0, 169, 225);
 }
 
-#icon-background-page{
+#icon-background-page {
     background-color: rgba(11, 202, 212, 0.05);
 }
 
-#icon-page{
+#icon-page {
     color: rgb(0, 225, 191);
 }

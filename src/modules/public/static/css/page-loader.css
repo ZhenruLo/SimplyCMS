@@ -1,4 +1,4 @@
-.page-loader{
+.page-loader {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -10,7 +10,7 @@
     transition: all 0.2s ease;
 }
 
-.page-loader.hide{
+.page-loader.hide {
     opacity: 0;
     visibility: hidden;
 }
@@ -27,7 +27,9 @@
 
 @keyframes bar {
     0% {
-    transform: rotate(1turn) rotateX(1turn);
+        transform: rotate(1turn) rotateX(1turn);
     }
-    75%, 100% { transform: none; }
+    75%, 100% { 
+        transform: none; 
+    }
 }

@@ -1,4 +1,4 @@
-.modal-container{
+.modal-container {
     z-index: 99;
     display: none;
     position: absolute;
@@ -7,7 +7,7 @@
     justify-content: center;
 }
 
-.modal-box{
+.modal-box {
     display: flex;
     align-items: center;
     text-align: left;
@@ -18,7 +18,7 @@
     box-shadow: 0 0 0.5rem 0.1rem lightgrey;
 }
 
-.modal-text{
+.modal-text {
     width: 100%;
     color: black;
     margin-left: 0.5rem;
@@ -26,12 +26,12 @@
     user-select: none;
 }
 
-.modal-container.show-modal{
+.modal-container.show-modal {
     display: flex;
     animation: opacity-animation 0.2s ease;
 }
 
-.mark-div{
+.mark-div {
     width: 3rem;
     flex: 0 0 3rem;
     cursor: pointer;
@@ -41,27 +41,27 @@
     border-radius: 0.5rem;
 }
 
-.mark-div:hover{
+.mark-div:hover {
     background-color: lightgray;
 }
 
-.mark-div:active{
+.mark-div:active {
     background-color: #191970;
 }
 
-.close-modal{
+.close-modal {
     color: black;
     padding: 0.5rem;
     font-size: 2rem;
 }
 
-.caution-div{
+.caution-div {
     width: 3rem;
     text-align: center;
     margin-left: 0.5rem;
 }
 
-.caution-modal{
+.caution-modal {
     color: gray;
     padding: 0.5rem;
     font-size: 2rem;

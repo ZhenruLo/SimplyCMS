@@ -1,12 +1,12 @@
 @import url('https://use.fontawesome.com/releases/v6.3.0/css/all.css');
 
-.center-container{
+.center-container {
     display: flex;
     flex-direction: row;
     height: 100%;
 }
 
-.panel-container{
+.panel-container {
     display: flex;
     flex-direction: column;
     width: 30rem;
@@ -15,13 +15,13 @@
     transition: all 2s ease;
 }
 
-.panel-content{
+.panel-content {
     display: flex;
     flex-direction: column;
     height: inherit;
 }
 
-.content-container{
+.content-container {
     width: calc(100% - 30rem);
     min-width: 100rem;
     height: 100%;

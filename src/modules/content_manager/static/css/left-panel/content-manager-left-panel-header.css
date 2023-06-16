@@ -1,4 +1,4 @@
-.left-panel-content-header{
+.left-panel-content-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -6,13 +6,13 @@
     height: 7rem;
 }
 
-.selected-panel .left-panel-content-header{
+.selected-panel .left-panel-content-header {
     --vertical: -1rem;
     --isVisible: 1;
     animation: show-from-top-or-bottom 0.25s ease;
 }
 
-.left-panel-header-text{
+.left-panel-header-text {
     letter-spacing: 0.2rem;
     margin-left: 2.5rem;
     user-select: none;
@@ -22,7 +22,7 @@
     color: blueviolet;
 }
 
-.content-count{
+.content-count {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -34,7 +34,7 @@
     background-color: lightgray;
 }
 
-.count-num{
+.count-num {
     font-family: 'Chakra Petch', sans-serif;
     font-weight: 600;
 }

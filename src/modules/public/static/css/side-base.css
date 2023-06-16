@@ -1,14 +1,14 @@
-#side{
+#side {
     z-index: 5;
 }
 
-#content{
+#content {
     opacity: 1;
     height: 100%;
     transition: all 1s ease;
 }
 
-.side-inner-container{
+.side-inner-container {
     display: flex;
     flex-direction: column;
     position: relative;
@@ -20,20 +20,21 @@
     background: linear-gradient(180deg, #27254d, #c7a0de);
 }
 
-.side-header-container{
+.side-header-container {
     display: flex;
     align-items: center;
     flex-direction: row;
     height: 5rem;
 }
 
-#home-anchor{
+#home-anchor {
     display: none;
     cursor: pointer;
     text-decoration: none;
+    user-select: none;
 }
 
-.logo-text{
+.logo-text {
     font-family: 'Beau Rivage';
     font-size: 2.5rem;
     color: black;
@@ -44,7 +45,7 @@
     background-color: white;
 }
 
-.header-text{
+.header-text {
     font-family: 'Chakra Petch', sans-serif;
     font-size: 1.8rem;
     color: white;
@@ -53,7 +54,7 @@
     pointer-events: none;
 }
 
-#collapse-menu-btn{
+#collapse-menu-btn {
     display: flex;
     align-items: center;
     height: inherit;
@@ -64,34 +65,34 @@
     transition: all 0.3s ease;
 }
 
-.side-anchor-icon{
+.side-anchor-icon {
     font-size: 1.5rem;
     color: white;
     margin-left: 2.1rem;
 }
 
-.side-anchor:hover, #collapse-menu-btn:hover{
+.side-anchor:hover, #collapse-menu-btn:hover {
     -webkit-mask-image: linear-gradient(-75deg, rgba(0, 0, 0, 0.6) 30%, #000000 50%, rgba(0,0,0,.6) 70%);
     -webkit-mask-size: 300%;
     animation: shine 2s linear infinite;
 }
 
-.side-anchor:hover{
+.side-anchor:hover {
     background-color: rgba(0, 0, 0, 0.05);
 }
 
-.side-content-container{
+.side-content-container {
     display: flex;
     flex-direction: column;
     height: calc(100% - 5rem);
     min-height: 30.4rem;
 }
 
-.side-menu-group{
+.side-menu-group {
     border-top: 0.1rem solid white;
 }
 
-.side-menu-group#side-lougout{
+.side-menu-group#side-lougout {
     margin-top: auto;
     width: 6rem;
     border-top: none;
@@ -99,12 +100,12 @@
     bottom: 0;
 }
 
-.side-menu-list{
+.side-menu-list {
     padding: 0;
     margin: 0;
 }
 
-.side-li{
+.side-li {
     display: flex;
     flex-direction: row;
     width: 100%;
@@ -112,7 +113,7 @@
     list-style-type: none;
 }
 
-.side-anchor{
+.side-anchor {
     display: flex;
     flex-direction: row;
     justify-content: flex-start;
@@ -123,7 +124,7 @@
     cursor: pointer;
 }
 
-.dropdown-button{
+.dropdown-button {
     padding: 0;
     border: none;
     background: none;
@@ -132,7 +133,7 @@
     font-family: 'Chakra Petch', sans-serif;
 }
 
-.dropdown-button::after{
+.dropdown-button::after {
     position: absolute;
     content: '\f0da';
     font-weight: 900;
@@ -141,21 +142,22 @@
     right: 0.5rem;
 }
 
-.side-anchor.current-anchor{
+.side-anchor.current-anchor {
     background-color: rgba(255, 255, 255, 0.1);
 }
 
-.side-anchor-text{
+.side-anchor-text {
     display: none;
     font-size: 1.5rem;
     margin-left: 2rem;
     font-family: 'Poppins', sans-serif;
     color: white;
     pointer-events: none;
+    user-select: none;
     transition: all 0.2s ease;
 }
 
-.side-tooltip{
+.side-tooltip {
     display: none;
     justify-content: center;
     align-items: center;
@@ -174,40 +176,40 @@
     text-align: center;
 }
 
-.side-li:hover .side-tooltip{
+.side-li:hover .side-tooltip {
     display: flex;
     --horizontal: -0.2rem;
     --isVisible: 0;
     animation:show-from-left-or-right 0.5s ease;
 }
 
-.side-inner-container.expand{
+.side-inner-container.expand {
     width: 25rem;
     flex: 0 0 25rem;
 }
 
-.side-inner-container.expand #home-anchor{
+.side-inner-container.expand #home-anchor {
     display: block;
     --horizontal: -0.2rem;
     --isVisible: 0;
     animation:show-from-left-or-right 0.5s ease;
 }
 
-.side-inner-container.expand #side-lougout{
+.side-inner-container.expand #side-lougout {
     width: 25rem;
 }
 
-.side-inner-container.expand #collapse-menu-btn{
+.side-inner-container.expand #collapse-menu-btn {
     left: 7rem;
 }
 
-.side-inner-container.expand .side-anchor-text{
+.side-inner-container.expand .side-anchor-text {
     display: block;
     --horizontal: -0.2rem;
     --isVisible: 0;
     animation:show-from-left-or-right 0.5s ease;
 }
 
-.side-inner-container.expand .side-tooltip{
+.side-inner-container.expand .side-tooltip {
     display: none;
 }

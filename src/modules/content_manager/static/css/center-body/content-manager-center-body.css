@@ -1,11 +1,11 @@
-.center-content-body-container{
+.center-content-body-container {
     height: inherit;
     display: flex;
     width: 100%;
     justify-content: center;
 }
 
-.selected-body .center-content-body-container{
+.selected-body .center-content-body-container {
     --vertical: -2rem;
     --isVisible: 1;
     animation: show-from-top-or-bottom 0.5s ease;

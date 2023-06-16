@@ -17,6 +17,8 @@
         <link rel='stylesheet' type='text/css' href='static/css/custom-datatable.css'>
         <link rel='stylesheet' type='text/css' href='static/css/share-animation.css'>
         <link rel='stylesheet' type='text/css' href='static/css/base-pop-up.css'>
+        <link rel='stylesheet' type='text/css' href='static/css/submit.css'>
+        <link rel='stylesheet' type='text/css' href='static/css/loading.css'>
         {% block static %}{% endblock static %}
         <link rel='stylesheet' href='//fonts.googleapis.com/css?family=Beau+Rivage'/>
         <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Poppins'>
@@ -46,8 +48,9 @@
                 <div class='pop-up-header'>
                     <span class='pop-up-header-text'></span>
                 </div>
-
-                {% block pop_up %}{% endblock pop_up %} 
+                <div class='pop-up-body'>
+                    {% block pop_up %}{% endblock pop_up %} 
+                </div>
             </div>
         </div>
 

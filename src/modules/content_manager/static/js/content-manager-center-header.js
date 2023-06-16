@@ -5,7 +5,9 @@ $( function() {
         let selectedRow = $('.content-list-item.selected-row')
         let displayNameInput = $('#update-display-name');
         let routeNameInput = $('#update-route-name');
-    
+
+        startLoading('#table-name-edit');
+
         $.ajax({
             url: '/content-manager/database-content',
             method: 'GET',
@@ -17,6 +19,8 @@ $( function() {
                     displayNameInput.prop('placeholder', contentInfo['table_name']);
                     routeNameInput.prop('placeholder', contentInfo['route_name']);
                 };
+                
+                endLoading('#table-name-edit');
             },
             error: function(data) {
                 alert(data.responseText);

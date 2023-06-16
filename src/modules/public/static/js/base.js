@@ -1,6 +1,14 @@
-function togglePopUp(){
+function togglePopUp() {
     $('.pop-up-background').toggleClass('show');
 };
+
+function startLoading(selector) {
+    $(selector).addClass('loading');
+}
+
+function endLoading(selector) {
+    $(selector).removeClass('loading');
+}
 
 $( function() {
     $('.pop-up-background').on('click', function(e){
