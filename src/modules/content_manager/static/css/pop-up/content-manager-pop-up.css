@@ -1,4 +1,5 @@
 .content-manager-pop-up {
+    font-family: 'Roboto', sans-serif;
     display: none;
     flex-direction: column;
     align-items: flex-start;
@@ -17,7 +18,7 @@
 }
 
 .content-creator-form-body {
-    margin-top: 1rem;
+    margin: 1rem 0;
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -26,24 +27,46 @@
 
 .content-creator-form-footer {
     width: inherit;
-    font-family: 'Roboto', sans-serif;
     margin-top: 5rem;
 }
 
 .content-creator-fieldset {
+    display: flex;
+    flex-direction: column;
     border-style: none;
     user-select: none;
-    font-size: 1.2rem;
     width: fit-content;
-    font-family: 'Chakra Petch', sans-serif;
+}
+
+.under-input-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-top: 1rem;
+    width: inherit;
+}
+
+.under-input-text {
+    width: inherit;
+    margin-top: 1rem;
+    font-size: 1.1rem;
+    color: gray;
+    line-height: 1.5rem;
+}
+
+.content-legend {
+    font-weight: 600;
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+    color: black;
 }
 
 .content-creator-input {
-    width: 27rem;
-    height: 2rem;
+    width: 30rem;
+    height: 3rem;
     border-radius: 0.5rem;
     border-style: none;
-    border: 1px solid gray;
+    border: 1px solid rgb(190, 190, 190);
 }
 
 .content-creator-input:focus {
@@ -52,7 +75,6 @@
 
 
 #full-description-text {
-    font-family: 'Roboto', sans-serif;
     font-size: 1.6rem;
     color: gray;
     line-height: 2.5rem;

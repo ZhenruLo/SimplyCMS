@@ -19,7 +19,7 @@
 .pop-up-base-body {
     display: flex;
     flex-direction: column;
-    width: 60rem;
+    width: 70rem;
     height: fit-content;
 }
 
@@ -43,8 +43,14 @@
 .pop-up-header-text {
     font-size: 1.5rem;
     padding: 1rem 2rem;
-    font-family: 'Chakra Petch', sans-serif;
+    font-family: 'Roboto', sans-serif;
     user-select: none;
+}
+
+.pop-up-middle {
+    width: inherit;
+    height: 5rem;
+    background-color: white;
 }
 
 .pop-up-body {

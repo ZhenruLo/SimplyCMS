@@ -4,12 +4,21 @@
     <div class='content-creator-form-body'>
         <fieldset class='content-creator-fieldset'>
             <legend class='content-legend'>Display Name</legend>
-            <input class='content-creator-input' id='content-display-name' type='text' name='table_name'>
+            <input class='content-creator-input' id='content-display-name' type='text' name='table_name' autocomplete='off'>
+
+            <div class='under-input-container'>
+                <input id='match-cb' type='checkbox' name='match_cb'>
+                <label for='match-cb'>Use the same input for route name</label>
+            </div>
         </fieldset>
         
         <fieldset class='content-creator-fieldset'>
-            <legend class='content-legend'>Route Name</legend>
-            <input class='content-creator-input' id='content-route-name' type='text' name='route_name'>
+            <legend class='content-legend'>API Id</legend>
+            <input class='content-creator-input' id='content-route-name' type='text' name='route_name' autocomplete='off'>
+
+            <div class='under-input-container'>
+                <span class='under-input-text'>A unique name used for creating and calling the database. <br>(replaced all special character with underscore)</span>
+            </div>
         </fieldset>
     </div>
 
