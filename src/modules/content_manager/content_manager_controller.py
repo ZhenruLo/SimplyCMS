@@ -112,9 +112,8 @@ def process_database() -> Dict[str, Union[bool, str, List[str]]]:
         form: 'FlaskForm' = ContentManagerForm()
         
         if form.validate_on_submit():
-            table_name = secure_filename(request.form.get('table_name'))
-            route_name = secure_filename(request.form.get('route_name'))
-            description = secure_filename(request.form.get('description'))
+            table_name = request.form.get('table_name')
+            route_name = request.form.get('route_name')
             
             check_table_result = __check_special_char(table_name)
             check_route_result = __check_special_char(route_name) 
