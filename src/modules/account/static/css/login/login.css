@@ -1,4 +1,4 @@
-.main_container{
+.main-container {
     display: flex;
     flex-wrap: wrap;
     align-items: center;
@@ -9,7 +9,7 @@
     overflow: auto;
 }
 
-.login_content_container{
+.login-content-container {
     z-index: 1;
     display: flex;
     flex-direction: row;
@@ -24,11 +24,11 @@
     transition: all 0.5s ease;
 }
 
-.login_content_container.start{
+.login-content-container.start {
     opacity: 1;
 }
 
-.welcome_container{
+.welcome-container {
     z-index: 1;
     display: flex;
     flex-direction: column;
@@ -43,7 +43,7 @@
     -webkit-box-reflect: below 0.3rem linear-gradient(transparent 50%, rgba(0, 0, 0, .5));
 }
 
-.login_container{
+.login-container {
     z-index: 1;
     display: flex;
     flex-direction: column;
@@ -57,7 +57,7 @@
     -webkit-box-reflect: below 0.3rem linear-gradient(transparent 50%, rgba(0, 0, 0, .5));
 }
 
-.inner_login_container{
+.inner-login-container {
     display: inline-flex;
     flex-direction: column;
     justify-content: center;
@@ -67,7 +67,7 @@
     text-align: center;
 }
 
-.welcome_logo{
+.welcome-logo {
     margin-top: 12rem;
     font-size: 20rem;
     color: white;
@@ -76,36 +76,36 @@
     user-select: none;
 }
 
-.welcome_text{
+.welcome-text {
     pointer-events: none;
     font-weight: 600;
     user-select: none;
 }
 
-#welcome{
+#welcome {
     letter-spacing: 1rem;
     font-size: 4rem;
     color: white;
 }
 
-#introduction_text{
+#introduction-text {
     margin: 1rem 0 5rem 0;
     font-size: 1.3rem;
     color: white;
 }
 
-#login_text{
+#login-text {
     letter-spacing: 0.5rem;
     margin: 2rem 0 5rem 0;
     font-size: 3rem;
     color: #322e61;
 }
 
-.login_form{
+.login-form {
     width: 60%;
 }
 
-.form_textbox{
+.form-textbox {
     height: 100%;
     width: 100%;
     padding: 0;
@@ -115,12 +115,12 @@
     font-size: medium;
 }
 
-.form_textbox::placeholder{
+.form-textbox::placeholder {
     letter-spacing: 0.2rem;
     font-size: 1.3rem;
 }
 
-fieldset.login_fieldset{
+fieldset.login-fieldset {
     height: 5rem;   
     width: 100%;
     padding: 0;
@@ -132,29 +132,13 @@ fieldset.login_fieldset{
     transition-duration: 0.4s;
 }
 
-fieldset.login_fieldset:hover{
+fieldset.login-fieldset:hover {
     border-top: none;
     border-left: none;
     border-right: none;
     border-bottom: thin solid #1E90FF;
 }
 
-.submit_btn{
-    height: 4rem;
+.submit-btn#login-btn {
     width: 100%;
-    margin: 4rem 0 1rem 0;
-    background-color: #d2c0fb;
-    color: #FFFFFF;
-    font-size: 1.5rem;
-    border: none;
-    border-radius: 1rem;
-    transition-duration: 0.4s;
-}
-
-.submit_btn:hover{
-    background-color: #adb0e6;
-    cursor: pointer;
-}
-.submit_btn:active{
-    background-color: rgb(228, 228, 255);
 }

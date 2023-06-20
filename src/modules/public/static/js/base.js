@@ -1,14 +1,18 @@
-function toggle_pop_up(){
-    $('.pop_up_background').toggleClass('show');
-};
+function startLoading(selector) {
+    $(selector).addClass('loading');
+}
+
+function endLoading(selector) {
+    $(selector).removeClass('loading');
+}
 
 $( function() {
-    $('.pop_up_background').on('click', function(e){
-        if (e.target !== e.currentTarget) {
+    $('.pop-up-background').on('mousedown', function(event){
+        if (event.target !== event.currentTarget) {
             return
         };
-        toggle_pop_up();
+        togglePopUp();
     });
 
-    $('.page_loader').toggleClass('hide');
+    $('.page-loader').toggleClass('hide');
 });

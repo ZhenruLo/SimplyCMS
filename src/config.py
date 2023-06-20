@@ -7,6 +7,8 @@ class Config():
     
     SECRET_KEY = '3dac34eb0fa370731b59ccdc414415e7'
     
+    SEND_FILE_MAX_AGE_DEFAULT = 0
+    
     SESSION_PROTECTION = 'strong'
     
     REMEMBER_COOKIE_SECURE: True
@@ -33,6 +35,6 @@ class ProductionConfig(Config):
     SQLALCHEMY_DATABASE_URI = 'postgresql://postgres:root@postgre_db:5432/database' 
 
 class DevelopmentConfig(Config):
-    DEBUG = True
+    DEBUG = False
     DEVELOPMENT = True
     ENV = 'development'

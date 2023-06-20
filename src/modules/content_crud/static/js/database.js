@@ -1,3 +1,3 @@
 $(function() {
-    $('#database_anchor').toggleClass('current_anchor');
+    $('#database-anchor').toggleClass('current-anchor');
 });

@@ -1,0 +1,40 @@
+.left-panel-content-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    height: 7rem;
+}
+
+.selected-panel .left-panel-content-header {
+    --vertical: -1rem;
+    --isVisible: 1;
+    animation: show-from-top-or-bottom 0.25s ease;
+}
+
+.left-panel-header-text {
+    letter-spacing: 0.2rem;
+    margin-left: 2.5rem;
+    user-select: none;
+    font-family: 'Chakra Petch', sans-serif;
+    font-size: 1.7rem;
+    font-weight: 600;
+    color: blueviolet;
+}
+
+.content-count {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    user-select: none;
+    width: 2rem;
+    height: 2rem;
+    margin-right: 1rem;
+    border-radius: 0.5rem;
+    background-color: lightgray;
+}
+
+.count-num {
+    font-family: 'Chakra Petch', sans-serif;
+    font-weight: 600;
+}

@@ -21,3 +21,9 @@ class WebUserRole():
 class FileName():
     SERVER_CERTIFICATE_FILE = 'server.crt'
     SERVER_PRIVATE_KEY_FILE = 'server.key'
+    
+class RequestMethod():
+    GET = 'GET'
+    POST = 'POST'
+    PUT = 'PUT'
+    DELETE = 'DELETE'

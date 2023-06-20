@@ -1,8 +1,9 @@
-<div class='dropdown_content'>
-    <a class='dropdown_content_anchor' id='profile_anchor' href=''>Profile</a>
-    <a class='dropdown_content_anchor disabled' id='admin_page_anchor' href='/database'>Administration</a>
-    <form class='dropdown_form' action="{{ url_for('account_bp.logout') }}" method='POST'>
-        <input id='single_csrf_logout' type='hidden' name='csrf_token' value='{{ csrf_token() }}'>
-        <a class='dropdown_content_anchor' onclick='this.parentNode.submit();'>Log Out</a>
+<div class='dropdown-content'>
+    <a class='dropdown-content-anchor' id='profile-anchor' href=''>Profile</a>
+    <a class='dropdown-content-anchor disabled' id='admin-page-anchor' href='/database'>Administration</a>
+    
+    <form id='dropdown-form' action="{{ url_for('account_bp.logout') }}" method='POST'>
+        <input id='single-csrf-logout' type='hidden' name='csrf_token' value='{{ csrf_token() }}'>
+        <a class='dropdown-content-anchor' onclick='this.parentNode.submit();'>Log Out</a>
     </form>
 </div>

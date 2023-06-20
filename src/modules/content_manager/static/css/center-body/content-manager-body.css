@@ -1,0 +1,16 @@
+.center-content-container {
+    display: none;
+    height: inherit;
+}
+
+.center-content-container.selected-body {
+    display: block;
+    animation: opacity-animation 0.5s ease;
+}
+
+.center-body-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}

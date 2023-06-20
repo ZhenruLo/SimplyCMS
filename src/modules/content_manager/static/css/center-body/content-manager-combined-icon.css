@@ -1,0 +1,36 @@
+.combined-icon {
+    display: flex;
+    flex-direction: row;
+    justify-items: center;
+    align-items: center;
+}
+
+.left-single-icon {
+    position: relative;
+    font-size: 8rem;
+    color: rgba(224, 92, 239, 0.59);
+    transform: rotate(-5deg) rotateY(180deg);
+    right: -0.5rem;
+}
+
+.combined-icon.start .left-single-icon {
+    --horizonRotate: 0.4rem;
+    --verticalRotate: 1turn;
+    --isVisible: 0;
+    animation: show-rotate-from-left-or-right .5s ease;
+}
+
+.right-single-icon {
+    position: relative;
+    font-size: 10rem;
+    color:rgba(104, 8, 195, 0.692);
+    transform: rotate(5deg);
+    right: 0.5rem;
+}
+
+.combined-icon.start .right-single-icon {
+    --horizonRotate: 0.4rem;
+    --verticalRotate: 0.5turn;
+    --isVisible: 0;
+    animation: show-rotate-from-left-or-right .5s ease;
+}
