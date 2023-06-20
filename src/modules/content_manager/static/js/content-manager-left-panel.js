@@ -10,10 +10,6 @@ function selectRow(leftPanelRow) {
     $(leftPanelRow).addClass('selected-row');
 };
 
-function selectUniqueRow(contentUUID) {
-    
-}
-
 function openMenu(id) {
     $('.left-panel-content-container').removeClass('selected-panel');
     if (id === 'menu-tab' && $('#' + id).hasClass('selected-tab')) {

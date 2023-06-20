@@ -80,6 +80,7 @@ $( function() {
             }),
             success: function(data) {
                 $("#content-table").DataTable().ajax.reload(null, false);
+                refreshContentItem(1, null);
             },
             error: function(data){
                 alert(data.responseText);

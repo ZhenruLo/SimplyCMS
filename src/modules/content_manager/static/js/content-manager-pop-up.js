@@ -2,7 +2,7 @@ $( function() {
     $('#content-creator-form').submit(function(event) {
         event.preventDefault();
 
-        $('.pop-up-background').click();
+        $('.pop-up-background').mousedown();
 
         $.ajax({
             url: '/content-manager/databases',
@@ -13,7 +13,7 @@ $( function() {
                     let contentUUID = data['content_uuid'];
 
                     $('#content-table').DataTable().ajax.reload(null, false);
-                    refreshContentItem(leftPanelCurrentPage, contentUUID);
+                    refreshContentItem(1, contentUUID);
 
                     $("#content-creator-form").trigger('reset');
                 };
@@ -27,7 +27,7 @@ $( function() {
     $('#update-display-form').submit(function(event) {
         event.preventDefault();
 
-        $('.pop-up-background').click();
+        $('.pop-up-background').mousedown();
 
         $.ajax({
             url: '/content-manager/database-content',
@@ -38,7 +38,7 @@ $( function() {
                     contentUUID = data['content_uuid'];
 
                     $('#content-table').DataTable().ajax.reload(null, false);
-                    refreshContentItem(leftPanelCurrentPage, contentUUID);
+                    refreshContentItem(1, contentUUID);
 
                     $('#update-dsiplay-form').trigger('reset');
                 };
