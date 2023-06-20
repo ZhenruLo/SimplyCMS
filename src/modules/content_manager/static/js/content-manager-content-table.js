@@ -2,7 +2,7 @@ $( function() {
     var table = $('#content-table').DataTable({
         scrollY: '63rem',
         scrollCollapse: true,
-        autoWidth: true,
+        // autoWidth: true,
         pageLength: 20,
         order: [[1, 'asc']],
 
@@ -52,7 +52,7 @@ $( function() {
                 className: 'dtb dt-edit',
                 orderable: false,
                 data: null,
-                defaultContent: "<i class='bx bxs-edit' title='Edit User'></i>",
+                defaultContent: "<i class='bx bxs-edit' title='Edit Content'></i>",
                 width: '1%',
             },
         ],
@@ -60,5 +60,41 @@ $( function() {
         drawCallback: function(settings) {
             $('.dataTables_filter label input').prop('placeholder', 'Type here to search for content');
         },
+    });
+
+    $("#content-table tbody").on("click", "td.dt-delete", function () {
+        result = confirm("Delete this item?");
+        if (result === false){
+            return false
+        };
+        let tr = $(this).closest("tr");
+        let row = table.row(tr);
+        let selectedContentUUID = row.data().content_uuid;
+
+        $.ajax({
+            url: "/content-manager/databases",
+            contentType: "application/json;charset=UTF-8",
+            method: "DELETE",
+            data: JSON.stringify({
+                "content_uuid": selectedContentUUID
+            }),
+            success: function(data) {
+                $("#content-table").DataTable().ajax.reload(null, false);
+            },
+            error: function(data){
+                alert(data.responseText);
+            }
+        })
+    });
+
+    $("#content-table tbody").on("click", "td.dt-edit", function () {
+        let tr = $(this).closest("tr");
+        let row = table.row(tr);
+        let selectedContentUUID = row.data().content_uuid;
+        let selectedContentPage = Math.floor(tr.find('.sorting_1').text()/20) + 1;
+
+        openTab('#content-tab');
+        openMenu('content-tab');
+        refreshContentItem(selectedContentPage, selectedContentUUID);
     });
 });

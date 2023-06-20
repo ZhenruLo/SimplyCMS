@@ -1,12 +1,12 @@
 .submit-btn {
     height: 4rem;
     margin: 4rem 0 1rem 0;
-    background-color: #d2c0fb;
-    color: #FFFFFF;
+    background-color: #c3abfc;
+    color: white;
     font-size: 1.5rem;
     border: none;
     border-radius: 1rem;
-    transition-duration: 0.4s;
+    transition-duration: 0.2s;
 }
 
 .submit-btn:hover {

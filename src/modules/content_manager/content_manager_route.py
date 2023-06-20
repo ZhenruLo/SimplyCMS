@@ -44,7 +44,7 @@ def table():
     current_app.logger.info(f"Result dict from dashboard_bp.table, result: {json_data['result']}, msg: {json_data['msg']}")
     return jsonify(json_data)
 
-@content_manager_bp.route('/content-manager/databases', methods=['GET', 'POST', 'PUT'])
+@content_manager_bp.route('/content-manager/databases', methods=['GET', 'POST', 'PUT', 'DELETE'])
 @login_required
 def database():
     json_data = process_database()
@@ -52,7 +52,7 @@ def database():
     current_app.logger.info(f"Result dict from content_manager_bp.database, result: {json_data['result']}, msg: {json_data['msg']}")
     return jsonify(json_data)
 
-@content_manager_bp.route('/content-manager/database-content', methods=['GET', 'POST'])
+@content_manager_bp.route('/content-manager/database-content', methods=['GET', 'POST', 'PUT'])
 @login_required
 def database_content():
     json_data = process_database_content()

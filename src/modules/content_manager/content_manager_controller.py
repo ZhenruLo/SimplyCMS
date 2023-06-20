@@ -1,11 +1,11 @@
 import math
 from typing import TYPE_CHECKING, Dict, List, Union
 
+from constants import RequestMethod
 from flask import request
-from werkzeug.utils import secure_filename
-
-from models import (Content, create_table, create_table_name, db,
+from models import (Content, create_table, create_table_name, db, remove_table,
                     update_table_content)
+from werkzeug.utils import secure_filename
 
 from .content_manager_form import ContentManagerForm
 
@@ -50,7 +50,6 @@ def fetch_table_title() -> Dict[str, Union[bool, str]]:
     except Exception as err:
         msg = 'Invalid page value'
         
-        
     json_data = {
         'result': result,
         'msg': msg,
@@ -82,7 +81,7 @@ def fetch_table_data() -> Dict[str, Union[bool, str]]:
 def process_database_content() -> Dict[str, Union[bool, str, List[str]]]:
     result = False
     
-    if request.method == 'GET':
+    if request.method == RequestMethod.GET:
         msg = 'Fetch database info failed.'
         database = None
         
@@ -91,8 +90,8 @@ def process_database_content() -> Dict[str, Union[bool, str, List[str]]]:
         database_row = Content.fetch_one(Content.content_uuid, selected_content_uuid, Content.content_uuid, Content.content_name, Content.route_name, Content.description, Content.column_attrs)
         if database_row:
             database = database_row._asdict()
-
-        result = True
+            result = True
+            
         msg = 'Database info fetched'
 
         json_data = {
@@ -101,7 +100,7 @@ def process_database_content() -> Dict[str, Union[bool, str, List[str]]]:
             'database': database,
         }
 
-    elif request.method == 'POST':
+    elif request.method == RequestMethod.PUT:
         msg = 'Update database failed.'
         
         content_uuid = request.form.get('content_uuid')
@@ -117,7 +116,7 @@ def process_database_content() -> Dict[str, Union[bool, str, List[str]]]:
                                         })
             db.session.commit()
             result = True
-            msg = 'Update database success'
+            msg = 'Database updated'
 
         json_data = {
             'result': result,
@@ -129,10 +128,10 @@ def process_database_content() -> Dict[str, Union[bool, str, List[str]]]:
 def process_database() -> Dict[str, Union[bool, str, List[str]]]:
     result = False
 
-    if request.method == 'GET':
+    if request.method == RequestMethod.GET:
         pass
 
-    elif request.method == 'POST':
+    elif request.method == RequestMethod.POST:
         msg = 'Create database failed.'
         content_uuid = None
         form: 'FlaskForm' = ContentManagerForm()
@@ -169,7 +168,7 @@ def process_database() -> Dict[str, Union[bool, str, List[str]]]:
             'content_uuid': content_uuid,
         }
 
-    elif request.method == 'PUT':
+    elif request.method == RequestMethod.PUT:
         msg = 'Update database failed'
 
         for column in request.form:
@@ -183,6 +182,23 @@ def process_database() -> Dict[str, Union[bool, str, List[str]]]:
             'msg': msg,
         }
 
+    elif request.method == RequestMethod.DELETE:
+        msg = 'Delete database failed'
+        
+        content_uuid = request.get_json().get('content_uuid')
+        content: 'Content' = db.session.query(Content).filter(Content.content_uuid == content_uuid).first()
+        if content:
+            remove_table(content.table_name)
+            Content.delete(content)
+            
+            msg = 'Database deleted'
+            result = True
+            
+        json_data = {
+            'result': result,
+            'msg': msg,
+        }
+        
     return json_data
 
 def __check_special_char(string: str) -> bool:

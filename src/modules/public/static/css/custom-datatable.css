@@ -110,3 +110,21 @@ div.dataTables_wrapper div.dataTables_filter input:focus {
     color: black;
     font-size: 1rem;
 }
+
+table.dataTable td.dtb {
+    transition: all 0.2s ease;
+}
+
+table.dataTable td.dtb:hover {
+    cursor: pointer;
+    color: white;
+    background-color: rgb(237, 206, 255);
+}
+
+table.dataTable td.dtb:active {
+    background-color: gray;
+}
+
+table.dataTable td.dtb.dt-delete {
+    color: red;
+}

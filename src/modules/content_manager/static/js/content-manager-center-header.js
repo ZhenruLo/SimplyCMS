@@ -7,8 +7,6 @@ $( function() {
         let routeNameInput = $('#update-route-name');
         let descriptionInput = $('#update-description');
 
-        startLoading('#table-name-edit');
-
         $.ajax({
             url: '/content-manager/database-content',
             method: 'GET',
@@ -17,12 +15,21 @@ $( function() {
                 if (data['result']) {
                     let contentInfo = data['database'];
     
-                    displayNameInput.prop('placeholder', contentInfo['content_name']);
-                    routeNameInput.prop('placeholder', contentInfo['route_name']);
-                    descriptionInput.prop('placeholder', contentInfo['description']);
+                    displayNameInput.prop({
+                        'placeholder': contentInfo['content_name'], 
+                        'value': contentInfo['content_name'],
+                    });
+
+                    routeNameInput.prop({
+                        'placeholder': contentInfo['route_name'],
+                        'value': contentInfo['route_name'],
+                    });
+
+                    descriptionInput.prop({
+                        'placeholder': contentInfo['description'],
+                        'value': contentInfo['description'],
+                    });
                 };
-                
-                endLoading('#table-name-edit');
             },
             error: function(data) {
                 alert(data.responseText);

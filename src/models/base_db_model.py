@@ -2,12 +2,11 @@ import random
 import string
 from typing import List
 
+from constants import Directory
 from flask_login import UserMixin
 from flask_migrate import migrate, upgrade
 from flask_sqlalchemy import SQLAlchemy
-from sqlalchemy import Column, Integer, String, Table
-
-from constants import Directory
+from sqlalchemy import Column, Integer, MetaData, String, Table
 
 db = SQLAlchemy()
 
@@ -19,8 +18,8 @@ class Base(UserMixin):
         db.session.commit()
 
     @classmethod
-    def delete(cls, user: List):
-        db.session.delete(user)
+    def delete(cls, row):
+        db.session.delete(row)
         db.session.commit()
     
     @classmethod
@@ -38,6 +37,12 @@ def create_table(tablename: str) -> bool:
           )
     migrate(Directory.GLOBAL_MIGRATE_DIR.as_posix())
     upgrade(Directory.GLOBAL_MIGRATE_DIR.as_posix())
+
+def remove_table(tablename: str):
+    selected_table = db.metadata.tables.get(tablename)
+    if selected_table is not None:
+        selected_table.drop(db.engine)
+        __refresh_metadata()
 
 def update_table_content(tablename: str, column_info):
     Table(tablename, 
@@ -65,3 +70,7 @@ def __generate_table_uid() -> str:
     random_numbers = random.randint(100, 999)
     table_uid = random_letters + str(random_numbers)
     return table_uid
+
+def __refresh_metadata():
+    db.metadata.clear()
+    db.metadata.reflect(db.engine)

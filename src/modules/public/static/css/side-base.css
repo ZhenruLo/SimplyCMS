@@ -17,7 +17,7 @@
     overflow-y: auto;
     overflow-x: hidden;
     transition: all .2s ease;
-    background: linear-gradient(180deg, #27254d, #c7a0de);
+    background-color: #c1a0e4;
 }
 
 .side-header-container {

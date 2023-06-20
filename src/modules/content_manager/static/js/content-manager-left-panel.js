@@ -10,6 +10,10 @@ function selectRow(leftPanelRow) {
     $(leftPanelRow).addClass('selected-row');
 };
 
+function selectUniqueRow(contentUUID) {
+    
+}
+
 function openMenu(id) {
     $('.left-panel-content-container').removeClass('selected-panel');
     if (id === 'menu-tab' && $('#' + id).hasClass('selected-tab')) {
@@ -20,8 +24,8 @@ function openMenu(id) {
 
     else if (id === 'content-tab' && $('#' + id).hasClass('selected-tab')) {
         $('#left-panel-content-type').addClass('selected-panel');
-        selectRow('.left-panel-content-list li:first');
         openContentBuilder('.left-panel-content-list li:first');
+        refreshContentBuilderPage();
     }
 
     else if (id === 'information-tab' && $('#' + id).hasClass('selected-tab')) {
@@ -59,7 +63,6 @@ function openContentBuilder(selectedContentRow) {
 
     selectRow(selectedContentRow);
     $('#center-content-builder').addClass('selected-body');
-    refreshContentBuilderPage();
 };
 
 function refreshContentBuilderPage() {
@@ -93,7 +96,7 @@ function refreshContentBuilderPage() {
 function createContentItem(tableName, contentUUID, selectedRow) {
     let currentListLength = $(".left-panel-content-list li").length;
     
-    if (selectedRow || (!selectedRow && currentListLength === 0)) {
+    if (selectedRow) {
         $('<li>').prop({'class': 'content-list-item selected-row', 'id': 'content-list-item-' + currentListLength}).appendTo('.left-panel-content-list');
     }
     else {
@@ -183,7 +186,7 @@ function refreshContentItem(page, selectedcontentUUID) {
                                 let tableName = value['content_name'];
                                 let contentUUID = value['content_uuid'];
                                 
-                                if (contentUUID === selectedcontentUUID) {
+                                if (selectedcontentUUID && contentUUID === selectedcontentUUID) {
                                     createContentItem(tableName, contentUUID, true);
                                 }
                                 else {
@@ -234,6 +237,7 @@ $( function() {
 
     $('.left-panel-content-list').on('click', 'li.content-list-item', function() {
         openContentBuilder(this);
+        refreshContentBuilderPage();
     });
 
     $('.pagination-anchor#forward-anchor').on('click', function(event) {
@@ -248,7 +252,7 @@ $( function() {
         refreshContentItem(leftPanelCurrentPage, null);
     });
 
-    $('.content-list-context').on('click', function(event) {
+    $('.content-create-content').on('click', function(event) {
         event.preventDefault();
 
         togglePopUp();

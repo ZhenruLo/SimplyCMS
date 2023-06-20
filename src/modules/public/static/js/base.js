@@ -7,8 +7,8 @@ function endLoading(selector) {
 }
 
 $( function() {
-    $('.pop-up-background').on('click', function(e){
-        if (e.target !== e.currentTarget) {
+    $('.pop-up-background').on('mousedown', function(event){
+        if (event.target !== event.currentTarget) {
             return
         };
         togglePopUp();
