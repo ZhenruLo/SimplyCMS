@@ -5,6 +5,7 @@ $( function() {
         let selectedRow = $('.content-list-item.selected-row')
         let displayNameInput = $('#update-display-name');
         let routeNameInput = $('#update-route-name');
+        let descriptionInput = $('#update-description');
 
         startLoading('#table-name-edit');
 
@@ -16,8 +17,9 @@ $( function() {
                 if (data['result']) {
                     let contentInfo = data['database'];
     
-                    displayNameInput.prop('placeholder', contentInfo['table_name']);
+                    displayNameInput.prop('placeholder', contentInfo['content_name']);
                     routeNameInput.prop('placeholder', contentInfo['route_name']);
+                    descriptionInput.prop('placeholder', contentInfo['description']);
                 };
                 
                 endLoading('#table-name-edit');
@@ -32,7 +34,7 @@ $( function() {
         event.preventDefault();
 
         togglePopUp();
-        openPopUp('#description-pop-up', 'Description');
+        openPopUp('.content-manager-pop-up', '#description-pop-up', 'Description', $('.content-header-text').text());
         
         $('#full-description-text').text($('.header-description-text').text()); 
     });

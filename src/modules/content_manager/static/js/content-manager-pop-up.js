@@ -1,10 +1,3 @@
-function openPopUp(containerId, title) {
-    $('.content-manager-pop-up').removeClass('show');
-    $(containerId).addClass('show');
-
-    $('.pop-up-header-text').text(title);
-}
-
 $( function() {
     $('#content-creator-form').submit(function(event) {
         event.preventDefault();
@@ -17,15 +10,17 @@ $( function() {
             data: $(this).serialize(),
             success: function(data) {
                 if (data['result']) {
-                    let tableUuid = data['table_uuid'];
+                    let contentUUID = data['content_uuid'];
 
                     $("#content-table").DataTable().ajax.reload(null, false);
-                    refreshContentItem(leftPanelCurrentPage, tableUuid);
+                    refreshContentItem(leftPanelCurrentPage, contentUUID);
+
+                    $("#content-creator-form").trigger("reset");
                 };
             },
             error: function(data) {
                 alert(data.responseText);
-            }
+            }   
         })
     })
 
@@ -40,10 +35,12 @@ $( function() {
             data: $(this).serialize(),
             success: function(data) {
                 if (data['result']) {
-                    tableUuid = data['table_uuid'];
+                    contentUUID = data['content_uuid'];
 
                     $("#content-table").DataTable().ajax.reload(null, false);
-                    refreshContentItem(leftPanelCurrentPage, tableUuid);
+                    refreshContentItem(leftPanelCurrentPage, contentUUID);
+
+                    $("#update-dsiplay-form").trigger("reset");
                 };
             },
             error: function(data) {

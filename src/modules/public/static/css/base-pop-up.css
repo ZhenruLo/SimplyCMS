@@ -48,9 +48,12 @@
 }
 
 .pop-up-middle {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
     width: inherit;
-    height: 5rem;
-    background-color: white;
+    height: 8rem;
+    background-color: whitesmoke;
 }
 
 .pop-up-body {
@@ -61,4 +64,11 @@
     background-color: white;
     border-bottom-left-radius: 0.5rem;
     border-bottom-right-radius: 0.5rem;
+}
+
+.pop-up-middle-text {
+    font-size: 3.5rem;
+    margin-left: 2.5rem;
+    user-select: none;
+    font-family: 'Roboto', sans-serif;
 }

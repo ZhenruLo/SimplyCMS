@@ -64,18 +64,20 @@ function openContentBuilder(selectedContentRow) {
 
 function refreshContentBuilderPage() {
     let selectedRow = $('.content-list-item.selected-row')
+    let contentUUID = selectedRow.find('.content-uuid').val()
 
     $.ajax({
         url: '/content-manager/database-content',
         method: 'GET',
-        data: {'content_uuid': selectedRow.find('.content-uuid').val()},
+        data: {'content_uuid': contentUUID},
         success: function(data) {
             if (data['result']) {
                 let contentInfo = data['database'];
 
-                $('#content-name-text').text(contentInfo['table_name']);
+                $('#content-name-text').text(contentInfo['content_name']);
                 if (contentInfo['description']) {
                     $('.header-description-text').text(contentInfo['description']);
+                    $('#update-content-uuid').val(contentUUID);
                 }
                 else {
                     $('.header-description-text').text('No description');
@@ -88,7 +90,7 @@ function refreshContentBuilderPage() {
     });
 };
 
-function createContentItem(tableName, tableUuid, selectedRow) {
+function createContentItem(tableName, contentUUID, selectedRow) {
     let currentListLength = $(".left-panel-content-list li").length;
     
     if (selectedRow || (!selectedRow && currentListLength === 0)) {
@@ -98,7 +100,7 @@ function createContentItem(tableName, tableUuid, selectedRow) {
         $('<li>').prop({'class': 'content-list-item', 'id': 'content-list-item-' + currentListLength}).appendTo('.left-panel-content-list');
     }
 
-    $('<input>').prop({'class': 'content-uuid', 'id': 'content-uuid-' + currentListLength, 'type': 'hidden', 'value': tableUuid }).appendTo('#content-list-item-' + currentListLength);
+    $('<input>').prop({'class': 'content-uuid', 'id': 'content-uuid-' + currentListLength, 'type': 'hidden', 'value': contentUUID }).appendTo('#content-list-item-' + currentListLength);
 
     $('<div>').prop({'class': 'content-list-index', 'id': 'index-'+currentListLength}).appendTo('#content-list-item-' + currentListLength);
     $('<i>').prop({'class': 'content-list-index-icon fa-solid fa-circle'}).appendTo('#index-' + currentListLength)
@@ -155,7 +157,7 @@ function processPaginationButton(leftPanelCurrentPage, maxPage) {
     };
 };
 
-function refreshContentItem(page, selectedContentUuid) {
+function refreshContentItem(page, selectedcontentUUID) {
     $('ul.left-panel-content-list').empty();
 
     $.ajax({
@@ -178,14 +180,14 @@ function refreshContentItem(page, selectedContentUuid) {
                             let tableList = data['data']
 
                             $.each(tableList, function(key, value){
-                                let tableName = value['table_name'];
-                                let contentUuid = value['content_uuid'];
+                                let tableName = value['content_name'];
+                                let contentUUID = value['content_uuid'];
                                 
-                                if (contentUuid === selectedContentUuid) {
-                                    createContentItem(tableName, contentUuid, true);
+                                if (contentUUID === selectedcontentUUID) {
+                                    createContentItem(tableName, contentUUID, true);
                                 }
                                 else {
-                                    createContentItem(tableName, contentUuid, false);
+                                    createContentItem(tableName, contentUUID, false);
                                 }
                             })
                             refreshContentBuilderPage();
@@ -250,13 +252,13 @@ $( function() {
         event.preventDefault();
 
         togglePopUp();
-        openPopUp('#create-content-pop-up', 'Content initial configurations');
+        openPopUp('.content-manager-pop-up', '#create-content-pop-up', 'Content initial settings', 'Settings');
     });
 
     $('#table-name-edit').on('click', function(event) {
         event.preventDefault();
 
         togglePopUp();
-        openPopUp('#update-display-pop-up', 'Update content configurations')
+        openPopUp('.content-manager-pop-up', '#update-display-pop-up', 'Update content settings', $('.content-header-text').text())
     })
 });

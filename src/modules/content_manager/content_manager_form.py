@@ -1,10 +1,10 @@
 from flask_wtf import FlaskForm
 from wtforms import PasswordField, StringField, SubmitField
-from wtforms.validators import InputRequired
+from wtforms.validators import InputRequired, Length
 
 
 class ContentManagerForm(FlaskForm):
-    table_name = StringField(
+    content_name = StringField(
         'Content Name',
         validators = [InputRequired(), ]
     )
@@ -14,6 +14,13 @@ class ContentManagerForm(FlaskForm):
         validators = [
             InputRequired(),
         ]
+    )
+
+    description = StringField(
+        'Description',
+        validators = [InputRequired(), 
+                      Length(max=500),
+                      ]
     )
     
     submit = SubmitField('Log In')

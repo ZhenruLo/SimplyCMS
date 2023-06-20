@@ -9,6 +9,7 @@ class Content(Base, db.Model):
     __tablename__ = 'content'
 
     id = db.Column(db.Integer, primary_key = True)
+    content_name = db.Column(db.Text)
     table_name = db.Column(db.Text)
     route_name = db.Column(db.Text, unique=True)
     description = db.Column(db.Text)
@@ -16,7 +17,8 @@ class Content(Base, db.Model):
     content_uuid = db.Column(db.Text, server_default=func.random(), unique=True)
     created_timestamp = db.Column(db.DateTime, server_default=func.current_timestamp())
     
-    def __init__(self, table_name: 'str', route_name: 'str', description: 'str', column_attrs: Union[Dict[str, Dict[str, bool]], None]=None):
+    def __init__(self, content_name: str, table_name: str, route_name: str, description: str, column_attrs: Union[Dict[str, Dict[str, bool]], None]=None):
+        self.content_name = content_name
         self.table_name = table_name
         self.route_name = route_name
         self.description = description

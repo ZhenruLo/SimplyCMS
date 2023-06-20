@@ -5,6 +5,6 @@ $( function() {
         event.preventDefault();
 
         togglePopUp();
-        openPopUp('#create-content-pop-up', 'Content initial settings')
+        openPopUp('.content-manager-pop-up', '#create-content-pop-up', 'Content initial settings', 'Settings');
     });
 });

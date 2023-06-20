@@ -23,7 +23,7 @@ $( function() {
             },
             { 
                 title: 'Content Name', 
-                data: 'table_name',
+                data: 'content_name',
                 width: '15%'
             },
             {

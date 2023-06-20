@@ -1,19 +1,38 @@
 <form id='update-display-form' action='' method='POST'>
     <input id='single-csrf-display-update' type='hidden' name='csrf_token' value='{{ csrf_token() }}'>
+    <input id='update-content-uuid' type='hidden' name='content_uuid' value=''>
 
     <div class='content-creator-form-body'>
         <fieldset class='content-creator-fieldset'>
             <legend class='content-legend'>Display Name</legend>
-            <input class='content-creator-input' id='update-display-name' type='text' name='table_name'>
+            <input class='content-creator-input' id='update-display-name' type='text' name='content_name' autocomplete='off' required>
+
+            <div class='under-input-container'>
+                <input id='match-cb' type='checkbox' name='match_cb'>
+                <label for='match-cb'>Use the same input for route name</label>
+            </div>
         </fieldset>
         
         <fieldset class='content-creator-fieldset'>
-            <legend class='content-legend'>Route Name</legend>
-            <input class='content-creator-input' id='update-route-name' type='text' name='route_name'>
+            <legend class='content-legend'>API Id</legend>
+            <input class='content-creator-input' id='update-route-name' type='text' name='route_name' autocomplete='off' required>
+
+            <div class='under-input-container'>
+                <span class='under-input-text'>A unique name used for creating and calling the database. <br>(only lowercase and underscore are accepted)</span>
+            </div>
+        </fieldset>
+
+        <fieldset class='content-creator-fieldset'>
+            <legend class='content-legend'>Description</legend>
+            <textarea class='content-creator-textarea' id='update-description' name='description' autocomplete='off' maxlength='500' required></textarea>
+    
+            <div class='under-input-container'>
+                <span class='under-input-text'>(Max 500 words)</span>
+            </div>
         </fieldset>
     </div>
 
     <div class='content-creator-form-footer'>
-        <input class='submit-btn' id='update-display-submit' type='submit' name='submit' value='Update Content'>
+        <input class='submit-btn pop-up-submit-btn' id='update-display-submit' type='submit' name='submit' value='Update Content'>
     </div>
 </form>

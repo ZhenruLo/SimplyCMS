@@ -1,7 +1,3 @@
-function togglePopUp() {
-    $('.pop-up-background').toggleClass('show');
-};
-
 function startLoading(selector) {
     $(selector).addClass('loading');
 }

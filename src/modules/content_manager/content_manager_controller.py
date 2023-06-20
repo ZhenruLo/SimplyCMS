@@ -2,8 +2,10 @@ import math
 from typing import TYPE_CHECKING, Dict, List, Union
 
 from flask import request
-from models import Content, create_table, db, update_table_content
 from werkzeug.utils import secure_filename
+
+from models import (Content, create_table, create_table_name, db,
+                    update_table_content)
 
 from .content_manager_form import ContentManagerForm
 
@@ -38,7 +40,7 @@ def fetch_table_title() -> Dict[str, Union[bool, str]]:
 
     try: 
         offset = (int(request.values['page']) - 1) * 20
-        all_data = db.session.query(Content.content_uuid, Content.table_name).offset(offset).limit(20)
+        all_data = db.session.query(Content.content_uuid, Content.content_name).offset(offset).limit(20)
         dict_list = [data._asdict() for data in all_data]
         
         if dict_list is not None:
@@ -62,7 +64,7 @@ def fetch_table_data() -> Dict[str, Union[bool, str]]:
     msg = 'Fail to fetch content table data'
     dict_list = None
 
-    all_data = db.session.query(Content.content_uuid, Content.table_name, Content.route_name, Content.description, Content.created_timestamp).all()
+    all_data = db.session.query(Content.content_uuid, Content.content_name, Content.route_name, Content.description, Content.created_timestamp).all()
     dict_list = [data._asdict() for data in all_data]
     
     if dict_list is not None:
@@ -86,18 +88,42 @@ def process_database_content() -> Dict[str, Union[bool, str, List[str]]]:
         
         selected_content_uuid = request.args.get('content_uuid') 
         
-        database_row = Content.fetch_one(Content.content_uuid, selected_content_uuid, Content.content_uuid, Content.table_name, Content.route_name, Content.description, Content.column_attrs)
-        database = database_row._asdict()
+        database_row = Content.fetch_one(Content.content_uuid, selected_content_uuid, Content.content_uuid, Content.content_name, Content.route_name, Content.description, Content.column_attrs)
+        if database_row:
+            database = database_row._asdict()
 
         result = True
         msg = 'Database info fetched'
 
-    json_data = {
-        'result': result,
-        'msg': msg,
-        'database': database,
-    }
+        json_data = {
+            'result': result,
+            'msg': msg,
+            'database': database,
+        }
+
+    elif request.method == 'POST':
+        msg = 'Update database failed.'
         
+        content_uuid = request.form.get('content_uuid')
+        content_name = request.form.get('content_name')
+        route_name = secure_filename(request.form.get('route_name'))
+        description = request.form.get('description')
+
+        selected_table_query = db.session.query(Content).filter(Content.content_uuid == content_uuid)
+        if selected_table_query.first():
+            selected_table_query.update({Content.content_name: content_name, 
+                                        Content.route_name: route_name,
+                                        Content.description: description,
+                                        })
+            db.session.commit()
+            result = True
+            msg = 'Update database success'
+
+        json_data = {
+            'result': result,
+            'msg': msg,
+        }
+
     return json_data
         
 def process_database() -> Dict[str, Union[bool, str, List[str]]]:
@@ -108,36 +134,39 @@ def process_database() -> Dict[str, Union[bool, str, List[str]]]:
 
     elif request.method == 'POST':
         msg = 'Create database failed.'
-        table_uuid = None
+        content_uuid = None
         form: 'FlaskForm' = ContentManagerForm()
         
         if form.validate_on_submit():
-            table_name = request.form.get('table_name')
-            route_name = request.form.get('route_name')
+            content_name = request.form.get('content_name')
+            route_name = secure_filename(request.form.get('route_name'))
+            description = request.form.get('description')
             
-            check_table_result = __check_special_char(table_name)
+            check_table_result = __check_special_char(content_name)
             check_route_result = __check_special_char(route_name) 
 
             if not check_route_result and not check_table_result:
-                table_count = db.session.query(Content).filter(Content.table_name==table_name).count()
+                table_count = db.session.query(Content).filter(Content.content_name==content_name).count()
                 route_count = db.session.query(Content).filter(Content.route_name==route_name).count()
                 
                 if (table_count == 0 and route_count == 0):
-                    Content.add(table_name=table_name, route_name=route_name, description=description)
-                    # create_table(table_name)
+                    table_name = create_table_name()
 
-                    table_uuid = db.session.query(Content.content_uuid).filter(Content.table_name==table_name).scalar()
+                    Content.add(content_name=content_name, table_name=table_name, route_name=route_name, description=description)
+                    create_table(table_name)
+
+                    content_uuid = db.session.query(Content.content_uuid).filter(Content.content_name==content_name).scalar()
                     result = True
                     msg = 'Databases created'
                 else:
-                    msg = 'Duplicate display name, please enter another value.' if table_count == 0 else 'Duplicate route name, please enter another value.'
+                    msg = 'Duplicate display name, please enter another value.' if route_count == 0 else 'Duplicate route name, please enter another value.'
             else:
                 msg = 'Database contain special characters'
             
         json_data = {
             'result': result,
             'msg': msg,
-            'table_uuid': table_uuid,
+            'content_uuid': content_uuid,
         }
 
     elif request.method == 'PUT':
