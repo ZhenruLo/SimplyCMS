@@ -106,21 +106,23 @@
 }
 
 .form-textbox {
-    height: 100%;
     width: 100%;
-    padding: 0;
+    padding: 0.5rem 0;
     outline: none;
     text-align: left;
     border: none;
-    font-size: medium;
-}
-
-.form-textbox::placeholder {
-    letter-spacing: 0.2rem;
+    font-family: 'Roboto', sans-serif;
+    letter-spacing: 0.1rem;
     font-size: 1.3rem;
 }
 
+.form-textbox::placeholder {
+    user-select: none;
+}
+
 fieldset.login-fieldset {
+    display: flex;
+    align-items: flex-end;
     height: 5rem;   
     width: 100%;
     padding: 0;

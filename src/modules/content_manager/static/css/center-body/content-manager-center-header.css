@@ -38,6 +38,7 @@
     display: inline-flex;
     font-size: 1.2rem;
     margin-left: 0.75rem;
+    padding: 0.5rem;
     user-select: none;
     color: rgb(0, 0, 0);
     cursor: pointer;
@@ -60,7 +61,6 @@
     height: inherit;
     font-family: 'Poppins', sans-serif;
     font-weight: 100;
-    user-select: none;
     outline: none;
     pointer-events: none;
     border: none;

@@ -12,7 +12,7 @@
 }
 
 .content-manager-pop-up#description-pop-up {
-    min-height: 8rem;
+    min-height: fit-content;
 }
 
 #content-creator-form {

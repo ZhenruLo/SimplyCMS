@@ -1,8 +1,8 @@
-{% extends 'side-base.html' %}
+{% extends 'side/side-base.html' %}
 
 {% block static %}
 {{ super() }}
-<link rel='stylesheet' href='static/css/side-panel.css'/>
+<link rel='stylesheet' href='static/css/side/side-panel.css'/>
 {% endblock static %}
 
 {% block side %}
@@ -25,5 +25,5 @@
 
 {% block script %}
 {{ super() }}
-<script src='/static/js/side-panel.js'></script>
+<script src='/static/js/side/side-panel.js'></script>
 {% endblock script %}

@@ -7,6 +7,9 @@ $( function() {
         let routeNameInput = $('#update-route-name');
         let descriptionInput = $('#update-description');
 
+        togglePopUp();
+        openPopUp('.content-manager-pop-up', '#update-display-pop-up', 'Update content settings', $('.content-header-text').text())
+        
         $.ajax({
             url: '/content-manager/database-content',
             method: 'GET',

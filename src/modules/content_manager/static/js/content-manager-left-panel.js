@@ -62,31 +62,38 @@ function openContentBuilder(selectedContentRow) {
 };
 
 function refreshContentBuilderPage() {
-    let selectedRow = $('.content-list-item.selected-row')
-    let contentUUID = selectedRow.find('.content-uuid').val()
+    let selectedRow = $('.content-list-item.selected-row');
+    let contentUUID = selectedRow.find('.content-uuid').val();
 
-    $.ajax({
-        url: '/content-manager/database-content',
-        method: 'GET',
-        data: {'content_uuid': contentUUID},
-        success: function(data) {
-            if (data['result']) {
-                let contentInfo = data['database'];
-
-                $('#content-name-text').text(contentInfo['content_name']);
-                if (contentInfo['description']) {
-                    $('.header-description-text').text(contentInfo['description']);
-                    $('#update-content-uuid').val(contentUUID);
-                }
-                else {
-                    $('.header-description-text').text('No description');
-                }
-            };
-        },
-        error: function(data) {
-            alert(data.responseText);
-        },
-    });
+    if (selectedRow.length === 0) {
+        $('#content-name-text').text('');
+        $('.header-description-text').text('');
+        $('#update-content-uuid').val('');
+    }
+    else {
+        $.ajax({
+            url: '/content-manager/database-content',
+            method: 'GET',
+            data: {'content_uuid': contentUUID},
+            success: function(data) {
+                if (data['result']) {
+                    let contentInfo = data['database'];
+    
+                    $('#content-name-text').text(contentInfo['content_name']);
+                    if (contentInfo['description']) {
+                        $('.header-description-text').text(contentInfo['description']);
+                        $('#update-content-uuid').val(contentUUID);
+                    }
+                    else {
+                        $('.header-description-text').text('No description');
+                    }
+                };
+            },
+            error: function(data) {
+                alert(data.responseText);
+            },
+        });
+    };
 };
 
 function createContentItem(tableName, contentUUID, selectedRow) {
@@ -254,11 +261,4 @@ $( function() {
         togglePopUp();
         openPopUp('.content-manager-pop-up', '#create-content-pop-up', 'Content initial settings', 'Settings');
     });
-
-    $('#table-name-edit').on('click', function(event) {
-        event.preventDefault();
-
-        togglePopUp();
-        openPopUp('.content-manager-pop-up', '#update-display-pop-up', 'Update content settings', $('.content-header-text').text())
-    })
 });

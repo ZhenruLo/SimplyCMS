@@ -109,6 +109,7 @@ div.dataTables_wrapper div.dataTables_filter input:focus {
     font-family: 'Roboto', sans-serif;
     color: black;
     font-size: 1rem;
+    user-select: none;
 }
 
 table.dataTable td.dtb {

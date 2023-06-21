@@ -1,9 +1,9 @@
 {% extends 'base.html' %}
 
 {% block static %}
-<link rel='stylesheet' href='static/css/side-base.css'/>
-<link rel='stylesheet' href='static/css/scroll-bar.css'/>
-<link rel='stylesheet' href='static/css/dropdown.css'/>
+<link rel='stylesheet' href='static/css/side/side-base.css'/>
+<link rel='stylesheet' href='static/css/page/scroll-bar.css'/>
+<link rel='stylesheet' href='static/css/pop-up/dropdown.css'/>
 {% endblock static %}
 
 {% block side %}
@@ -77,10 +77,10 @@
 {% endblock side %}
 
 {% block content %}
-{% include 'dropdown/dropdown.html' %}
+{% include 'pop-up/dropdown.html' %}
 {% endblock content %}
 
 {% block script %}
-<script src='static/js/side.js'></script>
-<script src='static/js/dropdown.js'></script>
+<script src='static/js/side/side.js'></script>
+<script src='static/js/pop-up/dropdown.js'></script>
 {% endblock script %}
