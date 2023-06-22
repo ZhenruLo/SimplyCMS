@@ -111,10 +111,6 @@
     border-bottom: 0.5rem solid rgb(179, 0, 255);
 }
 
-.header-text-anchor:active {
-    background-color: lightgray;
-}
-
 .header-anchor-text {
     user-select: none;
     margin-left: 0.5rem;

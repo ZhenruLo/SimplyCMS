@@ -2,7 +2,7 @@ $( function() {
     var table = $('#content-table').DataTable({
         scrollY: '63rem',
         scrollCollapse: true,
-        // autoWidth: true,
+        autoWidth: true,
         pageLength: 20,
         order: [[1, 'asc']],
 

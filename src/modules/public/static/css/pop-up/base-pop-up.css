@@ -13,7 +13,7 @@
 
 .pop-up-background.show  {
     display: flex;
-    animation: opacity-animation 0.2s ease;
+    animation: opacity-animation 0.4s ease;
 }
 
 .pop-up-base-body {
@@ -24,9 +24,9 @@
 }
 
 .pop-up-background.show .pop-up-base-body {
-    --horizontal: -0.2rem;
+    --horizontal: -5rem;
     --isVisible: 0;
-    animation: show-from-left-or-right 0.2s ease;
+    animation: show-from-left-or-right 0.4s ease;
 }
 
 .pop-up-header {
