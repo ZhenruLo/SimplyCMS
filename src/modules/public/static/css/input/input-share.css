@@ -1,0 +1,55 @@
+.custom-textbox {
+    width: 100%;
+    padding: 0.5rem 0;
+    outline: none;
+    text-align: left;
+    border: none;
+    font-family: 'Roboto', sans-serif;
+    letter-spacing: 0.1rem;
+    font-size: 1.3rem;
+}
+
+.custom-textbox::placeholder {
+    user-select: none;
+}
+
+fieldset.custom-fieldset {
+    display: flex;
+    align-items: flex-end;
+    height: 5rem;   
+    width: 100%;
+    padding: 0;
+    margin: 0 auto;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    border-bottom: thin solid #ADD8E6;
+    transition-duration: 0.4s;
+}
+
+fieldset.custom-fieldset:hover {
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    border-bottom: thin solid #1E90FF;
+}
+
+.submit-btn {
+    height: 4rem;
+    margin: 4rem 0 1rem 0;
+    background-color: #c3abfc;
+    color: white;
+    font-size: 1.5rem;
+    border: none;
+    border-radius: 1rem;
+    transition-duration: 0.2s;
+}
+
+.submit-btn:hover {
+    background-color: #adb0e6;
+    cursor: pointer;
+}
+
+.submit-btn:active {
+    background-color: rgb(228, 228, 255);
+}

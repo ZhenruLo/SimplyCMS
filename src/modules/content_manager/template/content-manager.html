@@ -1,4 +1,6 @@
 {% extends 'side/side-panel.html' %}
+{% import 'input/input-share.html' as input %}
+{% import 'side/side-share.html' as side %}
 
 {% block title %}Content Manager{% endblock%}
 
@@ -32,7 +34,9 @@
 
 {% block left_panel %}
 <div id='content-manager-left-panel'>
-    {% include 'left-panel/left-panel-tab.html' %}
+    <div class='left-panel-tab-container'>
+        {% include 'left-panel/left-panel-tab.html' %}
+    </div>
 
     <div class='left-panel-context-container'>
         {% include 'left-panel/left-panel-menu-context.html' %}

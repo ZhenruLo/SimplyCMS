@@ -49,11 +49,6 @@ function openContent(id) {
     };
 };
 
-function openTab(id) {
-    $('.left-panel-tab').removeClass('selected-tab');
-    $(id).addClass('selected-tab');
-};
-
 function openContentBuilder(selectedContentRow) {
     $('.center-content-container').removeClass('selected-body');
 

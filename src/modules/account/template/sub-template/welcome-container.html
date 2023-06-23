@@ -1,18 +1,16 @@
+{% import 'input/input-share.html' as input %}
+
 <div class='login-container'>
     <div class='inner-login-container'>
         <span class='welcome-text login-title' id='login-text'>USER LOGIN</span>
         <form autocomplete='off' class='login-form' id='login-form' method='POST'>
         <input type='hidden' name='csrf_token' value='{{ csrf_token() }}'>
-        
-        <fieldset class ='login-fieldset'>
-            <input class='form-textbox' id='username-textbox' type='text' name='username' placeholder='Username' required>
-        </fieldset>
-        
-        <fieldset class='login-fieldset'>
-            <input class='form-textbox' id='password-textbox' type='password' name='password' placeholder='Password' required>
-        </fieldset>
 
-        <input class='submit-btn' id='login-btn' type='submit' name='Log In'>
+            {{ input.text_input_with_bottom_border('username-textbox', 'text', 'username', 'Username') }}
+
+            {{ input.text_input_with_bottom_border('password-textbox', 'password', 'password', 'Password') }}
+
+            {{ input.submit_input('login-btn', 'Log In') }}
         </form>
     </div>
 </div>

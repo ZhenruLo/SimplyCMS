@@ -7,3 +7,17 @@
         <span class='side-tooltip'>{{ tooltip_text }}</span>
     </li>
 {%- endmacro %}
+
+{% macro create_custom_tab(tab_id, icon_class, icon_id, tab_text, is_selected=false) -%}
+    {% if is_selected %}
+        {% set selected='selected-tab' %}
+    {% else %}
+        {% set selected='' %}
+    {% endif %}
+
+    <button class='left-panel-tab {{ selected }}' id='{{ tab_id }}'>
+        <i class='tab-icon {{ icon_class }}' id='{{ icon_id }}'></i>
+        <span class='tab-text'>{{ tab_text }}</span>
+        <div class='selected-dot'></div>
+    </button>
+{%- endmacro %}

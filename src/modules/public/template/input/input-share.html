@@ -1,0 +1,9 @@
+{% macro submit_input(submit_id, submit_value, submit_class='') -%}
+    <input class='submit-btn {{ submit_class }}' id='{{ submit_id }}' type='submit' name='submit', value='{{ submit_value}}'>
+{%- endmacro %}
+
+{% macro text_input_with_bottom_border(text_id, input_type, text_name, text_placeholder) -%}
+    <fieldset class='custom-fieldset'>
+        <input class='custom-textbox' id='{{ text_id }}' type='{{ input_type }}' name='{{ text_name }}' placeholder='{{ text_placeholder }}' required>
+    </fieldset>
+{%- endmacro %}
