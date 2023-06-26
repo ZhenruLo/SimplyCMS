@@ -1,0 +1,35 @@
+.inner-header-bundle {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: inherit;
+}
+
+.header-text-anchor {
+    display: flex;
+    font-size: 1.5rem;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: inherit;
+    padding: 1rem;
+    text-decoration: none;
+    color: rgb(117, 19, 208);
+    transition: all 0.1s ease;
+}
+
+.header-text-anchor:hover {
+    border-bottom: 0.5rem solid rgb(179, 0, 255);
+}
+
+.header-anchor-icon {
+    font-size: 4rem;
+}
+
+.header-anchor-text {
+    user-select: none;
+    margin-left: 0.5rem;
+    color: rgb(57, 0, 128);
+    font-family: 'Chakra Petch', sans-serif;
+}

@@ -8,6 +8,18 @@
     </li>
 {%- endmacro %}
 
+{% macro create_left_panel_container(left_panel_content_container_id, is_selected=false) -%}
+    {% if is_selected %}
+        {% set selected='selected-panel' %}
+    {% else %}
+        {% set selected='' %}
+    {% endif %}
+
+    <div class='left-panel-content-container {{ selected }}' id='{{ left_panel_content_container_id }}'>
+        {{ caller('content') }}
+    </div>
+{%- endmacro %}
+
 {% macro create_custom_tab(tab_id, icon_class, icon_id, tab_text, is_selected=false) -%}
     {% if is_selected %}
         {% set selected='selected-tab' %}

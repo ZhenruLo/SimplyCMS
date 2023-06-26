@@ -57,7 +57,7 @@
     flex-direction: row;
     align-items: center;
     margin-top: 0.5rem;
-    width: inherit;
+    width: 30rem;
 }
 
 .under-input-text {

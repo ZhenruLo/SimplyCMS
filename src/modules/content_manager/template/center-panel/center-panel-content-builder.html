@@ -1,5 +1,5 @@
-<div class='center-body-container' id='content-builder-container'>
-    <div class='center-content-header-container' id='content-page-header'>
+{% call(content) center.create_center_header('center-content-builder', false) %}
+    {% if content == 'header' %}  
         <div class='inner-header-title'>
             <div class='combined-icon'>
                 <div id='table-icon'>
@@ -23,9 +23,9 @@
                 </div>
             </div>
         </div>
-    </div>
-    
-    <div class='center-content-body-container'>
+    {% endif %}
+
+    {% if content == 'body' %}
         <div class='inner-body-container'>
             <input class='input-text-box' type='text' name='int_name' placeholder='int'>
             <input class='input-text-box' type='text' name='varchar_name' placeholder='character varying'>
@@ -34,5 +34,5 @@
             <input class='input-text-box' type='text' name='bool_name' placeholder='bool'>
             <input class='submit-input' type='submit' name='submit' value='content_submit'>
         </div>
-    </div>
-</div>
+    {% endif %}
+{% endcall %}

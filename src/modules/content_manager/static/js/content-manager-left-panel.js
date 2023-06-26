@@ -62,8 +62,8 @@ function createContentItem(tableName, contentUUID, selectedRow) {
 };
 
 function processPaginationButton(leftPanelCurrentPage, maxPage) {
-    let backwardAnchor =  $('.pagination-anchor#backward-anchor')
-    let forwardAnchor =  $('.pagination-anchor#forward-anchor')
+    let backwardAnchor =  $('.pagination-anchor.backward-anchor')
+    let forwardAnchor =  $('.pagination-anchor.forward-anchor')
 
     if (maxPage <= 1){
         $('.left-panel-content-pagination').css('display', 'none');
@@ -178,9 +178,6 @@ $( function() {
     $('#left-panel-history').on('panelSelect', function() {
     });
 
-    $('.left-panel-menu-row').toggleClass('start');
-    $('.left-panel-tab-container').toggleClass('start');
-
     $('.left-panel-inner-row').on('click', function(event) {
         event.preventDefault();
         let closestRow = $(this).closest('.left-panel-menu-row');
@@ -195,13 +192,13 @@ $( function() {
         refreshContentBuilderPage();
     });
 
-    $('.pagination-anchor#forward-anchor').on('click', function(event) {
+    $('.pagination-anchor.forward-anchor').on('click', function(event) {
         event.preventDefault();
         leftPanelCurrentPage += 1;
         refreshContentItem(leftPanelCurrentPage, null);
     });
 
-    $('.pagination-anchor#backward-anchor').on('click', function(event) {
+    $('.pagination-anchor.backward-anchor').on('click', function(event) {
         event.preventDefault();
         leftPanelCurrentPage -= 1;
         refreshContentItem(leftPanelCurrentPage, null);

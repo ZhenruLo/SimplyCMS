@@ -1,79 +1,65 @@
-{% extends 'side/side-panel.html' %}
-{% import 'input/input-share.html' as input %}
-{% import 'side/side-share.html' as side %}
+{% extends 'side/side-design/side-tab-design.html' %}
+{% import 'center/center-share.html' as center %}
+{% import 'center/header/center-header-share.html' as center_header %}
 
 {% block title %}Content Manager{% endblock%}
 
 {% block static %}
-{{ super() }}
-<link rel='stylesheet' href="{{ url_for('content_manager_bp.static', filename='css/left-panel/content-manager-menu.css') }}"/>
-<link rel='stylesheet' href="{{ url_for('content_manager_bp.static', filename='css/left-panel/content-manager-left-panel-header.css') }}"/>
-<link rel='stylesheet' href="{{ url_for('content_manager_bp.static', filename='css/left-panel/content-manager-left-panel-body.css') }}"/>
-<link rel='stylesheet' href="{{ url_for('content_manager_bp.static', filename='css/center-body/content-manager-center-header.css') }}"/>
-<link rel='stylesheet' href="{{ url_for('content_manager_bp.static', filename='css/center-body/content-manager-inner-body.css') }}"/>
-<link rel='stylesheet' href="{{ url_for('content_manager_bp.static', filename='css/center-body/content-manager-center-body.css') }}"/>
-<link rel='stylesheet' href="{{ url_for('content_manager_bp.static', filename='css/center-body/content-manager-body.css') }}"/>
-<link rel='stylesheet' href="{{ url_for('content_manager_bp.static', filename='css/center-body/content-manager-combined-icon.css') }}"/>
-<link rel='stylesheet' href="{{ url_for('content_manager_bp.static', filename='css/center-body/content-manager-table.css') }}"/>
-<link rel='stylesheet' href="{{ url_for('content_manager_bp.static', filename='css/pop-up/content-manager-pop-up.css') }}"/>
+    {{ super() }}
+    <link rel='stylesheet' href="{{ url_for('content_manager_bp.static', filename='css/left-panel/content-manager-menu.css') }}"/>
+    <link rel='stylesheet' href="{{ url_for('content_manager_bp.static', filename='css/left-panel/content-manager-left-panel-header.css') }}"/>
+    <link rel='stylesheet' href="{{ url_for('content_manager_bp.static', filename='css/left-panel/content-manager-left-panel-body.css') }}"/>
+    <link rel='stylesheet' href="{{ url_for('content_manager_bp.static', filename='css/center-body/content-manager-center-header.css') }}"/>
+    <link rel='stylesheet' href="{{ url_for('content_manager_bp.static', filename='css/center-body/content-manager-inner-body.css') }}"/>
+    <link rel='stylesheet' href="{{ url_for('content_manager_bp.static', filename='css/center-body/content-manager-combined-icon.css') }}"/>
+    <link rel='stylesheet' href="{{ url_for('content_manager_bp.static', filename='css/center-body/content-manager-table.css') }}"/>
+    <link rel='stylesheet' href="{{ url_for('content_manager_bp.static', filename='css/pop-up/content-manager-pop-up.css') }}"/>
 {% endblock static %}
 
 {% block pop_up %}
-<div class='content-manager-pop-up' id='create-content-pop-up'>
-    {% include 'pop-up/content-creator-pop-up.html' %}
-</div>
+    <div class='content-manager-pop-up' id='create-content-pop-up'>
+        {% include 'pop-up/content-creator-pop-up.html' %}
+    </div>
 
-<div class='content-manager-pop-up' id='update-display-pop-up'>
-    {% include 'pop-up/display-update-pop-up.html' %}
-</div>
+    <div class='content-manager-pop-up' id='update-display-pop-up'>
+        {% include 'pop-up/display-update-pop-up.html' %}
+    </div>
 
-<div class='content-manager-pop-up' id='description-pop-up'>
-    {% include 'pop-up/description-pop-up.html' %}
-</div>
+    <div class='content-manager-pop-up' id='description-pop-up'>
+        {% include 'pop-up/description-pop-up.html' %}
+    </div>
 {% endblock pop_up %}
 
-{% block left_panel %}
-<div id='content-manager-left-panel'>
-    <div class='left-panel-tab-container'>
-        {% include 'left-panel/left-panel-tab.html' %}
-    </div>
+{% block left_panel_tab %}
+    {% include 'left-panel/left-panel-tab.html' %}
+{% endblock left_panel_tab %}
 
-    <div class='left-panel-context-container'>
-        {% include 'left-panel/left-panel-menu-context.html' %}
-    
-        {% include 'left-panel/left-panel-content-context.html' %}
+{% block left_panel_context %}
+    {% include 'left-panel/left-panel-menu-context.html' %}
         
-        {% include 'left-panel/left-panel-info-context.html' %}
-        
-        {% include 'left-panel/left-panel-history-context.html' %}
-    </div>
-</div>
-{% endblock left_panel %}
+    {% include 'left-panel/left-panel-content-context.html' %}
+
+    {% include 'left-panel/left-panel-info-context.html' %}
+
+    {% include 'left-panel/left-panel-history-context.html' %}
+{% endblock left_panel_context %}
 
 {% block center_body_content %}
-<div class='center-content-container selected-body' id='center-create-content'>
     {% include 'center-panel/center-panel-create-content.html' %}
-</div>
 
-<div class='center-content-container' id='center-custom-field'>
     {% include 'center-panel/center-panel-create-field.html' %}
-</div>
 
-<div class='center-content-container' id='center-create-page'>
     {% include 'center-panel/center-panel-create-page.html' %}
-</div>
 
-<div class='center-content-container' id='center-content-builder'>
     {% include 'center-panel/center-panel-content-builder.html' %}
-</div>
 {% endblock center_body_content %}
 
 {% block script %}
-{{ super() }}
-<script src="{{ url_for('content_manager_bp.static', filename='js/content-manager.js') }}"></script>
-<script src="{{ url_for('content_manager_bp.static', filename='js/content-manager-left-panel.js') }}"></script>
-<script src="{{ url_for('content_manager_bp.static', filename='js/content-manager-center-header.js') }}"></script>
-<script src="{{ url_for('content_manager_bp.static', filename='js/content-manager-center-body.js') }}"></script>
-<script src="{{ url_for('content_manager_bp.static', filename='js/content-manager-pop-up.js') }}"></script>
-<script src="{{ url_for('content_manager_bp.static', filename='js/content-manager-content-table.js') }}"></script>
+    {{ super() }}
+    <script src="{{ url_for('content_manager_bp.static', filename='js/content-manager.js') }}"></script>
+    <script src="{{ url_for('content_manager_bp.static', filename='js/content-manager-left-panel.js') }}"></script>
+    <script src="{{ url_for('content_manager_bp.static', filename='js/content-manager-center-header.js') }}"></script>
+    <script src="{{ url_for('content_manager_bp.static', filename='js/content-manager-center-body.js') }}"></script>
+    <script src="{{ url_for('content_manager_bp.static', filename='js/content-manager-pop-up.js') }}"></script>
+    <script src="{{ url_for('content_manager_bp.static', filename='js/content-manager-content-table.js') }}"></script>
 {% endblock script %}

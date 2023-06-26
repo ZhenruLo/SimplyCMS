@@ -1,40 +1,42 @@
-<div class='left-panel-content-container selected-panel' id='left-panel-menu'>
-    {{ side.create_left_panel_menu_btn
-        (
-            'row-create-content',
-            '1',
-            'icon-background-content',
-            'bx bxs-layer',
-            'icon-content',
-            'Content',
-            'View all of the content created or start building a new content.',
-            true,
-        )
-    }}
-    
-    {{ side.create_left_panel_menu_btn
-        (
-            'row-custom-field',
-            '2',
-            'icon-background-field',
-            'bx bxs-customize',
-            'icon-field',
-            'Custom field',
-            'View all of the custom field created or start creating a new custom field.',
-            false,
-        )
-    }}
-    
-    {{ side.create_left_panel_menu_btn
-        (
-            'row-create-page',
-            '3',
-            'icon-background-page',
-            'bx bxs-book-content',
-            'icon-page',
-            'Custom page',
-            'View all of the custom page with different components.',
-            false,
-        )
-    }}
-</div>
+{% call(content) side.create_left_panel_container('left-panel-menu', true) %}
+    {% if content == 'content' %}
+        {{ side.create_left_panel_menu_btn
+            (
+                'row-create-content',
+                '1',
+                'icon-background-content',
+                'bx bxs-layer',
+                'icon-content',
+                'Content',
+                'View all of the content created or start building a new content.',
+                true,
+            )
+        }}
+        
+        {{ side.create_left_panel_menu_btn
+            (
+                'row-custom-field',
+                '2',
+                'icon-background-field',
+                'bx bxs-customize',
+                'icon-field',
+                'Custom field',
+                'View all of the custom field created or start creating a new custom field.',
+                false,
+            )
+        }}
+        
+        {{ side.create_left_panel_menu_btn
+            (
+                'row-create-page',
+                '3',
+                'icon-background-page',
+                'bx bxs-book-content',
+                'icon-page',
+                'Custom page',
+                'View all of the custom page with different components.',
+                false,
+            )
+        }}
+    {% endif %}
+{% endcall %}

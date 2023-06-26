@@ -23,6 +23,12 @@ table.dataTable td {
     border-bottom: 0.1rem solid rgba(231, 231, 231, 0.8);
 }
 
+.dataTables_empty {
+    font-family: 'Chakra Petch', sans-serif !important;
+    color: rgb(120, 120, 120) !important;
+    font-size: 1.4rem !important;
+}
+
 .dataTables_scrollHead {
     background-color: rgba(246, 231, 255, 0.15);
 }
@@ -108,8 +114,8 @@ div.dataTables_wrapper div.dataTables_filter input:focus {
 
 .dataTables_info {
     font-family: 'Roboto', sans-serif;
-    color: black;
-    font-size: 1rem;
+    color: rgb(93, 93, 93);
+    font-size: 0.9rem;
     user-select: none;
 }
 

@@ -44,6 +44,9 @@ function openPanel() {
 
 $(function() {
     $('#database-anchor').removeClass('current-anchor');
+    
+    $('.left-panel-menu-row').toggleClass('start');
+    $('.left-panel-tab-container').toggleClass('start');
 
     $('#collapse-menu-btn').on('click', function() {
         $('.side-inner-container').toggleClass('expand');

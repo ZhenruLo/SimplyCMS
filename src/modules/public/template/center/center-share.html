@@ -1,0 +1,17 @@
+{% macro create_center_header(center_body_container_id, is_selected=false) -%}
+    {% if is_selected %}
+        {% set selected='selected-body' %}
+    {% else %}
+        {% set selected='' %}
+    {% endif %}
+
+    <div class='center-content-container {{ selected }}' id='{{ center_body_container_id }}'>
+        <div class='center-content-header-container'>
+            {{ caller('header') }}
+        </div>
+
+        <div class='center-content-body-container'>
+            {{ caller('body') }}
+        </div>
+    </div>
+{%- endmacro %}
