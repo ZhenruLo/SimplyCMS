@@ -94,8 +94,9 @@ $( function() {
         let selectedContentUUID = row.data().content_uuid;
         let selectedContentPage = Math.floor(tr.find('.sorting_1').text()/20) + 1;
 
-        openTab('#content-tab');
-        openMenu('content-tab');
+        openTab('#content-type-tab');
+        // openPanel('content-type-tab');
+        openPanel();
         refreshContentItem(selectedContentPage, selectedContentUUID);
     });
 });

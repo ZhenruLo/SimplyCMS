@@ -21,3 +21,24 @@
         <div class='selected-dot'></div>
     </button>
 {%- endmacro %}
+
+{% macro create_left_panel_menu_btn(row_id, row_nth, icon_bg_id, icon_class, icon_id, row_title, row_description, is_selected=false) -%}
+    {% if is_selected %}
+        {% set selected='selected-row' %}
+    {% else %}
+        {% set selected='' %}
+    {% endif %}
+
+    <div class='left-panel-menu-row {{ selected }}' id='{{ row_id }}' style='--t: {{ row_nth }}'>
+        <div class='left-panel-inner-row'>
+            <div class='left-panel-icon-background' id='{{ icon_bg_id }}'> 
+                <i class='left-panel-icon {{ icon_class }}' id='{{ icon_id }}'></i>
+            </div>
+            <div class='left-panel-row-text'>
+                <span class='row-text-title'>{{ row_title }}</span>
+                <span class='row-text-description'>{{ row_description }}</span>
+            </div>
+            <div class='current-bar'></div>
+        </div>
+    </div>
+{%- endmacro %}
