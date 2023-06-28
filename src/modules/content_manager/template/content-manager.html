@@ -17,17 +17,7 @@
 {% endblock static %}
 
 {% block pop_up %}
-    <div class='content-manager-pop-up' id='create-content-pop-up'>
-        {% include 'pop-up/content-creator-pop-up.html' %}
-    </div>
-
-    <div class='content-manager-pop-up' id='update-display-pop-up'>
-        {% include 'pop-up/display-update-pop-up.html' %}
-    </div>
-
-    <div class='content-manager-pop-up' id='description-pop-up'>
-        {% include 'pop-up/description-pop-up.html' %}
-    </div>
+    {% include 'pop-up/content-pop-up.html' %}
 {% endblock pop_up %}
 
 {% block left_panel_tab %}

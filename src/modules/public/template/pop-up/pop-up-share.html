@@ -1,0 +1,18 @@
+{% macro create_pop_up(pop_up_id, header_text, middle_text) -%}
+    <div class='pop-up-base-body' id='{{ pop_up_id }}'>
+        <div class='pop-up-header'>
+            <span class='pop-up-header-text'>{{ header_text }}</span>
+            {{ caller('header') }}
+        </div>
+        <div class='pop-up-middle'>
+            <span class='pop-up-middle-text'>{{ middle_text }}</span>
+            {{ caller('middle') }}
+        </div>
+        <div class='pop-up-body'>
+            {{ caller('body') }}
+        </div>
+        <div class='pop-up-footer'>
+            {{ caller('footer') }}
+        </div>
+    </div>
+{%- endmacro %}

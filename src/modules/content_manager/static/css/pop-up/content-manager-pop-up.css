@@ -1,17 +1,4 @@
-.content-manager-pop-up {
-    font-family: 'Roboto', sans-serif;
-    display: none;
-    flex-direction: column;
-    align-items: flex-start;
-    width: inherit;
-    height: fit-content;
-}
-
-.content-manager-pop-up.show {
-    display: flex;
-}
-
-.content-manager-pop-up#description-pop-up {
+.pop-up-base-body#description-pop-up {
     min-height: fit-content;
 }
 
@@ -27,13 +14,6 @@
     justify-content: flex-start;
     width: inherit;
     flex-wrap: wrap;
-}
-
-.content-creator-form-footer {
-    display: flex;
-    justify-content: flex-end;
-    width: inherit;
-    margin-top: 2rem;
 }
 
 .pop-up-submit-btn{

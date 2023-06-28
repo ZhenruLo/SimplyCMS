@@ -1,5 +1,5 @@
-{% macro create_submit_input(submit_id, submit_value, submit_class='') -%}
-    <input class='submit-btn {{ submit_class }}' id='{{ submit_id }}' type='submit' name='submit', value='{{ submit_value}}'>
+{% macro create_submit_input(form_id, submit_id, submit_value, submit_class='') -%}
+    <input form='{{ form_id }}' class='submit-btn {{ submit_class }}' id='{{ submit_id }}' type='submit' name='submit', value='{{ submit_value }}'>
 {%- endmacro %}
 
 {% macro create_text_input_bottom_border(text_id, input_type, text_name, text_placeholder) -%}

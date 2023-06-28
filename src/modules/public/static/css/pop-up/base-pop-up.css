@@ -17,8 +17,10 @@
 }
 
 .pop-up-base-body {
-    display: flex;
+    display: none;
     flex-direction: column;
+    align-items: flex-start;
+    font-family: 'Roboto', sans-serif;
     width: 70rem;
     height: fit-content;
 }
@@ -27,6 +29,10 @@
     --horizontal: -5rem;
     --isVisible: 0;
     animation: show-from-left-or-right 0.4s ease;
+}
+
+.pop-up-base-body.show {
+    display: flex;
 }
 
 .pop-up-header {
@@ -62,12 +68,20 @@
     word-wrap: break-word;
     padding: 1rem 0;
     background-color: white;
-    border-bottom-left-radius: 0.5rem;
-    border-bottom-right-radius: 0.5rem;
 }
 
 .pop-up-middle-text {
     font-size: 3.5rem;
     margin-left: 2.5rem;
     font-family: 'Roboto', sans-serif;
+}
+
+.pop-up-footer {
+    display: flex;
+    justify-content: flex-end;
+    width: inherit;
+    padding-top: 2rem;
+    background-color: white;
+    border-bottom-left-radius: 0.5rem;
+    border-bottom-right-radius: 0.5rem;
 }

@@ -2,10 +2,22 @@ function togglePopUp() {
     $('.pop-up-background').toggleClass('show');
 };
 
-function openPopUp(currentContainerClass, containerId, title, headerText) {
-    $(currentContainerClass).removeClass('show');
-    $(containerId).addClass('show');
+function openPopUp(containerId, headerText=null) {
+    togglePopUp();
 
-    $('.pop-up-header-text').text(title);
-    $('.pop-up-middle-text').text(headerText);
+    $(containerId).addClass('show');
+    
+    if (headerText) {
+        $('.pop-up-base-body.show .pop-up-middle-text').text(headerText);
+    };
 }
+
+$(function() {
+    $('.pop-up-background').on('mousedown', function(event){
+        if (event.target !== event.currentTarget) {
+            return
+        };
+        togglePopUp();
+        $('.pop-up-base-body').removeClass('show');
+    });
+});

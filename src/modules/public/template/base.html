@@ -32,6 +32,9 @@
         <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css' integrity='sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ==' crossorigin='anonymous' referrerpolicy='no-referrer' />
     </head>
     <body>
+        {% import 'input/input-share.html' as input %}
+        {% import 'pop-up/pop-up-share.html' as popup%}
+        
         {% include 'pop-up/modal-box.html' %}
 
         <div class='page-loader'>
@@ -45,17 +48,7 @@
         </div>
 
         <div class='pop-up-background'>
-            <div class='pop-up-base-body'>
-                <div class='pop-up-header'>
-                    <span class='pop-up-header-text'></span>
-                </div>
-                <div class='pop-up-middle'>
-                    <span class='pop-up-middle-text'></span>
-                </div>
-                <div class='pop-up-body'>
-                    {% block pop_up %}{% endblock pop_up %} 
-                </div>
-            </div>
+            {% block pop_up %}{% endblock pop_up %}
         </div>
 
         <div id='side'>
