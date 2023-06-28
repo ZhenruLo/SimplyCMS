@@ -13,7 +13,7 @@
     user-select: none;
 }
 
-fieldset.custom-fieldset {
+fieldset.custom-fieldset-1 {
     display: flex;
     align-items: flex-end;
     height: 5rem;   
@@ -27,7 +27,7 @@ fieldset.custom-fieldset {
     transition-duration: 0.4s;
 }
 
-fieldset.custom-fieldset:hover {
+fieldset.custom-fieldset-1:hover {
     border-top: none;
     border-left: none;
     border-right: none;
@@ -52,4 +52,57 @@ fieldset.custom-fieldset:hover {
 
 .submit-btn:active {
     background-color: rgb(228, 228, 255);
+}
+
+.custom-fieldset-2 {
+    display: flex;
+    flex-direction: column;
+    border-style: none;
+    user-select: none;
+    margin-left: 1.5rem;
+    width: fit-content;
+}
+
+.custom-legend {
+    font-weight: 600;
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+    color: black;
+}
+
+.custom-textarea {
+    width: 65rem;
+    height: 10rem;
+    border-radius: 0.5rem;
+    border-style: none;
+    border: 1px solid rgb(190, 190, 190);
+    resize: none;
+    text-decoration: none !important;
+}
+
+.under-input-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-top: 0.5rem;
+    width: 30rem;
+}
+
+.under-input-text {
+    width: inherit;
+    font-size: 1.1rem;
+    color: gray;
+    line-height: 1.5rem;
+}
+
+.custom-text-input {
+    width: 30rem;
+    height: 3rem;
+    border-radius: 0.5rem;
+    border-style: none;
+    border: 1px solid rgb(190, 190, 190);
+}
+
+.custom-text-input:focus {
+    outline: none;
 }
