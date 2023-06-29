@@ -6,7 +6,7 @@ from constants import Directory
 from flask_login import UserMixin
 from flask_migrate import migrate, upgrade
 from flask_sqlalchemy import SQLAlchemy
-from sqlalchemy import Column, Integer, MetaData, String, Table
+from sqlalchemy import Column, Integer, MetaData, String, Table, Boolean
 
 db = SQLAlchemy()
 
@@ -44,10 +44,17 @@ def remove_table(tablename: str):
         selected_table.drop(db.engine)
         __refresh_metadata()
 
-def update_table_content(tablename: str, column_info):
+def update_table_content(tablename: str, column_info: str, column_var_type: str):
+    if column_var_type == 'int_name':
+        column_attr = Integer
+    elif column_var_type == 'text_name':
+        column_attr = String(255)
+    else:
+        column_attr = Boolean
+        
     Table(tablename, 
           db.metadata, 
-          Column(column_info, String(255)),
+          Column(column_info, column_attr),
           extend_existing=True
           )
     migrate(Directory.GLOBAL_MIGRATE_DIR.as_posix())

@@ -1,11 +1,12 @@
 import math
 from typing import TYPE_CHECKING, Dict, List, Union
 
-from constants import RequestMethod
 from flask import request
+from werkzeug.utils import secure_filename
+
+from constants import RequestMethod
 from models import (Content, create_table, create_table_name, db, remove_table,
                     update_table_content)
-from werkzeug.utils import secure_filename
 
 from .content_manager_form import ContentManagerForm
 
@@ -171,8 +172,8 @@ def process_database() -> Dict[str, Union[bool, str, List[str]]]:
     elif request.method == RequestMethod.PUT:
         msg = 'Update database failed'
 
-        for column in request.form:
-            update_table_content('test', column)
+        for (key, value) in request.form.items():
+            update_table_content('agp120', value, key)
         
         result = True
         msg = 'Databases updated'

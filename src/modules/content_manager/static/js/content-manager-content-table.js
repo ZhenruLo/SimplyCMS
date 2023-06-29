@@ -4,6 +4,7 @@ $( function() {
         scrollCollapse: true,
         autoWidth: true,
         pageLength: 20,
+        fixedHeader: true,
         order: [[1, 'asc']],
 
         ajax: {

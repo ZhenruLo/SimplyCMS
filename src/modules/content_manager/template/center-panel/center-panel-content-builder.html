@@ -27,12 +27,43 @@
 
     {% if content == 'body' %}
         <div class='inner-body-container'>
-            <input class='input-text-box' type='text' name='int_name' placeholder='int'>
-            <input class='input-text-box' type='text' name='varchar_name' placeholder='character varying'>
-            <input class='input-text-box' type='text' name='test_name' placeholder='text'>
-            <input class='input-text-box' type='text' name='date_name' placeholder='date'>
-            <input class='input-text-box' type='text' name='bool_name' placeholder='bool'>
-            <input class='submit-input' type='submit' name='submit' value='content_submit'>
+            <div class='column-header-container'></div>
+
+            <div class='column-container'>
+                <div class='single-column-container'>
+                    <div class='column-front-part'>
+                        <i class="fa-solid fa-grip-vertical"></i>
+                    </div>
+        
+                    <div class='column-body-part'>
+                        <span class='column-body-name'>Column Text</span>
+                        <span class='column-body-type'>Long Text</span>
+                    </div>
+        
+                    <div class='column-rear-part'>
+                        <a class='column-edit' href=''>
+                            <i class="fa-solid fa-pen-to-square"></i>
+                            <span class='column-edit-text'>Edit</span>
+                        </a>
+                        <div class='column-more'>
+                            <i class='fa-solid fa-ellipsis-vertical'></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class='column-footer-container'></div>
+        </div>
+        <div class='inner-body-container' id='test-container'>
+            <form id='test-form' action='/content-manager/databases' method='PUT'>
+                <!-- <input class='input-text-box' id='test-content-uuid' type='hidden' name='content_uuid'> -->
+                <input class='input-text-box' type='text' name='int_name' placeholder='int'>
+                <input class='input-text-box' type='text' name='varchar_name' placeholder='character varying'>
+                <input class='input-text-box' type='text' name='text_name' placeholder='text'>
+                <input class='input-text-box' type='text' name='date_name' placeholder='date'>
+                <input class='input-text-box' type='text' name='bool_name' placeholder='bool'>
+                <input class='submit-input' type='submit' name='submit' value='content_submit'>
+            </form>
         </div>
     {% endif %}
 {% endcall %}

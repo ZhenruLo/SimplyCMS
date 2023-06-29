@@ -187,6 +187,10 @@ $( function() {
     });
 
     $('.left-panel-content-list').on('click', 'li.content-list-item', function() {
+        let contentUUID = $(this).find('.content-uuid').val();
+
+        $('#test-form #test-content-uuid').val(contentUUID);
+        
         selectRow(this);
         openContent();
         refreshContentBuilderPage();

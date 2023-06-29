@@ -2,8 +2,6 @@
     <div class='inner-login-container'>
         <span class='welcome-text login-title' id='login-text'>USER LOGIN</span>
         <form autocomplete='off' class='login-form' id='login-form' method='POST'>
-            <input type='hidden' name='csrf_token' value='{{ csrf_token() }}'>
-
             {{ input.create_text_input_bottom_border('username-textbox', 'text', 'username', 'Username') }}
 
             {{ input.create_text_input_bottom_border('password-textbox', 'password', 'password', 'Password') }}
