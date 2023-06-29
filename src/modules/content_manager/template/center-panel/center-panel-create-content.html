@@ -1,20 +1,21 @@
-<div class='center-body-container' id='content-manager-form'>
-    <div class='center-content-header-container'>
-        <div class='inner-header-bundle'>
-            <a class='header-text-anchor' id='create-content-anchor' href=''>
-                <i class='header-anchor-icon bx bxs-layer-plus'></i>
-                <span class='header-anchor-text' id='inner-body-empty-text'>Create new content</span>
-            </a>
-        </div>
-    </div>
-    
-    <div class='center-content-body-container'>
-        <div class='inner-body-container'>
+{% call(content) center.create_center_header('center-create-content', true) %}
+    {% if content == 'header' %}  
+        {{ center_header.create_center_header_icon
+            (
+                'create-content-anchor',
+                'bx bxs-layer-plus',
+                'Create new content',
+                '',
+            )
+        }}
+    {% endif %}
 
+    {% if content == 'body' %}
+        <div class='inner-body-container'>
             <div class='inner-body-table-container'>
                 <table class='cms-table' id='content-table'>
                 </table>
             </div>
         </div>
-    </div>
-</div>
+    {% endif %}
+{% endcall %}

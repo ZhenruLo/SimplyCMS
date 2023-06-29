@@ -1,0 +1,43 @@
+{% macro create_submit_input(form_id, submit_id, submit_value, submit_class='') -%}
+    <input form='{{ form_id }}' class='submit-btn {{ submit_class }}' id='{{ submit_id }}' type='submit' name='submit', value='{{ submit_value }}'>
+{%- endmacro %}
+
+{% macro create_text_input_bottom_border(text_id, input_type, text_name, text_placeholder) -%}
+    <fieldset class='custom-fieldset-1'>
+        <input class='custom-textbox' id='{{ text_id }}' type='{{ input_type }}' name='{{ text_name }}' placeholder='{{ text_placeholder }}' required>
+    </fieldset>
+{%- endmacro %}
+
+{% macro create_pop_up_text(input_id, input_legend, input_name, input_text) -%}
+    <fieldset class='custom-fieldset-2'>
+        <legend class='custom-legend'>{{ input_legend }}</legend>
+        <input class='custom-text-input' id='{{ input_id }}' type='text' name='{{ input_name }}' autocomplete='off' required>
+
+        <div class='under-input-container'>
+            <span class='under-input-text'>{{ input_text }}</span>
+        </div>
+    </fieldset>
+{%- endmacro %}
+
+{% macro create_pop_up_textarea(input_id, input_legend, input_name, max_length, input_text) -%}
+    <fieldset class='custom-fieldset-2'>
+        <legend class='custom-legend'>{{ input_legend }}</legend>
+        <textarea class='custom-textarea' id='{{ input_id }}' name='{{ input_name }}' autocomplete='off' maxlength='{{ max_length }}' required></textarea>
+
+        <div class='under-input-container'>
+            <span class='under-input-text'>{{ input_text }}</span>
+        </div>
+    </fieldset>
+{%- endmacro %}
+
+{% macro create_pop_up_cb_text(input_id, input_legend, input_name, cb_id, cb_name, cb_text) -%}
+    <fieldset class='custom-fieldset-2'>
+        <legend class='custom-legend'>{{ input_legend }}</legend>
+        <input class='custom-text-input' id='{{ input_id }}' type='text' name='{{ input_name }}' autocomplete='off' required>
+
+        <div class='under-input-container'>
+            <input id='{{ cb_id }}' type='checkbox' name='{{ cb_name }}' disabled>
+            <label for='{{ cb_id }}'>{{ cb_text }}</label>
+        </div>
+    </fieldset>
+{%- endmacro %}

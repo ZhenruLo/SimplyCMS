@@ -1,0 +1,96 @@
+{% extends 'base.html' %}
+{% import 'side/side-share.html' as side %}
+
+{% block static %}
+    <link rel='stylesheet' href='static/css/side/side-base.css'/>
+    <link rel='stylesheet' href='static/css/side/tab/side-tab.css'/>
+    <link rel='stylesheet' href='static/css/page/scroll-bar.css'/>
+    <link rel='stylesheet' href='static/css/pop-up/dropdown.css'/>
+{% endblock static %}
+
+{% block side %}
+    <div class='side-inner-container'>
+        <div class='side-header-container'>
+            <a id='home-anchor' href='/home'>
+                <span class='logo-text'>C</span>
+                <span class='header-text'>CMSystem</span>
+            </a>
+            <i class='side-anchor-icon fa-solid fa-bars' id='collapse-menu-btn'></i>
+        </div>
+
+        <div class='side-content-container'>
+            <div class='side-menu-group' id='side-content'>
+                <ul class='side-menu-list'>
+                    {{ side.create_side_menu_list
+                        (
+                            'database-anchor', 
+                            '/database', 
+                            'fa-solid fa-layer-group', 
+                            'Database', 
+                            'Database',
+                        ) 
+                    }}
+                </ul>
+            </div>
+
+            <div class='side-menu-group' id='side-plugin'>
+                <ul class='side-menu-list'>
+                    {{ side.create_side_menu_list
+                        (
+                            'content-manager-anchor', 
+                            '/content-manager', 
+                            'fa-solid fa-hammer', 
+                            'Content manager', 
+                            'Content manager',
+                        ) 
+                    }}
+
+                    {{ side.create_side_menu_list
+                        (
+                            'media-anchor', 
+                            '', 
+                            'fa-solid fa-photo-film', 
+                            'Media', 
+                            'Media',
+                        ) 
+                    }}
+                </ul>
+            </div>
+
+            <div class='side-menu-group' id='side-administration'>
+                <ul class='side-menu-list'>
+                    {{ side.create_side_menu_list
+                        (
+                            'dashboard-anchor', 
+                            '', 
+                            'fa-solid fa-chart-pie', 
+                            'Dashboard', 
+                            'Dashboard',
+                        ) 
+                    }}
+                </ul>
+            </div>
+
+            <div class='side-menu-group' id='side-logout'>
+                <ul class='side-menu-list'>
+                    <li class='side-li'>
+                        <a role="button" class='side-anchor dropdown-button' id='logout-anchor'>
+                            <i class="side-anchor-icon fa-solid fa-user"></i>
+                            <span class='side-anchor-text'></span>
+                        </a>
+                        <span class='side-tooltip'>Profile</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+{% endblock side %}
+
+{% block content %}
+    {% include 'pop-up/dropdown.html' %}
+{% endblock content %}
+
+{% block script %}
+    <script src='static/js/side/side.js'></script>
+    <script src='static/js/pop-up/dropdown.js'></script>
+{% endblock script %}

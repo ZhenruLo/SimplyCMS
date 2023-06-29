@@ -1,40 +1,42 @@
-<div class='left-panel-content-container selected-panel' id='left-panel-menu'>
-    <div class='left-panel-menu-row selected-row' id='row-create-content' style='--t:1'>
-        <div class='left-panel-inner-row'>
-            <div class='left-panel-icon-background' id='icon-background-content'> 
-                <i class='left-panel-icon bx bxs-layer' id='icon-content'></i>
-            </div>
-            <div class='left-panel-row-text'>
-                <span class='row-text-title'>Content</span>
-                <span class='row-text-description'>View all of the content created or start building a new content.</span>
-            </div>
-            <div class='current-bar'></div>
-        </div>
-    </div>
-    
-    <div class='left-panel-menu-row' id='row-custom-field' style='--t:2'>
-        <div class='left-panel-inner-row'>
-            <div class='left-panel-icon-background' id='icon-background-field'>
-                <i class='left-panel-icon bx bxs-customize' id='icon-field'></i>
-            </div>
-            <div class='left-panel-row-text'>
-                <span class='row-text-title'>Custom field</span>
-                <span class='row-text-description'>View all of the custom field created or start creating a new custom field.</span>
-            </div>
-            <div class='current-bar'></div>
-        </div>
-    </div>
-
-    <div class='left-panel-menu-row' id='row-create-page' style='--t:3'>
-        <div class='left-panel-inner-row'>
-            <div class='left-panel-icon-background' id='icon-background-page'>
-                <i class='left-panel-icon bx bxs-book-content' id='icon-page'></i>
-            </div>
-            <div class='left-panel-row-text'>
-                <span class='row-text-title'>Custom page</span>
-                <span class='row-text-description'>View all of the custom page with different components.</span>
-            </div>
-            <div class='current-bar'></div>
-        </div>
-    </div>
-</div>
+{% call(content) side.create_left_panel_container('left-panel-menu', true) %}
+    {% if content == 'content' %}
+        {{ side.create_left_panel_menu_btn
+            (
+                'row-create-content',
+                '1',
+                'icon-background-content',
+                'bx bxs-layer',
+                'icon-content',
+                'Content',
+                'View all of the content created or start building a new content.',
+                true,
+            )
+        }}
+        
+        {{ side.create_left_panel_menu_btn
+            (
+                'row-custom-field',
+                '2',
+                'icon-background-field',
+                'bx bxs-customize',
+                'icon-field',
+                'Custom field',
+                'View all of the custom field created or start creating a new custom field.',
+                false,
+            )
+        }}
+        
+        {{ side.create_left_panel_menu_btn
+            (
+                'row-create-page',
+                '3',
+                'icon-background-page',
+                'bx bxs-book-content',
+                'icon-page',
+                'Custom page',
+                'View all of the custom page with different components.',
+                false,
+            )
+        }}
+    {% endif %}
+{% endcall %}

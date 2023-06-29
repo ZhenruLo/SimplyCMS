@@ -1,0 +1,25 @@
+{% extends 'side/side-base.html' %}
+
+{% block static %}
+    {{ super() }}
+    <link rel='stylesheet' href='static/css/side/side-panel.css'/>
+{% endblock static %}
+
+{% block content %}
+    {{ super() }}
+    <div class='center-container'>
+        <div class='panel-container' id='left-panel-container'>
+            <div class='panel-content' id='left-panel-content'>
+                {% block left_panel %}{% endblock left_panel %}
+            </div>
+        </div>
+        <div class='content-container'>
+            {% block center_body_content %}{% endblock center_body_content %}
+        </div>
+    </div>
+{% endblock content %}
+
+{% block script %}
+    {{ super() }}
+    <script src='/static/js/side/tab/side-tab.js'></script>
+{% endblock script %}

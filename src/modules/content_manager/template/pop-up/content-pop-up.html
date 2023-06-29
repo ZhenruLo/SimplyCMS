@@ -1,0 +1,21 @@
+{% call(content) popup.create_pop_up('create-content-pop-up', 'Content initial settings', 'Settings') %}
+    {% if content == 'body' %}
+        {% include 'pop-up/content-creator-pop-up.html' %}
+    {% elif content == 'footer' %}
+        {{ input.create_submit_input('content-creator-form', 'content-creator-submit', 'Create Content', 'pop-up-submit-btn') }}
+    {% endif %}
+{% endcall %}
+
+{% call(content) popup.create_pop_up('update-display-pop-up', 'Update content settings', 'Update') %}
+    {% if content == 'body' %}
+        {% include 'pop-up/display-update-pop-up.html' %}
+    {% elif content == 'footer' %}
+            {{ input.create_submit_input('update-display-form', 'update-display-submit', 'Update Content', 'pop-up-submit-btn') }}
+    {% endif %}
+{% endcall %}
+
+{% call(content) popup.create_pop_up('description-pop-up', 'Description', 'Description') %}
+    {% if content == 'body' %}
+        {% include 'pop-up/description-pop-up.html' %}
+    {% endif %}
+{% endcall %}

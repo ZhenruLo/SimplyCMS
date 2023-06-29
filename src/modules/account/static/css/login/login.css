@@ -105,40 +105,6 @@
     width: 60%;
 }
 
-.form-textbox {
-    height: 100%;
-    width: 100%;
-    padding: 0;
-    outline: none;
-    text-align: left;
-    border: none;
-    font-size: medium;
-}
-
-.form-textbox::placeholder {
-    letter-spacing: 0.2rem;
-    font-size: 1.3rem;
-}
-
-fieldset.login-fieldset {
-    height: 5rem;   
-    width: 100%;
-    padding: 0;
-    margin: 0 auto;
-    border-top: none;
-    border-left: none;
-    border-right: none;
-    border-bottom: thin solid #ADD8E6;
-    transition-duration: 0.4s;
-}
-
-fieldset.login-fieldset:hover {
-    border-top: none;
-    border-left: none;
-    border-right: none;
-    border-bottom: thin solid #1E90FF;
-}
-
 .submit-btn#login-btn {
     width: 100%;
 }

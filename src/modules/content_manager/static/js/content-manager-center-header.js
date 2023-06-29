@@ -7,6 +7,8 @@ $( function() {
         let routeNameInput = $('#update-route-name');
         let descriptionInput = $('#update-description');
 
+        openPopUp('#update-display-pop-up', $('.content-header-text').text())
+        
         $.ajax({
             url: '/content-manager/database-content',
             method: 'GET',
@@ -40,9 +42,7 @@ $( function() {
     $('#description-info').on('click', function(event) {
         event.preventDefault();
 
-        togglePopUp();
-        openPopUp('.content-manager-pop-up', '#description-pop-up', 'Description', $('.content-header-text').text());
-        
+        openPopUp('#description-pop-up', $('.content-header-text').text());
         $('#full-description-text').text($('.header-description-text').text()); 
     });
 });

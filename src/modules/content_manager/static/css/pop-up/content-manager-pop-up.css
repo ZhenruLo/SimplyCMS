@@ -1,20 +1,3 @@
-.content-manager-pop-up {
-    font-family: 'Roboto', sans-serif;
-    display: none;
-    flex-direction: column;
-    align-items: flex-start;
-    width: inherit;
-    height: fit-content;
-}
-
-.content-manager-pop-up.show {
-    display: flex;
-}
-
-.content-manager-pop-up#description-pop-up {
-    min-height: 8rem;
-}
-
 #content-creator-form {
     display: flex;
     flex-direction: column;
@@ -29,13 +12,6 @@
     flex-wrap: wrap;
 }
 
-.content-creator-form-footer {
-    display: flex;
-    justify-content: flex-end;
-    width: inherit;
-    margin-top: 2rem;
-}
-
 .pop-up-submit-btn{
     height: 3.5rem;
     padding: 0 2rem;
@@ -43,58 +19,6 @@
     margin: 1rem 2.5rem;
 }
 
-.content-creator-fieldset {
-    display: flex;
-    flex-direction: column;
-    border-style: none;
-    user-select: none;
-    margin-left: 1.5rem;
-    width: fit-content;
-}
-
-.under-input-container {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    margin-top: 0.5rem;
-    width: inherit;
-}
-
-.under-input-text {
-    width: inherit;
-    font-size: 1.1rem;
-    color: gray;
-    line-height: 1.5rem;
-}
-
-.content-legend {
-    font-weight: 600;
-    font-size: 1.2rem;
-    margin-bottom: 1rem;
-    color: black;
-}
-
-.content-creator-input {
-    width: 30rem;
-    height: 3rem;
-    border-radius: 0.5rem;
-    border-style: none;
-    border: 1px solid rgb(190, 190, 190);
-}
-
-.content-creator-input:focus {
-    outline: none;
-}
-
-.content-creator-textarea{
-    width: 65rem;
-    height: 10rem;
-    border-radius: 0.5rem;
-    border-style: none;
-    border: 1px solid rgb(190, 190, 190);
-    resize: none;
-    text-decoration: none !important;
-}
 
 #full-description-text {
     font-size: 1.6rem;

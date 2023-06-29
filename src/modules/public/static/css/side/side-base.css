@@ -4,8 +4,11 @@
 
 #content {
     opacity: 1;
-    height: 100%;
-    transition: all 1s ease;
+    transition: all 0.2s ease;
+}
+
+.collapse#content {
+    width: calc(100% - 25rem);
 }
 
 .side-inner-container {
@@ -92,7 +95,7 @@
     border-top: 0.1rem solid white;
 }
 
-.side-menu-group#side-lougout {
+.side-menu-group#side-logout {
     margin-top: auto;
     width: 6rem;
     border-top: none;
@@ -180,12 +183,11 @@
     display: flex;
     --horizontal: -0.2rem;
     --isVisible: 0;
-    animation:show-from-left-or-right 0.5s ease;
+    animation: show-from-left-or-right 0.5s ease;
 }
 
 .side-inner-container.expand {
     width: 25rem;
-    flex: 0 0 25rem;
 }
 
 .side-inner-container.expand #home-anchor {
@@ -195,7 +197,7 @@
     animation:show-from-left-or-right 0.5s ease;
 }
 
-.side-inner-container.expand #side-lougout {
+.side-inner-container.expand #side-logout {
     width: 25rem;
 }
 

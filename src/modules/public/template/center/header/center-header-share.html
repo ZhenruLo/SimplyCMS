@@ -1,0 +1,8 @@
+{% macro create_center_header_icon(anchor_id, icon_class, icon_text, anchor_href='') -%}
+    <div class='inner-header-bundle'>
+        <a class='header-text-anchor' id='{{ anchor_id }}' href='{{ anchor_href }}'>
+            <i class='header-anchor-icon {{ icon_class }}'></i>
+            <span class='header-anchor-text'>{{ icon_text }}</span>
+        </a>
+    </div>
+{%- endmacro %}

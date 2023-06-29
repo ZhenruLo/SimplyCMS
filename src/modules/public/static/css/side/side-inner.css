@@ -1,0 +1,35 @@
+.left-panel-inner-container {
+    display: flex;
+    flex-direction: column;
+    height: inherit;
+}
+
+.left-panel-tab-container {
+    display: flex;
+    height: 9.5rem;
+    min-height: 9.5rem;
+    flex-direction: row;
+    justify-content: center;
+    background-color: white;
+    box-shadow: 0 0 0.3rem 0.1rem rgba(211, 211, 211, 0.65);
+    clip-path: inset(0 0 -0.3rem 0);
+}
+
+.left-panel-tab-container.start {
+    animation: opacity-animation 0.5s ease;
+}
+
+.left-panel-context-container {
+    overflow: auto;
+}
+
+.left-panel-content-container {
+    display: none;
+    flex-direction: column;
+    height: 100%;
+}
+
+.left-panel-content-container.selected-panel {
+    display: flex;
+    animation: opacity-animation 0.5s ease;
+}

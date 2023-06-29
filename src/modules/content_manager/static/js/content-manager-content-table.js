@@ -2,7 +2,7 @@ $( function() {
     var table = $('#content-table').DataTable({
         scrollY: '63rem',
         scrollCollapse: true,
-        // autoWidth: true,
+        autoWidth: true,
         pageLength: 20,
         order: [[1, 'asc']],
 
@@ -94,8 +94,9 @@ $( function() {
         let selectedContentUUID = row.data().content_uuid;
         let selectedContentPage = Math.floor(tr.find('.sorting_1').text()/20) + 1;
 
-        openTab('#content-tab');
-        openMenu('content-tab');
+        openTab('#content-type-tab');
+        // openPanel('content-type-tab');
+        openPanel();
         refreshContentItem(selectedContentPage, selectedContentUUID);
     });
 });
