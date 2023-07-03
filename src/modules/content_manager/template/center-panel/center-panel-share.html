@@ -1,0 +1,29 @@
+{% macro create_column(name_text, type_text) -%}
+    <div class='single-column-container'>
+        <div class='column-front-part'>
+            <i class="fa-solid fa-grip-vertical"></i>
+        </div>
+
+        <div class='column-body-part'>
+            <div class='column-part column-body-icon'>
+                {{ caller('column_icon') }}
+            </div>
+            <div class='column-part column-body-name'>
+                <span class='column-body-name-text'>{{ name_text }}</span>
+            </div>
+            <div class='column-part column-body-type'>
+                <span class='column-body-type-text'>{{ type_text }}</span>
+            </div>
+        </div>
+
+        <div class='column-rear-part'>
+            <a class='column-part column-edit' href=''>
+                <i class="fa-solid fa-pen-to-square"></i>
+                <span class='column-edit-text'>Edit</span>
+            </a>
+            <div class='column-part column-more'>
+                <i class='fa-solid fa-ellipsis-vertical'></i>
+            </div>
+        </div>
+    </div>
+{%- endmacro %}
