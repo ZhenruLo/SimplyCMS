@@ -13,6 +13,7 @@ $( function() {
                     let contentUUID = data['content_uuid'];
 
                     $('#content-table').DataTable().ajax.reload(null, false);
+
                     refreshContentItem(1, contentUUID);
 
                     $("#content-creator-form").trigger('reset');
@@ -36,10 +37,10 @@ $( function() {
             success: function(data) {
                 if (data['result']) {
                     contentUUID = data['content_uuid'];
-
+                    
                     $('#content-table').DataTable().ajax.reload(null, false);
-                    refreshContentItem(1, contentUUID);
 
+                    refreshContentItem(1, contentUUID);
                     $('#update-dsiplay-form').trigger('reset');
                 };
             },

@@ -1,29 +1,39 @@
 {% call(content) center.create_center_header('center-content-builder', false) %}
     {% if content == 'header' %}
+        {{ center_header.create_center_header_icon
+            (
+                'create-field-anchor',
+                'bx bx-list-plus',
+                'Add new field',
+                '',
+            )
+        }}
     {% endif %}
 
     {% if content == 'body' %}
         <div class='inner-body-container'>
             <div class='column-header-container'>
-                <div class='combined-icon'>
-                    <div id='table-icon'>
-                        <i class='bx bxs-package' ></i>
-                    </div>
-            
-                    <div id='table-name-input'>
-                        <span class='content-header-text' id='content-name-text'>Untitled</span>
-            
-                        <div id='table-name-edit'>
-                            <i class="fa-solid fa-pen-to-square" id='header-edit-icon'></i>
+                <div class='inner-column-header-container'>
+                    <div class='combined-icon'>
+                        <div id='table-icon'>
+                            <i class='bx bxs-package' ></i>
+                        </div>
+                
+                        <div id='table-name-input'>
+                            <span class='content-header-text' id='content-name-text'>Untitled</span>
+                
+                            <div id='table-name-edit'>
+                                <i class="fa-solid fa-pen-to-square" id='header-edit-icon'></i>
+                            </div>
                         </div>
                     </div>
-                </div>
-
-                <div class='header-description'>
-                    <span class='header-description-text'></span>
-                    
-                    <div id='description-info'>
-                        <i class="fa-solid fa-circle-info"></i>
+    
+                    <div class='header-description'>
+                        <span class='header-description-text'></span>
+                        
+                        <div id='description-info'>
+                            <i class="fa-solid fa-circle-info"></i>
+                        </div>
                     </div>
                 </div>
             </div>

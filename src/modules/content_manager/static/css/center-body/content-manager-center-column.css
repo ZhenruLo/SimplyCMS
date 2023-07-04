@@ -1,13 +1,16 @@
 .column-header-container {
-    height: 8rem;
+    width: 100%;
+}
+
+.inner-column-header-container{
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: flex-start;
-    width: inherit;
-    padding: 3rem 0;
+    height: 4.5rem;
+    padding: 4rem 1rem;
     margin-bottom: 3rem;
-    border-bottom: 1px solid rgba(144, 0, 255, 0.2);
+    background-color: rgb(248, 241, 255);
 }
 
 #table-icon {
@@ -31,17 +34,14 @@
     user-select: none;
     color: rgb(0, 0, 0);
     cursor: pointer;
-    transition: all 0.2s ease;
+    transition: color 0.2s ease, transform 0.2s ease;
 }
 
 #table-name-edit:hover {
-    -webkit-mask-image: linear-gradient(-75deg, rgba(0, 0, 0, 0.6) 30%, #000000 50%, rgba(0,0,0,.6) 70%);
-    -webkit-mask-size: 300%;
-    animation: shine 2s linear infinite;
+    color: gray;
 }
 
 #table-name-edit:active {
-    color: rgb(104, 104, 104);
     transform: scale(0.7);
 }
 
@@ -84,7 +84,7 @@
     margin-left: 0.5rem;
     color: blueviolet;
     cursor: pointer;
-    transition: all 0.2s ease;
+    transition: color 0.2s ease, transform 0.2s ease;
 }
 
 #description-info:hover {
@@ -116,10 +116,9 @@
     align-items: center;
     justify-content: center;
     margin: 0.5rem 0;
-    width: 90%;
+    width: 95%;
     height: 4.5rem;
-    border: 1px solid lightgray;
-    border-radius: 0.3rem;
+    border: 1px solid rgb(243, 243, 243);
 }
 
 .single-column-container.start {
@@ -133,12 +132,10 @@
     flex-direction: row;
     align-items: center;
     justify-content: center;
-    border-top-left-radius: 0.3rem;
-    border-bottom-left-radius: 0.3rem;
     font-size: 1.2rem;
     width: 2%;
     cursor: move;
-    background-color: rgba(137, 43, 226, 0.3);
+    background-color: rgba(137, 61, 208, 0.15);
     height: 100%;
 }
 
@@ -177,10 +174,27 @@
 }
 
 .column-footer-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
     cursor: pointer;
-    padding: 0 0.5rem;
-    margin: 0 0.5rem;
-    font-size: 1.3rem;
+    width: 4rem;
+    height: 4rem;
+    font-size: 1rem;
+    transition: transform 0.2s ease;
+}
+
+.column-footer-icon.column-footer-delete {
+    color: red;
+}
+
+.column-footer-icon:hover {
+    transform: scale(1.2);
+    cursor: pointer;
+}
+
+.column-footer-icon:active {
+    transform: scale(1);
 }
 
 .column-rear-part {
@@ -190,8 +204,6 @@
     justify-content: flex-end;
     width: 10%;
     height: 100%;
-    border-top-right-radius: 0.3rem;
-    border-bottom-right-radius: 0.3rem;
 }
 
 .column-footer-container {

@@ -8,6 +8,12 @@ $( function() {
         openPopUp('#create-content-pop-up');
     });
 
+    $('#create-field-anchor').on('click', function(event) {
+        event.preventDefault();
+
+        openPopUp('#create-field-pop-up');
+    });
+
     $('#test-form').on('submit', function(event) {
         event.preventDefault();
         $.ajax({

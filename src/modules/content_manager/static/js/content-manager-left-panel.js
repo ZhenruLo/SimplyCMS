@@ -5,8 +5,8 @@ function refreshContentBuilderPage() {
     let contentUUID = selectedRow.find('.content-uuid').val();
 
     if (selectedRow.length === 0) {
-        $('#content-name-text').text('');
-        $('.header-description-text').text('');
+        $('#content-name-text').text('No content selected');
+        $('.header-description-text').text('No description');
         $('#update-content-uuid').val('');
     }
     else {
@@ -17,7 +17,6 @@ function refreshContentBuilderPage() {
             success: function(data) {
                 if (data['result']) {
                     let contentInfo = data['database'];
-    
                     $('#content-name-text').text(contentInfo['content_name']);
                     if (contentInfo['description']) {
                         $('.header-description-text').text(contentInfo['description']);
@@ -26,7 +25,11 @@ function refreshContentBuilderPage() {
                     else {
                         $('.header-description-text').text('No description');
                     }
-                };
+                }
+                else {
+                    $('#content-name-text').text('No content selected');
+                    $('.header-description-text').text('No description');
+                }
             },
             error: function(data) {
                 alert(data.responseText);
@@ -53,8 +56,8 @@ function createContentItem(tableName, contentUUID, selectedRow) {
     $('<div>').prop({'class': 'content-list-context', 'id': 'context-' + currentListLength}).appendTo('#content-list-item-' + currentListLength);
     $('<span>').prop({'class': 'content-list-context-text'}).text(tableName).appendTo('#context-' + currentListLength)
 
-    $('<div>').prop({'class': 'content-list-more', 'id': 'more-' + currentListLength}).appendTo('#content-list-item-' + currentListLength);
-    $('<i>').prop({'class': 'fa-solid fa-ellipsis-vertical'}).appendTo('#more-' + currentListLength)
+    $('<div>').prop({'class': 'content-list-delete', 'id': 'more-' + currentListLength}).appendTo('#content-list-item-' + currentListLength);
+    $('<i>').prop({'class': 'bx bxs-trash', 'title': 'Delete'}).appendTo('#more-' + currentListLength)
 
     $('<div>').prop({'class': 'content-selected-line'}).appendTo('#content-list-item-' + currentListLength);
     
@@ -129,7 +132,8 @@ function refreshContentItem(page, selectedcontentUUID) {
                             $.each(tableList, function(key, value){
                                 let tableName = value['content_name'];
                                 let contentUUID = value['content_uuid'];
-                                
+                                console.log('from server: ' + contentUUID);
+                                console.log('from html: ' + selectedcontentUUID);
                                 if (selectedcontentUUID && contentUUID === selectedcontentUUID) {
                                     createContentItem(tableName, contentUUID, true);
                                 }
@@ -164,10 +168,19 @@ $( function() {
     $('#left-panel-menu').on('panelSelect', function() {
         selectRow('#row-create-content');
         openContent();
+        $('#content-table').DataTable().ajax.reload(null, false);
     });
 
     $('#left-panel-content-type').on('panelSelect', function() {
-        selectRow('.left-panel-content-list li:first');
+        let currentListLength = $(".left-panel-content-list li").length;
+
+        if (currentListLength === 0) {
+            selectRow('#content-list-id');
+        }
+        else {
+            selectRow('.left-panel-content-list li:first');
+        }
+        
         openContent();
         refreshContentBuilderPage();
     });
@@ -194,6 +207,30 @@ $( function() {
         selectRow(this);
         openContent();
         refreshContentBuilderPage();
+    });
+
+    $(".left-panel-content-list").on("click", "li .content-list-delete", function () {
+        result = confirm("Delete this item?");
+        if (result === false){
+            return false
+        };
+        let contentUUID = $(this).parent().find('.content-uuid').val();
+
+        $.ajax({
+            url: "/content-manager/databases",
+            contentType: "application/json;charset=UTF-8",
+            method: "DELETE",
+            data: JSON.stringify({
+                "content_uuid": contentUUID
+            }),
+            success: function(data) {
+                $("#content-table").DataTable().ajax.reload(null, false);
+                refreshContentItem(1, null);
+            },
+            error: function(data){
+                alert(data.responseText);
+            }
+        })
     });
 
     $('.pagination-anchor.forward-anchor').on('click', function(event) {

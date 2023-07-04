@@ -18,7 +18,7 @@
     height: 3.5rem;
     user-select: none;
     cursor: pointer;
-    transition: all 0.2s ease;
+    transition: background-color 0.2s ease;
 }
 
 .left-panel-content-container.selected-panel#left-panel-content-type .content-list-item {
@@ -44,7 +44,6 @@
     width: 9%;
     height: 100%;
     font-size: 0.4rem;
-    transition: all 0.2s ease;
 }
 
 .content-list-item.selected-row .content-list-index {
@@ -65,27 +64,32 @@
     
 }
 
-.content-list-more {
+.content-list-delete {
     display: flex;
     justify-content: center;
     align-items: center;
     cursor: initial;
-    font-size: 1.4rem;
+    font-size: 1.2rem;
+    color: red;
     width: 10%;
     height: 100%;
-    transition: all 0.2s ease;
+    transition: transform 0.1s ease;
 }
 
-.content-list-more:hover {
+.content-list-delete:hover {
     transform: scale(1.2);
     cursor: pointer;
+}
+
+.content-list-delete:active {
+    transform: scale(1);
 }
 
 .content-selected-line {
     width: 1%;
     height: 100%;
     background-color: transparent;
-    transition: all 0.2s ease;
+    transition: background-color 0.2s ease;
 }
 
 .content-list-item.selected-row .content-selected-line {
@@ -100,7 +104,6 @@
     user-select: none;
     cursor: pointer;
     margin-bottom: 1rem;
-    transition: all 0.1s ease;
     color: blue;
 }
 
@@ -147,7 +150,7 @@
     height: 3rem;
     font-size: 1.5rem;
     margin-top: 2rem;
-    transition: all 0.1s ease;
+    transition: background-color 0.1s ease;
     cursor: pointer;
     text-decoration: none;
 }

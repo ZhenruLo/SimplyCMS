@@ -12,11 +12,13 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    height: inherit;
+    text-align: center;
+    width: 14rem;
+    height: 100%;
     padding: 1rem;
     text-decoration: none;
     color: rgb(117, 19, 208);
-    transition: all 0.1s ease;
+    transition: border-bottom 0.1s ease;
 }
 
 .header-text-anchor:hover {
@@ -30,6 +32,7 @@
 .header-anchor-text {
     user-select: none;
     margin-left: 0.5rem;
+    margin-top: 0.5rem;
     color: rgb(57, 0, 128);
     font-family: 'Chakra Petch', sans-serif;
 }

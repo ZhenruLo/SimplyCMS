@@ -122,6 +122,7 @@ def process_database_content() -> Dict[str, Union[bool, str, List[str]]]:
         json_data = {
             'result': result,
             'msg': msg,
+            'content_uuid': content_uuid,
         }
 
     return json_data

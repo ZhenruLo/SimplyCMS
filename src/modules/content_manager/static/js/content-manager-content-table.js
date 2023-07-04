@@ -43,17 +43,17 @@ $( function() {
                 width: '15%'
             },
             {
-                className: 'dtb dt-delete',
-                orderable: false,
-                data: null,
-                defaultContent: "<i class='bx bxs-trash' title='Delete'></i>",
-                width: '1%',
-            },
-            {
                 className: 'dtb dt-edit',
                 orderable: false,
                 data: null,
                 defaultContent: "<i class='bx bxs-edit' title='Edit Content'></i>",
+                width: '1%',
+            },
+            {
+                className: 'dtb dt-delete',
+                orderable: false,
+                data: null,
+                defaultContent: "<i class='bx bxs-trash' title='Delete'></i>",
                 width: '1%',
             },
         ],
@@ -96,7 +96,6 @@ $( function() {
         let selectedContentPage = Math.floor(tr.find('.sorting_1').text()/20) + 1;
 
         openTab('#content-type-tab');
-        // openPanel('content-type-tab');
         openPanel();
         refreshContentItem(selectedContentPage, selectedContentUUID);
     });

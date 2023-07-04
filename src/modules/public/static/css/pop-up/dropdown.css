@@ -7,7 +7,6 @@
     box-shadow: 0 0 0.2rem 0.1rem rgb(224, 224, 224);
     border-radius: 0.2rem;
     background: white;
-    transition: all 1s ease;
 }
 
 .dropdown-content.show {

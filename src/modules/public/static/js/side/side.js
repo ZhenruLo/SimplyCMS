@@ -4,6 +4,7 @@ var tabPanelFactory = new Map()
 rowBodyFactory.set('row-create-content', 'center-create-content');
 rowBodyFactory.set('row-custom-field', 'center-custom-field');
 rowBodyFactory.set('row-create-page', 'center-create-page');
+rowBodyFactory.set('content-list-id', 'center-content-builder')
 
 tabPanelFactory.set('content-tab', 'left-panel-menu');
 tabPanelFactory.set('content-type-tab', 'left-panel-content-type');
@@ -29,7 +30,6 @@ function selectRow(leftPanelRow) {
 
 function openContent() {
     let selectedBody = rowBodyFactory.get($('.selected-row').prop('id'));
-    
     clearSelectedBody();
     $('#' + selectedBody).addClass('selected-body').trigger('bodySelect');
 };

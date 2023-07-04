@@ -6,6 +6,11 @@
     {% endif %}
 {% endcall %}
 
+{% call(content) popup.create_pop_up('create-field-pop-up', 'Field types', 'Select new field type') %}
+    {% if content == 'body' %}
+    {% endif %}
+{% endcall %}
+
 {% call(content) popup.create_pop_up('update-display-pop-up', 'Update content settings', 'Update') %}
     {% if content == 'body' %}
         {% include 'pop-up/display-update-pop-up.html' %}

@@ -23,6 +23,7 @@
     color: black;
     margin-left: 0.5rem;
     font-size: 1.3rem;
+    font-family: 'Roboto', sans-serif;
     user-select: none;
 }
 
@@ -36,7 +37,7 @@
     flex: 0 0 3rem;
     cursor: pointer;
     text-align: center;
-    transition: all 0.1s ease;
+    transition: background-color 0.1s ease;
     margin-right: 0.5rem;
     border-radius: 0.5rem;
 }
