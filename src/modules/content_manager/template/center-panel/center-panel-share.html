@@ -1,5 +1,5 @@
-{% macro create_column(name_text, type_text) -%}
-    <div class='single-column-container'>
+{% macro create_column(name_text, type_text, column_index) -%}
+    <li class='single-column-container' style='--c: {{ column_index }}'>
         <div class='column-front-part'>
             <i class="fa-solid fa-grip-vertical"></i>
         </div>
@@ -17,13 +17,12 @@
         </div>
 
         <div class='column-rear-part'>
-            <a class='column-part column-edit' href=''>
-                <i class="fa-solid fa-pen-to-square"></i>
-                <span class='column-edit-text'>Edit</span>
-            </a>
-            <div class='column-part column-more'>
-                <i class='fa-solid fa-ellipsis-vertical'></i>
+            <div class='column-footer-icon'>
+                <i class="fa-solid fa-pen-to-square" title='Edit'></i>
+            </div>
+            <div class='column-footer-icon'>
+                <i class="fa-solid fa-trash" title='Delete'></i>
             </div>
         </div>
-    </div>
+    </li>
 {%- endmacro %}
