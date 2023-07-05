@@ -55,7 +55,7 @@ def update_table_content(tablename: str, column_info: str, column_var_type: str)
     Table(tablename, 
           db.metadata, 
           Column(column_info, column_attr),
-          extend_existing=True
+          extend_existing=True,
           )
     migrate(Directory.GLOBAL_MIGRATE_DIR.as_posix())
     upgrade(Directory.GLOBAL_MIGRATE_DIR.as_posix())

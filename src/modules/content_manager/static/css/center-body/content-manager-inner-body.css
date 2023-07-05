@@ -11,6 +11,10 @@
     background-color: white;
 }
 
-#test-container{
-    display: none;
+#test-container {
+}
+
+#test_button {
+    width: 5rem;
+    height: 5rem;
 }

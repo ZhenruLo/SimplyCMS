@@ -60,18 +60,11 @@
                 </ul>
             </div>
             
-            <div class='column-footer-container'></div>
-        </div>
-        <div class='inner-body-container' id='test-container'>
-            <form id='test-form' action='/content-manager/databases' method='PUT'>
-                <!-- <input class='input-text-box' id='test-content-uuid' type='hidden' name='content_uuid'> -->
-                <input class='input-text-box' type='text' name='int_name' placeholder='int'>
-                <input class='input-text-box' type='text' name='varchar_name' placeholder='character varying'>
-                <input class='input-text-box' type='text' name='text_name' placeholder='text'>
-                <input class='input-text-box' type='text' name='date_name' placeholder='date'>
-                <input class='input-text-box' type='text' name='bool_name' placeholder='bool'>
-                <input class='submit-input' type='submit' name='submit' value='content_submit'>
-            </form>
+            <div class='column-footer-container'>
+                <div id='test-container'>
+                    <button id='test_button'></button>
+                </div>
+            </div>
         </div>
     {% endif %}
 {% endcall %}

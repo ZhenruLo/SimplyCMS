@@ -14,12 +14,17 @@ $( function() {
         openPopUp('#create-field-pop-up');
     });
 
-    $('#test-form').on('submit', function(event) {
+    $('#test_button').on('click', function(event) {
         event.preventDefault();
+        let contentUUID = $('.content-list-item.selected-row').find('.content-uuid').val();
+        
         $.ajax({
             url: '/content-manager/databases',
+            contentType: 'application/json;charset=UTF-8',
             method: 'PUT',
-            data: $(this).serialize(),
+            data: JSON.stringify({
+                'content_uuid': contentUUID
+            }),
             success: function(data) {
                 console.log(data);
             }

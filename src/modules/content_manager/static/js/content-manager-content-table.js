@@ -63,24 +63,24 @@ $( function() {
         },
     });
 
-    $("#content-table tbody").on("click", "td.dt-delete", function () {
-        result = confirm("Delete this item?");
+    $('#content-table tbody').on('click', 'td.dt-delete', function () {
+        result = confirm('Delete this item?');
         if (result === false){
             return false
         };
-        let tr = $(this).closest("tr");
+        let tr = $(this).closest('tr');
         let row = table.row(tr);
         let selectedContentUUID = row.data().content_uuid;
 
         $.ajax({
-            url: "/content-manager/databases",
-            contentType: "application/json;charset=UTF-8",
-            method: "DELETE",
+            url: '/content-manager/databases',
+            contentType: 'application/json;charset=UTF-8',
+            method: 'DELETE',
             data: JSON.stringify({
-                "content_uuid": selectedContentUUID
+                'content_uuid': selectedContentUUID
             }),
             success: function(data) {
-                $("#content-table").DataTable().ajax.reload(null, false);
+                $('#content-table').DataTable().ajax.reload(null, false);
                 refreshContentItem(1, null);
             },
             error: function(data){
@@ -89,8 +89,8 @@ $( function() {
         })
     });
 
-    $("#content-table tbody").on("click", "td.dt-edit", function () {
-        let tr = $(this).closest("tr");
+    $('#content-table tbody').on('click', 'td.dt-edit', function () {
+        let tr = $(this).closest('tr');
         let row = table.row(tr);
         let selectedContentUUID = row.data().content_uuid;
         let selectedContentPage = Math.floor(tr.find('.sorting_1').text()/20) + 1;

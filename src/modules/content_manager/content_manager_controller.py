@@ -173,8 +173,11 @@ def process_database() -> Dict[str, Union[bool, str, List[str]]]:
     elif request.method == RequestMethod.PUT:
         msg = 'Update database failed'
 
-        for (key, value) in request.form.items():
-            update_table_content('agp120', value, key)
+        content_uuid = request.get_json().get('content_uuid')
+        table_name = Content.fetch_one(Content.content_uuid, content_uuid, Content.table_name)
+        update_table_content(table_name.table_name, 'test_column_name', 'int_name')
+        # for (key, value) in request.form.items():
+        #     update_table_content('agp120', value, key)
         
         result = True
         msg = 'Databases updated'

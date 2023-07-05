@@ -39,7 +39,7 @@ function refreshContentBuilderPage() {
 };
 
 function createContentItem(tableName, contentUUID, selectedRow) {
-    let currentListLength = $(".left-panel-content-list li").length;
+    let currentListLength = $('.left-panel-content-list li').length;
     
     if (selectedRow) {
         $('<li>').prop({'class': 'content-list-item selected-row', 'id': 'content-list-item-' + currentListLength}).appendTo('.left-panel-content-list');
@@ -132,8 +132,7 @@ function refreshContentItem(page, selectedcontentUUID) {
                             $.each(tableList, function(key, value){
                                 let tableName = value['content_name'];
                                 let contentUUID = value['content_uuid'];
-                                console.log('from server: ' + contentUUID);
-                                console.log('from html: ' + selectedcontentUUID);
+                                
                                 if (selectedcontentUUID && contentUUID === selectedcontentUUID) {
                                     createContentItem(tableName, contentUUID, true);
                                 }
@@ -172,7 +171,7 @@ $( function() {
     });
 
     $('#left-panel-content-type').on('panelSelect', function() {
-        let currentListLength = $(".left-panel-content-list li").length;
+        let currentListLength = $('.left-panel-content-list li').length;
 
         if (currentListLength === 0) {
             selectRow('#content-list-id');
@@ -200,31 +199,27 @@ $( function() {
     });
 
     $('.left-panel-content-list').on('click', 'li.content-list-item', function() {
-        let contentUUID = $(this).find('.content-uuid').val();
-
-        $('#test-form #test-content-uuid').val(contentUUID);
-        
         selectRow(this);
         openContent();
         refreshContentBuilderPage();
     });
 
-    $(".left-panel-content-list").on("click", "li .content-list-delete", function () {
-        result = confirm("Delete this item?");
+    $('.left-panel-content-list').on('click', 'li .content-list-delete', function () {
+        result = confirm('Delete this item?');
         if (result === false){
             return false
         };
         let contentUUID = $(this).parent().find('.content-uuid').val();
 
         $.ajax({
-            url: "/content-manager/databases",
-            contentType: "application/json;charset=UTF-8",
-            method: "DELETE",
+            url: '/content-manager/databases',
+            contentType: 'application/json;charset=UTF-8',
+            method: 'DELETE',
             data: JSON.stringify({
-                "content_uuid": contentUUID
+                'content_uuid': contentUUID
             }),
             success: function(data) {
-                $("#content-table").DataTable().ajax.reload(null, false);
+                $('#content-table').DataTable().ajax.reload(null, false);
                 refreshContentItem(1, null);
             },
             error: function(data){
