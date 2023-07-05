@@ -39,4 +39,5 @@ def logout():
         current_app.logger.info('User logout')
         return redirect(url_for('account_bp.login'), 301)
     else:
+        current_app.logger.info('User logout failed')
         abort(400)

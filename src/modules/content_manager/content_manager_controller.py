@@ -1,11 +1,13 @@
 import math
+import random
+import string
 from typing import TYPE_CHECKING, Dict, List, Union
 
 from flask import request
 from werkzeug.utils import secure_filename
 
 from constants import RequestMethod
-from models import (Content, create_table, create_table_name, db, remove_table,
+from models import (Content, create_table, db, remove_table,
                     update_table_content)
 
 from .content_manager_form import ContentManagerForm
@@ -88,7 +90,7 @@ def process_database_content() -> Dict[str, Union[bool, str, List[str]]]:
         
         selected_content_uuid = request.args.get('content_uuid') 
         
-        database_row = Content.fetch_one(Content.content_uuid, selected_content_uuid, Content.content_uuid, Content.content_name, Content.route_name, Content.description, Content.column_attrs)
+        database_row = Content.fetch_one_filter(Content.content_uuid, selected_content_uuid, Content.content_uuid, Content.content_name, Content.route_name, Content.description, Content.column_attrs)
         if database_row:
             database = database_row._asdict()
             result = True
@@ -151,7 +153,7 @@ def process_database() -> Dict[str, Union[bool, str, List[str]]]:
                 route_count = db.session.query(Content).filter(Content.route_name==route_name).count()
                 
                 if (table_count == 0 and route_count == 0):
-                    table_name = create_table_name()
+                    table_name = __create_table_name()
 
                     Content.add(content_name=content_name, table_name=table_name, route_name=route_name, description=description)
                     create_table(table_name)
@@ -174,8 +176,9 @@ def process_database() -> Dict[str, Union[bool, str, List[str]]]:
         msg = 'Update database failed'
 
         content_uuid = request.get_json().get('content_uuid')
-        table_name = Content.fetch_one(Content.content_uuid, content_uuid, Content.table_name)
-        update_table_content(table_name.table_name, 'test_column_name', 'int_name')
+        content_row: 'Content' = Content.fetch_one_filter(Content.content_uuid, content_uuid, Content.table_name, Content.column_attrs)
+
+        update_table_content(content_row.table_name, 'test_column_name', 'int_name')
         # for (key, value) in request.form.items():
         #     update_table_content('agp120', value, key)
         
@@ -205,6 +208,21 @@ def process_database() -> Dict[str, Union[bool, str, List[str]]]:
         }
         
     return json_data
+
+def __create_table_name() -> str:
+    table_uid = __generate_uid()
+    
+    all_table_name = Content.fetch_all(Content.table_name)
+    if table_uid in all_table_name:
+        __create_table_name()
+    else:
+        return table_uid
+
+def __generate_uid() -> str:
+    random_letters = ''.join(random.choice(string.ascii_lowercase) for _ in range(3))
+    random_numbers = random.randint(100, 999)
+    table_uid = random_letters + str(random_numbers)
+    return table_uid
 
 def __check_special_char(string: str) -> bool:
     special_characters = '''!@#$%^&*''()-+?=/,<>'''

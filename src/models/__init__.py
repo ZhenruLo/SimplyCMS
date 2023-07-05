@@ -1,6 +1,5 @@
-from .base_db_model import (Base, create_table, create_table_name, db,
-                            get_all_tables_information, remove_table,
-                            update_table_content)
+from .base_db_model import (Base, create_table, db, get_all_tables_information,
+                            remove_table, update_table_content)
 from .content import Content
 from .web_user import WebUser
 
@@ -11,7 +10,6 @@ __all__ =[
     'create_table',
     'update_table_content',
     'get_all_tables_information',
-    'create_table_name',
     'remove_table',
 
     'WebUser',

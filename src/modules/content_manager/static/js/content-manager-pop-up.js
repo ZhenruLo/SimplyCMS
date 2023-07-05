@@ -16,7 +16,7 @@ $( function() {
 
                     refreshContentItem(1, contentUUID);
 
-                    $("#content-creator-form").trigger('reset');
+                    $('#content-creator-form').trigger('reset');
                 };
             },
             error: function(data) {
