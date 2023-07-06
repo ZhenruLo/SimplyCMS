@@ -27,3 +27,19 @@ class RequestMethod():
     POST = 'POST'
     PUT = 'PUT'
     DELETE = 'DELETE'
+    
+class RelationType():
+    ONE_TO_ONE = 'one_to_one'
+    ONE_TO_MANY = 'one_to_many'
+    MANY_TO_ONE = 'many_to_one'
+    MANY_TO_MANY = 'many_to_many'
+    
+class ColumnType():
+    TEXT = 'text'
+    NUMBER = 'number'
+    DATE = 'date'
+    BOOLEAN = 'boolean'
+    RELATION = 'relation'
+    MEDA = 'media'
+    JSON = 'json'
+    

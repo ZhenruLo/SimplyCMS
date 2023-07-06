@@ -3,12 +3,11 @@ import random
 import string
 from typing import TYPE_CHECKING, Dict, List, Union
 
-from flask import request
-from werkzeug.utils import secure_filename
-
 from constants import RequestMethod
-from models import (Content, create_table, db, remove_table,
+from flask import request
+from models import (ColumnInfo, Content, create_table, db, remove_table,
                     update_table_content)
+from werkzeug.utils import secure_filename
 
 from .content_manager_form import ContentManagerForm
 
@@ -90,7 +89,7 @@ def process_database_content() -> Dict[str, Union[bool, str, List[str]]]:
         
         selected_content_uuid = request.args.get('content_uuid') 
         
-        database_row = Content.fetch_one_filter(Content.content_uuid, selected_content_uuid, Content.content_uuid, Content.content_name, Content.route_name, Content.description, Content.column_attrs)
+        database_row = Content.fetch_one_filter(Content.content_uuid, selected_content_uuid, Content.content_uuid, Content.content_name, Content.route_name, Content.description)
         if database_row:
             database = database_row._asdict()
             result = True
@@ -131,11 +130,8 @@ def process_database_content() -> Dict[str, Union[bool, str, List[str]]]:
         
 def process_database() -> Dict[str, Union[bool, str, List[str]]]:
     result = False
-
-    if request.method == RequestMethod.GET:
-        pass
-
-    elif request.method == RequestMethod.POST:
+    
+    if request.method == RequestMethod.POST:
         msg = 'Create database failed.'
         content_uuid = None
         form: 'FlaskForm' = ContentManagerForm()
@@ -176,8 +172,12 @@ def process_database() -> Dict[str, Union[bool, str, List[str]]]:
         msg = 'Update database failed'
 
         content_uuid = request.get_json().get('content_uuid')
-        content_row: 'Content' = Content.fetch_one_filter(Content.content_uuid, content_uuid, Content.table_name, Content.column_attrs)
+        content_row: 'Content' = Content.fetch_one_filter(Content.content_uuid, content_uuid, Content)
 
+        new_column = ColumnInfo('test_column_name1', 'int', False, True, None, 0)
+        content_row.content_fields.append(new_column)
+        db.session.commit()
+        
         update_table_content(content_row.table_name, 'test_column_name', 'int_name')
         # for (key, value) in request.form.items():
         #     update_table_content('agp120', value, key)
@@ -217,6 +217,13 @@ def __create_table_name() -> str:
         __create_table_name()
     else:
         return table_uid
+    
+def __check_column_name(column_name, content_fields_list) -> bool:
+    column_name_list = [column_row.column_name for column_row in content_fields_list]
+    if column_name in column_name_list:
+        return False
+    else:
+        return True
 
 def __generate_uid() -> str:
     random_letters = ''.join(random.choice(string.ascii_lowercase) for _ in range(3))
