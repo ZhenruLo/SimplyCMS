@@ -1,15 +1,10 @@
-
-from typing import TYPE_CHECKING, Dict, Union
-
+from constants import ColumnType, Directory
 from flask_login import UserMixin
 from flask_migrate import migrate, upgrade
 from flask_sqlalchemy import SQLAlchemy
-from sqlalchemy import Boolean, Column, Integer, Numeric, String, Table, Text
+from sqlalchemy import (Boolean, Column, Integer, Numeric, String, Table, Text,
+                        inspect)
 
-from constants import ColumnType, Directory
-
-if TYPE_CHECKING:
-    from sqlalchemy.engine.row import Row
 db = SQLAlchemy()
 
 class Base(UserMixin):
@@ -25,25 +20,28 @@ class Base(UserMixin):
         db.session.commit()
     
     @classmethod
-    def update(cls, cls_column_name: str, value: str, update_attr: Dict[str, Union[str, int, bool, dict]]):
+    def update(cls, cls_column_name, value: str, update_attr):
         db.session.query(cls).filter(cls_column_name == value).update(update_attr)
         db.session.commit()
 
     @classmethod
-    def fetch_one_filter(cls, cls_column_name: str, value, *required_args: str):
+    def fetch_one_filter(cls, cls_column_name, value, *required_args):
         return db.session.query(*required_args).filter(cls_column_name == value).first()
 
     @classmethod
-    def fetch_all(cls, *required_args: str):
+    def fetch_all(cls, *required_args):
         return db.session.query(*required_args).all()
 
     @classmethod
-    def fetch_all_filter(cls, cls_column_name: 'str', value, *required_args: str):
+    def fetch_all_filter(cls, cls_column_name, value, *required_args):
         return db.session.query(*required_args).filter(cls_column_name == value).all()
     
     @classmethod
     def to_dict(cls):
-        return {field.name:getattr(cls, field.name) for field in cls.__table__.c}
+        return {
+            column.key: getattr(cls, column.key)
+            for column in inspect(cls).mapper.column_attrs
+        }
     
 def create_table(tablename: str) -> bool:
     Table(tablename, 

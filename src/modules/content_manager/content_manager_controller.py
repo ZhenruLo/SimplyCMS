@@ -3,12 +3,11 @@ import random
 import string
 from typing import TYPE_CHECKING, Dict, List, Union
 
+from constants import ColumnType
 from flask import request
-from werkzeug.utils import secure_filename
-
-from constants import ColumnType, RequestMethod
 from models import (ColumnInfo, Content, create_table, db, remove_table,
                     update_table_content)
+from werkzeug.utils import secure_filename
 
 from .content_manager_form import ContentManagerForm
 
@@ -84,14 +83,20 @@ def fetch_table_data() -> Dict[str, Union[bool, str]]:
 def process_database_content() -> Dict[str, Union[bool, str, List[str]]]:
     result = False
 
-    if request.method == RequestMethod.GET:
+    if request.method == 'GET':
         msg = 'Fetch database failed.'
-
-        content_uuid = request.form.get('content_uuid')
-        selected_table = Content.fetch_one_filter(Content.content_uuid, content_uuid, Content.content_fields)
+        
+        content_uuid = request.args.get('content_uuid')
+        selected_table: 'Content' = Content.fetch_one_filter(Content.content_uuid, content_uuid, Content)
         
         if selected_table:
-            fields = selected_table.content_fields
+            orm_fields = selected_table.content_fields
+            fields = [{
+                ColumnInfo.column_name.key: orm_field.column_name,
+                ColumnInfo.column_type.key: orm_field.column_type,
+                ColumnInfo.column_order.key: orm_field.column_order,
+                ColumnInfo.column_uuid.key: orm_field.column_uuid,
+            } for orm_field in orm_fields]
             
             result = True
             msg = 'Database fetched'
@@ -102,7 +107,7 @@ def process_database_content() -> Dict[str, Union[bool, str, List[str]]]:
             'fields': fields,
         }
 
-    if request.method == RequestMethod.PUT:
+    if request.method == 'PUT':
         msg = 'Update database failed.'
         
         content_uuid = request.form.get('content_uuid')
@@ -112,10 +117,11 @@ def process_database_content() -> Dict[str, Union[bool, str, List[str]]]:
 
         selected_table_query = db.session.query(Content).filter(Content.content_uuid == content_uuid)
         if selected_table_query.first():
-            selected_table_query.update({Content.content_name: content_name, 
-                                        Content.route_name: route_name,
-                                        Content.description: description,
-                                        })
+            selected_table_query.update({
+                Content.content_name: content_name, 
+                Content.route_name: route_name,
+                Content.description: description,
+                })
             db.session.commit()
             result = True
             msg = 'Database updated'
@@ -131,7 +137,7 @@ def process_database_content() -> Dict[str, Union[bool, str, List[str]]]:
 def process_database() -> Dict[str, Union[bool, str, List[str]]]:
     result = False
     
-    if request.method == RequestMethod.GET:
+    if request.method == 'GET':
         msg = 'Fetch database info failed.'
         database = None
         
@@ -150,7 +156,7 @@ def process_database() -> Dict[str, Union[bool, str, List[str]]]:
             'database': database,
         }
 
-    elif request.method == RequestMethod.POST:
+    if request.method == 'POST':
         msg = 'Create database failed.'
         content_uuid = None
         form: 'FlaskForm' = ContentManagerForm()
@@ -187,7 +193,7 @@ def process_database() -> Dict[str, Union[bool, str, List[str]]]:
             'content_uuid': content_uuid,
         }
 
-    elif request.method == RequestMethod.PUT:
+    elif request.method == 'PUT':
         msg = 'Update database failed'
 
         content_uuid = request.get_json().get('content_uuid')
@@ -211,7 +217,7 @@ def process_database() -> Dict[str, Union[bool, str, List[str]]]:
             'msg': msg,
         }
 
-    elif request.method == RequestMethod.DELETE:
+    elif request.method == 'DELETE':
         msg = 'Delete database failed'
         
         content_uuid = request.get_json().get('content_uuid')

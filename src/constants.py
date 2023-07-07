@@ -22,12 +22,6 @@ class FileName():
     SERVER_CERTIFICATE_FILE = 'server.crt'
     SERVER_PRIVATE_KEY_FILE = 'server.key'
     
-class RequestMethod():
-    GET = 'GET'
-    POST = 'POST'
-    PUT = 'PUT'
-    DELETE = 'DELETE'
-    
 class RelationType():
     ONE_TO_ONE = 'one_to_one'
     ONE_TO_MANY = 'one_to_many'

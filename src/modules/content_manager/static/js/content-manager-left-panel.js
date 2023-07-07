@@ -30,6 +30,30 @@ function refreshContentBuilderPage() {
                     $('#content-name-text').text('No content selected');
                     $('.header-description-text').text('No description');
                 }
+                $.ajax({
+                    url: '/content-manager/database-content',
+                    method: 'GET',
+                    data: {'content_uuid': contentUUID},
+                    success: function(data) {
+                        if (data['result']) {
+                            let columns = data['fields']
+                            $.each(columns, function(columnIndex, columnInfo) {
+                                let columnName = columnInfo['column_name']
+                                let columnType = columnInfo['column_type']
+                                let columnOrder = columnInfo['column_order']
+                                let columnUUID = columnInfo['colume_uuid']
+
+                                createContentFields(columnName, columnType, columnOrder, columnUUID);
+                            });
+                        }
+                        else {
+                            alert(data['msg'])
+                        }
+                    },
+                    error: function(data) {
+                        alert(data.responseText);
+                    }
+                })
             },
             error: function(data) {
                 alert(data.responseText);
@@ -139,32 +163,49 @@ function createContentItem(tableName, contentUUID, selectedRow) {
     let currentListLength = $('.left-panel-content-list li').length;
     
     if (selectedRow) {
-        $('<li>').prop({'class': 'content-list-item selected-row', 'id': 'content-list-item-' + currentListLength}).appendTo('.left-panel-content-list');
+        $('<li>').prop({'class': 'content-list-item selected-row', 'id': `content-list-item-${currentListLength}`}).appendTo('.left-panel-content-list');
     }
     else {
-        $('<li>').prop({'class': 'content-list-item', 'id': 'content-list-item-' + currentListLength}).appendTo('.left-panel-content-list');
+        $('<li>').prop({'class': 'content-list-item', 'id': `content-list-item-${currentListLength}`}).appendTo('.left-panel-content-list');
     }
 
-    $('<input>').prop({'class': 'content-uuid', 'id': 'content-uuid-' + currentListLength, 'type': 'hidden', 'value': contentUUID }).appendTo('#content-list-item-' + currentListLength);
+    $('<input>').prop({'class': 'content-uuid', 'id': `content-uuid-${currentListLength}`, 'type': 'hidden', 'value': contentUUID }).appendTo(`#content-list-item-${currentListLength}`);
 
-    $('<div>').prop({'class': 'content-list-index', 'id': 'index-'+currentListLength}).appendTo('#content-list-item-' + currentListLength);
-    $('<i>').prop({'class': 'content-list-index-icon fa-solid fa-circle'}).appendTo('#index-' + currentListLength)
+    $('<div>').prop({'class': 'content-list-index', 'id': `index-${currentListLength}`}).appendTo(`#content-list-item-${currentListLength}`);
+    $('<i>').prop({'class': 'content-list-index-icon fa-solid fa-circle'}).appendTo(`#index-${currentListLength}`)
 
-    $('<div>').prop({'class': 'content-list-context', 'id': 'context-' + currentListLength}).appendTo('#content-list-item-' + currentListLength);
-    $('<span>').prop({'class': 'content-list-context-text'}).text(tableName).appendTo('#context-' + currentListLength)
+    $('<div>').prop({'class': 'content-list-context', 'id': `context-${currentListLength}`}).appendTo(`#content-list-item-${currentListLength}`);
+    $('<span>').prop({'class': 'content-list-context-text'}).text(tableName).appendTo(`#context-${currentListLength}`)
 
-    $('<div>').prop({'class': 'content-list-delete', 'id': 'more-' + currentListLength}).appendTo('#content-list-item-' + currentListLength);
-    $('<i>').prop({'class': 'bx bxs-trash', 'title': 'Delete'}).appendTo('#more-' + currentListLength)
+    $('<div>').prop({'class': 'content-list-delete', 'id': `more-${currentListLength}`}).appendTo(`#content-list-item-${currentListLength}`);
+    $('<i>').prop({'class': 'bx bxs-trash', 'title': 'Delete'}).appendTo(`#more-${currentListLength}`)
 
-    $('<div>').prop({'class': 'content-selected-line'}).appendTo('#content-list-item-' + currentListLength);
+    $('<div>').prop({'class': 'content-selected-line'}).appendTo(`#content-list-item-${currentListLength}`);
     
-    rowBodyFactory.set('content-list-item-' + currentListLength, 'center-content-builder');
+    rowBodyFactory.set(`content-list-item-${currentListLength}`, 'center-content-builder');
 };
 
-function createContentFields() {
+function createContentFields(columnName, columnType) {
     let currentListLength = $('.column-body-list li').length;
 
-    
+    $('<li>').prop({'class': `single-column-container`, 'id': `single-column-container-${currentListLength}`, 'style': `--c: ${currentListLength}`}).appendTo('.column-body-list');
+
+    $('<div>').prop({'class': 'column-front-part', 'id': `column-front-part-${currentListLength}`}).appendTo(`#single-column-container-${currentListLength}`);
+    $('<i>').prop({'class': 'fa-solid fa-grip-vertical', id: `column-moving-container-${currentListLength}`}).appendTo(`#column-front-part-${currentListLength}`);
+
+    $('<div>').prop({'class': 'column-body-part', id: `column-body-part-${currentListLength}`}).appendTo(`#single-column-container-${currentListLength}`);
+    $('<div>').prop({'class': 'column-part column-body-icon', id: `column-body-icon-${currentListLength}`}).appendTo(`#column-body-part-${currentListLength}`);
+    $('<i>').prop({'class': 'fa-solid fa-t', id: `body-icon-${currentListLength}`}).appendTo(`#column-body-icon-${currentListLength}`);
+    $('<div>').prop({'class': 'column-part column-body-name', id: `column-body-name-${currentListLength}`}).appendTo(`#column-body-part-${currentListLength}`);
+    $('<span>').prop({'class': 'column-body-name-text', id: `body-name-text-${currentListLength}`}).text(columnName).appendTo(`#column-body-name-${currentListLength}`);
+    $('<div>').prop({'class': 'column-part column-body-type', id: `column-body-type-${currentListLength}`}).appendTo(`#column-body-part-${currentListLength}`);
+    $('<span>').prop({'class': 'column-body-type-text', id: `body-type-text-${currentListLength}`}).text(columnType).appendTo(`#column-body-type-${currentListLength}`);
+
+    $('<div>').prop({'class': 'column-rear-part', id: `column-rear-part-${currentListLength}`}).appendTo(`#single-column-container-${currentListLength}`);
+    $('<div>').prop({'class': 'column-footer-icon column-footer-edit', id: `column-footer-edit-${currentListLength}`}).appendTo(`#column-rear-part-${currentListLength}`);
+    $('<i>').prop({'class': 'fa-solid fa-pen-to-square', id: `edit-icon-${currentListLength}`, title: 'Edit'}).appendTo(`#column-footer-edit-${currentListLength}`);
+    $('<div>').prop({'class': 'column-footer-icon column-footer-delete', id: `column-footer-delete-${currentListLength}`}).appendTo(`#column-rear-part-${currentListLength}`);
+    $('<i>').prop({'class': 'fa-solid fa-trash', id: `delete-icon-${currentListLength}`, title: 'Delete'}).appendTo(`#column-footer-delete-${currentListLength}`);
 };
 
 $( function() {
