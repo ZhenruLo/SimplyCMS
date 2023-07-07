@@ -3,11 +3,12 @@ import random
 import string
 from typing import TYPE_CHECKING, Dict, List, Union
 
-from constants import RequestMethod
 from flask import request
+from werkzeug.utils import secure_filename
+
+from constants import ColumnType, RequestMethod
 from models import (ColumnInfo, Content, create_table, db, remove_table,
                     update_table_content)
-from werkzeug.utils import secure_filename
 
 from .content_manager_form import ContentManagerForm
 
@@ -82,27 +83,26 @@ def fetch_table_data() -> Dict[str, Union[bool, str]]:
 
 def process_database_content() -> Dict[str, Union[bool, str, List[str]]]:
     result = False
-    
-    if request.method == RequestMethod.GET:
-        msg = 'Fetch database info failed.'
-        database = None
-        
-        selected_content_uuid = request.args.get('content_uuid') 
-        
-        database_row = Content.fetch_one_filter(Content.content_uuid, selected_content_uuid, Content.content_uuid, Content.content_name, Content.route_name, Content.description)
-        if database_row:
-            database = database_row._asdict()
-            result = True
-            
-        msg = 'Database info fetched'
 
+    if request.method == RequestMethod.GET:
+        msg = 'Fetch database failed.'
+
+        content_uuid = request.form.get('content_uuid')
+        selected_table = Content.fetch_one_filter(Content.content_uuid, content_uuid, Content.content_fields)
+        
+        if selected_table:
+            fields = selected_table.content_fields
+            
+            result = True
+            msg = 'Database fetched'
+        
         json_data = {
             'result': result,
             'msg': msg,
-            'database': database,
+            'fields': fields,
         }
 
-    elif request.method == RequestMethod.PUT:
+    if request.method == RequestMethod.PUT:
         msg = 'Update database failed.'
         
         content_uuid = request.form.get('content_uuid')
@@ -131,7 +131,26 @@ def process_database_content() -> Dict[str, Union[bool, str, List[str]]]:
 def process_database() -> Dict[str, Union[bool, str, List[str]]]:
     result = False
     
-    if request.method == RequestMethod.POST:
+    if request.method == RequestMethod.GET:
+        msg = 'Fetch database info failed.'
+        database = None
+        
+        selected_content_uuid = request.args.get('content_uuid') 
+        
+        database_row = Content.fetch_one_filter(Content.content_uuid, selected_content_uuid, Content.content_uuid, Content.content_name, Content.route_name, Content.description)
+        if database_row:
+            database = database_row._asdict()
+            result = True
+            
+        msg = 'Database info fetched'
+
+        json_data = {
+            'result': result,
+            'msg': msg,
+            'database': database,
+        }
+
+    elif request.method == RequestMethod.POST:
         msg = 'Create database failed.'
         content_uuid = None
         form: 'FlaskForm' = ContentManagerForm()
@@ -174,13 +193,15 @@ def process_database() -> Dict[str, Union[bool, str, List[str]]]:
         content_uuid = request.get_json().get('content_uuid')
         content_row: 'Content' = Content.fetch_one_filter(Content.content_uuid, content_uuid, Content)
 
-        new_column = ColumnInfo('test_column_name1', 'int', False, True, None, 0)
-        content_row.content_fields.append(new_column)
-        db.session.commit()
-        
-        update_table_content(content_row.table_name, 'test_column_name', 'int_name')
-        # for (key, value) in request.form.items():
-        #     update_table_content('agp120', value, key)
+        test_column = {'string_column': ColumnType.STRING, 'boolean_column': ColumnType.BOOLEAN, 'text_column': ColumnType.TEXT}
+        for (key, value) in test_column.items():
+            new_column = ColumnInfo(key, value, False, True, None, 0)
+            content_row.content_fields.append(new_column)
+            db.session.commit()
+            
+            update_table_content(content_row.table_name, key, value)
+            # for (key, value) in request.form.items():
+            #     update_table_content('agp120', value, key)
         
         result = True
         msg = 'Databases updated'

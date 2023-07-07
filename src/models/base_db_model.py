@@ -4,9 +4,9 @@ from typing import TYPE_CHECKING, Dict, Union
 from flask_login import UserMixin
 from flask_migrate import migrate, upgrade
 from flask_sqlalchemy import SQLAlchemy
-from sqlalchemy import Boolean, Column, Integer, String, Table
+from sqlalchemy import Boolean, Column, Integer, Numeric, String, Table, Text
 
-from constants import Directory
+from constants import ColumnType, Directory
 
 if TYPE_CHECKING:
     from sqlalchemy.engine.row import Row
@@ -60,11 +60,13 @@ def remove_table(tablename: str):
         __refresh_metadata()
 
 def update_table_content(tablename: str, column_info: str, column_var_type: str):
-    if column_var_type == 'int_name':
-        column_attr = Integer
-    elif column_var_type == 'text_name':
+    if column_var_type == ColumnType.NUMBER:
+        column_attr = Numeric
+    elif column_var_type == ColumnType.STRING:
         column_attr = String(255)
-    else:
+    elif column_var_type == ColumnType.TEXT:
+        column_attr = Text
+    elif column_var_type == ColumnType.BOOLEAN:
         column_attr = Boolean
         
     Table(tablename, 

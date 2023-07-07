@@ -10,7 +10,7 @@ $( function() {
         openPopUp('#update-display-pop-up', $('.content-header-text').text())
         
         $.ajax({
-            url: '/content-manager/database-content',
+            url: '/content-manager/databases',
             method: 'GET',
             data: {'content_uuid': selectedRow.find('.content-uuid').val()},
             success: function(data) {

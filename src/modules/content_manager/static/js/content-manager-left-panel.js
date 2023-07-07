@@ -11,7 +11,7 @@ function refreshContentBuilderPage() {
     }
     else {
         $.ajax({
-            url: '/content-manager/database-content',
+            url: '/content-manager/databases',
             method: 'GET',
             data: {'content_uuid': contentUUID},
             success: function(data) {
@@ -36,32 +36,6 @@ function refreshContentBuilderPage() {
             },
         });
     };
-};
-
-function createContentItem(tableName, contentUUID, selectedRow) {
-    let currentListLength = $('.left-panel-content-list li').length;
-    
-    if (selectedRow) {
-        $('<li>').prop({'class': 'content-list-item selected-row', 'id': 'content-list-item-' + currentListLength}).appendTo('.left-panel-content-list');
-    }
-    else {
-        $('<li>').prop({'class': 'content-list-item', 'id': 'content-list-item-' + currentListLength}).appendTo('.left-panel-content-list');
-    }
-
-    $('<input>').prop({'class': 'content-uuid', 'id': 'content-uuid-' + currentListLength, 'type': 'hidden', 'value': contentUUID }).appendTo('#content-list-item-' + currentListLength);
-
-    $('<div>').prop({'class': 'content-list-index', 'id': 'index-'+currentListLength}).appendTo('#content-list-item-' + currentListLength);
-    $('<i>').prop({'class': 'content-list-index-icon fa-solid fa-circle'}).appendTo('#index-' + currentListLength)
-
-    $('<div>').prop({'class': 'content-list-context', 'id': 'context-' + currentListLength}).appendTo('#content-list-item-' + currentListLength);
-    $('<span>').prop({'class': 'content-list-context-text'}).text(tableName).appendTo('#context-' + currentListLength)
-
-    $('<div>').prop({'class': 'content-list-delete', 'id': 'more-' + currentListLength}).appendTo('#content-list-item-' + currentListLength);
-    $('<i>').prop({'class': 'bx bxs-trash', 'title': 'Delete'}).appendTo('#more-' + currentListLength)
-
-    $('<div>').prop({'class': 'content-selected-line'}).appendTo('#content-list-item-' + currentListLength);
-    
-    rowBodyFactory.set('content-list-item-' + currentListLength, 'center-content-builder');
 };
 
 function processPaginationButton(leftPanelCurrentPage, maxPage) {
@@ -159,6 +133,38 @@ function refreshContentItem(page, selectedcontentUUID) {
             alert(data.responseText);
         },
     });
+};
+
+function createContentItem(tableName, contentUUID, selectedRow) {
+    let currentListLength = $('.left-panel-content-list li').length;
+    
+    if (selectedRow) {
+        $('<li>').prop({'class': 'content-list-item selected-row', 'id': 'content-list-item-' + currentListLength}).appendTo('.left-panel-content-list');
+    }
+    else {
+        $('<li>').prop({'class': 'content-list-item', 'id': 'content-list-item-' + currentListLength}).appendTo('.left-panel-content-list');
+    }
+
+    $('<input>').prop({'class': 'content-uuid', 'id': 'content-uuid-' + currentListLength, 'type': 'hidden', 'value': contentUUID }).appendTo('#content-list-item-' + currentListLength);
+
+    $('<div>').prop({'class': 'content-list-index', 'id': 'index-'+currentListLength}).appendTo('#content-list-item-' + currentListLength);
+    $('<i>').prop({'class': 'content-list-index-icon fa-solid fa-circle'}).appendTo('#index-' + currentListLength)
+
+    $('<div>').prop({'class': 'content-list-context', 'id': 'context-' + currentListLength}).appendTo('#content-list-item-' + currentListLength);
+    $('<span>').prop({'class': 'content-list-context-text'}).text(tableName).appendTo('#context-' + currentListLength)
+
+    $('<div>').prop({'class': 'content-list-delete', 'id': 'more-' + currentListLength}).appendTo('#content-list-item-' + currentListLength);
+    $('<i>').prop({'class': 'bx bxs-trash', 'title': 'Delete'}).appendTo('#more-' + currentListLength)
+
+    $('<div>').prop({'class': 'content-selected-line'}).appendTo('#content-list-item-' + currentListLength);
+    
+    rowBodyFactory.set('content-list-item-' + currentListLength, 'center-content-builder');
+};
+
+function createContentFields() {
+    let currentListLength = $('.column-body-list li').length;
+
+    
 };
 
 $( function() {

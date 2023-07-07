@@ -20,7 +20,7 @@ class Content(Base, db.Model):
     description: str = db.Column(db.Text)
     content_uuid: str = db.Column(db.Text, server_default=func.random(), unique=True)
     created_timestamp: 'datetime'  = db.Column(db.DateTime, server_default=func.current_timestamp())
-    content_fields: Mapped[List['ColumnInfo']] = relationship('ColumnInfo', back_populates='content')
+    content_fields: Mapped[List['ColumnInfo']] = relationship('ColumnInfo', cascade = "all,delete", back_populates='content')
     
     def __init__(self, content_name: str, table_name: str, route_name: str, description: str):
         self.content_name = content_name

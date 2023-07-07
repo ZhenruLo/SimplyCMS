@@ -36,6 +36,7 @@ class RelationType():
     
 class ColumnType():
     TEXT = 'text'
+    STRING = 'string'
     NUMBER = 'number'
     DATE = 'date'
     BOOLEAN = 'boolean'
