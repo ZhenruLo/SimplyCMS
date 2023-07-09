@@ -30,30 +30,7 @@ function refreshContentBuilderPage() {
                     $('#content-name-text').text('No content selected');
                     $('.header-description-text').text('No description');
                 }
-                $.ajax({
-                    url: '/content-manager/database-content',
-                    method: 'GET',
-                    data: {'content_uuid': contentUUID},
-                    success: function(data) {
-                        if (data['result']) {
-                            let columns = data['fields']
-                            $.each(columns, function(columnIndex, columnInfo) {
-                                let columnName = columnInfo['column_name']
-                                let columnType = columnInfo['column_type']
-                                let columnOrder = columnInfo['column_order']
-                                let columnUUID = columnInfo['colume_uuid']
-
-                                createContentFields(columnName, columnType, columnOrder, columnUUID);
-                            });
-                        }
-                        else {
-                            alert(data['msg'])
-                        }
-                    },
-                    error: function(data) {
-                        alert(data.responseText);
-                    }
-                })
+                refreshColumnItem(contentUUID);
             },
             error: function(data) {
                 alert(data.responseText);
@@ -105,7 +82,37 @@ function processPaginationButton(leftPanelCurrentPage, maxPage) {
     };
 };
 
-function refreshContentItem(page, selectedcontentUUID) {
+function refreshColumnItem(selectedContentUUID) {
+    $('ul.column-body-list').empty();
+
+    $.ajax({
+        url: '/content-manager/database-content',
+        method: 'GET',
+        data: {'content_uuid': selectedContentUUID},
+        success: function(data) {
+            if (data['result']) {
+                let columns = data['fields']
+                $.each(columns, function(columnIndex, columnInfo) {
+                    let columnName = columnInfo['column_name']
+                    let columnType = columnInfo['column_type']
+                    let columnOrder = columnInfo['column_order']
+                    let columnUUID = columnInfo['colume_uuid']
+
+                    createContentFields(columnName, columnType, columnOrder, columnUUID);
+                });
+                $('.single-column-container').toggleClass('start');
+            }
+            else {
+                alert(data['msg'])
+            }
+        },
+        error: function(data) {
+            alert(data.responseText);
+        }
+    })
+};
+
+function refreshContentItem(page, selectedContentUUID) {
     $('ul.left-panel-content-list').empty();
 
     $.ajax({
@@ -131,7 +138,7 @@ function refreshContentItem(page, selectedcontentUUID) {
                                 let tableName = value['content_name'];
                                 let contentUUID = value['content_uuid'];
                                 
-                                if (selectedcontentUUID && contentUUID === selectedcontentUUID) {
+                                if (selectedContentUUID && contentUUID === selectedContentUUID) {
                                     createContentItem(tableName, contentUUID, true);
                                 }
                                 else {
@@ -188,7 +195,7 @@ function createContentItem(tableName, contentUUID, selectedRow) {
 function createContentFields(columnName, columnType) {
     let currentListLength = $('.column-body-list li').length;
 
-    $('<li>').prop({'class': `single-column-container`, 'id': `single-column-container-${currentListLength}`, 'style': `--c: ${currentListLength}`}).appendTo('.column-body-list');
+    $('<li>').prop({'class': `single-column-container`, 'id': `single-column-container-${currentListLength}`, 'style': `--c:${currentListLength + 1}`}).appendTo('.column-body-list');
 
     $('<div>').prop({'class': 'column-front-part', 'id': `column-front-part-${currentListLength}`}).appendTo(`#single-column-container-${currentListLength}`);
     $('<i>').prop({'class': 'fa-solid fa-grip-vertical', id: `column-moving-container-${currentListLength}`}).appendTo(`#column-front-part-${currentListLength}`);

@@ -1,6 +1,5 @@
 $( function() {
     $('.combined-icon').toggleClass('start');
-    $('.single-column-container').toggleClass('start');
     
     $('#create-content-anchor').on('click', function(event) {
         event.preventDefault();
