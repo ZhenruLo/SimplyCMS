@@ -8,6 +8,7 @@
 
 {% call(content) popup.create_pop_up('create-field-pop-up', 'Field types', 'Select field type') %}
     {% if content == 'body' %}
+        {% include 'pop-up/field-creator-pop-up.html' %}
     {% endif %}
 {% endcall %}
 

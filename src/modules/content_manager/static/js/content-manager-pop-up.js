@@ -31,7 +31,7 @@ $( function() {
         $('.pop-up-background').mousedown();
 
         $.ajax({
-            url: '/content-manager/database-content',
+            url: '/content-manager/databases',
             method: 'PUT',
             data: $(this).serialize(),
             success: function(data) {

@@ -18,7 +18,7 @@ $( function() {
         let contentUUID = $('.content-list-item.selected-row').find('.content-uuid').val();
         
         $.ajax({
-            url: '/content-manager/databases',
+            url: '/content-manager/database-content',
             contentType: 'application/json;charset=UTF-8',
             method: 'PUT',
             data: JSON.stringify({

@@ -92,6 +92,15 @@
     to { -webkit-mask-position: -50%; }
 }
 
+@keyframes slide-shine {
+    0% {
+        transform: translateX(var(--startHorizontal)) skewX(var(--horizonRotate));
+    }
+    30%, 80% {
+        transform: translateX(var(--endHorizontal)) skewX(var(--horizonRotate))
+    }
+}
+
 @keyframes gradient {
 	0% {
 		background-position: 0% 50%;

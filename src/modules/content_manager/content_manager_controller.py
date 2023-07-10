@@ -108,30 +108,28 @@ def process_database_content() -> Dict[str, Union[bool, str, List[str]]]:
         }
 
     if request.method == 'PUT':
-        msg = 'Update database failed.'
-        
-        content_uuid = request.form.get('content_uuid')
-        content_name = request.form.get('content_name')
-        route_name = secure_filename(request.form.get('route_name'))
-        description = request.form.get('description')
+        msg = 'Update database failed'
 
-        selected_table_query = db.session.query(Content).filter(Content.content_uuid == content_uuid)
-        if selected_table_query.first():
-            selected_table_query.update({
-                Content.content_name: content_name, 
-                Content.route_name: route_name,
-                Content.description: description,
-                })
+        content_uuid = request.get_json().get('content_uuid')
+        content_row: 'Content' = Content.fetch_one_filter(Content.content_uuid, content_uuid, Content)
+
+        test_column = {'string_column': ColumnType.STRING, 'boolean_column': ColumnType.BOOLEAN, 'text_column': ColumnType.TEXT}
+        for (key, value) in test_column.items():
+            new_column = ColumnInfo(key, value, False, True, None, 0)
+            content_row.content_fields.append(new_column)
             db.session.commit()
-            result = True
-            msg = 'Database updated'
+            
+            update_table_content(content_row.table_name, key, value)
+            # for (key, value) in request.form.items():
+            #     update_table_content('agp120', value, key)
+        
+        result = True
+        msg = 'Databases updated'
 
         json_data = {
             'result': result,
             'msg': msg,
-            'content_uuid': content_uuid,
         }
-
     return json_data
         
 def process_database() -> Dict[str, Union[bool, str, List[str]]]:
@@ -194,27 +192,28 @@ def process_database() -> Dict[str, Union[bool, str, List[str]]]:
         }
 
     elif request.method == 'PUT':
-        msg = 'Update database failed'
-
-        content_uuid = request.get_json().get('content_uuid')
-        content_row: 'Content' = Content.fetch_one_filter(Content.content_uuid, content_uuid, Content)
-
-        test_column = {'string_column': ColumnType.STRING, 'boolean_column': ColumnType.BOOLEAN, 'text_column': ColumnType.TEXT}
-        for (key, value) in test_column.items():
-            new_column = ColumnInfo(key, value, False, True, None, 0)
-            content_row.content_fields.append(new_column)
-            db.session.commit()
-            
-            update_table_content(content_row.table_name, key, value)
-            # for (key, value) in request.form.items():
-            #     update_table_content('agp120', value, key)
+        msg = 'Update database failed.'
         
-        result = True
-        msg = 'Databases updated'
+        content_uuid = request.form.get('content_uuid')
+        content_name = request.form.get('content_name')
+        route_name = secure_filename(request.form.get('route_name'))
+        description = request.form.get('description')
+
+        selected_table_query = db.session.query(Content).filter(Content.content_uuid == content_uuid)
+        if selected_table_query.first():
+            selected_table_query.update({
+                Content.content_name: content_name, 
+                Content.route_name: route_name,
+                Content.description: description,
+                })
+            db.session.commit()
+            result = True
+            msg = 'Database updated'
 
         json_data = {
             'result': result,
             'msg': msg,
+            'content_uuid': content_uuid,
         }
 
     elif request.method == 'DELETE':

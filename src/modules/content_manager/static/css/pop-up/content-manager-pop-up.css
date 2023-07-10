@@ -26,3 +26,46 @@
     line-height: 2.5rem;
     padding: 0 1.5rem;
 }
+
+#field-creator-inner-body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    max-width: inherit;
+    height: 20rem;
+}
+
+.field-type-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    width: 8rem;
+    height: 8rem;
+    border-radius: 1rem;
+    overflow: hidden;
+    color: rgb(128, 0, 225);
+    cursor: pointer;
+    background: rgba(0, 0, 255, 0.05);
+}
+
+.field-type-button:before {
+    content: '';
+    position: absolute;
+    width: 70%;
+    height: 150%;
+    transform: translateX(-150%) skewX(-35deg);
+    background: rgba(255, 255, 255, 0.5);
+}
+
+.field-type-button:hover:before {
+    --startHorizontal: -150%;
+    --endHorizontal: 150%;
+    --horizonRotate: -35deg;
+    animation: slide-shine 2s ease infinite;
+}
+
+.field-type-icon {
+    font-size: 4rem;
+}
