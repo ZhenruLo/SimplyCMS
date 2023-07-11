@@ -10,7 +10,7 @@ $( function() {
         ajax: {
             url: '/content-manager/table'
         },
-        
+
         columns: [
             {
                 data: 'content_uuid', 

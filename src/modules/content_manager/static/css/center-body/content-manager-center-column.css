@@ -189,8 +189,8 @@
     cursor: pointer;
     width: 4rem;
     height: 4rem;
-    font-size: 1rem;
-    transition: transform 0.2s ease;
+    font-size: 1.3rem;
+    transition: transform 0.1s ease;
 }
 
 .column-footer-icon.column-footer-delete {
@@ -198,7 +198,7 @@
 }
 
 .column-footer-icon:hover {
-    transform: scale(1.2);
+    transform: scale(1.3);
     cursor: pointer;
 }
 

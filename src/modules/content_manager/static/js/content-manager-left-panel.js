@@ -202,7 +202,7 @@ function createContentFields(columnName, columnType) {
 
     $('<div>').prop({'class': 'column-body-part', id: `column-body-part-${currentListLength}`}).appendTo(`#single-column-container-${currentListLength}`);
     $('<div>').prop({'class': 'column-part column-body-icon', id: `column-body-icon-${currentListLength}`}).appendTo(`#column-body-part-${currentListLength}`);
-    $('<i>').prop({'class': 'fa-solid fa-t', id: `body-icon-${currentListLength}`}).appendTo(`#column-body-icon-${currentListLength}`);
+    $('<i>').prop({'class': 'bx bx-text', id: `body-icon-${currentListLength}`}).appendTo(`#column-body-icon-${currentListLength}`);
     $('<div>').prop({'class': 'column-part column-body-name', id: `column-body-name-${currentListLength}`}).appendTo(`#column-body-part-${currentListLength}`);
     $('<span>').prop({'class': 'column-body-name-text', id: `body-name-text-${currentListLength}`}).text(columnName).appendTo(`#column-body-name-${currentListLength}`);
     $('<div>').prop({'class': 'column-part column-body-type', id: `column-body-type-${currentListLength}`}).appendTo(`#column-body-part-${currentListLength}`);
@@ -210,9 +210,9 @@ function createContentFields(columnName, columnType) {
 
     $('<div>').prop({'class': 'column-rear-part', id: `column-rear-part-${currentListLength}`}).appendTo(`#single-column-container-${currentListLength}`);
     $('<div>').prop({'class': 'column-footer-icon column-footer-edit', id: `column-footer-edit-${currentListLength}`}).appendTo(`#column-rear-part-${currentListLength}`);
-    $('<i>').prop({'class': 'fa-solid fa-pen-to-square', id: `edit-icon-${currentListLength}`, title: 'Edit'}).appendTo(`#column-footer-edit-${currentListLength}`);
+    $('<i>').prop({'class': 'bx bx-edit', id: `edit-icon-${currentListLength}`, title: 'Edit'}).appendTo(`#column-footer-edit-${currentListLength}`);
     $('<div>').prop({'class': 'column-footer-icon column-footer-delete', id: `column-footer-delete-${currentListLength}`}).appendTo(`#column-rear-part-${currentListLength}`);
-    $('<i>').prop({'class': 'fa-solid fa-trash', id: `delete-icon-${currentListLength}`, title: 'Delete'}).appendTo(`#column-footer-delete-${currentListLength}`);
+    $('<i>').prop({'class': 'bx bxs-trash', id: `delete-icon-${currentListLength}`, title: 'Delete'}).appendTo(`#column-footer-delete-${currentListLength}`);
 };
 
 $( function() {

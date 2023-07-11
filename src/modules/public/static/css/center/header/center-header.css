@@ -18,11 +18,15 @@
     padding: 1rem;
     text-decoration: none;
     color: rgb(117, 19, 208);
-    transition: border-bottom 0.1s ease;
+    transition: border-bottom 0.1s ease, background-color 0.2s ease;
 }
 
 .header-text-anchor:hover {
     border-bottom: 0.5rem solid rgb(179, 0, 255);
+}
+
+.header-text-anchor:active {
+    background-color: rgb(223, 223, 223);
 }
 
 .header-anchor-icon {
