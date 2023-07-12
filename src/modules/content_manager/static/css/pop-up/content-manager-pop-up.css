@@ -12,13 +12,12 @@
     flex-wrap: wrap;
 }
 
-.pop-up-submit-btn{
+.pop-up-submit-btn {
     height: 3.5rem;
     padding: 0 2rem;
     border-radius: 0.5rem;
     margin: 1rem 2.5rem;
 }
-
 
 #full-description-text {
     font-size: 1.6rem;
@@ -32,8 +31,15 @@
     align-items: center;
     justify-content: center;
     flex-wrap: wrap;
+    flex-direction: row;
     max-width: inherit;
     height: 20rem;
+}
+.field-type-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
 }
 
 .field-type-button {
@@ -55,12 +61,12 @@
     position: absolute;
     width: 70%;
     height: 150%;
-    transform: translateX(-150%) skewX(-35deg);
+    transform: translateX(-165%) skewX(-35deg);
     background: rgba(255, 255, 255, 0.5);
 }
 
 .field-type-button:hover:before {
-    --startHorizontal: -150%;
+    --startHorizontal: -165%;
     --endHorizontal: 150%;
     --horizonRotate: -35deg;
     animation: slide-shine 2s ease infinite;
@@ -68,4 +74,11 @@
 
 .field-type-icon {
     font-size: 5rem;
+}
+
+.field-type-text {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
 }

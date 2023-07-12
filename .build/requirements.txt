@@ -7,4 +7,5 @@ Flask-SQLAlchemy==3.0.3
 Flask-Migrate==4.0.4
 Flask-Negotiate==0.1.0
 Flask-Principal==0.4.0
+Flask-Minify==0.42
 bcrypt==4.0.1
