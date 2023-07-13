@@ -64,13 +64,18 @@
     position: relative;
     cursor: pointer;
     margin: 0;
+    color: white;
     left: 2.4rem;
 }
 
 .side-anchor-icon {
     font-size: 1.5rem;
-    color: white;
+    color: rgb(147, 147, 147);
     margin-left: 2.1rem;
+}
+
+.side-anchor.current-anchor .side-anchor-icon {
+    color: white;
 }
 
 .side-anchor:hover, #collapse-menu-btn:hover {
@@ -100,6 +105,10 @@
     border-top: none;
     transition: width 0.2s ease;
     bottom: 0;
+}
+
+.side-menu-group#side-logout .side-anchor-icon, .side-menu-group#side-logout .side-anchor-text {
+    color: white;
 }
 
 .side-menu-list {
@@ -153,9 +162,13 @@
     font-size: 1.5rem;
     margin-left: 2rem;
     font-family: 'Poppins', sans-serif;
-    color: white;
+    color: rgb(147, 147, 147);
     pointer-events: none;
     user-select: none;
+}
+
+.side-anchor.current-anchor .side-anchor-text {
+    color: white;
 }
 
 .side-tooltip {
