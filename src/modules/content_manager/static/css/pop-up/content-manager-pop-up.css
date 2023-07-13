@@ -28,18 +28,21 @@
 
 #field-creator-inner-body {
     display: flex;
-    align-items: center;
+    align-items: baseline;
     justify-content: center;
     flex-wrap: wrap;
     flex-direction: row;
     max-width: inherit;
-    height: 20rem;
+    height: fit-content;
 }
+
 .field-type-container {
     display: flex;
     align-items: center;
     justify-content: center;
     flex-direction: column;
+    margin: 2rem;
+    width: 15rem;
 }
 
 .field-type-button {
@@ -51,7 +54,7 @@
     height: 8rem;
     border-radius: 1rem;
     overflow: hidden;
-    color: rgb(128, 0, 225);
+    color: rgb(144, 0, 255);
     cursor: pointer;
     background: rgba(0, 0, 255, 0.05);
 }
@@ -73,12 +76,27 @@
 }
 
 .field-type-icon {
-    font-size: 5rem;
+    font-size: 4rem;
 }
 
 .field-type-text {
     display: flex;
     align-items: center;
     justify-content: center;
-    
+    flex-direction: column;
+    font-family: 'Chakra Petch', sans-serif;
+    margin-top: 1rem;
+    text-align: center;
+    user-select: none;
+}
+
+.field-type-title {
+    font-size: 1.5rem;
+    font-weight: 600;
+}
+
+.field-type-description {
+    margin-top: 0.5rem;
+    font-size: 1.2rem;
+    color: gray;
 }

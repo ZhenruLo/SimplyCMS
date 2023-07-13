@@ -31,10 +31,11 @@ class RelationType():
 class ColumnType():
     TEXT = 'text'
     STRING = 'string'
-    NUMBER = 'number'
+    NUMERIC = 'numeric'
+    INTEGER = 'integer'
     DATE = 'date'
     BOOLEAN = 'boolean'
     RELATION = 'relation'
-    MEDA = 'media'
+    MEDIA = 'media'
     JSON = 'json'
     
