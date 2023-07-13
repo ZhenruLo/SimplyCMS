@@ -3,7 +3,6 @@ from flask import Flask, current_app
 from flask_logger import init_logger
 from flask_login import current_user
 from flask_migrate import init, migrate, stamp, upgrade
-from flask_minify import Minify
 from flask_principal import RoleNeed, UserNeed, identity_loaded
 from models import db
 from security import csrf, login_manager, principals
@@ -18,7 +17,6 @@ def create_app(config_obj):
     flask_app = Flask(__name__, template_folder='../modules/public/template', static_folder='../modules/public/static')
     flask_app.config.from_object(config_obj)
 
-    
     csrf.init_app(flask_app)
     login_manager.init_app(flask_app)
     principals.init_app(flask_app)
