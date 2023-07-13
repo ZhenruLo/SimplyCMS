@@ -56,7 +56,7 @@
     overflow: hidden;
     color: rgb(144, 0, 255);
     cursor: pointer;
-    background: rgba(0, 0, 255, 0.05);
+    background-color: rgba(0, 0, 255, 0.05);
 }
 
 .field-type-button:before {
@@ -65,7 +65,7 @@
     width: 70%;
     height: 150%;
     transform: translateX(-165%) skewX(-35deg);
-    background: rgba(255, 255, 255, 0.5);
+    background-color: rgba(255, 255, 255, 0.5);
 }
 
 .field-type-button:hover:before {
@@ -73,6 +73,10 @@
     --endHorizontal: 150%;
     --horizonRotate: -35deg;
     animation: slide-shine 2s ease infinite;
+}
+
+.field-type-button:active {
+    background-color: rgb(235, 217, 255);
 }
 
 .field-type-icon {
