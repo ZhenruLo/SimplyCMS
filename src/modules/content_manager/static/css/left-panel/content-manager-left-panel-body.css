@@ -40,7 +40,7 @@
     justify-content: center;
     align-items: center;
     padding-left: 2rem;
-    color: blueviolet;
+    color: rgba(0, 0, 0, 0.5);
     width: 9%;
     height: 100%;
     font-size: 0.4rem;
@@ -50,6 +50,7 @@
     padding-left: 3rem;
     --horizontal: -0.5rem;
     --hRebounce: 0.5rem;
+    color: blueviolet;
     animation: rebounce-from-left-animation 0.5s ease;
 }
 
@@ -59,9 +60,13 @@
     align-items: center;
     width: 80%;
     height: 100%;
+    color: rgba(0, 0, 0, 0.5);
     font-size: 1.1rem;
     font-family: 'Poppins', sans-serif;
-    
+}
+
+.content-list-item.selected-row .content-list-context {
+    color: black;
 }
 
 .content-list-delete {
@@ -70,7 +75,7 @@
     align-items: center;
     cursor: initial;
     font-size: 1.2rem;
-    color: red;
+    color: rgba(255, 0, 0, 0.5);
     width: 10%;
     height: 100%;
     transition: transform 0.1s ease;
@@ -83,6 +88,10 @@
 
 .content-list-delete:active {
     transform: scale(1);
+}
+
+.content-list-item.selected-row .content-list-delete {
+    color: red;
 }
 
 .content-selected-line {
@@ -125,10 +134,12 @@
     visibility: visible;
     font-size: 1.2rem;
     width: 9%;
+    color: blue;
 }
 
 #create-content-context {
     width: 91%;
+    color: blue;
 }
 
 .left-panel-content-pagination {
