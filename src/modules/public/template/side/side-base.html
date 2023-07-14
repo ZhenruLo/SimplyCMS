@@ -23,7 +23,8 @@
                 <ul class='side-menu-list'>
                     {{ side.create_side_menu_list
                         (
-                            'database-anchor', 
+                            'database-anchor',
+                            '1',
                             '/database', 
                             'fa-solid fa-layer-group', 
                             'Database', 
@@ -38,6 +39,7 @@
                     {{ side.create_side_menu_list
                         (
                             'content-manager-anchor', 
+                            '2',
                             '/content-manager', 
                             'fa-solid fa-hammer', 
                             'Content manager', 
@@ -48,6 +50,7 @@
                     {{ side.create_side_menu_list
                         (
                             'media-anchor', 
+                            '3',
                             '', 
                             'fa-solid fa-photo-film', 
                             'Media', 
@@ -62,6 +65,7 @@
                     {{ side.create_side_menu_list
                         (
                             'dashboard-anchor', 
+                            '4',
                             '', 
                             'fa-solid fa-chart-pie', 
                             'Dashboard', 
@@ -73,7 +77,7 @@
 
             <div class='side-menu-group' id='side-logout'>
                 <ul class='side-menu-list'>
-                    <li class='side-li'>
+                    <li class='side-li' style='--li-num:5'>
                         <a role='button' class='side-anchor dropdown-button' id='logout-anchor'>
                             <i class='side-anchor-icon fa-solid fa-user'></i>
                             <span class='side-anchor-text'></span>

@@ -22,10 +22,6 @@
     box-shadow: 0 0 0.2rem 0.1rem rgba(211, 211, 211, 0.5);
 }
 
-.login-content-container.start {
-    animation: opacity-animation 0.4s ease;
-}
-
 .welcome-container {
     z-index: 1;
     display: flex;

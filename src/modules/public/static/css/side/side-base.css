@@ -124,6 +124,12 @@
     list-style-type: none;
 }
 
+.side-li.start {
+    --vertical: -2rem;
+    --isVisible: 0;
+    animation: show-from-top-or-bottom calc(0.1s * var(--li-num)) ease;
+}
+
 .side-anchor {
     display: flex;
     flex-direction: row;

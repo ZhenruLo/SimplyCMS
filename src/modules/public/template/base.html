@@ -21,7 +21,6 @@
         <link rel='stylesheet' type='text/css' href='static/css/input/input-share.css'>
         <link rel='stylesheet' type='text/css' href='static/css/center/center.css'>
         <link rel='stylesheet' type='text/css' href='static/css/center/header/center-header.css'>
-        {% block static %}{% endblock static %}
         <link rel='stylesheet' href='//fonts.googleapis.com/css?family=Beau+Rivage'/>
         <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Poppins'>
         <link rel='stylesheet' href='https://fonts.googleapis.com/css2?family=Chakra+Petch'>
@@ -30,10 +29,11 @@
         <link rel='stylesheet' type='text/css' href='https://cdn.datatables.net/v/zf/jq-3.6.0/dt-1.13.1/b-2.3.3/datatables.min.css'/>
         <link rel='stylesheet' type='text/css' href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css'>
         <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css' integrity='sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ==' crossorigin='anonymous' referrerpolicy='no-referrer' />
+        {% block static %}{% endblock static %}
     </head>
     <body>
         {% import 'input/input-share.html' as input %}
-        {% import 'pop-up/pop-up-share.html' as popup%}
+        {% import 'pop-up/pop-up-share.html' as popup %}
         
         {% include 'pop-up/modal-box.html' %}
 
@@ -56,7 +56,7 @@
         </div>
 
         <div id='content'>
-            {% block content %}{% endblock content%}
+            {% block content %}{% endblock content %}
         </div>
 
         <script src='https://code.jquery.com/jquery-3.5.1.js'></script>

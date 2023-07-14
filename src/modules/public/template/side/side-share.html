@@ -1,5 +1,5 @@
-{% macro create_side_menu_list(anchor_id, href_add, icon_class, anchor_text, tooltip_text) -%}
-    <li class='side-li'>
+{% macro create_side_menu_list(anchor_id, list_number, href_add, icon_class, anchor_text, tooltip_text) -%}
+    <li class='side-li' style='--li-num: {{ list_number }}'>
         <a class='side-anchor' id='{{ anchor_id }}' href=' {{ href_add }}'>
             <i class='side-anchor-icon {{ icon_class }}'></i>
             <span class='side-anchor-text'>{{ anchor_text }}</span>

@@ -13,7 +13,7 @@
 .left-panel-menu-row.start {
     --vertical: -2rem;
     --isVisible: 0;
-    animation: show-from-top-or-bottom calc(0.1s * var(--t)) ease;
+    animation: show-from-top-or-bottom calc(0.2s * var(--t)) ease;
 }
 
 .left-panel-inner-row {

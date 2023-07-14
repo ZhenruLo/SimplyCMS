@@ -7,5 +7,5 @@ function endLoading(selector) {
 }
 
 $( function() {
-    $('.page-loader').toggleClass('hide');
+    $('.page-loader').fadeOut(200);
 });
