@@ -1,8 +1,7 @@
 $( function() {
     $('#content-creator-form').submit(function(event) {
         event.preventDefault();
-
-        $('.pop-up-background').mousedown();
+        togglePopUp();
 
         $.ajax({
             url: '/content-manager/databases',
@@ -27,8 +26,7 @@ $( function() {
 
     $('#update-display-form').submit(function(event) {
         event.preventDefault();
-
-        $('.pop-up-background').mousedown();
+        togglePopUp();
 
         $.ajax({
             url: '/content-manager/databases',
@@ -49,4 +47,46 @@ $( function() {
             }
         })
     })
+
+    $('#text-field-container .field-type-button').on('click', function(event) {
+        event.preventDefault();
+
+        openPopUp('#text-field-pop-up', null, false);
+    });
+
+    $('#boolean-field-container .field-type-button').on('click', function(event) {
+        event.preventDefault();
+
+        openPopUp('#boolean-field-pop-up', null, false);
+    });
+
+    $('#date-field-container .field-type-button').on('click', function(event) {
+        event.preventDefault();
+
+        openPopUp('#date-field-pop-up', null, false);
+    });
+
+    $('#json-field-container .field-type-button').on('click', function(event) {
+        event.preventDefault();
+
+        openPopUp('#json-field-pop-up', null, false);
+    });
+
+    $('#media-field-container .field-type-button').on('click', function(event) {
+        event.preventDefault();
+
+        openPopUp('#media-field-pop-up', null, false);
+    });
+
+    $('#number-field-container .field-type-button').on('click', function(event) {
+        event.preventDefault();
+
+        openPopUp('#number-field-pop-up', null, false);
+    });
+
+    $('#relation-field-container .field-type-button').on('click', function(event) {
+        event.preventDefault();
+
+        openPopUp('#relation-field-pop-up', null, false);
+    });
 });

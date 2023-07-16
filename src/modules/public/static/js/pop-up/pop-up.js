@@ -1,15 +1,18 @@
 function togglePopUp() {
-    $('.pop-up-background').toggleClass('show');
+    $('.pop-up-background').mousedown();
 };
 
-function openPopUp(containerId, headerText=null) {
-    togglePopUp();
-
-    $(containerId).addClass('show');
+function openPopUp(containerId, headerText=null, backgroundActivate=true) {
+    if (backgroundActivate) {
+        $('.pop-up-background').toggleClass('show');
+    }
     
     if (headerText) {
         $('.pop-up-base-body.show .pop-up-middle-text').text(headerText);
     };
+
+    $('.pop-up-base-body').removeClass('show');
+    $(containerId).addClass('show');
 }
 
 $(function() {
@@ -17,7 +20,8 @@ $(function() {
         if (event.target !== event.currentTarget) {
             return
         };
-        togglePopUp();
+
+        $('.pop-up-background').toggleClass('show');
         $('.pop-up-base-body').removeClass('show');
     });
 });
