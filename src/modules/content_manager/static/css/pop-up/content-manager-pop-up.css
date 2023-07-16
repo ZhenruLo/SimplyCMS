@@ -72,7 +72,7 @@
     --startHorizontal: -165%;
     --endHorizontal: 150%;
     --horizonRotate: -35deg;
-    animation: slide-shine 2s ease infinite;
+    animation: slide-shine 1.5s ease infinite;
 }
 
 .field-type-button:active {
