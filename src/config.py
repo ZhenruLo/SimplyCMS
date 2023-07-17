@@ -18,8 +18,6 @@ class Config():
     PERMANENT_SESSION_LIFETIME = timedelta(hours=48)
 
     SQLALCHEMY_DATABASE_URI = 'postgresql://postgres:root@localhost:5432/database' 
-        
-    SQLALCHEMY_TRACK_MODIFICATIONS = True
     
     MAIL_SERVER = None
     MAIL_SERVER_ERROR = None

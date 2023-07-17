@@ -3,16 +3,14 @@ from pathlib import Path
 
 
 class Directory():
-    GIT_REPO_ROOT_DIR = os.path.abspath(
-        os.path.join(__file__, os.pardir)
-    )
+    GIT_REPO_ROOT_DIR = Path(__file__).parent
     
-    GLOBAL_SERVER_ASSET_DIR = Path(GIT_REPO_ROOT_DIR, 'server_asset')
+    GLOBAL_SERVER_ASSET_DIR = Path(GIT_REPO_ROOT_DIR.as_posix(), 'server_asset')
     
-    GLOBAL_MIGRATE_DIR = Path(GIT_REPO_ROOT_DIR, 'migration')
+    GLOBAL_MIGRATE_DIR = Path(GIT_REPO_ROOT_DIR.as_posix(), 'migration')
     
-    GLOBAL_STATIC_URL_DIR = Path(GIT_REPO_ROOT_DIR, 'web_application', 'static')
-    GLOBAL_THIRD_PARTY_DIR = Path(GIT_REPO_ROOT_DIR, 'third_party')
+    GLOBAL_STATIC_URL_DIR = Path(GIT_REPO_ROOT_DIR.as_posix(), 'web_application', 'static')
+    GLOBAL_THIRD_PARTY_DIR = Path(GIT_REPO_ROOT_DIR.as_posix(), 'third_party')
 
 class WebUserRole():
     USER = 'user'

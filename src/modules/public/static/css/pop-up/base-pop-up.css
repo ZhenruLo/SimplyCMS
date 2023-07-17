@@ -79,9 +79,10 @@
 .pop-up-footer {
     display: flex;
     justify-content: flex-end;
+    align-items: center;
     width: inherit;
-    padding-top: 2rem;
-    background-color: white;
+    height: fit-content;
+    background-color: whitesmoke;
     border-bottom-left-radius: 0.5rem;
     border-bottom-right-radius: 0.5rem;
 }

@@ -35,8 +35,6 @@
 
 .header-anchor-text {
     user-select: none;
-    margin-left: 0.5rem;
-    margin-top: 0.5rem;
     color: rgb(57, 0, 128);
     font-family: 'Chakra Petch', sans-serif;
 }
