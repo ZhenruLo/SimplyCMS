@@ -1,6 +1,7 @@
 <form id='text-field-form' action='' method='POST'>
     <input id='text-field-content-uuid' type='hidden' name='content_uuid' value=''>
-
+    <input id='text-field-type' type='hidden' name='column_type' value='text'>
+    
     <div class='content-creator-form-body'>
         {{ input.create_pop_up_text
             (
@@ -10,4 +11,9 @@
             )
         }}
     </div>
+    
+    <label class="switch">
+        <input type="checkbox">
+        <span class="slider"></span>
+    </label>
 </form>

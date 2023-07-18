@@ -3,7 +3,8 @@ from flask_login import login_required
 
 from .content_manager_controller import (count_table_info, fetch_table_data,
                                          fetch_table_title, process_database,
-                                         process_database_content)
+                                         process_database_content,
+                                         reroute_page)
 
 content_manager_bp = Blueprint(
     'content_manager_bp',
@@ -12,13 +13,14 @@ content_manager_bp = Blueprint(
     static_url_path='/content_manager/static',
     template_folder='template')
 
-
-@content_manager_bp.route('/content-manager', methods=['GET'])
+@content_manager_bp.route('/content-manager', defaults={'path': 'menu'}, methods=['GET'])
+@content_manager_bp.route('/content-manager/<path:path>', methods=['GET'])
 @login_required
-def content_manager():
+def content_manager(path):
+    json_data = reroute_page(path)
     
     current_app.logger.info(f'Render content-manager.html')
-    return render_template('content-manager.html')
+    return render_template('content-manager.html', state=json_data)
 
 @content_manager_bp.route('/content-manager/table-count', methods=['GET'])
 @login_required

@@ -4,7 +4,7 @@ import string
 from typing import TYPE_CHECKING, Dict, List, Union
 
 from constants import ColumnType
-from flask import request
+from flask import abort, request
 from models import (ColumnInfo, Content, create_table, db, remove_table,
                     update_table_content)
 from werkzeug.utils import secure_filename
@@ -13,6 +13,30 @@ from .content_manager_form import ContentManagerForm
 
 if TYPE_CHECKING:
     from flask_wtf import FlaskForm
+
+def reroute_page(path):
+    if path == '' or path == 'menu':
+        title = 'Content Manager - Menu'
+        content = 'menu'
+    elif path == 'content':
+        title = 'Content Manager - Content'
+        content = 'content'
+    elif path == 'info':
+        title = 'Content Manager - Info'
+        content = 'info'
+    elif path == 'history':
+        title = 'Content Manager - History'
+        content = 'history'
+    else:
+        abort(404)
+    
+    json_data = {
+        'url': request.path,
+        'title': title,
+        'content': content,
+    }
+    
+    return json_data
 
 def count_table_info() -> Dict[str, Union[bool, str]]:
     result = False

@@ -1,5 +1,15 @@
 var leftPanelCurrentPage = 1;
 
+rowBodyFactory.set('row-create-content', 'center-create-content');
+rowBodyFactory.set('row-custom-field', 'center-custom-field');
+rowBodyFactory.set('row-create-page', 'center-create-page');
+rowBodyFactory.set('content-list-id', 'center-content-builder')
+
+tabPanelFactory.set('content-tab', 'left-panel-menu');
+tabPanelFactory.set('content-type-tab', 'left-panel-content-type');
+tabPanelFactory.set('information-tab', 'left-panel-info');
+tabPanelFactory.set('history-tab', 'left-panel-history');
+
 function refreshContentBuilderPage() {
     let selectedRow = $('.content-list-item.selected-row');
     let contentUUID = selectedRow.find('.content-uuid').val();
@@ -39,7 +49,7 @@ function refreshContentBuilderPage() {
     };
 };
 
-function processPaginationButton(leftPanelCurrentPage, maxPage) {
+function processPaginationButton(page, maxPage) {
     let backwardAnchor =  $('.pagination-anchor.backward-anchor')
     let forwardAnchor =  $('.pagination-anchor.forward-anchor')
 
@@ -49,7 +59,7 @@ function processPaginationButton(leftPanelCurrentPage, maxPage) {
     else {
         $('.left-panel-content-pagination').css('display', 'flex');
 
-        if (leftPanelCurrentPage <= 1) {
+        if (page <= 1) {
            backwardAnchor.css({
                 'pointer-events': 'none',
                 'color': 'gray',
@@ -59,7 +69,7 @@ function processPaginationButton(leftPanelCurrentPage, maxPage) {
                 'color': 'black',
             });
         }
-        else if (leftPanelCurrentPage >= maxPage){
+        else if (page >= maxPage){
            backwardAnchor.css({
                 'pointer-events': 'initial',
                 'color': 'black',
@@ -124,6 +134,10 @@ function refreshContentItem(page, selectedContentUUID) {
                 let maxPage = data['max_page']
 
                 $('.count-num').text(count);
+                if (!page) {
+                    page = maxPage;
+                }
+                leftPanelCurrentPage = page;
                 processPaginationButton(page, maxPage);
                 
                 $.ajax({
@@ -141,10 +155,15 @@ function refreshContentItem(page, selectedContentUUID) {
                                 if (selectedContentUUID && contentUUID === selectedContentUUID) {
                                     createContentItem(tableName, contentUUID, true);
                                 }
+                                else if (!selectedContentUUID && key === 0) {
+                                    createContentItem(tableName, contentUUID, true);
+                                }
                                 else {
                                     createContentItem(tableName, contentUUID, false);
                                 }
                             })
+
+                            openContent();
                             refreshContentBuilderPage();
                         }
                         else {
@@ -216,8 +235,6 @@ function createContentFields(columnName, columnType) {
 };
 
 $( function() {
-    refreshContentItem(leftPanelCurrentPage, null);
-
     $('#left-panel-menu').on('panelSelect', function() {
         selectRow('#row-create-content');
         openContent();
@@ -225,17 +242,8 @@ $( function() {
     });
 
     $('#left-panel-content-type').on('panelSelect', function() {
-        let currentListLength = $('.left-panel-content-list li').length;
-
-        if (currentListLength === 0) {
-            selectRow('#content-list-id');
-        }
-        else {
-            selectRow('.left-panel-content-list li:first');
-        }
-        
-        openContent();
-        refreshContentBuilderPage();
+        clearSelectedRow();
+        refreshContentItem(leftPanelCurrentPage, null);
     });
 
     $('#left-panel-info').on('panelSelect', function() {
