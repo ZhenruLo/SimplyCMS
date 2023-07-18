@@ -94,7 +94,11 @@ $( function() {
         let row = table.row(tr);
         let selectedContentUUID = row.data().content_uuid;
         let selectedContentPage = Math.floor(tr.find('.sorting_1').text()/20) + 1;
-
-        openTab('#content-type-tab');
+        let extra = new Map([
+            ['selectedContentUUID', selectedContentUUID], 
+            ['selectedContentPage', selectedContentPage]
+        ]);
+        
+        openTab('#content-type-tab', extra);
     });
 });

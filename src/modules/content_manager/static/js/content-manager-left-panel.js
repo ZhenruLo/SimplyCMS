@@ -235,21 +235,29 @@ function createContentFields(columnName, columnType) {
 };
 
 $( function() {
-    $('#left-panel-menu').on('panelSelect', function() {
+    $('#left-panel-menu').on('panelSelect', function(event, extra) {
         selectRow('#row-create-content');
         openContent();
         $('#content-table').DataTable().ajax.reload(null, false);
     });
 
-    $('#left-panel-content-type').on('panelSelect', function() {
+    $('#left-panel-content-type').on('panelSelect', function(event, extra) {
+        let page = leftPanelCurrentPage
+        let selectedContentUUID = null
+        
         clearSelectedRow();
-        refreshContentItem(leftPanelCurrentPage, null);
+        if (extra) {
+            selectedContentUUID = extra.get('selectedContentUUID');
+            page = extra.get('selectedContentPage');
+        }
+
+        refreshContentItem(page, selectedContentUUID);
     });
 
-    $('#left-panel-info').on('panelSelect', function() {
+    $('#left-panel-info').on('panelSelect', function(event, extra) {
     });
 
-    $('#left-panel-history').on('panelSelect', function() {
+    $('#left-panel-history').on('panelSelect', function(event, extra) {
     });
 
     $('.left-panel-inner-row').on('click', function(event) {

@@ -24,11 +24,11 @@ function openContent() {
     $('#' + selectedBody).addClass('selected-body').trigger('bodySelect');
 };
 
-function openPanel() {
+function openPanel(extra) {
     clearSelectedPanel();
     
     let selectedPanel = tabPanelFactory.get($('.selected-tab').prop('id'));
-    $('#' + selectedPanel).addClass('selected-panel').trigger('panelSelect');
+    $('#' + selectedPanel).addClass('selected-panel').trigger('panelSelect', [extra]);
 };
 
 $('#collapse-menu-btn').on('click', function() {
