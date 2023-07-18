@@ -25,7 +25,7 @@ $( function() {
                 'content_uuid': contentUUID
             }),
             success: function(data) {
-                console.log(data);
+                alert(data);
             }
         });
     });

@@ -244,7 +244,7 @@ $( function() {
     $('#left-panel-content-type').on('panelSelect', function(event, extra) {
         let page = leftPanelCurrentPage
         let selectedContentUUID = null
-        
+
         clearSelectedRow();
         if (extra) {
             selectedContentUUID = extra.get('selectedContentUUID');

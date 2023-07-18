@@ -99,6 +99,6 @@ $( function() {
             ['selectedContentPage', selectedContentPage]
         ]);
         
-        openTab('#content-type-tab', extra);
+        openTab('content-type-tab', extra);
     });
 });

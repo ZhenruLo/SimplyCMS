@@ -13,20 +13,36 @@ from .content_manager_form import ContentManagerForm
 
 if TYPE_CHECKING:
     from flask_wtf import FlaskForm
+    
+def fetch_state():
+    state = {
+        'content-tab': '/content-manager/content',
+        'content-type-tab': '/content-manager/content-type',
+        'information-tab': '/content-manager/information',
+        'history-tab': '/content-manager/history',
+    }
+
+    json_data = {
+        'result': True,
+        'state': state,
+        'msg': 'Page state fetched'
+    }
+
+    return json_data
 
 def reroute_page(path):
-    if path == '' or path == 'menu':
-        title = 'Content Manager - Menu'
-        content = 'menu'
-    elif path == 'content':
-        title = 'Content Manager - Content'
-        content = 'content'
-    elif path == 'info':
+    if path == '' or path == 'content':
+        title = 'Content Manager - Content Menu'
+        content = 'content-tab'
+    elif path == 'content-type':
+        title = 'Content Manager - Content type'
+        content = 'content-type-tab'
+    elif path == 'information':
         title = 'Content Manager - Info'
-        content = 'info'
+        content = 'information-tab'
     elif path == 'history':
         title = 'Content Manager - History'
-        content = 'history'
+        content = 'history-tab'
     else:
         abort(404)
     
