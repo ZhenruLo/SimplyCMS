@@ -68,9 +68,9 @@ $( function() {
         if (result === false){
             return false
         };
-        let tr = $(this).closest('tr');
-        let row = table.row(tr);
-        let selectedContentUUID = row.data().content_uuid;
+        const tr = $(this).closest('tr');
+        const row = table.row(tr);
+        const selectedContentUUID = row.data().content_uuid;
 
         $.ajax({
             url: '/content-manager/databases',
@@ -90,15 +90,17 @@ $( function() {
     });
 
     $('#content-table tbody').on('click', 'td.dt-edit', function () {
-        let tr = $(this).closest('tr');
-        let row = table.row(tr);
-        let selectedContentUUID = row.data().content_uuid;
-        let selectedContentPage = Math.floor(tr.find('.sorting_1').text()/20) + 1;
-        let extra = new Map([
-            ['selectedContentUUID', selectedContentUUID], 
-            ['selectedContentPage', selectedContentPage]
-        ]);
-        
-        openTab('content-type-tab', extra);
+        const tr = $(this).closest('tr');
+        const row = table.row(tr);
+        const selectedContentUUID = row.data().content_uuid;
+        const selectedContentPage = Math.floor(tr.find('.sorting_1').text()/20) + 1;
+        const extra = {
+            'uid': selectedContentUUID,
+            'page': selectedContentPage,
+        }
+        const newUrl = new URL(window.location.hostname + '/content-manager/content-type');
+
+        changeCurrentState('/content-manager/state', '/content-manager/content-type', extra);
+        pushCustomState(extra, newUrl);
     });
 });

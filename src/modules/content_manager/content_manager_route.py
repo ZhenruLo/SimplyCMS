@@ -3,7 +3,7 @@ from flask_login import login_required
 
 from .content_manager_controller import (count_table_info, fetch_state,
                                          fetch_table_data, fetch_table_title,
-                                         process_database,
+                                         fetch_urls, process_database,
                                          process_database_content,
                                          reroute_page)
 
@@ -29,6 +29,14 @@ def state():
     json_data = fetch_state()
 
     current_app.logger.info(f"Result dict from content_manager_bp.state, result: {json_data['result']}, msg: {json_data['msg']}")
+    return jsonify(json_data)
+
+@content_manager_bp.route('/content-manager/urls', methods=['GET'])
+@login_required
+def urls():
+    json_data = fetch_urls()
+
+    current_app.logger.info(f"Result dict from content_manager_bp.urls, result: {json_data['result']}, msg: {json_data['msg']}")
     return jsonify(json_data)
 
 @content_manager_bp.route('/content-manager/table-count', methods=['GET'])

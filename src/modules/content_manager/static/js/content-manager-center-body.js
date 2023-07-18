@@ -15,7 +15,7 @@ $( function() {
 
     $('#test_button').on('click', function(event) {
         event.preventDefault();
-        let contentUUID = $('.content-list-item.selected-row').find('.content-uuid').val();
+        const contentUUID = $('.content-list-item.selected-row').find('.content-uuid').val();
         
         $.ajax({
             url: '/content-manager/database-content',

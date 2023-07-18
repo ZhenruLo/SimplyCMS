@@ -9,7 +9,7 @@ $( function() {
             data: $(this).serialize(),
             success: function(data) {
                 if (data['result']) {
-                    let contentUUID = data['content_uuid'];
+                    const contentUUID = data['content_uuid'];
 
                     $('#content-table').DataTable().ajax.reload(null, false);
 

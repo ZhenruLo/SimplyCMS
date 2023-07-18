@@ -2,10 +2,10 @@ $( function() {
     $('#table-name-edit').on('click', function(event) {
         event.preventDefault();
     
-        let selectedRow = $('.content-list-item.selected-row')
-        let displayNameInput = $('#update-display-name');
-        let routeNameInput = $('#update-route-name');
-        let descriptionInput = $('#update-description');
+        const selectedRow = $('.content-list-item.selected-row')
+        const displayNameInput = $('#update-display-name');
+        const routeNameInput = $('#update-route-name');
+        const descriptionInput = $('#update-description');
 
         openPopUp('#update-display-pop-up', $('.content-header-text').text())
         
@@ -15,7 +15,7 @@ $( function() {
             data: {'content_uuid': selectedRow.find('.content-uuid').val()},
             success: function(data) {
                 if (data['result']) {
-                    let contentInfo = data['database'];
+                    const contentInfo = data['database'];
     
                     displayNameInput.prop({
                         'placeholder': contentInfo['content_name'], 

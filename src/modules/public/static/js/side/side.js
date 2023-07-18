@@ -19,7 +19,7 @@ function selectRow(leftPanelRow) {
 };
 
 function openContent() {
-    let selectedBody = rowBodyFactory.get($('.selected-row').prop('id'));
+    const selectedBody = rowBodyFactory.get($('.selected-row').prop('id'));
     clearSelectedBody();
     $('#' + selectedBody).addClass('selected-body').trigger('bodySelect');
 };
@@ -27,7 +27,7 @@ function openContent() {
 function openPanel(extra) {
     clearSelectedPanel();
     
-    let selectedPanel = tabPanelFactory.get($('.selected-tab').prop('id'));
+    const selectedPanel = tabPanelFactory.get($('.selected-tab').prop('id'));
     $('#' + selectedPanel).addClass('selected-panel').trigger('panelSelect', [extra]);
 };
 

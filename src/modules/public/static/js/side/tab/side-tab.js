@@ -5,9 +5,6 @@ function clearSelectedTab() {
 }
 
 function openTab(id, extra = new Map()) {
-    let urlPath = pageUrlFactory.get(id);
-    pushCustomState(null, urlPath);
-
     clearSelectedTab();
     
     $('#' + id).addClass('selected-tab').trigger('tabChange', [extra]);
@@ -15,8 +12,11 @@ function openTab(id, extra = new Map()) {
 
 $('.left-panel-tab').on('click', function(event) {
     event.preventDefault();
+    const tabID = $(this).prop('id')
+    let urlPath = new URL(window.location.origin + pageUrlFactory.get(tabID));
     
-    openTab($(this).prop('id'));
+    pushCustomState(null, urlPath);
+    changeCurrentState('/content-manager/state', window.location.pathname);
 });
 
 $('.left-panel-tab').on('tabChange', function(event, extra) {
@@ -28,7 +28,7 @@ function appendPageUrl(url) {
         url: url,
         method: 'GET',
         success: function(data) {
-            $.each(data['state'], function(key, value) {
+            $.each(data['urls'], function(key, value) {
                 pageUrlFactory.set(key, value)
             });
         }

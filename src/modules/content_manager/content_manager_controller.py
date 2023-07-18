@@ -3,34 +3,63 @@ import random
 import string
 from typing import TYPE_CHECKING, Dict, List, Union
 
-from constants import ColumnType
 from flask import abort, request
+from werkzeug.utils import secure_filename
+
+from constants import ColumnType
 from models import (ColumnInfo, Content, create_table, db, remove_table,
                     update_table_content)
-from werkzeug.utils import secure_filename
 
 from .content_manager_form import ContentManagerForm
 
 if TYPE_CHECKING:
     from flask_wtf import FlaskForm
-    
+
+URLS = {
+    'content-tab': '/content-manager',
+    'content-type-tab': '/content-manager/content-type',
+    'information-tab': '/content-manager/information',
+    'history-tab': '/content-manager/history',
+}
+
 def fetch_state():
-    state = {
-        'content-tab': '/content-manager/content',
-        'content-type-tab': '/content-manager/content-type',
-        'information-tab': '/content-manager/information',
-        'history-tab': '/content-manager/history',
-    }
+    result = False
+    msg = 'Fail to fetch page state'
+
+    current_query = [[k, v] for k, v in request.args.items()]
+    current_tab = request.args.get('path_name')
+
+    if current_tab:
+        if current_tab in URLS.values():
+            current_tab = __get_key_from_value(URLS, current_tab)
+        else:
+            current_tab = ''
+
+        result = True
+        msg = 'Page state fetched'
 
     json_data = {
+        'result': result,
+        'current_tab': current_tab,
+        'current_query': current_query,
+        'msg': msg,
+    }
+
+    return json_data
+    
+
+def fetch_urls():
+    json_data = {
         'result': True,
-        'state': state,
-        'msg': 'Page state fetched'
+        'urls': URLS,
+        'msg': 'Page url fetched'
     }
 
     return json_data
 
 def reroute_page(path):
+    query = [[k, v] for k, v in request.args.items()]
+
     if path == '' or path == 'content':
         title = 'Content Manager - Content Menu'
         content = 'content-tab'
@@ -50,6 +79,7 @@ def reroute_page(path):
         'url': request.path,
         'title': title,
         'content': content,
+        'query': query,
     }
     
     return json_data
@@ -305,3 +335,9 @@ def __check_special_char(string: str) -> bool:
     if any(char in special_characters for char in string):
         return True
     return False
+
+def __get_key_from_value(dictionary, value):
+    keys = [k for k, v in dictionary.items() if v == value]
+    if keys:
+        return keys[0]
+    return None

@@ -11,8 +11,8 @@ tabPanelFactory.set('information-tab', 'left-panel-info');
 tabPanelFactory.set('history-tab', 'left-panel-history');
 
 function refreshContentBuilderPage() {
-    let selectedRow = $('.content-list-item.selected-row');
-    let contentUUID = selectedRow.find('.content-uuid').val();
+    const selectedRow = $('.content-list-item.selected-row');
+    const contentUUID = selectedRow.find('.content-uuid').val();
 
     if (selectedRow.length === 0) {
         $('#content-name-text').text('No content selected');
@@ -26,7 +26,7 @@ function refreshContentBuilderPage() {
             data: {'content_uuid': contentUUID},
             success: function(data) {
                 if (data['result']) {
-                    let contentInfo = data['database'];
+                    const contentInfo = data['database'];
                     $('#content-name-text').text(contentInfo['content_name']);
                     if (contentInfo['description']) {
                         $('.header-description-text').text(contentInfo['description']);
@@ -50,8 +50,8 @@ function refreshContentBuilderPage() {
 };
 
 function processPaginationButton(page, maxPage) {
-    let backwardAnchor =  $('.pagination-anchor.backward-anchor')
-    let forwardAnchor =  $('.pagination-anchor.forward-anchor')
+    const backwardAnchor =  $('.pagination-anchor.backward-anchor')
+    const forwardAnchor =  $('.pagination-anchor.forward-anchor')
 
     if (maxPage <= 1){
         $('.left-panel-content-pagination').css('display', 'none');
@@ -101,7 +101,7 @@ function refreshColumnItem(selectedContentUUID) {
         data: {'content_uuid': selectedContentUUID},
         success: function(data) {
             if (data['result']) {
-                let columns = data['fields']
+                const columns = data['fields']
                 $.each(columns, function(columnIndex, columnInfo) {
                     let columnName = columnInfo['column_name']
                     let columnType = columnInfo['column_type']
@@ -130,8 +130,8 @@ function refreshContentItem(page, selectedContentUUID) {
         method: 'GET',
         success: function(data) {
             if (data['result']) {
-                let count = data['data']
-                let maxPage = data['max_page']
+                const count = data['data']
+                const maxPage = data['max_page']
 
                 $('.count-num').text(count);
                 if (!page) {
@@ -146,7 +146,7 @@ function refreshContentItem(page, selectedContentUUID) {
                     data: {'page': page},
                     success: function(data) {
                         if (data['result']) {
-                            let tableList = data['data']
+                            const tableList = data['data']
 
                             $.each(tableList, function(key, value){
                                 let tableName = value['content_name'];
@@ -186,7 +186,7 @@ function refreshContentItem(page, selectedContentUUID) {
 };
 
 function createContentItem(tableName, contentUUID, selectedRow) {
-    let currentListLength = $('.left-panel-content-list li').length;
+    const currentListLength = $('.left-panel-content-list li').length;
     
     if (selectedRow) {
         $('<li>').prop({'class': 'content-list-item selected-row', 'id': `content-list-item-${currentListLength}`}).appendTo('.left-panel-content-list');
@@ -212,7 +212,7 @@ function createContentItem(tableName, contentUUID, selectedRow) {
 };
 
 function createContentFields(columnName, columnType) {
-    let currentListLength = $('.column-body-list li').length;
+    const currentListLength = $('.column-body-list li').length;
 
     $('<li>').prop({'class': `single-column-container`, 'id': `single-column-container-${currentListLength}`, 'style': `--c:${currentListLength + 1}`}).appendTo('.column-body-list');
 
@@ -236,7 +236,13 @@ function createContentFields(columnName, columnType) {
 
 $( function() {
     $('#left-panel-menu').on('panelSelect', function(event, extra) {
-        selectRow('#row-create-content');
+        let selectedRow = 'row-create-content';
+
+        if (extra.get('row')) {
+            selectedRow = extra.get('row');
+        }
+
+        selectRow('#' + selectedRow);
         openContent();
         $('#content-table').DataTable().ajax.reload(null, false);
     });
@@ -246,9 +252,10 @@ $( function() {
         let selectedContentUUID = null
 
         clearSelectedRow();
-        if (extra) {
-            selectedContentUUID = extra.get('selectedContentUUID');
-            page = extra.get('selectedContentPage');
+
+        if (extra.get('uid') && extra.get('page')) {
+            selectedContentUUID = extra.get('uid');
+            page = extra.get('page');
         }
 
         refreshContentItem(page, selectedContentUUID);
@@ -262,24 +269,40 @@ $( function() {
 
     $('.left-panel-inner-row').on('click', function(event) {
         event.preventDefault();
-        let closestRow = $(this).closest('.left-panel-menu-row');
-
-        selectRow(closestRow);
-        openContent();
+        const closestRow = $(this).closest('.left-panel-menu-row');
+        const extra = {
+            'row': $(closestRow).prop('id')
+        };
+        const newUrl = new URL(window.location.href)
+        
+        pushCustomState(extra, newUrl);
+        changeCurrentState('/content-manager/state', window.location.pathname, extra);
     });
 
     $('.left-panel-content-list').on('click', 'li.content-list-item', function() {
+        const selectedContentUUID = $(this).find('input.content-uuid').val();
+        const selectedContentPage = leftPanelCurrentPage;
+        const extra = {
+            'uid': selectedContentUUID,
+            'page': selectedContentPage,
+        }
+        
+        const newUrl = new URL(window.location.href);
+
         selectRow(this);
         openContent();
         refreshContentBuilderPage();
+
+        pushCustomState(extra, newUrl);
     });
 
     $('.left-panel-content-list').on('click', 'li .content-list-delete', function () {
+        const contentUUID = $(this).parent().find('.content-uuid').val();
+        
         result = confirm('Delete this item?');
         if (result === false){
             return false
         };
-        let contentUUID = $(this).parent().find('.content-uuid').val();
 
         $.ajax({
             url: '/content-manager/databases',
