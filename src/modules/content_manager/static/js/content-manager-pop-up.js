@@ -10,10 +10,17 @@ $( function() {
             success: function(data) {
                 if (data['result']) {
                     const contentUUID = data['content_uuid'];
+                    const extra = {
+                        'uid': contentUUID,
+                        'page': null,
+                    }
+                    const newUrl = new URL(window.location.href);
 
                     $('#content-table').DataTable().ajax.reload(null, false);
 
-                    refreshContentItem(null, contentUUID);
+            
+                    pushCustomState(extra, newUrl);
+                    changeCurrentState('/content-manager/state', '/content-manager/content-type', extra);
 
                     $('#content-creator-form').trigger('reset');
                 };

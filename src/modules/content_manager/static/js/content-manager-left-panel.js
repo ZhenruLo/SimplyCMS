@@ -124,7 +124,7 @@ function refreshColumnItem(selectedContentUUID) {
 
 function refreshContentItem(page, selectedContentUUID) {
     $('ul.left-panel-content-list').empty();
-
+    console.log(page)
     $.ajax({
         url: '/content-manager/table-count',
         method: 'GET',
@@ -248,14 +248,13 @@ $( function() {
     });
 
     $('#left-panel-content-type').on('panelSelect', function(event, extra) {
-        let page = leftPanelCurrentPage
         let selectedContentUUID = null
-
+        const page = extra.get('page');
+        
         clearSelectedRow();
 
-        if (extra.get('uid') && extra.get('page')) {
+        if (extra.get('uid')) {
             selectedContentUUID = extra.get('uid');
-            page = extra.get('page');
         }
 
         refreshContentItem(page, selectedContentUUID);

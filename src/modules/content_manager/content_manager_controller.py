@@ -110,16 +110,23 @@ def fetch_table_title() -> Dict[str, Union[bool, str]]:
     msg = 'Fail to fetch content table title'
     dict_list = None
 
-    try: 
-        offset = (int(request.values['page']) - 1) * 20
+    page = int(request.values['page'])
+
+    if page > 0:
+        offset = (page - 1) * 20
         all_data = db.session.query(Content.content_uuid, Content.content_name).offset(offset).limit(20)
         dict_list = [data._asdict() for data in all_data]
         
         if dict_list is not None:
             result = True
             msg = 'Table data load success'
-            
-    except Exception as err:
+
+    elif page == 0:
+        result = True
+        msg = 'Table data load success'
+        dict_list = []
+
+    else:
         msg = 'Invalid page value'
         
     json_data = {
