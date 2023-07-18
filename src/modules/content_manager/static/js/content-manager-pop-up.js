@@ -23,7 +23,10 @@ $( function() {
                     changeCurrentState('/content-manager/state', '/content-manager/content-type', extra);
 
                     $('#content-creator-form').trigger('reset');
-                };
+                }
+                else {
+                    alert(data['msg']);
+                }
             },
             error: function(data) {
                 alert(data.responseText);
