@@ -98,7 +98,7 @@ $( function() {
             'uid': selectedContentUUID,
             'page': selectedContentPage,
         }
-        const newUrl = new URL(window.location.hostname + '/content-manager/content-type');
+        const newUrl = new URL(window.location.origin + '/content-manager/content-type');
 
         pushCustomState(extra, newUrl);
         changeCurrentState('/content-manager/state', '/content-manager/content-type', extra);
