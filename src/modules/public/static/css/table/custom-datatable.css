@@ -107,7 +107,10 @@ div.dataTables_wrapper div.dataTables_filter input {
 }
 
 div.dataTables_wrapper div.dataTables_filter input::placeholder {
-    font-family: 'Roboto', sans-serif;
+    font-family: 'Font Awesome 6 Free';
+    font-size: 1rem;
+    font-weight: 600;
+    letter-spacing: 0.2rem;
     color: white;
 }
 

@@ -59,7 +59,7 @@ $( function() {
         ],
 
         drawCallback: function(settings) {
-            $('.dataTables_filter label input').prop('placeholder', 'Type here to search for content');
+            $('.dataTables_filter label input').prop('placeholder', '\uf002 Type here to search for content');
         },
     });
 
