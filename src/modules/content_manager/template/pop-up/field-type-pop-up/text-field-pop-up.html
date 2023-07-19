@@ -3,7 +3,7 @@
     <input id='text-field-type' type='hidden' name='column_type' value='text'>
     
     <div class='content-creator-form-body'>
-        {{ input.create_pop_up_text
+        {{ input.create_text
             (
                 'text-field-name',
                 'Display Name',
@@ -12,8 +12,10 @@
         }}
     </div>
     
-    <label class="switch" id='unique-switch'>
-        <input type="checkbox">
-        <span class="slider"></span>
-    </label>
-</form>
+    {{ input.create_yesno_switch
+        (
+            'unique-switch', 
+            'unique-switch-input',
+        ) 
+    }}
+</form> 

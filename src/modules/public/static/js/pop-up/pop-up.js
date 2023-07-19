@@ -24,4 +24,9 @@ $(function() {
         $('.pop-up-background').toggleClass('show');
         $('.pop-up-base-body').removeClass('show');
     });
+
+    
+    $('.switch-button-checkbox').on('change', function() {
+        $(this).parent().toggleClass('switch-checked');
+    });
 });
