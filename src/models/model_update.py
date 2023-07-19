@@ -20,7 +20,7 @@ def remove_table(tablename: str):
         __refresh_metadata()
 
 def update_table_content(tablename: str, column_info: str, column_var_type: str):
-    if column_var_type == ColumnType.NUMBER:
+    if column_var_type == ColumnType.NUMERIC:
         column_attr = Numeric
     elif column_var_type == ColumnType.STRING:
         column_attr = String(255)
