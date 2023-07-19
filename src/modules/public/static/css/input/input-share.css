@@ -110,8 +110,8 @@ fieldset.custom-fieldset-1:hover {
     display: inline-block;
     width: 12rem;
     height: 3.5rem;
-    background-color: rgb(175, 149, 255);
-    border: 0.3rem solid rgb(175, 149, 255);
+    background-color: rgb(204 188 255);
+    border: 0.3rem solid rgb(204 188 255);
     border-radius: 0.2rem;
     transition: background-color 0.4s ease;
 }
@@ -172,7 +172,7 @@ fieldset.custom-fieldset-1:hover {
     height: inherit;
     font-family: 'Chakra Petch', sans-serif;
     font-size: 1.1rem;
-    color: rgb(175, 149, 255);
+    color: rgb(204 188 255);
     user-select: none;
 }
 
@@ -181,7 +181,7 @@ fieldset.custom-fieldset-1:hover {
 }
 
 .switch.switch-checked::after {
-    color: rgb(175, 149, 255);
+    color: rgb(204 188 255);
 }
 
 .switch.switch-checked .switch-button-label-span {
