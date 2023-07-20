@@ -13,10 +13,10 @@ function openTab(id, extra = new Map()) {
 $('.left-panel-tab').on('click', function(event) {
     event.preventDefault();
     const tabID = $(this).prop('id')
-    let urlPath = new URL(window.location.origin + pageUrlFactory.get(tabID));
+    const urlPath = new URL(window.location.origin + pageUrlFactory.get(tabID));
     
-    pushCustomState(null, urlPath);
-    changeCurrentState('/content-manager/state', window.location.pathname);
+    openTab(tabID);
+    pushCustomState(urlPath);
 });
 
 $('.left-panel-tab').on('tabChange', function(event, extra) {

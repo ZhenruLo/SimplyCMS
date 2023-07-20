@@ -172,7 +172,7 @@ fieldset.custom-fieldset-1:hover {
     height: inherit;
     font-family: 'Chakra Petch', sans-serif;
     font-size: 1.1rem;
-    color: rgb(204 188 255);
+    color: rgb(113, 70, 255);
     user-select: none;
 }
 
@@ -181,7 +181,7 @@ fieldset.custom-fieldset-1:hover {
 }
 
 .switch.switch-checked::after {
-    color: rgb(204 188 255);
+    color: rgb(113, 70, 255);
 }
 
 .switch.switch-checked .switch-button-label-span {

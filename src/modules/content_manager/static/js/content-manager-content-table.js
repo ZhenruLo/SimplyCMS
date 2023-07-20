@@ -94,13 +94,13 @@ $( function() {
         const row = table.row(tr);
         const selectedContentUUID = row.data().content_uuid;
         const selectedContentPage = Math.floor(tr.find('.sorting_1').text()/20) + 1;
-        const extra = {
-            'uid': selectedContentUUID,
-            'page': selectedContentPage,
-        }
+        const extra = new Map([
+            ['selectedContentUUID', selectedContentUUID], 
+            ['selectedContentPage', selectedContentPage]
+        ]);
         const newUrl = new URL(window.location.origin + '/content-manager/content-type');
-
-        pushCustomState(extra, newUrl);
-        changeCurrentState('/content-manager/state', '/content-manager/content-type', extra);
+        
+        openTab('content-type-tab', extra);
+        pushCustomState(newUrl, extra);
     });
 });

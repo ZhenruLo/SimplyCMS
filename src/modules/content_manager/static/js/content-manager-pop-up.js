@@ -10,16 +10,16 @@ $( function() {
             success: function(data) {
                 if (data['result']) {
                     const contentUUID = data['content_uuid'];
-                    const extra = {
-                        'uid': contentUUID,
-                        'page': null,
-                    }
+                    const extra = new Map([
+                        ['uid', contentUUID],
+                        ['page', null],
+                    ]);
                     const newUrl = new URL(window.location.href);
 
                     $('#content-table').DataTable().ajax.reload(null, false);
 
             
-                    pushCustomState(extra, newUrl);
+                    pushCustomState(newUrl, extra);
                     changeCurrentState('/content-manager/state', '/content-manager/content-type', extra);
 
                     $('#content-creator-form').trigger('reset');
@@ -30,9 +30,9 @@ $( function() {
             },
             error: function(data) {
                 alert(data.responseText);
-            }   
-        })
-    })
+            }
+        });
+    });
 
     $('#update-display-form').submit(function(event) {
         event.preventDefault();
@@ -53,8 +53,8 @@ $( function() {
             error: function(data) {
                 alert(data.responseText);
             }
-        })
-    })
+        });
+    });
 
     $('#text-field-container .field-type-button').on('click', function(event) {
         event.preventDefault();

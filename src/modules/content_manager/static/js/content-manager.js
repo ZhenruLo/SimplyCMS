@@ -10,4 +10,5 @@ $( function() {
 
     togglePageState(state);
     appendPageUrl('/content-manager/urls');
+    refreshContentItem(leftPanelCurrentPage);
 });

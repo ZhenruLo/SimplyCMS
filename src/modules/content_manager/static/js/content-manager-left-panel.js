@@ -13,7 +13,7 @@ tabPanelFactory.set('history-tab', 'left-panel-history');
 function refreshContentBuilderPage() {
     const selectedRow = $('.content-list-item.selected-row');
     const contentUUID = selectedRow.find('.content-uuid').val();
-
+    
     if (selectedRow.length === 0) {
         $('#content-name-text').text('No content selected');
         $('.header-description-text').text('No description');
@@ -122,7 +122,7 @@ function refreshColumnItem(selectedContentUUID) {
     })
 };
 
-function refreshContentItem(page, selectedContentUUID) {
+function refreshContentItem(page, selectedContentUUID = null) {
     $('ul.left-panel-content-list').empty();
     
     $.ajax({
@@ -151,20 +151,9 @@ function refreshContentItem(page, selectedContentUUID) {
                             $.each(tableList, function(key, value){
                                 let tableName = value['content_name'];
                                 let contentUUID = value['content_uuid'];
-                                
-                                if (selectedContentUUID && contentUUID === selectedContentUUID) {
-                                    createContentItem(tableName, contentUUID, true);
-                                }
-                                else if (!selectedContentUUID && key === 0) {
-                                    createContentItem(tableName, contentUUID, true);
-                                }
-                                else {
-                                    createContentItem(tableName, contentUUID, false);
-                                }
-                            })
 
-                            openContent();
-                            refreshContentBuilderPage();
+                                createContentItem(tableName, contentUUID, false);
+                            })
                         }
                         else {
                             alert(data['msg']);
@@ -248,16 +237,19 @@ $( function() {
     });
 
     $('#left-panel-content-type').on('panelSelect', function(event, extra) {
-        let selectedContentUUID = null
-        const page = extra.get('page');
+        let selectedContentUUID = null;
+        let page = leftPanelCurrentPage;
 
         clearSelectedRow();
 
         if (extra.get('uid')) {
+            page = extra.get('page');
             selectedContentUUID = extra.get('uid');
         }
 
-        refreshContentItem(page, selectedContentUUID);
+        openContent();
+        refreshContentBuilderPage();
+        // refreshContentItem(page, selectedContentUUID);
     });
 
     $('#left-panel-info').on('panelSelect', function(event, extra) {
@@ -269,30 +261,30 @@ $( function() {
     $('.left-panel-inner-row').on('click', function(event) {
         event.preventDefault();
         const closestRow = $(this).closest('.left-panel-menu-row');
-        const extra = {
-            'row': $(closestRow).prop('id')
-        };
-        const newUrl = new URL(window.location.href)
-        
-        pushCustomState(extra, newUrl);
-        changeCurrentState('/content-manager/state', window.location.pathname, extra);
+        const extra = new Map([
+            ['row', $(closestRow).prop('id')],
+        ]);
+        const newUrl = new URL(window.location.href);
+
+        selectRow(closestRow);
+        openContent();
+        pushCustomState(newUrl, extra);
     });
 
     $('.left-panel-content-list').on('click', 'li.content-list-item', function() {
         const selectedContentUUID = $(this).find('input.content-uuid').val();
         const selectedContentPage = leftPanelCurrentPage;
-        const extra = {
-            'uid': selectedContentUUID,
-            'page': selectedContentPage,
-        }
-        
+        const extra = new Map([
+            ['uid', selectedContentUUID],
+            ['page', selectedContentPage],
+        ]);
         const newUrl = new URL(window.location.href);
 
         selectRow(this);
         openContent();
         refreshContentBuilderPage();
 
-        pushCustomState(extra, newUrl);
+        pushCustomState(newUrl, extra);
     });
 
     $('.left-panel-content-list').on('click', 'li .content-list-delete', function () {
@@ -324,13 +316,13 @@ $( function() {
     $('.pagination-anchor.forward-anchor').on('click', function(event) {
         event.preventDefault();
         leftPanelCurrentPage += 1;
-        refreshContentItem(leftPanelCurrentPage, null);
+        refreshContentItem(leftPanelCurrentPage);
     });
 
     $('.pagination-anchor.backward-anchor').on('click', function(event) {
         event.preventDefault();
         leftPanelCurrentPage -= 1;
-        refreshContentItem(leftPanelCurrentPage, null);
+        refreshContentItem(leftPanelCurrentPage);
     });
 
     $('.content-create-content').on('click', function(event) {

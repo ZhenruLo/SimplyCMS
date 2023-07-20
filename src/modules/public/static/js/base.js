@@ -6,26 +6,26 @@ function endLoading(selector) {
     $(selector).removeClass('loading');
 }
 
-function pushCustomState(data, urlPath, unused='') {
+function pushCustomState(urlPath, data = new Map(), unused = '') {
     let newUrl = new URL(urlPath);
     
-    $.each(newUrl.searchParams, function(key, value) {
+    for (const key of newUrl.searchParams.keys()) {
         newUrl.searchParams.delete(key);
-    });
-
-    $.each(data, function(key, value) {
+    };
+    for (let [key, value] of data) {
         newUrl.searchParams.set(key, value);
-    });
-    
+    };
+
     history.pushState(data, unused, newUrl);
 }
 
-function changeCurrentState(url, pathName, data={}) {
-    data['path_name'] = pathName;
+function changeCurrentState(url, pathName, map =new Map()) {
+    map.set('path_name', pathName);
+    
     $.ajax({
         url: url,
         methods: 'GET',
-        data: data,
+        data: Object.fromEntries(map),
         success: function(data) {
             if (data['result']) {
                 const currentTab = data['current_tab'];
