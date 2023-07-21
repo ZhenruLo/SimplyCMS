@@ -9,7 +9,6 @@
     align-items: flex-start;
     height: 4.5rem;
     padding: 4rem 1rem;
-    margin-bottom: 3rem;
     background-color: rgb(247 240 255);
 }
 
@@ -93,6 +92,13 @@
 
 #description-info:active {
     transform: scale(0.8);
+}
+
+.column-body-tab {
+    width: inherit;
+    height: 3rem;
+    margin-bottom: 3rem;
+    background-color: rgb(247 240 255);
 }
 
 .column-body-container{
