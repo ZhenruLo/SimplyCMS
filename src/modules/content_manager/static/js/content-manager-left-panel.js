@@ -13,7 +13,15 @@ tabPanelFactory.set('history-tab', 'left-panel-history');
 function refreshContentBuilderPage() {
     const selectedRow = $('.content-list-item.selected-row');
     const contentUUID = selectedRow.find('.content-uuid').val();
+    const extra = new Map([
+        ['page', leftPanelCurrentPage],
+        ['uid', contentUUID],
+    ]);
     
+    const newUrl = new URL(window.location.href);
+
+    pushCustomState(newUrl, extra);
+
     if (selectedRow.length === 0) {
         $('#content-name-text').text('No content selected');
         $('.header-description-text').text('No description');
@@ -27,6 +35,7 @@ function refreshContentBuilderPage() {
             success: function(data) {
                 if (data['result']) {
                     const contentInfo = data['database'];
+                    
                     $('#content-name-text').text(contentInfo['content_name']);
                     if (contentInfo['description']) {
                         $('.header-description-text').text(contentInfo['description']);
@@ -34,12 +43,12 @@ function refreshContentBuilderPage() {
                     }
                     else {
                         $('.header-description-text').text('No description');
-                    }
+                    };
                 }
                 else {
                     $('#content-name-text').text('No content selected');
                     $('.header-description-text').text('No description');
-                }
+                };
                 refreshColumnItem(contentUUID);
             },
             error: function(data) {
@@ -132,11 +141,12 @@ function refreshContentItem(page, selectedContentUUID = null) {
             if (data['result']) {
                 const count = data['data']
                 const maxPage = data['max_page']
-
+                
                 $('.count-num').text(count);
                 if (!page) {
                     page = maxPage;
                 }
+
                 leftPanelCurrentPage = page;
                 processPaginationButton(page, maxPage);
                 
@@ -152,17 +162,28 @@ function refreshContentItem(page, selectedContentUUID = null) {
                                 let tableName = value['content_name'];
                                 let contentUUID = value['content_uuid'];
 
-                                createContentItem(tableName, contentUUID, false);
+                                if (selectedContentUUID && contentUUID === selectedContentUUID) {
+                                    createContentItem(tableName, contentUUID, true);
+                                }
+                                else if (!selectedContentUUID && key === 0) {
+                                    createContentItem(tableName, contentUUID, true);
+                                }
+                                else {
+                                    createContentItem(tableName, contentUUID, false);
+                                }
                             })
+
+                            openContent();
+                            refreshContentBuilderPage();
                         }
                         else {
                             alert(data['msg']);
-                        }
+                        };
                     },
                     error: function(data) {
                         alert(data.responseText);
-                    }
-                })
+                    },
+                });
             }
             else {
                 alert(data['msg']);
@@ -240,16 +261,13 @@ $( function() {
         let selectedContentUUID = null;
         let page = leftPanelCurrentPage;
 
-        clearSelectedRow();
-
         if (extra.get('uid')) {
-            page = extra.get('page');
+            page = Number(extra.get('page'));
             selectedContentUUID = extra.get('uid');
-        }
-
-        openContent();
-        refreshContentBuilderPage();
-        // refreshContentItem(page, selectedContentUUID);
+        };
+        
+        clearSelectedRow();
+        refreshContentItem(page, selectedContentUUID);
     });
 
     $('#left-panel-info').on('panelSelect', function(event, extra) {
@@ -272,19 +290,9 @@ $( function() {
     });
 
     $('.left-panel-content-list').on('click', 'li.content-list-item', function() {
-        const selectedContentUUID = $(this).find('input.content-uuid').val();
-        const selectedContentPage = leftPanelCurrentPage;
-        const extra = new Map([
-            ['uid', selectedContentUUID],
-            ['page', selectedContentPage],
-        ]);
-        const newUrl = new URL(window.location.href);
-
         selectRow(this);
         openContent();
         refreshContentBuilderPage();
-
-        pushCustomState(newUrl, extra);
     });
 
     $('.left-panel-content-list').on('click', 'li .content-list-delete', function () {

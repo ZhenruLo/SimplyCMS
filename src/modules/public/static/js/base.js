@@ -9,13 +9,14 @@ function endLoading(selector) {
 function pushCustomState(urlPath, data = new Map(), unused = '') {
     let newUrl = new URL(urlPath);
     
-    for (const key of newUrl.searchParams.keys()) {
+    for (const key of newUrl.searchParams) {
         newUrl.searchParams.delete(key);
     };
+    
     for (let [key, value] of data) {
         newUrl.searchParams.set(key, value);
     };
-
+    
     history.pushState(data, unused, newUrl);
 }
 

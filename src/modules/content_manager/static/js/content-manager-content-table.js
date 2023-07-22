@@ -95,8 +95,8 @@ $( function() {
         const selectedContentUUID = row.data().content_uuid;
         const selectedContentPage = Math.floor(tr.find('.sorting_1').text()/20) + 1;
         const extra = new Map([
-            ['selectedContentUUID', selectedContentUUID], 
-            ['selectedContentPage', selectedContentPage]
+            ['uid', selectedContentUUID], 
+            ['page', selectedContentPage]
         ]);
         const newUrl = new URL(window.location.origin + '/content-manager/content-type');
         

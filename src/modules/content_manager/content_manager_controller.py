@@ -110,7 +110,7 @@ def fetch_table_title() -> Dict[str, Union[bool, str]]:
     msg = 'Fail to fetch content table title'
     dict_list = None
 
-    page = int(request.values['page'])
+    page = int(request.values.get('page'))
 
     if page > 0:
         offset = (page - 1) * 20

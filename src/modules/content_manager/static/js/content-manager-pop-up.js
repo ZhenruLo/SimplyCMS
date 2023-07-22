@@ -11,13 +11,12 @@ $( function() {
                 if (data['result']) {
                     const contentUUID = data['content_uuid'];
                     const extra = new Map([
-                        ['uid', contentUUID],
                         ['page', null],
+                        ['uid', contentUUID],
                     ]);
                     const newUrl = new URL(window.location.href);
 
                     $('#content-table').DataTable().ajax.reload(null, false);
-
             
                     pushCustomState(newUrl, extra);
                     changeCurrentState('/content-manager/state', '/content-manager/content-type', extra);
