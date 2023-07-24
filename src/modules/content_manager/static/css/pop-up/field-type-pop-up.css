@@ -1,3 +1,5 @@
-.switch-container#unique-switch-container{
-    margin-left: 2.25rem;
+#text-unique-switch-container, 
+#text-required-switch-container,
+#text-private-switch-container {
+    margin: 0 0 1.5rem 2.25rem;
 }

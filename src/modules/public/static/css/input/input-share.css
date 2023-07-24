@@ -86,11 +86,16 @@ fieldset.custom-fieldset-1:hover {
     width: 30rem;
 }
 
+.match-cb-label {
+    user-select: none;
+}
+
 .under-input-text {
     width: inherit;
     font-size: 1.1rem;
     color: gray;
     line-height: 1.5rem;
+    user-select: none;
 }
 
 .custom-text-input {
@@ -103,6 +108,12 @@ fieldset.custom-fieldset-1:hover {
 
 .custom-text-input:focus {
     outline: none;
+}
+
+.custom-text-input.checked {
+    background-color: rgb(232, 232, 232);
+    color: gray;
+    cursor: not-allowed;
 }
 
 .switch-container {
@@ -118,7 +129,7 @@ fieldset.custom-fieldset-1:hover {
     width: 12rem;
     height: 3.5rem;
     background-color: rgb(204 188 255);
-    border: 0.3rem solid rgb(204 188 255);
+    border: 0.2rem solid rgb(204 188 255);
     border-radius: 0.2rem;
     transition: background-color 0.4s ease;
 }
@@ -132,7 +143,7 @@ fieldset.custom-fieldset-1:hover {
     position: absolute;
     font-family: 'Chakra Petch', sans-serif;
     font-size: 1.1rem;
-    color: white;
+    color: rgb(229, 229, 229);
     top: 0;
     bottom: 0;
     right: 0;
@@ -192,5 +203,5 @@ fieldset.custom-fieldset-1:hover {
 }
 
 .switch.switch-checked .switch-button-label-span {
-    color: white;
+    color: rgb(229, 229, 229);
 }

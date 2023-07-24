@@ -1,4 +1,7 @@
 $( function() {
+    checkMatchRoute('#create-match-cb', '#content-route-name', '#content-display-name');
+    checkMatchRoute('#update-match-cb', '#update-route-name', '#update-display-name');
+
     $('#content-creator-form').submit(function(event) {
         event.preventDefault();
         togglePopUp();
@@ -20,7 +23,8 @@ $( function() {
             
                     pushCustomState(newUrl, extra);
                     changeCurrentState('/content-manager/state', '/content-manager/content-type', extra);
-
+                    
+                    $('.custom-text-input').removeClass('checked');
                     $('#content-creator-form').trigger('reset');
                 }
                 else {
@@ -46,6 +50,7 @@ $( function() {
                     contentUUID = data['content_uuid'];
                     
                     refreshContentItem(1, contentUUID);
+                    $('.custom-text-input').removeClass('checked');
                     $('#update-dsiplay-form').trigger('reset');
                 };
             },

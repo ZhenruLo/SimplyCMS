@@ -15,6 +15,28 @@ function openPopUp(containerId, headerText=null, backgroundActivate=true) {
     $(containerId).addClass('show');
 }
 
+function checkMatchRoute(cbID, routeTextID, displayTextID) {
+    $(displayTextID).on('input', function(event) {
+        event.preventDefault();
+
+        if ($(cbID).prop('checked') === true) {
+            $(routeTextID).val($(displayTextID).val().replace(/[^a-z0-9\s]/gi, '').replace(/[_\s]/g, '-'));
+        }
+    });
+
+    $(cbID).on('change', function(event) { 
+        event.preventDefault();
+        
+        if ($(this).prop('checked') === true) {
+            $(routeTextID).toggleClass('checked');
+            $(routeTextID).val($(displayTextID).val().replace(/[^a-z0-9\s]/gi, '').replace(/[_\s]/g, '-'));
+        }
+        else {
+            $(routeTextID).toggleClass('checked');
+        };
+    });
+};
+
 $(function() {
     $('.pop-up-background').on('mousedown', function(event){
         if (event.target !== event.currentTarget) {
@@ -26,7 +48,9 @@ $(function() {
     });
 
     
-    $('.switch-button-checkbox').on('change', function() {
+    $('.switch-button-checkbox').on('change', function(event) {
+        event.preventDefault();
+
         $(this).parent().toggleClass('switch-checked');
     });
 });

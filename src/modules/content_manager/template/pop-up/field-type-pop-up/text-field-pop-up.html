@@ -15,9 +15,25 @@
     
     {{ input.create_yesno_switch
         (
-            'unique-switch-container',
-            'unique-switch', 
+            'text-unique-switch-container',
+            'text-unique-switch', 
             'Unique',
+        ) 
+    }}
+
+    {{ input.create_yesno_switch
+        (
+            'text-required-switch-container',
+            'text-required-switch', 
+            'Required',
+        ) 
+    }}
+
+    {{ input.create_yesno_switch
+        (
+            'text-private-switch-container',
+            'text-private-switch', 
+            'Private',
         ) 
     }}
 </form> 
