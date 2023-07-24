@@ -3,7 +3,7 @@ import random
 import string
 from typing import TYPE_CHECKING, Dict, List, Union
 
-from flask import abort, request
+from flask import abort, escape, request
 from werkzeug.utils import secure_filename
 
 from constants import ColumnType
@@ -27,7 +27,7 @@ def fetch_state():
     msg = 'Fail to fetch page state'
 
     current_query = [[k, v] for k, v in request.args.items()]
-    current_tab = request.args.get('path_name')
+    current_tab = escape(request.args.get('path_name'))
 
     if current_tab:
         if current_tab in URLS.values():
@@ -58,7 +58,8 @@ def fetch_urls():
     return json_data
 
 def reroute_page(path):
-    query = [[k, v] for k, v in request.args.items()]
+    path = escape(path)
+    query = [[escape(k), escape(v)] for k, v in request.args.items()]
 
     if path == '' or path == 'content':
         title = 'Content Manager - Content Menu'
@@ -110,7 +111,7 @@ def fetch_table_title() -> Dict[str, Union[bool, str]]:
     msg = 'Fail to fetch content table title'
     dict_list = None
 
-    page = int(request.values.get('page'))
+    page = int(escape(request.values.get('page')))
 
     if page > 0:
         offset = (page - 1) * 20
@@ -163,7 +164,7 @@ def process_database_content() -> Dict[str, Union[bool, str, List[str]]]:
     if request.method == 'GET':
         msg = 'Fetch database failed.'
         
-        content_uuid = request.args.get('content_uuid')
+        content_uuid = escape(request.args.get('content_uuid'))
         selected_table: 'Content' = Content.fetch_one_filter(Content.content_uuid, content_uuid, Content)
         
         if selected_table:
@@ -187,7 +188,7 @@ def process_database_content() -> Dict[str, Union[bool, str, List[str]]]:
     if request.method == 'PUT':
         msg = 'Update database failed'
 
-        content_uuid = request.get_json().get('content_uuid')
+        content_uuid = escape(request.get_json().get('content_uuid'))
         content_row: 'Content' = Content.fetch_one_filter(Content.content_uuid, content_uuid, Content)
 
         test_column = {'string_column': ColumnType.STRING, 'boolean_column': ColumnType.BOOLEAN, 'text_column': ColumnType.TEXT}
@@ -216,7 +217,7 @@ def process_database() -> Dict[str, Union[bool, str, List[str]]]:
         msg = 'Fetch database info failed.'
         database = None
         
-        selected_content_uuid = request.args.get('content_uuid') 
+        selected_content_uuid = escape(request.args.get('content_uuid'))
         
         database_row = Content.fetch_one_filter(Content.content_uuid, selected_content_uuid, Content.content_uuid, Content.content_name, Content.route_name, Content.description)
         if database_row:
@@ -237,14 +238,13 @@ def process_database() -> Dict[str, Union[bool, str, List[str]]]:
         form: 'FlaskForm' = ContentManagerForm()
         
         if form.validate_on_submit():
-            content_name = request.form.get('content_name')
-            route_name = secure_filename(request.form.get('route_name'))
-            description = request.form.get('description')
+            content_name = escape(request.form.get('content_name'))
+            route_name = escape(request.form.get('route_name'))
+            description = escape(request.form.get('description'))
             
-            check_table_result = __check_special_char(content_name)
-            check_route_result = __check_special_char(route_name) 
+            check_route_result = __check_special_char(route_name, True) 
 
-            if not check_route_result and not check_table_result:
+            if not check_route_result:
                 table_count = db.session.query(Content).filter(Content.content_name==content_name).count()
                 route_count = db.session.query(Content).filter(Content.route_name==route_name).count()
                 
@@ -274,10 +274,10 @@ def process_database() -> Dict[str, Union[bool, str, List[str]]]:
         form: 'FlaskForm' = ContentManagerForm()
         
         if form.validate_on_submit():
-            content_uuid = request.form.get('content_uuid')
-            content_name = request.form.get('content_name')
-            route_name = secure_filename(request.form.get('route_name'))
-            description = request.form.get('description')
+            content_uuid = escape(request.form.get('content_uuid'))
+            content_name = escape(request.form.get('content_name'))
+            route_name = escape(request.form.get('route_name'))
+            description = escape(request.form.get('description'))
             
             selected_table_query = db.session.query(Content).filter(Content.content_uuid == content_uuid)
             if selected_table_query.first():
@@ -301,7 +301,7 @@ def process_database() -> Dict[str, Union[bool, str, List[str]]]:
     elif request.method == 'DELETE':
         msg = 'Delete database failed'
         
-        content_uuid = request.get_json().get('content_uuid')
+        content_uuid = escape(request.get_json().get('content_uuid'))
         content: 'Content' = db.session.query(Content).filter(Content.content_uuid == content_uuid).first()
         if content:
             remove_table(content.table_name)
@@ -339,8 +339,11 @@ def __generate_uid() -> str:
     table_uid = random_letters + str(random_numbers)
     return table_uid
 
-def __check_special_char(string: str) -> bool:
-    special_characters = '''!@#$%^&*''()-+?=/,<>'''
+def __check_special_char(string: str, allow_hyphen: bool = False) -> bool:
+    if allow_hyphen:
+        special_characters = '''!@#$%^&*''()+?=/,<>'''
+    else:
+        special_characters = '''!@#$%^&*''()-+?=/,<>'''
     for char in string:
         if char in special_characters:
             print('yes')
