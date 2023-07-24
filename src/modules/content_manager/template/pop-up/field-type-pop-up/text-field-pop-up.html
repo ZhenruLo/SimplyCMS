@@ -5,6 +5,7 @@
     <div class='content-creator-form-body'>
         {{ input.create_text
             (
+                'text-field-text-id',
                 'text-field-name',
                 'Display Name',
                 'column_name',
@@ -14,8 +15,9 @@
     
     {{ input.create_yesno_switch
         (
+            'unique-switch-container',
             'unique-switch', 
-            'unique-switch-input',
+            'Unique',
         ) 
     }}
 </form> 

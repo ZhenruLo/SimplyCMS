@@ -56,7 +56,6 @@ fieldset.custom-fieldset-1:hover {
     display: flex;
     flex-direction: column;
     border-style: none;
-    user-select: none;
     margin-left: 1.5rem;
     width: fit-content;
 }
@@ -66,6 +65,7 @@ fieldset.custom-fieldset-1:hover {
     font-size: 1.2rem;
     margin-bottom: 1rem;
     color: black;
+    user-select: none;
 }
 
 .custom-textarea {
@@ -105,11 +105,18 @@ fieldset.custom-fieldset-1:hover {
     outline: none;
 }
 
+.switch-container {
+    width: 25rem;
+    height: 7rem;
+    display: flex;
+    flex-direction: column;
+}
+
 .switch {
     position: relative;
     display: inline-block;
     width: 12rem;
-    height: 3.5rem;
+    height: inherit;
     background-color: rgb(204 188 255);
     border: 0.3rem solid rgb(204 188 255);
     border-radius: 0.2rem;
@@ -171,7 +178,7 @@ fieldset.custom-fieldset-1:hover {
     width: 100%;
     height: inherit;
     font-family: 'Chakra Petch', sans-serif;
-    font-size: 1.1rem;
+    font-size: 1.2rem;
     color: rgb(113, 70, 255);
     user-select: none;
 }

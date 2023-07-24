@@ -8,8 +8,8 @@
     </fieldset>
 {%- endmacro %}
 
-{% macro create_text(input_id, input_legend, input_name, input_text) -%}
-    <fieldset class='custom-fieldset-2'>
+{% macro create_text(textfield_id, input_id, input_legend, input_name, input_text) -%}
+    <fieldset class='custom-fieldset-2' id='{{ textfield_id }}'>
         <legend class='custom-legend'>{{ input_legend }}</legend>
         <input class='custom-text-input' id='{{ input_id }}' type='text' name='{{ input_name }}' autocomplete='off' required>
 
@@ -19,8 +19,8 @@
     </fieldset>
 {%- endmacro %}
 
-{% macro create_textarea(input_id, input_legend, input_name, max_length, input_text) -%}
-    <fieldset class='custom-fieldset-2'>
+{% macro create_textarea(textarea_id, input_id, input_legend, input_name, max_length, input_text) -%}
+    <fieldset class='custom-fieldset-2' id='{{ textarea_id }}'>
         <legend class='custom-legend'>{{ input_legend }}</legend>
         <textarea class='custom-textarea' id='{{ input_id }}' name='{{ input_name }}' autocomplete='off' maxlength='{{ max_length }}' required></textarea>
 
@@ -30,8 +30,8 @@
     </fieldset>
 {%- endmacro %}
 
-{% macro create_cb_text(input_id, input_legend, input_name, cb_id, cb_name, cb_text) -%}
-    <fieldset class='custom-fieldset-2'>
+{% macro create_cb_text(cb_text_id, input_id, input_legend, input_name, cb_id, cb_name, cb_text) -%}
+    <fieldset class='custom-fieldset-2' id='{{ cb_text_id }}'>
         <legend class='custom-legend'>{{ input_legend }}</legend>
         <input class='custom-text-input' id='{{ input_id }}' type='text' name='{{ input_name }}' autocomplete='off' required>
 
@@ -42,9 +42,12 @@
     </fieldset>
 {%- endmacro %}
 
-{% macro create_yesno_switch(switch_id, input_id) -%}
-    <label class='switch' id='{{ switch_id }}'>
-        <input class='switch-button-checkbox' id='{{ input_id }}' type='checkbox'>
-        <label class='switch-button-label' for='{{ input_id }}'><span class='switch-button-label-span'>NO</span></label>
-    </label>
+{% macro create_yesno_switch(switch_id, input_id, switch_title) -%}
+    <div class='switch-container' id='{{ switch_id }}'>
+        <span class='custom-legend'>{{ switch_title }}</span>
+        <label class='switch'>
+            <input class='switch-button-checkbox' id='{{ input_id }}' type='checkbox'>
+            <label class='switch-button-label' for='{{ input_id }}'><span class='switch-button-label-span'>NO</span></label>
+        </label>
+    </div>
 {%- endmacro %}

@@ -270,22 +270,27 @@ def process_database() -> Dict[str, Union[bool, str, List[str]]]:
 
     elif request.method == 'PUT':
         msg = 'Update database failed.'
-        
-        content_uuid = request.form.get('content_uuid')
-        content_name = request.form.get('content_name')
-        route_name = secure_filename(request.form.get('route_name'))
-        description = request.form.get('description')
 
-        selected_table_query = db.session.query(Content).filter(Content.content_uuid == content_uuid)
-        if selected_table_query.first():
-            selected_table_query.update({
-                Content.content_name: content_name, 
-                Content.route_name: route_name,
-                Content.description: description,
-                })
-            db.session.commit()
-            result = True
-            msg = 'Database updated'
+        form: 'FlaskForm' = ContentManagerForm()
+        
+        if form.validate_on_submit():
+            content_uuid = request.form.get('content_uuid')
+            content_name = request.form.get('content_name')
+            route_name = secure_filename(request.form.get('route_name'))
+            description = request.form.get('description')
+            
+            selected_table_query = db.session.query(Content).filter(Content.content_uuid == content_uuid)
+            if selected_table_query.first():
+                selected_table_query.update({
+                    Content.content_name: content_name, 
+                    Content.route_name: route_name,
+                    Content.description: description,
+                    })
+                db.session.commit()
+                result = True
+                msg = 'Database updated'
+        else:
+            msg = 'Form validation failed'
 
         json_data = {
             'result': result,
