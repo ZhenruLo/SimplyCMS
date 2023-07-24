@@ -116,7 +116,7 @@ fieldset.custom-fieldset-1:hover {
     position: relative;
     display: inline-block;
     width: 12rem;
-    height: inherit;
+    height: 3.5rem;
     background-color: rgb(204 188 255);
     border: 0.3rem solid rgb(204 188 255);
     border-radius: 0.2rem;
