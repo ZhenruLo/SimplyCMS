@@ -36,6 +36,30 @@
     height: fit-content;
 }
 
+.text-field-form-body {
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    width: inherit;
+    flex-wrap: wrap;
+}
+
+.text-fields-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.switch-fields-container {
+    display: flex;
+    flex-direction: column;
+    padding: 2rem;
+    margin: 1rem;
+    border-radius: 1rem;
+    background-color: whitesmoke;
+    box-shadow: 0 0 0.1rem 0.1rem whitesmoke;
+}
+
 .field-type-container {
     display: flex;
     align-items: center;

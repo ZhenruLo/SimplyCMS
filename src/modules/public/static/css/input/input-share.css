@@ -87,6 +87,7 @@ fieldset.custom-fieldset-1:hover {
 }
 
 .match-cb-label {
+    color: gray;
     user-select: none;
 }
 
@@ -118,7 +119,7 @@ fieldset.custom-fieldset-1:hover {
 
 .switch-container {
     width: 25rem;
-    height: 7rem;
+    height: fit-content;
     display: flex;
     flex-direction: column;
 }
@@ -204,4 +205,11 @@ fieldset.custom-fieldset-1:hover {
 
 .switch.switch-checked .switch-button-label-span {
     color: rgb(229, 229, 229);
+}
+
+.switch-description {
+    margin-top: 1rem;
+    color: gray;
+    font-size: 1.1rem;
+    user-select: none;
 }
