@@ -29,9 +29,11 @@ function checkMatchRoute(cbID, routeTextID, displayTextID) {
         
         if ($(this).prop('checked') === true) {
             $(routeTextID).toggleClass('checked');
+            $(routeTextID).prop('readonly', true);
             $(routeTextID).val($(displayTextID).val().replace(/[^a-z0-9\s]/gi, '').replace(/[_\s]/g, '-'));
         }
         else {
+            $(routeTextID).prop('readonly', false);
             $(routeTextID).toggleClass('checked');
         };
     });

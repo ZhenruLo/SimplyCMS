@@ -1,4 +1,18 @@
 $( function() {
+    function checkDefaultInput(cbID, textID) {
+        $(cbID).on('change', function(event) { 
+            event.preventDefault();
+            
+            if ($(this).prop('checked') === true) {
+                $(textID).prop('disabled', false);
+            }
+            else {
+                $(textID).prop('value', '');
+                $(textID).prop('disabled', true);
+            };
+        });    
+    };
+
     checkMatchRoute('#create-match-cb', '#content-route-name', '#content-display-name');
     checkMatchRoute('#update-match-cb', '#update-route-name', '#update-display-name');
 
@@ -62,38 +76,44 @@ $( function() {
 
     $('#text-field-container .field-type-button').on('click', function(event) {
         event.preventDefault();
-
+        
         openPopUp('#text-field-pop-up', null, false);
+        checkDefaultInput('#text-default-cb', '#text-display-name');
     });
 
     $('#boolean-field-container .field-type-button').on('click', function(event) {
         event.preventDefault();
 
         openPopUp('#boolean-field-pop-up', null, false);
+        checkDefaultInput('#boolean-default-cb', '#boolean-display-name');
     });
 
     $('#date-field-container .field-type-button').on('click', function(event) {
         event.preventDefault();
 
         openPopUp('#date-field-pop-up', null, false);
+        checkDefaultInput('#date-default-cb', '#date-display-name');
     });
 
     $('#json-field-container .field-type-button').on('click', function(event) {
         event.preventDefault();
 
         openPopUp('#json-field-pop-up', null, false);
+        checkDefaultInput('#json-default-cb', '#json-display-name');
     });
 
     $('#media-field-container .field-type-button').on('click', function(event) {
         event.preventDefault();
 
         openPopUp('#media-field-pop-up', null, false);
+        checkDefaultInput('#media-default-cb', '#media-display-name');
     });
 
     $('#number-field-container .field-type-button').on('click', function(event) {
         event.preventDefault();
 
         openPopUp('#number-field-pop-up', null, false);
+        checkDefaultInput('#number-default-cb', '#number-display-name');
     });
 
     $('#relation-field-container .field-type-button').on('click', function(event) {
