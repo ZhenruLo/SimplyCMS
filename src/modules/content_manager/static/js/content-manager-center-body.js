@@ -12,21 +12,4 @@ $( function() {
 
         openPopUp('#create-field-pop-up');
     });
-
-    $('#test_button').on('click', function(event) {
-        event.preventDefault();
-        const contentUUID = $('.content-list-item.selected-row').find('.content-uuid').val();
-        
-        $.ajax({
-            url: '/content-manager/database-content',
-            contentType: 'application/json;charset=UTF-8',
-            method: 'PUT',
-            data: JSON.stringify({
-                'content_uuid': contentUUID
-            }),
-            success: function(data) {
-                alert(data);
-            }
-        });
-    });
 });

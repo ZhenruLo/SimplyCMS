@@ -11,4 +11,5 @@
 #json-display-name:disabled,
 #media-display-name:disabled {
     cursor: not-allowed;
+    background-color: rgb(232, 232, 232);
 }

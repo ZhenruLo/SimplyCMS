@@ -1,18 +1,4 @@
 $( function() {
-    function checkDefaultInput(cbID, textID) {
-        $(cbID).on('change', function(event) { 
-            event.preventDefault();
-            
-            if ($(this).prop('checked') === true) {
-                $(textID).prop('disabled', false);
-            }
-            else {
-                $(textID).prop('value', '');
-                $(textID).prop('disabled', true);
-            };
-        });    
-    };
-
     checkMatchRoute('#create-match-cb', '#content-route-name', '#content-display-name');
     checkMatchRoute('#update-match-cb', '#update-route-name', '#update-display-name');
 
@@ -51,6 +37,37 @@ $( function() {
         });
     });
 
+    function checkDefaultInput(cbID, textID) {
+        $(cbID).on('change', function(event) { 
+            event.preventDefault();
+            
+            if ($(this).prop('checked') === true) {
+                $(textID).prop('disabled', false);
+            }
+            else {
+                $(textID).prop('value', '');
+                $(textID).prop('disabled', true);
+            };
+        });    
+    };
+
+    function submitContentField(formID) {
+        $(formID).submit(function(event) {
+            event.preventDefault();
+            
+            console.log($(this).serialize())
+            $.ajax({
+                url: '/content-manager/database-content',
+                contentType: 'application/json;charset=UTF-8',
+                method: 'POST',
+                data: $(this).serialize(),
+                success: function(data) {
+                    alert(data);
+                }
+            });
+        });
+    };
+
     $('#update-display-form').submit(function(event) {
         event.preventDefault();
         togglePopUp();
@@ -77,8 +94,10 @@ $( function() {
     $('#text-field-container .field-type-button').on('click', function(event) {
         event.preventDefault();
         
+        $('#text-field-content-uuid').val($('.content-list-item.selected-row').find('.content-uuid').val());
         openPopUp('#text-field-pop-up', null, false);
         checkDefaultInput('#text-default-cb', '#text-display-name');
+        submitContentField('#text-field-form');
     });
 
     $('#boolean-field-container .field-type-button').on('click', function(event) {

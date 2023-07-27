@@ -63,7 +63,7 @@ def table():
     current_app.logger.info(f"Result dict from content_manager_bp.table, result: {json_data['result']}, msg: {json_data['msg']}")
     return jsonify(json_data)
 
-@content_manager_bp.route('/content-manager/database-content', methods=['GET', 'PUT'])
+@content_manager_bp.route('/content-manager/database-content', methods=['GET', 'POST', 'PUT'])
 @login_required
 def database_content():
     json_data = process_database_content()

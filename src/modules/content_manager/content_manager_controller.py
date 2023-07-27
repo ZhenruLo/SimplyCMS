@@ -3,14 +3,13 @@ import random
 import string
 from typing import TYPE_CHECKING, Dict, List, Union
 
-from flask import abort, escape, request
-from werkzeug.utils import secure_filename
-
 from constants import ColumnType
+from flask import abort, escape, request
 from models import (ColumnInfo, Content, create_table, db, remove_table,
                     update_table_content)
 
-from .content_manager_form import ContentManagerForm
+from .content_manager_form import (ContentManagerForm, TextColumnForm,
+                                   UpdateContentForm)
 
 if TYPE_CHECKING:
     from flask_wtf import FlaskForm
@@ -185,7 +184,7 @@ def process_database_content() -> Dict[str, Union[bool, str, List[str]]]:
             'fields': fields,
         }
 
-    if request.method == 'PUT':
+    if request.method == 'POST':
         msg = 'Update database failed'
 
         content_uuid = escape(request.get_json().get('content_uuid'))
@@ -193,7 +192,7 @@ def process_database_content() -> Dict[str, Union[bool, str, List[str]]]:
 
         test_column = {'string_column': ColumnType.STRING, 'boolean_column': ColumnType.BOOLEAN, 'text_column': ColumnType.TEXT}
         for (key, value) in test_column.items():
-            new_column = ColumnInfo(key, value, False, True, None, 0)
+            new_column = ColumnInfo(key, value, False, True, False, None, 0)
             content_row.content_fields.append(new_column)
             db.session.commit()
             
@@ -271,7 +270,7 @@ def process_database() -> Dict[str, Union[bool, str, List[str]]]:
     elif request.method == 'PUT':
         msg = 'Update database failed.'
 
-        form: 'FlaskForm' = ContentManagerForm()
+        form: 'FlaskForm' = UpdateContentForm()
         
         if form.validate_on_submit():
             content_uuid = escape(request.form.get('content_uuid'))
