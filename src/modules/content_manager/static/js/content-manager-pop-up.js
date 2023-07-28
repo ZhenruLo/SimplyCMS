@@ -55,10 +55,8 @@ $( function() {
         $(formID).submit(function(event) {
             event.preventDefault();
             
-            console.log($(this).serialize())
             $.ajax({
                 url: '/content-manager/database-content',
-                contentType: 'application/json;charset=UTF-8',
                 method: 'POST',
                 data: $(this).serialize(),
                 success: function(data) {

@@ -186,22 +186,24 @@ def process_database_content() -> Dict[str, Union[bool, str, List[str]]]:
 
     if request.method == 'POST':
         msg = 'Update database failed'
-
-        content_uuid = escape(request.get_json().get('content_uuid'))
-        content_row: 'Content' = Content.fetch_one_filter(Content.content_uuid, content_uuid, Content)
-
-        test_column = {'string_column': ColumnType.STRING, 'boolean_column': ColumnType.BOOLEAN, 'text_column': ColumnType.TEXT}
-        for (key, value) in test_column.items():
-            new_column = ColumnInfo(key, value, False, True, False, None, 0)
-            content_row.content_fields.append(new_column)
-            db.session.commit()
-            
-            update_table_content(content_row.table_name, key, value)
-            # for (key, value) in request.form.items():
-            #     update_table_content('agp120', value, key)
+        form: 'FlaskForm' = TextColumnForm()
         
-        result = True
-        msg = 'Databases updated'
+        if form.validate_on_submit():
+            content_uuid = escape(request.form.get('content_uuid'))
+            content_row: 'Content' = Content.fetch_one_filter(Content.content_uuid, content_uuid, Content)
+
+            test_column = {'string_column': ColumnType.STRING, 'boolean_column': ColumnType.BOOLEAN, 'text_column': ColumnType.TEXT}
+            for (key, value) in test_column.items():
+                new_column = ColumnInfo(key, value, False, True, False, None, 0)
+                content_row.content_fields.append(new_column)
+                db.session.commit()
+                
+                update_table_content(content_row.table_name, key, value)
+                # for (key, value) in request.form.items():
+                #     update_table_content('agp120', value, key)
+            
+            result = True
+            msg = 'Databases updated'
 
         json_data = {
             'result': result,
