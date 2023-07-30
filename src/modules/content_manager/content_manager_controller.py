@@ -192,6 +192,7 @@ def process_database_content() -> Dict[str, Union[bool, str, List[str]]]:
             content_uuid = escape(request.form.get('content_uuid'))
             content_row: 'Content' = Content.fetch_one_filter(Content.content_uuid, content_uuid, Content)
 
+            
             test_column = {'string_column': ColumnType.STRING, 'boolean_column': ColumnType.BOOLEAN, 'text_column': ColumnType.TEXT}
             for (key, value) in test_column.items():
                 new_column = ColumnInfo(key, value, False, True, False, None, 0)

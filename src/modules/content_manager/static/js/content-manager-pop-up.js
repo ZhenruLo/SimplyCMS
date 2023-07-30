@@ -54,7 +54,7 @@ $( function() {
     function submitContentField(formID) {
         $(formID).submit(function(event) {
             event.preventDefault();
-            
+            console.log($(this).serialize());
             $.ajax({
                 url: '/content-manager/database-content',
                 method: 'POST',
@@ -91,8 +91,11 @@ $( function() {
 
     $('#text-field-container .field-type-button').on('click', function(event) {
         event.preventDefault();
-        
+        const currentListLength = $('.column-body-list li').length;
+
         $('#text-field-content-uuid').val($('.content-list-item.selected-row').find('.content-uuid').val());
+        $('#text-field-order').val(currentListLength);
+
         openPopUp('#text-field-pop-up', null, false);
         checkDefaultInput('#text-default-cb', '#text-display-name');
         submitContentField('#text-field-form');
