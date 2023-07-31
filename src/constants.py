@@ -29,7 +29,7 @@ class RelationType():
 class ColumnType():
     TEXT = 'text'
     STRING = 'string'
-    NUMERIC = 'numeric'
+    NUMBER = 'number'
     INTEGER = 'integer'
     DATE = 'date'
     BOOLEAN = 'boolean'

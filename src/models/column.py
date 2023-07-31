@@ -19,17 +19,15 @@ class ColumnInfo(Base, db.Model):
     column_nullable: Mapped[bool] = mapped_column(Boolean, nullable=False)
     column_private: Mapped[bool] = mapped_column(Boolean, nullable=False)
     column_default: Mapped[str] = mapped_column(Text, nullable=True)
-    column_order: Mapped[int] = mapped_column(Integer)
     column_uuid: Mapped[str] = mapped_column(Text, server_default=func.random(), unique=True)
     created_timestamp: Mapped[DateTime] = mapped_column(DateTime, server_default=func.current_timestamp())
     content_id: Mapped[int] = mapped_column(Integer, ForeignKey('content.id'))
     content: Mapped[List['Content']] = relationship('Content', back_populates='content_fields')
     
-    def __init__(self, column_name: str, column_type: str, column_unique: bool, column_nullable: bool, column_private: bool, column_default: str, column_order: int):
+    def __init__(self, column_name: str, column_type: str, column_unique: bool, column_nullable: bool, column_private: bool, column_default: str):
         self.column_name = column_name
         self.column_type = column_type
         self.column_unique = column_unique
         self.column_nullable = column_nullable
         self.column_private = column_private
         self.column_default = column_default
-        self.column_order = column_order

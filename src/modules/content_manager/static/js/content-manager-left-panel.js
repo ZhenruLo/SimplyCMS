@@ -114,10 +114,9 @@ function refreshColumnItem(selectedContentUUID) {
                 $.each(columns, function(columnIndex, columnInfo) {
                     let columnName = columnInfo['column_name']
                     let columnType = columnInfo['column_type']
-                    let columnOrder = columnInfo['column_order']
                     let columnUUID = columnInfo['colume_uuid']
 
-                    createContentFields(columnName, columnType, columnOrder, columnUUID);
+                    createContentFields(columnName, columnType, columnUUID);
                 });
                 $('.single-column-container').toggleClass('start');
             }
@@ -227,7 +226,6 @@ function createContentFields(columnName, columnType) {
     $('<li>').prop({'class': `single-column-container`, 'id': `single-column-container-${currentListLength}`, 'style': `--c:${currentListLength + 1}`}).appendTo('.column-body-list');
 
     $('<div>').prop({'class': 'column-front-part', 'id': `column-front-part-${currentListLength}`}).appendTo(`#single-column-container-${currentListLength}`);
-    $('<i>').prop({'class': 'fa-solid fa-grip-vertical', id: `column-moving-container-${currentListLength}`}).appendTo(`#column-front-part-${currentListLength}`);
 
     $('<div>').prop({'class': 'column-body-part', id: `column-body-part-${currentListLength}`}).appendTo(`#single-column-container-${currentListLength}`);
     $('<div>').prop({'class': 'column-part column-body-icon', id: `column-body-icon-${currentListLength}`}).appendTo(`#column-body-part-${currentListLength}`);

@@ -1,9 +1,14 @@
-from constants import ColumnType, Directory
+from typing import TYPE_CHECKING
+
 from flask_migrate import migrate, upgrade
-from sqlalchemy import Boolean, Column, Integer, Numeric, String, Table, Text
+from sqlalchemy import Column, Integer, Table
+
+from constants import Directory
 
 from .base_db_model import db
 
+if TYPE_CHECKING:
+    from data_class import ColumnDetails
 
 def create_table(tablename: str) -> bool:
     Table(tablename, 
@@ -19,19 +24,12 @@ def remove_table(tablename: str):
         selected_table.drop(db.engine)
         __refresh_metadata()
 
-def update_table_content(tablename: str, column_name: str, column_type: str):
-    if column_type == ColumnType.NUMERIC:
-        column_attr = Numeric
-    elif column_type == ColumnType.STRING:
-        column_attr = String(255)
-    elif column_type == ColumnType.TEXT:
-        column_attr = Text
-    elif column_type == ColumnType.BOOLEAN:
-        column_attr = Boolean
-        
+def update_table_content(tablename: str, column_details: 'ColumnDetails'):
+    column = column_details.sqlalchemy_column
+
     Table(tablename, 
           db.metadata, 
-          Column(column_name, column_attr),
+          column,
           extend_existing=True,
           )
     migrate(Directory.GLOBAL_MIGRATE_DIR.as_posix())

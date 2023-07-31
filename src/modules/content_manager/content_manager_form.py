@@ -61,28 +61,21 @@ class BaseColumnForm(FlaskForm):
     column_unique = BooleanField(
         'Unique',
         validators = [
-            InputRequired(), 
+            Optional(),
         ]
     )
     
     column_nullable = BooleanField(
         'Required',
         validators = [
-            InputRequired(), 
+            Optional(),
         ]
     )
     
     column_private = BooleanField(
         'Private',
         validators = [
-            InputRequired(), 
-        ]
-    )
-    
-    column_order = IntegerField(
-        'Order',
-        validators = [
-            InputRequired(), 
+            Optional(),
         ]
     )
     

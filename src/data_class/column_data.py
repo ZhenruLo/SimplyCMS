@@ -1,19 +1,21 @@
 from typing import TYPE_CHECKING, Dict, Union
 
+from sqlalchemy import (JSON, Boolean, Column, DateTime, ForeignKey, Integer,
+                        Numeric, Text)
+from sqlalchemy.orm import Mapped
+
 from constants import ColumnType
-from sqlalchemy import (JSON, Boolean, DateTime, ForeignKey, Integer, Numeric,
-                        Text)
-from sqlalchemy.orm import relationship
 
 if TYPE_CHECKING:
     from datetime import datetime
 
-class ColumnInfo():
+
+class ColumnDetails():
     @property
-    def column_type(self):
+    def sql_column_type(self):
         if self.type == ColumnType.TEXT:
             self.type_instance = Text
-        elif self.type == ColumnType.NUMERIC:
+        elif self.type == ColumnType.NUMBER:
             self.type_instance = Numeric
         elif self.type == ColumnType.INTEGER:
             self.type_instance = Integer
@@ -28,34 +30,39 @@ class ColumnInfo():
         elif self.type == ColumnType.RELATION:
             self.type_instance = ForeignKey
         return self.type_instance
+
+    @property
+    def column_type(self) -> str:
+        return str(self.type)
     
     @property
-    def column_order(self):
-        return self.order
-    
+    def column_name(self) -> str:
+        return str(self.name)
+
     @property
-    def column_name(self):
-        return self.name
-    
-    @property
-    def column_default(self):
+    def column_default(self) -> "Union[str, int, float, bool, None, Dict, 'datetime']":
         return self.default
-    
+
     @property
-    def column_unique(self):
-        return self.unique
-    
+    def column_unique(self) -> bool:
+        return bool(self.unique)
+
     @property
-    def column_nullable(self):
-        return self.nullable
-    
+    def column_nullable(self) -> bool:
+        return bool(self.nullable)
+
     @property
-    def column_private(self):
-        return self.private
+    def column_private(self) -> bool:
+        return bool(self.private)
+
+    @property
+    def sqlalchemy_column(self) -> "Mapped[Union[str, int, float, bool, None, Dict, 'datetime']]":
+        column = Column(self.column_name, self.sql_column_type, default=self.column_default,
+                               unique=self.column_unique, nullable=self.column_nullable)
+        return column
     
-    def __init__(self, 
+    def __init__(self,
                  column_type: str,
-                 column_order: int,
                  column_name: str,
                  column_default: Union[str, int, float, bool, None, Dict, 'datetime'],
                  column_unique: bool,
@@ -63,7 +70,6 @@ class ColumnInfo():
                  column_private: bool,
                  ):
         self.type = column_type
-        self.order = column_order
         self.name = column_name
         self.default = column_default
         self.unique = column_unique
