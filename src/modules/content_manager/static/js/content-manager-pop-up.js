@@ -54,14 +54,14 @@ $( function() {
     function submitContentField(formID) {
         $(formID).submit(function(event) {
             event.preventDefault();
-            console.log($(this).serialize());
+            
             $.ajax({
                 url: '/content-manager/database-content',
                 method: 'POST',
                 data: $(this).serialize(),
                 success: function(data) {
                     alert(data);
-                }
+                },
             });
         });
     };
@@ -85,7 +85,7 @@ $( function() {
             },
             error: function(data) {
                 alert(data.responseText);
-            }
+            },
         });
     });
 
@@ -134,6 +134,13 @@ $( function() {
 
         openPopUp('#number-field-pop-up', null, false);
         checkDefaultInput('#number-default-cb', '#number-display-name');
+    });
+
+    $('#ID-field-container .field-type-button').on('click', function(event) {
+        event.preventDefault();
+
+        openPopUp('#ID-field-pop-up', null, false);
+        checkDefaultInput('#ID-default-cb', '#ID-display-name');
     });
 
     $('#relation-field-container .field-type-button').on('click', function(event) {

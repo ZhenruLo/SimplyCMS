@@ -1,15 +1,8 @@
-#text-unique-switch-container, 
-#text-required-switch-container,
-#text-private-switch-container {
+.switch-container {
     margin: 0 0 1.5rem 2.25rem;
 }
 
-#text-display-name:disabled,
-#number-display-name:disabled,
-#boolean-display-name:disabled,
-#date-display-name:disabled,
-#json-display-name:disabled,
-#media-display-name:disabled {
+.custom-text-input:disabled {
     cursor: not-allowed;
     background-color: rgb(232, 232, 232);
 }

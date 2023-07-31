@@ -19,19 +19,19 @@ def remove_table(tablename: str):
         selected_table.drop(db.engine)
         __refresh_metadata()
 
-def update_table_content(tablename: str, column_info: str, column_var_type: str):
-    if column_var_type == ColumnType.NUMERIC:
+def update_table_content(tablename: str, column_name: str, column_type: str):
+    if column_type == ColumnType.NUMERIC:
         column_attr = Numeric
-    elif column_var_type == ColumnType.STRING:
+    elif column_type == ColumnType.STRING:
         column_attr = String(255)
-    elif column_var_type == ColumnType.TEXT:
+    elif column_type == ColumnType.TEXT:
         column_attr = Text
-    elif column_var_type == ColumnType.BOOLEAN:
+    elif column_type == ColumnType.BOOLEAN:
         column_attr = Boolean
         
     Table(tablename, 
           db.metadata, 
-          Column(column_info, column_attr),
+          Column(column_name, column_attr),
           extend_existing=True,
           )
     migrate(Directory.GLOBAL_MIGRATE_DIR.as_posix())

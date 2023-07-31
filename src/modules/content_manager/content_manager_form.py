@@ -1,6 +1,7 @@
 from flask_wtf import FlaskForm
-from wtforms import BooleanField, PasswordField, StringField, SubmitField, IntegerField
-from wtforms.validators import InputRequired, Length
+from wtforms import (BooleanField, IntegerField, PasswordField, StringField,
+                     SubmitField)
+from wtforms.validators import InputRequired, Length, Optional
 
 
 class ContentManagerForm(FlaskForm):
@@ -43,6 +44,13 @@ class BaseColumnForm(FlaskForm):
         ]
     )
     
+    column_name = StringField(
+        'Display Name',
+        validators = [
+            InputRequired(), 
+        ]
+    )
+    
     column_type = StringField(
         'Column Type',
         validators = [
@@ -79,9 +87,9 @@ class BaseColumnForm(FlaskForm):
     )
     
 class TextColumnForm(BaseColumnForm):
-    column_name = StringField(
-        'Display Name',
-        validators = [
-            InputRequired(), 
+    column_default = StringField(
+        'Column Default',
+        validators= [
+            Optional(),
         ]
     )

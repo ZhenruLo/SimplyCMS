@@ -186,12 +186,19 @@ def process_database_content() -> Dict[str, Union[bool, str, List[str]]]:
 
     if request.method == 'POST':
         msg = 'Update database failed'
-        form: 'FlaskForm' = TextColumnForm()
+        form: 'TextColumnForm' = TextColumnForm()
         
         if form.validate_on_submit():
-            content_uuid = escape(request.form.get('content_uuid'))
+            content_uuid = escape(form.content_uuid)
             content_row: 'Content' = Content.fetch_one_filter(Content.content_uuid, content_uuid, Content)
 
+            column_type = escape(form.column_type)
+            column_order = escape(form.column_order)
+            column_name = escape(form.column_name)
+            column_default = escape(form.column_default)
+            column_unique = escape(form.column_unique)
+            column_nullable = escape(form.column_nullable)
+            column_private = escape(form.column_private)
             
             test_column = {'string_column': ColumnType.STRING, 'boolean_column': ColumnType.BOOLEAN, 'text_column': ColumnType.TEXT}
             for (key, value) in test_column.items():
@@ -237,12 +244,12 @@ def process_database() -> Dict[str, Union[bool, str, List[str]]]:
     if request.method == 'POST':
         msg = 'Create database failed.'
         content_uuid = None
-        form: 'FlaskForm' = ContentManagerForm()
+        form: 'ContentManagerForm' = ContentManagerForm()
         
         if form.validate_on_submit():
-            content_name = escape(request.form.get('content_name'))
-            route_name = escape(request.form.get('route_name'))
-            description = escape(request.form.get('description'))
+            content_name = escape(form.content_name)
+            route_name = escape(form.route_name)
+            description = escape(form.description)
             
             check_route_result = __check_special_char(route_name, True) 
 
@@ -273,13 +280,13 @@ def process_database() -> Dict[str, Union[bool, str, List[str]]]:
     elif request.method == 'PUT':
         msg = 'Update database failed.'
 
-        form: 'FlaskForm' = UpdateContentForm()
+        form: 'UpdateContentForm' = UpdateContentForm()
         
         if form.validate_on_submit():
-            content_uuid = escape(request.form.get('content_uuid'))
-            content_name = escape(request.form.get('content_name'))
-            route_name = escape(request.form.get('route_name'))
-            description = escape(request.form.get('description'))
+            content_uuid = escape(form.content_uuid)
+            content_name = escape(form.content_name)
+            route_name = escape(form.route_name)
+            description = escape(form.description)
             
             selected_table_query = db.session.query(Content).filter(Content.content_uuid == content_uuid)
             if selected_table_query.first():

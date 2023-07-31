@@ -74,6 +74,14 @@
     {% endif %}
 {% endcall %}
 
+{% call(content) popup.create_pop_up('ID-field-pop-up', 'Add ID field', 'ID field settings') %}
+    {% if content == 'body' %}
+        {% include 'pop-up/field-type-pop-up/ID-field-pop-up.html' %}
+    {% elif content == 'footer' %}
+        {{ input.create_submit_input('ID-field-form', 'ID-field-submit', 'Add field', 'pop-up-submit-btn') }}
+    {% endif %}
+{% endcall %}
+
 {% call(content) popup.create_pop_up('relation-field-pop-up', 'Add relation field', 'Relation field settings') %}
     {% if content == 'body' %}
         {% include 'pop-up/field-type-pop-up/relation-field-pop-up.html' %}
