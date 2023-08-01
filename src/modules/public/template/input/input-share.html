@@ -30,7 +30,7 @@
     </fieldset>
 {%- endmacro %}
 
-{% macro create_cb_text(cb_text_id, input_id, input_legend, input_name, cb_id, cb_name, cb_text, text_disabled=false) -%}
+{% macro create_cb_text(cb_text_id, input_id, input_type, input_legend, input_name, cb_id, cb_name, cb_text, text_disabled=false) -%}
     {% if text_disabled %}
         {% set text_disabled = 'disabled' %}
     {% else %}
@@ -39,7 +39,7 @@
 
     <fieldset class='custom-fieldset-2' id='{{ cb_text_id }}'>
         <legend class='custom-legend'>{{ input_legend }}</legend>
-        <input class='custom-text-input' id='{{ input_id }}' type='text' name='{{ input_name }}' autocomplete='off' {{ text_disabled }} required>
+        <input class='custom-text-input' id='{{ input_id }}' type='{{ input_type }}' name='{{ input_name }}' autocomplete='off' {{ text_disabled }} required>
 
         <div class='under-input-container'>
             <input class='match-cb-input' id='{{ cb_id }}' type='checkbox' name='{{ cb_name }}'>

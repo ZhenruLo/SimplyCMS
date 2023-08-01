@@ -155,7 +155,6 @@
 }
 
 .column-part {
-    font-size: 1.2rem;
     font-family: 'Chakra Petch', sans-serif;
     margin: 0 1rem;
 }
@@ -165,6 +164,8 @@
     align-items: center;
     justify-content: center;
     border-radius: 0.5rem;
+    font-size: 1.5rem;
+    margin-left: 0;
     width: 3rem;
     height: 3rem;
     color: rgb(128, 0, 225);
@@ -173,7 +174,7 @@
 
 .column-body-name {
     user-select: none;
-    font-size: 1.3rem;
+    font-size: 1.5rem;
     font-weight: 600;
 }
 

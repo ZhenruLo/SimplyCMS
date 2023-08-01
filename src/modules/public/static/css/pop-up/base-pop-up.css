@@ -25,6 +25,10 @@
     height: fit-content;
 }
 
+.pop-up-base-body#create-field-pop-up {
+    width: 90rem;
+}
+
 .pop-up-background.show .pop-up-base-body {
     --horizontal: -5rem;
     --isVisible: 0;

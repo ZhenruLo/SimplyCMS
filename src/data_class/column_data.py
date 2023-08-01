@@ -41,7 +41,9 @@ class ColumnDetails():
 
     @property
     def column_default(self) -> "Union[str, int, float, bool, None, Dict, 'datetime']":
-        if self.type == ColumnType.TEXT:
+        if self.default == 'None':
+            self.default_value = None
+        elif self.type == ColumnType.TEXT:
             self.default_value = str(self.default)
         elif self.type == ColumnType.NUMBER:
             self.default_value = float(self.default)

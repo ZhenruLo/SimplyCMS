@@ -1,4 +1,5 @@
 var leftPanelCurrentPage = 1;
+var columnIconFactory = new Map();
 
 rowBodyFactory.set('row-create-content', 'center-create-content');
 rowBodyFactory.set('row-custom-field', 'center-custom-field');
@@ -9,6 +10,15 @@ tabPanelFactory.set('content-tab', 'left-panel-menu');
 tabPanelFactory.set('content-type-tab', 'left-panel-content-type');
 tabPanelFactory.set('information-tab', 'left-panel-info');
 tabPanelFactory.set('history-tab', 'left-panel-history');
+
+columnIconFactory.set('text', 'bx bx-text');
+columnIconFactory.set('number', 'bx bx-list-ol');
+columnIconFactory.set('integer', 'bx bx-id-card');
+columnIconFactory.set('date', 'bx bxs-calendar');
+columnIconFactory.set('boolean', 'bx bx-toggle-left');
+columnIconFactory.set('json', 'bx bxs-file-json');
+columnIconFactory.set('media', 'bx bx-images');
+columnIconFactory.set('relation', 'bx bx-link');
 
 function refreshContentBuilderPage() {
     const selectedRow = $('.content-list-item.selected-row');
@@ -229,11 +239,11 @@ function createContentFields(columnName, columnType) {
 
     $('<div>').prop({'class': 'column-body-part', id: `column-body-part-${currentListLength}`}).appendTo(`#single-column-container-${currentListLength}`);
     $('<div>').prop({'class': 'column-part column-body-icon', id: `column-body-icon-${currentListLength}`}).appendTo(`#column-body-part-${currentListLength}`);
-    $('<i>').prop({'class': 'bx bx-text', id: `body-icon-${currentListLength}`}).appendTo(`#column-body-icon-${currentListLength}`);
+    $('<i>').prop({'class': columnIconFactory.get(columnType), id: `body-icon-${currentListLength}`}).appendTo(`#column-body-icon-${currentListLength}`);
     $('<div>').prop({'class': 'column-part column-body-name', id: `column-body-name-${currentListLength}`}).appendTo(`#column-body-part-${currentListLength}`);
     $('<span>').prop({'class': 'column-body-name-text', id: `body-name-text-${currentListLength}`}).text(columnName).appendTo(`#column-body-name-${currentListLength}`);
     $('<div>').prop({'class': 'column-part column-body-type', id: `column-body-type-${currentListLength}`}).appendTo(`#column-body-part-${currentListLength}`);
-    $('<span>').prop({'class': 'column-body-type-text', id: `body-type-text-${currentListLength}`}).text(columnType).appendTo(`#column-body-type-${currentListLength}`);
+    $('<span>').prop({'class': 'column-body-type-text', id: `body-type-text-${currentListLength}`}).text(columnType.toUpperCase()).appendTo(`#column-body-type-${currentListLength}`);
 
     $('<div>').prop({'class': 'column-rear-part', id: `column-rear-part-${currentListLength}`}).appendTo(`#single-column-container-${currentListLength}`);
     $('<div>').prop({'class': 'column-footer-icon column-footer-edit', id: `column-footer-edit-${currentListLength}`}).appendTo(`#column-rear-part-${currentListLength}`);
