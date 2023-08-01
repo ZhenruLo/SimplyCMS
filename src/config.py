@@ -2,9 +2,6 @@ from datetime import timedelta
 
 
 class Config():
-    DEBUG = False
-    TESTING = False
-    
     SECRET_KEY = '3dac34eb0fa370731b59ccdc414415e7'
     
     SEND_FILE_MAX_AGE_DEFAULT = 0
@@ -29,10 +26,21 @@ class Config():
     JSON_SORT_KEYS = False
 
 class ProductionConfig(Config):
-    DEBUG = False
-    SQLALCHEMY_DATABASE_URI = 'postgresql://postgres:root@postgre_db:5432/database' 
+    # SQLALCHEMY_DATABASE_URI = 'postgresql://postgres:root@postgre_db:5432/database'
+    
+    CELERY = { 
+        "broker_url": 'redis://localhost:6379/0',
+        "result_backend": 'redis://localhost:6379/0',
+        "worker_concurrency": 1,
+    }
+    CELERY_WORKER_NAME = "celery@server_worker1"
 
 class DevelopmentConfig(Config):
-    DEBUG = False
-    DEVELOPMENT = True
     ENV = 'development'
+    
+    CELERY = {
+        "broker_url": 'redis://localhost:6379/0',
+        "result_backend": 'redis://localhost:6379/0',
+        "worker_concurrency": 1,
+    }
+    CELERY_WORKER_NAME = "celery@server_worker1"

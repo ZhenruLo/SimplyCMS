@@ -1,13 +1,15 @@
+from async_station import socketio
 from constants import Directory
 from flask import Flask, current_app
 from flask_logger import init_logger
 from flask_login import current_user
 from flask_migrate import init, migrate, stamp, upgrade
 from flask_principal import RoleNeed, UserNeed, identity_loaded
+from flask_socketio import emit
 from models import db
 from security import csrf, login_manager, principals
 
-from .migrate_init import migrate_app
+from .migrate_engine import migrate_app
 from .register_blueprint import register_blueprint
 from .register_error_handler import register_error_handler
 
@@ -17,6 +19,7 @@ def create_app(config_obj):
     flask_app = Flask(__name__, template_folder='../modules/public/template', static_folder='../modules/public/static')
     flask_app.config.from_object(config_obj)
 
+    socketio.init_app(flask_app)
     csrf.init_app(flask_app)
     login_manager.init_app(flask_app)
     principals.init_app(flask_app)
@@ -47,5 +50,8 @@ def create_app(config_obj):
         
         init_logger()
         current_app.logger.info('Blueprints and extra handler registration completed.')
-
+        
+    @socketio.on('connection')
+    def confirmation_message(message):
+        current_app.logger.info(message['connection_confirmation'])
     return flask_app

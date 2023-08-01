@@ -6,6 +6,8 @@ function clearSelectedTab() {
 
 function openTab(id, extra = new Map()) {
     clearSelectedTab();
+    clearSelectedRow();
+    clearSelectedBody();
     
     $('#' + id).addClass('selected-tab').trigger('tabChange', [extra]);
 };

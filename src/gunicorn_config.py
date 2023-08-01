@@ -141,5 +141,5 @@ Process naming
 
       A string or None to choose a default of something like 'gunicorn'.
 """
-keyfile = './server_asset/myserver.key'
-certfile = './server_asset/server.crt'
+# keyfile = './server_asset/myserver.key'
+# certfile = './server_asset/server.crt'

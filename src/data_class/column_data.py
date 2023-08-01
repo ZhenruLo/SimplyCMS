@@ -41,19 +41,46 @@ class ColumnDetails():
 
     @property
     def column_default(self) -> "Union[str, int, float, bool, None, Dict, 'datetime']":
-        return self.default
+        if self.type == ColumnType.TEXT:
+            self.default_value = str(self.default)
+        elif self.type == ColumnType.NUMBER:
+            self.default_value = float(self.default)
+        elif self.type == ColumnType.INTEGER:
+            self.default_value = int(self.default)
+        elif self.type == ColumnType.DATE:
+            self.default_value = None
+        elif self.type == ColumnType.BOOLEAN:
+            self.default_value = None
+        elif self.type == ColumnType.JSON:
+            self.default_value = None
+        elif self.type == ColumnType.MEDIA:
+            self.default_value = None
+        elif self.type == ColumnType.RELATION:
+            self.default_value = None
+        else:
+            self.default_value = None
+        return self.default_value
 
     @property
     def column_unique(self) -> bool:
-        return bool(self.unique)
+        if self.unique == 'True':
+            return True
+        else:
+            return False
 
     @property
     def column_nullable(self) -> bool:
-        return bool(self.nullable)
+        if self.nullable == 'True':
+            return False
+        else:
+            return True
 
     @property
     def column_private(self) -> bool:
-        return bool(self.private)
+        if self.private == 'True':
+            return True
+        else:
+            return False
 
     @property
     def sqlalchemy_column(self) -> "Mapped[Union[str, int, float, bool, None, Dict, 'datetime']]":
