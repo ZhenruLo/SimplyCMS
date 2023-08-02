@@ -36,6 +36,7 @@ class ProductionConfig(Config):
     CELERY_WORKER_NAME = "celery@server_worker1"
 
 class DevelopmentConfig(Config):
+    DEVELOPMENT = True
     ENV = 'development'
     
     CELERY = {

@@ -14,7 +14,7 @@ tabPanelFactory.set('history-tab', 'left-panel-history');
 columnIconFactory.set('text', 'bx bx-text');
 columnIconFactory.set('number', 'bx bx-list-ol');
 columnIconFactory.set('integer', 'bx bx-id-card');
-columnIconFactory.set('date', 'bx bxs-calendar');
+columnIconFactory.set('datetime', 'bx bxs-calendar');
 columnIconFactory.set('boolean', 'bx bx-toggle-left');
 columnIconFactory.set('json', 'bx bxs-file-json');
 columnIconFactory.set('media', 'bx bx-images');

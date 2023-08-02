@@ -15,6 +15,7 @@ $( function() {
             event.preventDefault();
             togglePopUp();
             
+            console.log($(this).serialize());
             $.ajax({
                 url: '/content-manager/database-content',
                 method: 'POST',
@@ -25,9 +26,16 @@ $( function() {
                         
                         refreshContentItem(1, contentUUID);
                         $(formID).trigger('reset');
-                        $(formID + ' input').trigger('change');
-                    };
+                        $(formID + ' .match-cb-input').trigger('change');
+                        $(formID + ' .switch').removeClass('switch-checked');
+                    }
+                    else {
+                        alert(data['msg']);
+                    }
                 },
+                error: function(data) {
+                    alert(data.responseText);
+                }
             });
         });
     };
@@ -119,7 +127,6 @@ $( function() {
         $('#boolean-field-content-uuid').val($('.content-list-item.selected-row').find('.content-uuid').val());
 
         openPopUp('#boolean-field-pop-up', null, false);
-        checkDefaultInput('#boolean-default-cb', '#boolean-display-name');
     });
 
     $('#date-field-container .field-type-button').on('click', function(event) {

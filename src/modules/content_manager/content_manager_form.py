@@ -1,8 +1,9 @@
-from constants import ColumnType
 from flask_wtf import FlaskForm
 from wtforms import (BooleanField, DateTimeLocalField, FileField, FloatField,
                      IntegerField, PasswordField, StringField, SubmitField)
 from wtforms.validators import InputRequired, Length, Optional
+
+from constants import ColumnType
 
 
 class ContentManagerForm(FlaskForm):
@@ -59,13 +60,6 @@ class BaseColumnForm(FlaskForm):
         ]
     )
     
-    column_default = StringField(
-        'Column Default',
-        validators= [
-            Optional(),
-        ]
-    )
-    
     column_unique = BooleanField(
         'Unique',
         validators = [
@@ -86,41 +80,60 @@ class BaseColumnForm(FlaskForm):
             Optional(),
         ]
     )
-    
-    def __init__(self, column_type):
-        super().__init__()
-        if column_type == ColumnType.BOOLEAN:
-            self.column_default = BooleanField(
-                'Column Default',
-                validators = [
-                    InputRequired(),
-                ]
-            )
-        elif column_type == ColumnType.DATE:
-            self.column_default = DateTimeLocalField(
-                'Column Default',
-                validators = [
-                    InputRequired(),
-                ]
-            )
-        elif column_type == ColumnType.INTEGER:
-            self.column_default = IntegerField(
-                'Column Default',
-                validators = [
-                    InputRequired(),
-                ]
-            )
-        elif column_type == ColumnType.NUMBER:
-            self.column_default = FloatField(
-                'Column Default',
-                validators = [
-                    InputRequired(),
-                ]
-            )
-        elif column_type == ColumnType.MEDIA:
-            self.column_default = FileField(
-                'Column Default',
-                validators = [
-                    InputRequired(),
-                ]
-            )
+
+class TextFieldForm(BaseColumnForm):
+    column_default = StringField(
+        'Column Default',
+        validators = [
+            Optional(),
+        ]
+    )
+
+class IntegerFieldForm(BaseColumnForm):
+    column_default = IntegerField(
+        'Column Default',
+        validators = [
+            Optional(),
+        ]
+    )
+
+class BooleanFieldForm(BaseColumnForm):
+    column_default = BooleanField(
+        'Column Default',
+        validators = [
+            Optional(),
+        ]
+    )
+
+class DatetimeFieldForm(BaseColumnForm):
+    column_default = DateTimeLocalField(
+        'Column Default',
+        validators = [
+            Optional(),
+        ],
+        format='%Y-%m-%dT%H:%M',
+    )
+
+class NumberFieldForm(BaseColumnForm):
+    column_default = FloatField(
+        'Column Default',
+        validators = [
+            Optional(),
+        ]
+    )
+
+class MediaFieldForm(BaseColumnForm):
+    column_default = FileField(
+        'Column Default',
+        validators = [
+            Optional(),
+        ]
+    )
+
+class JSONFieldForm(BaseColumnForm):
+    column_default = StringField(
+        'Column Default',
+        validators = [
+            Optional(),
+        ]
+    )

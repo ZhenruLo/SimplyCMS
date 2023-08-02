@@ -3,13 +3,18 @@ import random
 import string
 from typing import TYPE_CHECKING, Dict, List, Union
 
-from data_class import ColumnDetails
 from flask import abort, escape, request
+
+from constants import ColumnType
+from data_class import ColumnDetails
 from models import (ColumnInfo, Content, create_table, db, remove_table,
                     update_table_content)
 
-from .content_manager_form import (BaseColumnForm, ContentManagerForm,
-                                   UpdateContentForm)
+from .content_manager_form import (BaseColumnForm, BooleanFieldForm,
+                                   ContentManagerForm, DatetimeFieldForm,
+                                   IntegerFieldForm, JSONFieldForm,
+                                   MediaFieldForm, NumberFieldForm,
+                                   TextFieldForm, UpdateContentForm)
 
 URLS = {
     'content-tab': '/content-manager',
@@ -191,33 +196,52 @@ def process_database_content() -> Dict[str, Union[bool, str, List[str]]]:
 
     if request.method == 'POST':
         msg = 'Update database failed'
+
         raw_column_type = request.form.get('column_type')
-        form: 'BaseColumnForm' = BaseColumnForm(raw_column_type)
+        if raw_column_type == ColumnType.TEXT:
+            form: 'TextFieldForm' = TextFieldForm()
+        elif raw_column_type == ColumnType.NUMBER:
+            form: 'NumberFieldForm' = NumberFieldForm()
+        elif raw_column_type == ColumnType.INTEGER:
+            form: 'IntegerFieldForm' = IntegerFieldForm()
+        elif raw_column_type == ColumnType.DATETIME:
+            form: 'DatetimeFieldForm' = DatetimeFieldForm()
+        elif raw_column_type == ColumnType.BOOLEAN:
+            form: 'BooleanFieldForm' = BooleanFieldForm()
+        elif raw_column_type == ColumnType.JSON:
+            form: 'JSONFieldForm' = JSONFieldForm()
+        elif raw_column_type == ColumnType.MEDIA:
+            form: 'MediaFieldForm' = MediaFieldForm()
+        else:
+            form: 'BaseColumnForm' = BaseColumnForm()
 
         if form.validate_on_submit():
             content_uuid = escape(form.content_uuid.data)
             content_row: 'Content' = Content.fetch_one_filter(
                 Content.content_uuid, content_uuid, Content)
-
-            column_type = escape(form.column_type.data)
+            
             column_name = escape(form.column_name.data)
-            column_default = escape(form.column_default.data)
-            column_unique = escape(form.column_unique.data)
-            column_nullable = escape(form.column_nullable.data)
-            column_private = escape(form.column_private.data)
+            if __check_column_name(column_name, content_row.content_fields):
+                msg = 'Duplicate column name, please choose another column name'
+            else:
+                column_type = escape(form.column_type.data)
+                column_default = escape(form.column_default.data)
+                column_unique = escape(form.column_unique.data)
+                column_nullable = escape(form.column_nullable.data)
+                column_private = escape(form.column_private.data)
 
-            column_inst = ColumnDetails(column_type, column_name,
-                                        column_default, column_unique, column_nullable, column_private)
+                column_inst = ColumnDetails(column_type, column_name,
+                                            column_default, column_unique, column_nullable, column_private)
 
-            new_column = ColumnInfo(column_inst.column_name, column_inst.column_type, column_inst.column_unique,
-                                    column_inst.column_nullable, column_inst.column_private, column_inst.column_default)
-            content_row.content_fields.append(new_column)
-            db.session.commit()
+                new_column = ColumnInfo(column_inst.column_name, column_inst.column_type, column_inst.column_unique,
+                                        column_inst.column_nullable, column_inst.column_private, column_inst.column_default)
+                content_row.content_fields.append(new_column)
+                db.session.commit()
 
-            update_table_content(content_row.table_name, column_inst)
+                update_table_content(content_row.table_name, column_inst)
 
-            result = True
-            msg = 'Databases updated'
+                result = True
+                msg = 'Databases updated'
 
         json_data = {
             'result': result,
@@ -352,13 +376,11 @@ def __create_table_name() -> str:
         return table_uid
 
 
-def __check_column_name(column_name, content_fields_list) -> bool:
-    column_name_list = [
-        column_row.column_name for column_row in content_fields_list]
-    if column_name in column_name_list:
-        return False
-    else:
-        return True
+def __check_column_name(column_name: str, content_columns: List['Content']) -> bool:
+    for column in content_columns:
+        if column_name == column.column_name:
+            return True
+    return False
 
 
 def __generate_uid() -> str:

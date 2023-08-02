@@ -19,7 +19,7 @@ class ColumnDetails():
             self.type_instance = Numeric
         elif self.type == ColumnType.INTEGER:
             self.type_instance = Integer
-        elif self.type == ColumnType.DATE:
+        elif self.type == ColumnType.DATETIME:
             self.type_instance = DateTime
         elif self.type == ColumnType.BOOLEAN:
             self.type_instance = Boolean
@@ -43,7 +43,7 @@ class ColumnDetails():
     def column_default(self) -> Union[str, None]:
         if self.default == 'None':
             return None
-        return str(self.default)
+        return self.default
 
     @property
     def column_unique(self) -> bool:

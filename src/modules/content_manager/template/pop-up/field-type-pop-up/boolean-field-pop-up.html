@@ -12,18 +12,14 @@
                     'column_name',
                 )
             }}
-        
-            {{ input.create_cb_text
+            
+            {{ input.create_yesno_switch
                 (
-                    'boolean-default-cb-id',
-                    'boolean-display-name',
-                    'text',
+                    'boolean-default-switch-container',
+                    'boolean-default-switch', 
                     'Default Value',
                     'column_default',
-                    'boolean-default-cb',
-                    'default_cb',
-                    'A default value is required if toggle on.',
-                    true,
+                    'Default value of boolean field is False',
                 )
             }}
         </div>

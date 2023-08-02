@@ -31,7 +31,7 @@ class ColumnType():
     STRING = 'string'
     NUMBER = 'number'
     INTEGER = 'integer'
-    DATE = 'date'
+    DATETIME = 'datetime'
     BOOLEAN = 'boolean'
     RELATION = 'relation'
     MEDIA = 'media'
