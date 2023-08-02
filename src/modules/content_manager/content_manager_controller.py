@@ -3,17 +3,13 @@ import random
 import string
 from typing import TYPE_CHECKING, Dict, List, Union
 
-from flask import abort, escape, request
-
 from data_class import ColumnDetails
+from flask import abort, escape, request
 from models import (ColumnInfo, Content, create_table, db, remove_table,
                     update_table_content)
 
-from .content_manager_form import (ContentManagerForm, TextColumnForm,
+from .content_manager_form import (BaseColumnForm, ContentManagerForm,
                                    UpdateContentForm)
-
-if TYPE_CHECKING:
-    from flask_wtf import FlaskForm
 
 URLS = {
     'content-tab': '/content-manager',
@@ -195,7 +191,8 @@ def process_database_content() -> Dict[str, Union[bool, str, List[str]]]:
 
     if request.method == 'POST':
         msg = 'Update database failed'
-        form: 'TextColumnForm' = TextColumnForm()
+        raw_column_type = request.form.get('column_type')
+        form: 'BaseColumnForm' = BaseColumnForm(raw_column_type)
 
         if form.validate_on_submit():
             content_uuid = escape(form.content_uuid.data)
@@ -213,7 +210,7 @@ def process_database_content() -> Dict[str, Union[bool, str, List[str]]]:
                                         column_default, column_unique, column_nullable, column_private)
 
             new_column = ColumnInfo(column_inst.column_name, column_inst.column_type, column_inst.column_unique,
-                                    column_inst.column_nullable, column_inst.column_private, column_inst.column_default,)
+                                    column_inst.column_nullable, column_inst.column_private, column_inst.column_default)
             content_row.content_fields.append(new_column)
             db.session.commit()
 

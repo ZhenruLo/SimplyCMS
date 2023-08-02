@@ -25,6 +25,7 @@ $( function() {
                         
                         refreshContentItem(1, contentUUID);
                         $(formID).trigger('reset');
+                        $(formID + ' input').trigger('change');
                     };
                 },
             });

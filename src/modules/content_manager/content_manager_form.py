@@ -1,6 +1,7 @@
+from constants import ColumnType
 from flask_wtf import FlaskForm
-from wtforms import (BooleanField, IntegerField, PasswordField, StringField,
-                     SubmitField)
+from wtforms import (BooleanField, DateTimeLocalField, FileField, FloatField,
+                     IntegerField, PasswordField, StringField, SubmitField)
 from wtforms.validators import InputRequired, Length, Optional
 
 
@@ -58,6 +59,13 @@ class BaseColumnForm(FlaskForm):
         ]
     )
     
+    column_default = StringField(
+        'Column Default',
+        validators= [
+            Optional(),
+        ]
+    )
+    
     column_unique = BooleanField(
         'Unique',
         validators = [
@@ -79,10 +87,40 @@ class BaseColumnForm(FlaskForm):
         ]
     )
     
-class TextColumnForm(BaseColumnForm):
-    column_default = StringField(
-        'Column Default',
-        validators= [
-            Optional(),
-        ]
-    )
+    def __init__(self, column_type):
+        super().__init__()
+        if column_type == ColumnType.BOOLEAN:
+            self.column_default = BooleanField(
+                'Column Default',
+                validators = [
+                    InputRequired(),
+                ]
+            )
+        elif column_type == ColumnType.DATE:
+            self.column_default = DateTimeLocalField(
+                'Column Default',
+                validators = [
+                    InputRequired(),
+                ]
+            )
+        elif column_type == ColumnType.INTEGER:
+            self.column_default = IntegerField(
+                'Column Default',
+                validators = [
+                    InputRequired(),
+                ]
+            )
+        elif column_type == ColumnType.NUMBER:
+            self.column_default = FloatField(
+                'Column Default',
+                validators = [
+                    InputRequired(),
+                ]
+            )
+        elif column_type == ColumnType.MEDIA:
+            self.column_default = FileField(
+                'Column Default',
+                validators = [
+                    InputRequired(),
+                ]
+            )

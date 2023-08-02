@@ -40,28 +40,10 @@ class ColumnDetails():
         return str(self.name)
 
     @property
-    def column_default(self) -> "Union[str, int, float, bool, None, Dict, 'datetime']":
+    def column_default(self) -> Union[str, None]:
         if self.default == 'None':
-            self.default_value = None
-        elif self.type == ColumnType.TEXT:
-            self.default_value = str(self.default)
-        elif self.type == ColumnType.NUMBER:
-            self.default_value = float(self.default)
-        elif self.type == ColumnType.INTEGER:
-            self.default_value = int(self.default)
-        elif self.type == ColumnType.DATE:
-            self.default_value = None
-        elif self.type == ColumnType.BOOLEAN:
-            self.default_value = None
-        elif self.type == ColumnType.JSON:
-            self.default_value = None
-        elif self.type == ColumnType.MEDIA:
-            self.default_value = None
-        elif self.type == ColumnType.RELATION:
-            self.default_value = None
-        else:
-            self.default_value = None
-        return self.default_value
+            return None
+        return str(self.default)
 
     @property
     def column_unique(self) -> bool:
@@ -86,14 +68,14 @@ class ColumnDetails():
 
     @property
     def sqlalchemy_column(self) -> "Mapped[Union[str, int, float, bool, None, Dict, 'datetime']]":
-        column = Column(self.column_name, self.sql_column_type, default=self.column_default,
+        column = Column(self.column_name, self.sql_column_type, server_default=self.column_default,
                                unique=self.column_unique, nullable=self.column_nullable)
         return column
     
     def __init__(self,
                  column_type: str,
                  column_name: str,
-                 column_default: Union[str, int, float, bool, None, Dict, 'datetime'],
+                 column_default: str,
                  column_unique: bool,
                  column_nullable: bool,
                  column_private: bool,
