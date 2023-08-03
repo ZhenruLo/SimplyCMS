@@ -15,7 +15,6 @@ $( function() {
             event.preventDefault();
             togglePopUp();
             
-            console.log($(this).serialize());
             $.ajax({
                 url: '/content-manager/database-content',
                 method: 'POST',

@@ -1,9 +1,8 @@
 from typing import TYPE_CHECKING
 
+from constants import Directory
 from flask_migrate import migrate, upgrade
 from sqlalchemy import Column, Integer, Table
-
-from constants import Directory
 
 from .base_db_model import db
 
@@ -11,12 +10,11 @@ if TYPE_CHECKING:
     from data_class import ColumnDetails
 
 def create_table(tablename: str) -> bool:
-    Table(tablename, 
+    created_table = Table(tablename, 
           db.metadata,
           Column('id', Integer, primary_key=True),
           )
-    migrate(Directory.GLOBAL_MIGRATE_DIR.as_posix())
-    upgrade(Directory.GLOBAL_MIGRATE_DIR.as_posix())
+    created_table.create(bind=db.engine)
 
 def remove_table(tablename: str):
     selected_table = db.metadata.tables.get(tablename)
@@ -28,7 +26,7 @@ def update_table_content(tablename: str, column_details: 'ColumnDetails'):
     column = column_details.sqlalchemy_column
 
     Table(tablename, 
-          db.metadata, 
+          db.metadata,
           column,
           extend_existing=True,
           )

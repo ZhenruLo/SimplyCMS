@@ -16,10 +16,11 @@ $( function() {
             success: function(data) {
                 if (data['result']) {
                     const contentInfo = data['database'];
-    
+                    const tempUnescapeContent = $('<span>').html(contentInfo['content_name']).text();
+                    
                     displayNameInput.prop({
-                        'placeholder': contentInfo['content_name'], 
-                        'value': contentInfo['content_name'],
+                        'placeholder': tempUnescapeContent, 
+                        'value': tempUnescapeContent,
                     });
 
                     routeNameInput.prop({

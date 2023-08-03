@@ -46,9 +46,9 @@ function refreshContentBuilderPage() {
                 if (data['result']) {
                     const contentInfo = data['database'];
                     
-                    $('#content-name-text').text(contentInfo['content_name']);
+                    $('#content-name-text').html(contentInfo['content_name']);
                     if (contentInfo['description']) {
-                        $('.header-description-text').text(contentInfo['description']);
+                        $('.header-description-text').html(contentInfo['description']);
                         $('#update-content-uuid').val(contentUUID);
                     }
                     else {
@@ -220,7 +220,7 @@ function createContentItem(tableName, contentUUID, selectedRow) {
     $('<i>').prop({'class': 'content-list-index-icon fa-solid fa-circle'}).appendTo(`#index-${currentListLength}`)
 
     $('<div>').prop({'class': 'content-list-context', 'id': `context-${currentListLength}`}).appendTo(`#content-list-item-${currentListLength}`);
-    $('<span>').prop({'class': 'content-list-context-text'}).text(tableName).appendTo(`#context-${currentListLength}`)
+    $('<span>').prop({'class': 'content-list-context-text'}).html(tableName).appendTo(`#context-${currentListLength}`)
 
     $('<div>').prop({'class': 'content-list-delete', 'id': `more-${currentListLength}`}).appendTo(`#content-list-item-${currentListLength}`);
     $('<i>').prop({'class': 'bx bxs-trash', 'title': 'Delete'}).appendTo(`#more-${currentListLength}`)
@@ -241,7 +241,7 @@ function createContentFields(columnName, columnType) {
     $('<div>').prop({'class': 'column-part column-body-icon', id: `column-body-icon-${currentListLength}`}).appendTo(`#column-body-part-${currentListLength}`);
     $('<i>').prop({'class': columnIconFactory.get(columnType), id: `body-icon-${currentListLength}`}).appendTo(`#column-body-icon-${currentListLength}`);
     $('<div>').prop({'class': 'column-part column-body-name', id: `column-body-name-${currentListLength}`}).appendTo(`#column-body-part-${currentListLength}`);
-    $('<span>').prop({'class': 'column-body-name-text', id: `body-name-text-${currentListLength}`}).text(columnName).appendTo(`#column-body-name-${currentListLength}`);
+    $('<span>').prop({'class': 'column-body-name-text', id: `body-name-text-${currentListLength}`}).html(columnName).appendTo(`#column-body-name-${currentListLength}`);
     $('<div>').prop({'class': 'column-part column-body-type', id: `column-body-type-${currentListLength}`}).appendTo(`#column-body-part-${currentListLength}`);
     $('<span>').prop({'class': 'column-body-type-text', id: `body-type-text-${currentListLength}`}).text(columnType.toUpperCase()).appendTo(`#column-body-type-${currentListLength}`);
 
@@ -320,8 +320,8 @@ $( function() {
             }),
             success: function(data) {
                 $('#content-table').DataTable().ajax.reload(null, false);
-                refreshContentItem(1, null);
                 $('ul.column-body-list').empty();
+                refreshContentItem(1, null);
             },
             error: function(data){
                 alert(data.responseText);

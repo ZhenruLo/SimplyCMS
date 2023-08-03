@@ -3,10 +3,9 @@ import random
 import string
 from typing import TYPE_CHECKING, Dict, List, Union
 
-from flask import abort, escape, request
-
 from constants import ColumnType
 from data_class import ColumnDetails
+from flask import abort, escape, request
 from models import (ColumnInfo, Content, create_table, db, remove_table,
                     update_table_content)
 
@@ -172,7 +171,8 @@ def process_database_content() -> Dict[str, Union[bool, str, List[str]]]:
 
     if request.method == 'GET':
         msg = 'Fetch database failed.'
-
+        fields = []
+        
         content_uuid = escape(request.args.get('content_uuid'))
         selected_table: 'Content' = Content.fetch_one_filter(
             Content.content_uuid, content_uuid, Content)
@@ -396,9 +396,6 @@ def __check_special_char(string: str, allow_hyphen: bool = False) -> bool:
         special_characters = '''!@#$%^&*''()+?=/,<>'''
     else:
         special_characters = '''!@#$%^&*''()-+?=/,<>'''
-    for char in string:
-        if char in special_characters:
-            print('yes')
     if any(char in special_characters for char in string):
         return True
     return False

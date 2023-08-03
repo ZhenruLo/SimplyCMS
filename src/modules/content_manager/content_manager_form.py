@@ -102,7 +102,8 @@ class BooleanFieldForm(BaseColumnForm):
         'Column Default',
         validators = [
             Optional(),
-        ]
+        ],
+        default=False,
     )
 
 class DatetimeFieldForm(BaseColumnForm):
