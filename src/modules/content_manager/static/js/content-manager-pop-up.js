@@ -180,4 +180,27 @@ $( function() {
 
         openPopUp('#relation-field-pop-up', null, false);
     });
+
+    $('.field-display-name').keyup(function() {
+        let legendText = $(this).parent().find('span.under-input-text');
+
+        if ($(this).val() == '') {
+            legendText.text('');
+            legendText.css('color', 'gray');
+
+            $(this).css('border', '1px solid rgb(190, 190, 190)');
+            $(this)[0].setCustomValidity('');
+        }
+        else if (isNumber($(this).val()[0]) || isNumber($(this).val())) {
+            legendText.text('Column display name cannot be formed by just digits/start with a digit.');
+            legendText.css('color', 'red');
+
+            $(this).css('border', '1px solid red');
+            $(this)[0].setCustomValidity('Column display name cannot be formed by just digits/start with a digit.');
+        }
+        else {
+            $(this).css('border', '1px solid green');
+            $(this)[0].setCustomValidity('');
+        }
+    });
 });

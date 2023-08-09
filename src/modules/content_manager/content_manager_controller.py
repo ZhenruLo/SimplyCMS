@@ -223,6 +223,8 @@ def process_database_content() -> Dict[str, Union[bool, str, List[str]]]:
             column_name = escape(form.column_name.data)
             if __check_column_name(column_name, content_row.content_fields):
                 msg = 'Duplicate column name, please choose another column name'
+            elif __column_name_is_digits(column_name):
+                msg = 'Column display name cannot be formed by just digits/start with a digit.'
             else:
                 column_type = escape(form.column_type.data)
                 column_default = escape(form.column_default.data)
@@ -381,6 +383,17 @@ def __check_column_name(column_name: str, content_columns: List['Content']) -> b
         if column_name == column.column_name:
             return True
     return False
+
+
+def __column_name_is_digits(column_name: str) -> bool:
+    if isinstance(column_name, int):
+        return True
+    else:
+        try:
+            int(column_name)
+        except ValueError:
+            return False
+    return True
 
 
 def __generate_uid() -> str:

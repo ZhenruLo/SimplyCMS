@@ -8,10 +8,10 @@
     </fieldset>
 {%- endmacro %}
 
-{% macro create_text(textfield_id, input_id, input_legend, input_name, input_text) -%}
+{% macro create_text(textfield_id, input_id, input_legend, input_name, input_text, custom_class='') -%}
     <fieldset class='custom-fieldset-2' id='{{ textfield_id }}'>
         <legend class='custom-legend'>{{ input_legend }}</legend>
-        <input class='custom-text-input' id='{{ input_id }}' type='text' name='{{ input_name }}' autocomplete='off' required>
+        <input class='custom-text-input {{ custom_class }}' id='{{ input_id }}' type='text' name='{{ input_name }}' autocomplete='off' required>
 
         <div class='under-input-container'>
             <span class='under-input-text'>{{ input_text }}</span>

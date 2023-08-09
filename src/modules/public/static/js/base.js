@@ -1,10 +1,16 @@
+function isNumber(value) {
+    if (typeof value === 'string') {
+        return !isNaN(value);
+    }
+};
+
 function startLoading(selector) {
     $(selector).addClass('loading');
-}
+};
 
 function endLoading(selector) {
     $(selector).removeClass('loading');
-}
+};
 
 function pushCustomState(urlPath, data = new Map(), unused = '') {
     let newUrl = new URL(urlPath);
@@ -18,7 +24,7 @@ function pushCustomState(urlPath, data = new Map(), unused = '') {
     };
     
     history.pushState(data, unused, newUrl);
-}
+};
 
 function changeCurrentState(url, pathName, map =new Map()) {
     map.set('path_name', pathName);
@@ -35,11 +41,11 @@ function changeCurrentState(url, pathName, map =new Map()) {
             }
             else {
                 window.location.reload();
-            }
+            };
         },
         error: function(data) {
             window.location.reload();
-        }
+        },
     });
 };
 
