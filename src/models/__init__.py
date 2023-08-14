@@ -1,3 +1,4 @@
+from .automap_engine import automap
 from .base_db_model import Base, db
 from .column import ColumnInfo
 from .content import Content
@@ -17,4 +18,6 @@ __all__ =[
     'WebUser',
     'ColumnInfo',
     'Content',
+
+    'automap',
 ]
