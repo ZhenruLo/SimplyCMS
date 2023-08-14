@@ -42,17 +42,17 @@
     from {
         transform: translateY(var(--vertical));
     }
-    to {
+    to {    
         transform: translateY(0rem);
     }
 }
 
 @keyframes bounce-from-left-or-right {
     from {
-        transform: translateY(var(--horizontal));
+        transform: translateX(var(--horizontal));
     }
     to {
-        transform: translateY(0rem);
+        transform: translateX(0rem);
     }
 }
 
@@ -67,10 +67,10 @@
 
 @keyframes rebounce-from-left-or-right {
     0% {
-        transform: translateY(var(--horizontal));
+        transform: translateX(var(--horizontal));
     }
     50% {
-        transform: translateY(var(--hRebounce));
+        transform: translateX(var(--hRebounce));
     }
 }
 

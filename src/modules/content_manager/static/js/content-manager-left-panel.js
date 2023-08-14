@@ -297,8 +297,8 @@ $( function() {
         pushCustomState(newUrl, extra);
     });
 
-    $('.left-panel-content-list').on('click', 'li.content-list-item', function() {
-        selectRow(this);
+    $('.left-panel-content-list').on('click', 'li.content-list-item .content-list-context', function() {
+        selectRow($(this).parent());
         openContent();
         refreshContentBuilderPage();
     });

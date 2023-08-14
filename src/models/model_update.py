@@ -19,8 +19,8 @@ def create_table(tablename: str) -> bool:
 def remove_table(tablename: str):
     selected_table = db.metadata.tables.get(tablename)
     if selected_table is not None:
+        db.metadata.remove(selected_table)
         selected_table.drop(db.engine)
-        __refresh_metadata()
 
 def update_table_content(tablename: str, column_details: 'ColumnDetails'):
     column = column_details.sqlalchemy_column
@@ -36,7 +36,3 @@ def update_table_content(tablename: str, column_details: 'ColumnDetails'):
 def get_all_tables_information():
     tables = db.metadata.tables
     return tables
-
-def __refresh_metadata():
-    db.metadata.clear()
-    db.metadata.reflect(db.engine)
