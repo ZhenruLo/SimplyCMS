@@ -7,13 +7,11 @@ $( function() {
     });
 
     socket.on('response', function(message) {
-        console.log(message);
-
-        // contentUUID = message.data['content_uuid'];
-        // refreshContentItem(1, contentUUID);
-        // $(formID).trigger('reset');
-        // $(formID + ' .match-cb-input').trigger('change');
-        // $(formID + ' .switch').removeClass('switch-checked');
+        const contentUUID = message.data['content_uuid'];
+        refreshContentItem(1, contentUUID);
+        $(formID).trigger('reset');
+        $(formID + ' .match-cb-input').trigger('change');
+        $(formID + ' .switch').removeClass('switch-checked');
     });
 
     checkMatchRoute('#create-match-cb', '#content-route-name', '#content-display-name');
@@ -39,10 +37,16 @@ $( function() {
                 data: $(this).serialize(),
                 success: function(data) {
                     if (data['result']) {
-                        console.log(data['msg']);
+                        // console.log(data['msg']);
+                        const contentUUID = data['content_uuid'];
+
+                        refreshContentItem(1, contentUUID);
+                        $(formID).trigger('reset');
+                        $(formID + ' .match-cb-input').trigger('change');
+                        $(formID + ' .switch').removeClass('switch-checked');
                     }
                     else {
-                        console.log(data['msg']);
+                        alert(data['msg']);
                     }
                 },
                 error: function(data) {
@@ -212,6 +216,8 @@ $( function() {
             $(this)[0].setCustomValidity('Column display name cannot be formed by just digits/start with a digit.');
         }
         else {
+            legendText.text('');
+            
             $(this).css('border', '1px solid green');
             $(this)[0].setCustomValidity('');
         }
