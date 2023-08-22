@@ -3,9 +3,12 @@ import random
 import string
 from typing import TYPE_CHECKING, Dict, List, Union
 
+from async_station import socketio
+from celery import shared_task
 from constants import ColumnType
 from data_class import ColumnDetails
-from flask import abort, escape, request
+from flask import abort, current_app, escape, request
+from flask_socketio import SocketIO
 from models import (ColumnInfo, Content, create_table, db, remove_table,
                     update_table_content)
 
@@ -166,13 +169,61 @@ def fetch_table_data() -> Dict[str, Union[bool, str]]:
     return json_data
 
 
+@socketio.on('connection', namespace='/database-content')
+def test(message):
+    current_app.logger.info(message['connection_confirmation'])
+    
+    
+@shared_task(name="database_content")
+def process_database_content_bg_tasks(content_uuid: str, column_name: str, column_type: str, column_default, column_unique: bool, column_nullable: bool, column_private: bool):
+    import time
+    local_socketio = SocketIO(
+        logger=True, engineio_logger=True, message_queue='redis://localhost:6379/0')
+    
+    current_app.logger.info(
+        f'initialized socketio')
+    content_row: 'Content' = Content.fetch_one_filter(
+        Content.content_uuid, content_uuid, Content)
+    
+    current_app.logger.info(
+        f'Get content row with uuid')
+    
+    column_inst = ColumnDetails(column_type, column_name,
+                                column_default, column_unique, column_nullable, column_private)
+
+    current_app.logger.info(
+        f'get column_inst')
+    new_column = ColumnInfo(column_inst.column_name, column_inst.column_type, column_inst.column_unique,
+                            column_inst.column_nullable, column_inst.column_private, column_inst.column_default)
+    current_app.logger.info(
+        f'Get new_column')
+    content_row.content_fields.append(new_column)
+    
+    current_app.logger.info(
+        f'append content row')
+    db.session.commit()
+    
+    current_app.logger.info(
+        f'commit')
+
+    update_table_content(content_row.table_name, column_inst)
+
+    current_app.logger.info(
+        f'Migration')
+    msg = 'Databases updated'
+    current_app.logger.info(
+        f'Celery task: Update database content successful with msg: {msg}')
+    local_socketio.emit('response', {
+                        'msg': msg, 'result': True, 'content_uuid': content_uuid}, namespace='/database-content')
+
+
 def process_database_content() -> Dict[str, Union[bool, str, List[str]]]:
     result = False
 
     if request.method == 'GET':
         msg = 'Fetch database failed.'
         fields = []
-        
+
         content_uuid = escape(request.args.get('content_uuid'))
         selected_table: 'Content' = Content.fetch_one_filter(
             Content.content_uuid, content_uuid, Content)
@@ -219,7 +270,7 @@ def process_database_content() -> Dict[str, Union[bool, str, List[str]]]:
             content_uuid = escape(form.content_uuid.data)
             content_row: 'Content' = Content.fetch_one_filter(
                 Content.content_uuid, content_uuid, Content)
-            
+
             column_name = escape(form.column_name.data)
             if __check_column_name(column_name, content_row.content_fields):
                 msg = 'Duplicate column name, please choose another column name'
@@ -232,18 +283,11 @@ def process_database_content() -> Dict[str, Union[bool, str, List[str]]]:
                 column_nullable = escape(form.column_nullable.data)
                 column_private = escape(form.column_private.data)
 
-                column_inst = ColumnDetails(column_type, column_name,
-                                            column_default, column_unique, column_nullable, column_private)
-
-                new_column = ColumnInfo(column_inst.column_name, column_inst.column_type, column_inst.column_unique,
-                                        column_inst.column_nullable, column_inst.column_private, column_inst.column_default)
-                content_row.content_fields.append(new_column)
-                db.session.commit()
-
-                update_table_content(content_row.table_name, column_inst)
-
-                result = True
-                msg = 'Databases updated'
+                task = process_database_content_bg_tasks.apply_async(
+                    args=[content_uuid, column_name, column_type, column_default, column_unique, column_nullable, column_private])
+                if task is not None:
+                    result = True
+                    msg = 'Updating the database content.'
 
         json_data = {
             'result': result,

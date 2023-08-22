@@ -19,7 +19,7 @@ def create_app(config_obj):
     flask_app = Flask(__name__, template_folder='../modules/public/template', static_folder='../modules/public/static')
     flask_app.config.from_object(config_obj)
 
-    socketio.init_app(flask_app)
+    socketio.init_app(flask_app, message_queue='redis://localhost:6379/0')
     csrf.init_app(flask_app)
     login_manager.init_app(flask_app)
     principals.init_app(flask_app)

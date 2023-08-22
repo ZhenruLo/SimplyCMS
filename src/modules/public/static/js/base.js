@@ -59,9 +59,8 @@ window.onpopstate = function(data) {
 };
 
 $( function() {
-    var socket = io()
-
-    socket.on('connect', function(){
+    const socket = io.connect(window.location.origin)
+    socket.on('connect', function() {
         socket.emit('connection', {connection_confirmation: 'you are connected to the socket!'});
     });
 

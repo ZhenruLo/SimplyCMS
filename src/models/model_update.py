@@ -24,14 +24,19 @@ def remove_table(tablename: str):
 
 def update_table_content(tablename: str, column_details: 'ColumnDetails'):
     column = column_details.sqlalchemy_column
-
-    Table(tablename, 
+    print("Column yes")
+    test = Table(tablename, 
           db.metadata,
           column,
           extend_existing=True,
           )
+    print("Define table")
+    print(test)
     migrate(Directory.GLOBAL_MIGRATE_DIR.as_posix())
+    print("migrate table")
+    print(test)
     upgrade(Directory.GLOBAL_MIGRATE_DIR.as_posix())
+    print("update table")
 
 def get_all_tables_information():
     tables = db.metadata.tables

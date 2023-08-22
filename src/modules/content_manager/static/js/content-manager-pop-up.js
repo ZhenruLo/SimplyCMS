@@ -1,4 +1,21 @@
 $( function() {
+    const nameSpace = '/database-content';
+    const socket = io.connect(window.location.origin + nameSpace);
+
+    socket.on('connect', function() {
+        socket.emit('connection', {connection_confirmation: 'you are connected to the content-manager socket!'});
+    });
+
+    socket.on('response', function(message) {
+        console.log(message);
+
+        // contentUUID = message.data['content_uuid'];
+        // refreshContentItem(1, contentUUID);
+        // $(formID).trigger('reset');
+        // $(formID + ' .match-cb-input').trigger('change');
+        // $(formID + ' .switch').removeClass('switch-checked');
+    });
+
     checkMatchRoute('#create-match-cb', '#content-route-name', '#content-display-name');
     checkMatchRoute('#update-match-cb', '#update-route-name', '#update-display-name');
     submitContentField('#text-field-form');
@@ -9,6 +26,7 @@ $( function() {
     submitContentField('#number-field-form');
     submitContentField('#ID-field-form');
     submitContentField('#relation-field-form');
+
 
     function submitContentField(formID) {
         $(formID).submit(function(event) {
@@ -21,15 +39,10 @@ $( function() {
                 data: $(this).serialize(),
                 success: function(data) {
                     if (data['result']) {
-                        contentUUID = data['content_uuid'];
-                        
-                        refreshContentItem(1, contentUUID);
-                        $(formID).trigger('reset');
-                        $(formID + ' .match-cb-input').trigger('change');
-                        $(formID + ' .switch').removeClass('switch-checked');
+                        console.log(data['msg']);
                     }
                     else {
-                        alert(data['msg']);
+                        console.log(data['msg']);
                     }
                 },
                 error: function(data) {
