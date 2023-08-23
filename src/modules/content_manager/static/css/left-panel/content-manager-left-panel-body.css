@@ -70,6 +70,13 @@
     color: black;
 }
 
+.content-list-context-text {
+    max-width: 20rem;
+    text-overflow: ellipsis;
+    overflow: hidden; 
+    white-space: nowrap;
+}
+
 .content-list-delete {
     display: flex;
     justify-content: center;

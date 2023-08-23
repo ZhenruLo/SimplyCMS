@@ -53,6 +53,10 @@
     pointer-events: none;
     border: none;
     background: transparent;
+    max-width: 70rem;
+    text-overflow: ellipsis;
+    overflow: hidden; 
+    white-space: nowrap;
 }
 
 .content-header-text#content-name-text::placeholder {
@@ -92,6 +96,10 @@
 
 #description-info:active {
     transform: scale(0.8);
+}
+
+#table-save-button {
+
 }
 
 .column-body-tab {
