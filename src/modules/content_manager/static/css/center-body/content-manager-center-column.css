@@ -115,7 +115,7 @@
     justify-content: space-evenly;
     width: 7.5rem;
     padding: 0.5rem 0;
-    margin: 0 2rem 0 0;
+    margin: 0 4rem 0 0;
     background-color: white;
     border-radius: 10%;
     text-align: center;
@@ -129,13 +129,53 @@
 
 #table-save-button:active {
     cursor: pointer;
+    background-color: rgb(213, 213, 213);
+}
+
+.init#table-save-button {
+    cursor: not-allowed;
     background-color: whitesmoke;
+}
+
+.init#table-save-button .save-text {
+    color: gray;
+}
+
+.saved#table-save-button {
+    --beforeColor: whitesmoke;
+    --afterColor: rgba(0, 223, 0, 0.5);
+    animation: blink-color 1s ease;
+    cursor: not-allowed;
+    background-color: whitesmoke;
+}
+
+.saved#table-save-button .save-text {
+    color: gray;
+}
+
+.pending#table-save-button #save-icon {
+    display: none;
+}
+
+.pending#table-save-button #save-pending {
+    display: block;
+}
+
+#save-pending {
+    display: none;
+    width: 1.5rem;
+    height: 1.5rem;
+    border-radius: 100%;
+    border: 2px solid whitesmoke;
+    border-top: 2px solid black;
+    animation: spin-animation 1s infinite;
 }
 
 .save-text {
     color: black;
     user-select: none;
     font-size: 1.5rem;
+    font-weight: 600;
     font-family: 'Chakra Petch', sans-serif;
 }
 
