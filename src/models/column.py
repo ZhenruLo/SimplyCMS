@@ -2,6 +2,7 @@ from typing import TYPE_CHECKING, List
 
 from sqlalchemy import Boolean, DateTime, ForeignKey, Integer, Text, func
 from sqlalchemy.orm import Mapped, mapped_column, relationship
+from sqlalchemy.sql import expression
 
 from .base_db_model import Base, db
 
@@ -19,6 +20,7 @@ class ColumnInfo(Base, db.Model):
     column_nullable: Mapped[bool] = mapped_column(Boolean, nullable=False)
     column_private: Mapped[bool] = mapped_column(Boolean, nullable=False)
     column_default: Mapped[str] = mapped_column(Text, nullable=True)
+    update_required: Mapped[bool] = mapped_column(Boolean, server_default=expression.true())
     column_uuid: Mapped[str] = mapped_column(Text, server_default=func.random(), unique=True)
     created_timestamp: Mapped[DateTime] = mapped_column(DateTime, server_default=func.current_timestamp())
     content_id: Mapped[int] = mapped_column(Integer, ForeignKey('content.id'))

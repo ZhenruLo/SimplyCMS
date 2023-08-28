@@ -3,10 +3,11 @@ from .base_db_model import Base, db
 from .column import ColumnInfo
 from .content import Content
 from .model_update import (create_table, get_all_tables_information,
-                           remove_table, update_table_content)
+                           remove_table, update_table_content,
+                           upgrade_database)
 from .web_user import WebUser
 
-__all__ =[
+__all__ = [
     'Base',
     'db',
 
@@ -14,6 +15,7 @@ __all__ =[
     'update_table_content',
     'get_all_tables_information',
     'remove_table',
+    'upgrade_database',
 
     'WebUser',
     'ColumnInfo',

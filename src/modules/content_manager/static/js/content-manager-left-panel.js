@@ -20,6 +20,29 @@ columnIconFactory.set('json', 'bx bxs-file-json');
 columnIconFactory.set('media', 'bx bx-images');
 columnIconFactory.set('relation', 'bx bx-link');
 
+function clearSaveStatus() {
+    const tableSaveBtn = $('#table-save-button');
+    tableSaveBtn.removeClass();
+}
+
+function preventSave() {
+    const tableSaveBtn = $('#table-save-button');
+    tableSaveBtn.removeClass();
+    tableSaveBtn.addClass('saved');
+
+    window.onbeforeunload = undefined;
+}
+
+function pendingSave() {
+    const tableSaveBtn = $('#table-save-button');
+    tableSaveBtn.removeClass();
+    tableSaveBtn.addClass('pending');
+    
+    window.onbeforeunload = function(e) {
+        return ("Changes that you made may not be saved.");
+    };
+}
+
 function refreshContentBuilderPage() {
     const selectedRow = $('.content-list-item.selected-row');
     const contentUUID = selectedRow.find('.content-uuid').val();
@@ -54,6 +77,12 @@ function refreshContentBuilderPage() {
                     else {
                         $('.header-description-text').text('No description');
                     };
+                    if (!contentInfo['update_required']) {
+                        preventSave();
+                    }
+                    else {
+                        clearSaveStatus();
+                    }
                 }
                 else {
                     $('#content-name-text').text('No content selected');
@@ -253,6 +282,17 @@ function createContentFields(columnName, columnType) {
 };
 
 $( function() {
+    const nameSpace = '/database-content';
+    const socket = io.connect(window.location.origin + nameSpace);
+
+    socket.on('connect', function() {
+        socket.emit('connection', {connection_confirmation: 'you are connected to the content-manager socket!'});
+    });
+
+    socket.on('response', function(message) {
+        preventSave();
+    });
+
     $('#left-panel-menu').on('panelSelect', function(event, extra) {
         let selectedRow = 'row-create-content';
 
@@ -345,5 +385,28 @@ $( function() {
         event.preventDefault();
 
         openPopUp('#create-content-pop-up');
+    });
+
+    $('#table-save-button').on('click', function(event) {
+        event.preventDefault();
+        const selectedRow = $('.content-list-item.selected-row');
+        const contentUUID = selectedRow.find('.content-uuid').val();
+
+        pendingSave();
+        $.ajax({
+            url: '/content-manager/save',
+            contentType: 'application/json;charset=UTF-8',
+            method: 'POST',
+            data: JSON.stringify({
+                'content_uuid': contentUUID
+            }),
+            success: function(data) {
+                preventSave();
+                alert(data['msg']);
+            },
+            error: function(data) {
+                alert(data.responseText);
+            }
+        });
     });
 });

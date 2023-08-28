@@ -17,8 +17,8 @@ class Base(UserMixin):
         db.session.commit()
     
     @classmethod
-    def update(cls, cls_column_name, value: str, update_attr):
-        db.session.query(cls).filter(cls_column_name == value).update(update_attr)
+    def update(cls, cls_column_name, value: str, update_attr, *required_args):
+        db.session.query(*required_args).filter(cls_column_name == value).update(update_attr)
         db.session.commit()
 
     @classmethod
