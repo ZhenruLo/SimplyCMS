@@ -50,7 +50,7 @@ def create_app(config_obj):
         
         init_logger()
         current_app.logger.info('Blueprints and extra handler registration completed.')
-        
+
     @socketio.on('connection')
     def confirmation_message(message):
         current_app.logger.info(message['connection_confirmation'])

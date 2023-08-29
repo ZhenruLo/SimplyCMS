@@ -28,7 +28,7 @@ $( function() {
                         $(formID + ' .match-cb-input').trigger('change');
                         $(formID + ' .switch').removeClass('switch-checked');
 
-                        clearSaveStatus();
+                        checkSaveStatus('pending');
                     }
                     else {
                         alert(data['msg']);

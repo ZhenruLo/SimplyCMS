@@ -36,9 +36,11 @@ def update_table_content(tablename: str, column_details: 'ColumnDetails'):
           ).append_column(column)
 
 
-def upgrade_database(tablename: str):
-    stamp(Directory.GLOBAL_MIGRATE_DIR.as_posix())
+def migrate_database():
     migrate(Directory.GLOBAL_MIGRATE_DIR.as_posix())
+
+
+def upgrade_database(tablename: str):
     upgrade(Directory.GLOBAL_MIGRATE_DIR.as_posix())
 
 

@@ -20,27 +20,24 @@ columnIconFactory.set('json', 'bx bxs-file-json');
 columnIconFactory.set('media', 'bx bx-images');
 columnIconFactory.set('relation', 'bx bx-link');
 
-function clearSaveStatus() {
+
+function checkSaveStatus(is_saved=null) {
     const tableSaveBtn = $('#table-save-button');
     tableSaveBtn.removeClass();
-}
 
-function preventSave() {
-    const tableSaveBtn = $('#table-save-button');
-    tableSaveBtn.removeClass();
-    tableSaveBtn.addClass('saved');
+    if (is_saved == 'pending') {
+        tableSaveBtn.addClass('pending');
 
-    window.onbeforeunload = undefined;
-}
+        window.onbeforeunload = function(e) {
+            return ("Changes that you made may not be saved.");
+        };
+    }
+    else if (is_saved == 'saved') {
+        tableSaveBtn.addClass('saved');
 
-function pendingSave() {
-    const tableSaveBtn = $('#table-save-button');
-    tableSaveBtn.removeClass();
-    tableSaveBtn.addClass('pending');
+        window.onbeforeunload = undefined;
+    }
     
-    window.onbeforeunload = function(e) {
-        return ("Changes that you made may not be saved.");
-    };
 }
 
 function refreshContentBuilderPage() {
@@ -78,10 +75,10 @@ function refreshContentBuilderPage() {
                         $('.header-description-text').text('No description');
                     };
                     if (!contentInfo['update_required']) {
-                        preventSave();
+                        checkSaveStatus('saved');
                     }
                     else {
-                        clearSaveStatus();
+                        checkSaveStatus();
                     }
                 }
                 else {
@@ -153,7 +150,7 @@ function refreshColumnItem(selectedContentUUID) {
                 $.each(columns, function(columnIndex, columnInfo) {
                     let columnName = columnInfo['column_name']
                     let columnType = columnInfo['column_type']
-                    let columnUUID = columnInfo['colume_uuid']
+                    let columnUUID = columnInfo['column_uuid']
 
                     createContentFields(columnName, columnType, columnUUID);
                 });
@@ -259,11 +256,11 @@ function createContentItem(tableName, contentUUID, selectedRow) {
     rowBodyFactory.set(`content-list-item-${currentListLength}`, 'center-content-builder');
 };
 
-function createContentFields(columnName, columnType) {
+function createContentFields(columnName, columnType, columnUUID) {
     const currentListLength = $('.column-body-list li').length;
 
     $('<li>').prop({'class': `single-column-container`, 'id': `single-column-container-${currentListLength}`, 'style': `--c:${currentListLength + 1}`}).appendTo('.column-body-list');
-
+    $('<input>').prop({'class': 'column-uuid', 'id': `column-uuid-${currentListLength}`, 'type': 'hidden', 'value': columnUUID}).appendTo(`#single-column-container-${currentListLength}`);
     $('<div>').prop({'class': 'column-front-part', 'id': `column-front-part-${currentListLength}`}).appendTo(`#single-column-container-${currentListLength}`);
 
     $('<div>').prop({'class': 'column-body-part', id: `column-body-part-${currentListLength}`}).appendTo(`#single-column-container-${currentListLength}`);
@@ -290,7 +287,7 @@ $( function() {
     });
 
     socket.on('response', function(message) {
-        preventSave();
+        checkSaveStatus('saved');
     });
 
     $('#left-panel-menu').on('panelSelect', function(event, extra) {
@@ -392,7 +389,6 @@ $( function() {
         const selectedRow = $('.content-list-item.selected-row');
         const contentUUID = selectedRow.find('.content-uuid').val();
 
-        pendingSave();
         $.ajax({
             url: '/content-manager/save',
             contentType: 'application/json;charset=UTF-8',
@@ -401,8 +397,7 @@ $( function() {
                 'content_uuid': contentUUID
             }),
             success: function(data) {
-                preventSave();
-                alert(data['msg']);
+                checkSaveStatus('pending');
             },
             error: function(data) {
                 alert(data.responseText);

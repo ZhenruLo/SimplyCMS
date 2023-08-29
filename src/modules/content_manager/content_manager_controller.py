@@ -11,8 +11,8 @@ from sqlalchemy.sql import and_
 from async_station import socketio
 from constants import ColumnType
 from data_class import ColumnDetails
-from models import (ColumnInfo, Content, create_table, db, upgrade_database,
-                    remove_table, update_table_content)
+from models import (ColumnInfo, Content, create_table, db, migrate_database,
+                    remove_table, update_table_content, upgrade_database)
 
 from .content_manager_form import (BaseColumnForm, BooleanFieldForm,
                                    ContentManagerForm, DatetimeFieldForm,
@@ -393,23 +393,23 @@ def save_database_status() -> Dict[str, Union[bool, str]]:
         content: 'Content' = db.session.query(Content).filter(
             Content.content_uuid == content_uuid).first()
         if content and content.update_required:
-
+            migrate_database()
             #----------------------------------------------------------------------------change this----------------------------------------------------------------------------
-            upgrade_database(content.table_name)
-            db.session.query(ColumnInfo).filter(and_(ColumnInfo.content_id == content.id,
-                                                    ColumnInfo.update_required == True)).update({ColumnInfo.update_required: False})
-            db.session.query(Content).filter(Content.content_uuid == content_uuid).update(
-                {Content.update_required: False})
-            db.session.commit()
+            # upgrade_database(content.table_name)
+            # db.session.query(ColumnInfo).filter(and_(ColumnInfo.content_id == content.id,
+            #                                         ColumnInfo.update_required == True)).update({ColumnInfo.update_required: False})
+            # db.session.query(Content).filter(Content.content_uuid == content_uuid).update(
+            #     {Content.update_required: False})
+            # db.session.commit()
 
-            result = True
-            msg = 'Databases updated'
+            # result = True
+            # msg = 'Databases updated'
             #----------------------------------------------------------------------------change this----------------------------------------------------------------------------
-            # task = migrate_database_task.apply_async(
-            #     args=[content_uuid,])
-            # if task is not None:
-            #     result = True
-            #     msg = 'Updating the database content.'
+            task = migrate_database_task.apply_async(
+                args=[content_uuid,])
+            if task is not None:
+                result = True
+                msg = 'Updating the database content.'
         else:
             msg = 'Database is already up to date'
 
@@ -428,7 +428,10 @@ def migrate_database_task(content_uuid: str):
 
     content: 'Content' = Content.fetch_one_filter(
         Content.content_uuid, content_uuid, Content)
-    upgrade_database(content.table_name)
+    try:
+        upgrade_database(content.table_name)
+    except Exception as err:
+        current_app.logger.error(err)
     db.session.query(ColumnInfo).filter(and_(ColumnInfo.content_id == content.id,
                                              ColumnInfo.update_required == True)).update({ColumnInfo.update_required: False})
     db.session.query(Content).filter(Content.content_uuid == content_uuid).update(
