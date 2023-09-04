@@ -36,6 +36,14 @@ def update_table_content(tablename: str, column_details: 'ColumnDetails'):
           ).append_column(column)
 
 
+def delete_table_content(tablename: str, column_details: 'ColumnDetails'):
+    column = column_details.sqlalchemy_column
+
+    Table(tablename, 
+          db.metadata,
+         )._columns.remove(column)
+
+
 def migrate_database():
     migrate(Directory.GLOBAL_MIGRATE_DIR.as_posix())
 
