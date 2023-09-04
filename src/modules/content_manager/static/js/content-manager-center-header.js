@@ -46,4 +46,28 @@ $( function() {
         openPopUp('#description-pop-up', $('.content-header-text').text());
         $('#full-description-text').text($('.header-description-text').text()); 
     });
+    
+    $('#table-save-button').on('click', function(event) {
+        event.preventDefault();
+        const selectedRow = $('.content-list-item.selected-row');
+        const contentUUID = selectedRow.find('.content-uuid').val();
+        checkSaveStatus('pending');
+
+        $.ajax({
+            url: '/content-manager/save',
+            contentType: 'application/json;charset=UTF-8',
+            method: 'POST',
+            data: JSON.stringify({
+                'content_uuid': contentUUID
+            }),
+            success: function(data) {
+                if (!data['result']) {
+                    alert(data['msg']);
+                };
+            },
+            error: function(data) {
+                alert(data.responseText);
+            }
+        });
+    });
 });

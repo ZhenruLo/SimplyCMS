@@ -21,6 +21,8 @@ class ColumnInfo(Base, db.Model):
     column_private: Mapped[bool] = mapped_column(Boolean, nullable=False)
     column_default: Mapped[str] = mapped_column(Text, nullable=True)
     update_required: Mapped[bool] = mapped_column(Boolean, server_default=expression.true())
+    pending: Mapped[bool] = mapped_column(Boolean, server_default=expression.false())
+    removed: Mapped[bool] = mapped_column(Boolean, server_default=expression.false())
     column_uuid: Mapped[str] = mapped_column(Text, server_default=func.random(), unique=True)
     created_timestamp: Mapped[DateTime] = mapped_column(DateTime, server_default=func.current_timestamp())
     content_id: Mapped[int] = mapped_column(Integer, ForeignKey('content.id'))

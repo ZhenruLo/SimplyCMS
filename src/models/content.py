@@ -19,6 +19,7 @@ class Content(Base, db.Model):
     route_name: Mapped[str] = mapped_column(Text, unique=True)
     description: Mapped[str] = mapped_column(Text, nullable=True)
     update_required: Mapped[bool] = mapped_column(Boolean, server_default=expression.false())
+    pending: Mapped[bool] = mapped_column(Boolean, server_default=expression.false())
     content_uuid: Mapped[str] = mapped_column(Text, server_default=func.random(), unique=True)
     created_timestamp: Mapped[DateTime]  = mapped_column(DateTime, server_default=func.current_timestamp())
     content_fields: Mapped[List['ColumnInfo']] = relationship('ColumnInfo', cascade = "all,delete", back_populates='content')

@@ -11,8 +11,9 @@ from sqlalchemy.sql import and_
 from async_station import socketio
 from constants import ColumnType
 from data_class import ColumnDetails
-from models import (ColumnInfo, Content, create_table, db, migrate_database,
-                    remove_table, update_table_content, upgrade_database)
+from models import (ColumnInfo, Content, create_table, db,
+                    delete_table_content, migrate_database, remove_table,
+                    update_table_content, upgrade_database)
 
 from .content_manager_form import (BaseColumnForm, BooleanFieldForm,
                                    ContentManagerForm, DatetimeFieldForm,
@@ -193,7 +194,7 @@ def process_database_content() -> Dict[str, Union[bool, str, List[str]]]:
                 ColumnInfo.column_name.key: orm_field.column_name,
                 ColumnInfo.column_type.key: orm_field.column_type,
                 ColumnInfo.column_uuid.key: orm_field.column_uuid,
-            } for orm_field in orm_fields]
+            } for orm_field in orm_fields if orm_field.removed == False]
 
             result = True
             msg = 'Database fetched'
@@ -263,6 +264,31 @@ def process_database_content() -> Dict[str, Union[bool, str, List[str]]]:
             'result': result,
             'msg': msg,
             'content_uuid': content_uuid,
+        }
+
+    elif request.method == 'DELETE':
+        msg = 'Delete database content failed'
+
+        data = request.get_json()
+        column_uuid = escape(data.get('column_uuid'))
+        column_info: 'ColumnInfo' = db.session.query(ColumnInfo).filter(
+            ColumnInfo.column_uuid == column_uuid).first()
+        content: 'Content' = db.session.query(Content).filter(
+            Content.id == column_info.content_id).first()
+
+        if column_info and content:
+            delete_table_content(content.table_name, column_info.column_name)
+            Content.update(Content.content_uuid, content.content_uuid, {
+                            Content.update_required: True}, Content)
+            ColumnInfo.update(ColumnInfo.column_uuid, column_uuid, {
+                              ColumnInfo.update_required: True, ColumnInfo.removed: True}, ColumnInfo)
+            result = True
+            msg = 'Database content deleted'
+            
+        json_data = {
+            'result': result,
+            'msg': msg,
+            'content_uuid': content.content_uuid,
         }
     return json_data
 
@@ -392,9 +418,17 @@ def save_database_status() -> Dict[str, Union[bool, str]]:
 
         content: 'Content' = db.session.query(Content).filter(
             Content.content_uuid == content_uuid).first()
-        if content and content.update_required:
+        if content.pending:
+            msg = 'Updating database, please wait.'
+        elif content and content.update_required:
+            Content.update(Content.content_uuid, content_uuid, {
+                Content.pending: True}, Content)
+            db.session.query(ColumnInfo).filter(ColumnInfo.content_id == content.id).update({
+                ColumnInfo.pending: True,
+            })
+            db.session.commit()
             migrate_database()
-            #----------------------------------------------------------------------------change this----------------------------------------------------------------------------
+            # ----------------------------------------------------------------------------change this----------------------------------------------------------------------------
             # upgrade_database(content.table_name)
             # db.session.query(ColumnInfo).filter(and_(ColumnInfo.content_id == content.id,
             #                                         ColumnInfo.update_required == True)).update({ColumnInfo.update_required: False})
@@ -404,9 +438,9 @@ def save_database_status() -> Dict[str, Union[bool, str]]:
 
             # result = True
             # msg = 'Databases updated'
-            #----------------------------------------------------------------------------change this----------------------------------------------------------------------------
+            # ----------------------------------------------------------------------------change this----------------------------------------------------------------------------
             task = migrate_database_task.apply_async(
-                args=[content_uuid,])
+                args=[content_uuid, ])
             if task is not None:
                 result = True
                 msg = 'Updating the database content.'
@@ -423,6 +457,7 @@ def save_database_status() -> Dict[str, Union[bool, str]]:
 
 @shared_task(name="database_content")
 def migrate_database_task(content_uuid: str):
+    result = False
     local_socketio = SocketIO(
         logger=True, engineio_logger=True, message_queue='redis://localhost:6379/0')
 
@@ -430,19 +465,36 @@ def migrate_database_task(content_uuid: str):
         Content.content_uuid, content_uuid, Content)
     try:
         upgrade_database(content.table_name)
+        result = True
     except Exception as err:
         current_app.logger.error(err)
+
     db.session.query(ColumnInfo).filter(and_(ColumnInfo.content_id == content.id,
-                                             ColumnInfo.update_required == True)).update({ColumnInfo.update_required: False})
-    db.session.query(Content).filter(Content.content_uuid == content_uuid).update(
+                                             ColumnInfo.update_required == True)).update({
+                                                 ColumnInfo.update_required: False,
+                                                 ColumnInfo.pending: False,
+                                             })
+    db.session.query(Content).filter(Content.content_uuid == content.content_uuid).update(
         {Content.update_required: False})
     db.session.commit()
 
+    db.session.query(ColumnInfo).filter(ColumnInfo.removed ==
+                                        True).delete(synchronize_session='fetch')
+    db.session.commit()
+
+    Content.update(Content.content_uuid, content_uuid, {
+        Content.pending: False}, Content)
     msg = 'Databases updated'
     current_app.logger.info(
         f'Celery task: Update database content successful with msg: {msg}')
     local_socketio.emit('response', {
-                        'msg': msg, 'result': True}, namespace='/database-content')
+                        'msg': msg, 'result': result}, namespace='/database-content')
+
+
+def __delete_column_process(column_uuid: 'ColumnInfo'):
+    column = ColumnInfo.fetch_one_filter(
+        ColumnInfo.column_uuid, column_uuid, Content)
+    ColumnInfo.delete(column)
 
 
 def __create_table_name() -> str:

@@ -36,12 +36,12 @@ def update_table_content(tablename: str, column_details: 'ColumnDetails'):
           ).append_column(column)
 
 
-def delete_table_content(tablename: str, column_details: 'ColumnDetails'):
-    column = column_details.sqlalchemy_column
-
-    Table(tablename, 
+def delete_table_content(tablename: str, column_name: 'str'):
+    table = Table(tablename, 
           db.metadata,
-         )._columns.remove(column)
+         )
+    column = table.columns.get(column_name)
+    table._columns.remove(column)
 
 
 def migrate_database():

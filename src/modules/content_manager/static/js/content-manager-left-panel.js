@@ -22,6 +22,7 @@ columnIconFactory.set('relation', 'bx bx-link');
 
 
 function checkSaveStatus(is_saved=null) {
+    console.log(is_saved)
     const tableSaveBtn = $('#table-save-button');
     tableSaveBtn.removeClass();
 
@@ -275,7 +276,7 @@ function createContentFields(columnName, columnType, columnUUID) {
     $('<div>').prop({'class': 'column-footer-icon column-footer-edit', id: `column-footer-edit-${currentListLength}`}).appendTo(`#column-rear-part-${currentListLength}`);
     $('<i>').prop({'class': 'bx bx-edit', id: `edit-icon-${currentListLength}`, title: 'Edit'}).appendTo(`#column-footer-edit-${currentListLength}`);
     $('<div>').prop({'class': 'column-footer-icon column-footer-delete', id: `column-footer-delete-${currentListLength}`}).appendTo(`#column-rear-part-${currentListLength}`);
-    $('<i>').prop({'class': 'bx bxs-trash', id: `delete-icon-${currentListLength}`, title: 'Delete'}).appendTo(`#column-footer-delete-${currentListLength}`);
+    $('<i>').prop({'class': 'column-delete-btn bx bxs-trash', id: `delete-icon-${currentListLength}`, title: 'Delete'}).appendTo(`#column-footer-delete-${currentListLength}`);
 };
 
 $( function() {
@@ -340,7 +341,8 @@ $( function() {
         refreshContentBuilderPage();
     });
 
-    $('.left-panel-content-list').on('click', 'li .content-list-delete', function () {
+    $('.left-panel-content-list').on('click', 'li .content-list-delete', function (event) {
+        event.stopPropagation();
         const contentUUID = $(this).parent().find('.content-uuid').val();
         
         result = confirm('Delete this item?');
@@ -382,26 +384,5 @@ $( function() {
         event.preventDefault();
 
         openPopUp('#create-content-pop-up');
-    });
-
-    $('#table-save-button').on('click', function(event) {
-        event.preventDefault();
-        const selectedRow = $('.content-list-item.selected-row');
-        const contentUUID = selectedRow.find('.content-uuid').val();
-
-        $.ajax({
-            url: '/content-manager/save',
-            contentType: 'application/json;charset=UTF-8',
-            method: 'POST',
-            data: JSON.stringify({
-                'content_uuid': contentUUID
-            }),
-            success: function(data) {
-                checkSaveStatus('pending');
-            },
-            error: function(data) {
-                alert(data.responseText);
-            }
-        });
     });
 });
