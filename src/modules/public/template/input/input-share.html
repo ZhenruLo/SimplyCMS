@@ -8,10 +8,10 @@
     </fieldset>
 {%- endmacro %}
 
-{% macro create_pop_up_text(input_id, input_legend, input_name, input_text) -%}
-    <fieldset class='custom-fieldset-2'>
+{% macro create_text(textfield_id, input_id, input_legend, input_name, input_text, custom_class='') -%}
+    <fieldset class='custom-fieldset-2' id='{{ textfield_id }}'>
         <legend class='custom-legend'>{{ input_legend }}</legend>
-        <input class='custom-text-input' id='{{ input_id }}' type='text' name='{{ input_name }}' autocomplete='off' required>
+        <input class='custom-text-input {{ custom_class }}' id='{{ input_id }}' type='text' name='{{ input_name }}' autocomplete='off' required>
 
         <div class='under-input-container'>
             <span class='under-input-text'>{{ input_text }}</span>
@@ -19,8 +19,8 @@
     </fieldset>
 {%- endmacro %}
 
-{% macro create_pop_up_textarea(input_id, input_legend, input_name, max_length, input_text) -%}
-    <fieldset class='custom-fieldset-2'>
+{% macro create_textarea(textarea_id, input_id, input_legend, input_name, max_length, input_text) -%}
+    <fieldset class='custom-fieldset-2' id='{{ textarea_id }}'>
         <legend class='custom-legend'>{{ input_legend }}</legend>
         <textarea class='custom-textarea' id='{{ input_id }}' name='{{ input_name }}' autocomplete='off' maxlength='{{ max_length }}' required></textarea>
 
@@ -30,14 +30,31 @@
     </fieldset>
 {%- endmacro %}
 
-{% macro create_pop_up_cb_text(input_id, input_legend, input_name, cb_id, cb_name, cb_text) -%}
-    <fieldset class='custom-fieldset-2'>
+{% macro create_cb_text(cb_text_id, input_id, input_type, input_legend, input_name, cb_id, cb_name, cb_text, text_disabled=false) -%}
+    {% if text_disabled %}
+        {% set text_disabled = 'disabled' %}
+    {% else %}
+        {% set text_disabled = '' %}
+    {% endif %}
+
+    <fieldset class='custom-fieldset-2' id='{{ cb_text_id }}'>
         <legend class='custom-legend'>{{ input_legend }}</legend>
-        <input class='custom-text-input' id='{{ input_id }}' type='text' name='{{ input_name }}' autocomplete='off' required>
+        <input class='custom-text-input' id='{{ input_id }}' type='{{ input_type }}' name='{{ input_name }}' autocomplete='off' {{ text_disabled }} required>
 
         <div class='under-input-container'>
-            <input id='{{ cb_id }}' type='checkbox' name='{{ cb_name }}' disabled>
-            <label for='{{ cb_id }}'>{{ cb_text }}</label>
+            <input class='match-cb-input' id='{{ cb_id }}' type='checkbox' name='{{ cb_name }}'>
+            <label class='match-cb-label' for='{{ cb_id }}'>{{ cb_text }}</label>
         </div>
     </fieldset>
+{%- endmacro %}
+
+{% macro create_yesno_switch(switch_id, input_id, switch_title, switch_name, switch_description) -%}
+    <div class='switch-container' id='{{ switch_id }}'>
+        <span class='custom-legend'>{{ switch_title }}</span>
+        <label class='switch'>
+            <input class='switch-button-checkbox' id='{{ input_id }}' name= '{{ switch_name }}' type='checkbox'>
+            <label class='switch-button-label' for='{{ input_id }}'><span class='switch-button-label-span'>NO</span></label>
+        </label>
+        <span class='switch-description'>{{ switch_description }}</span>
+    </div>
 {%- endmacro %}

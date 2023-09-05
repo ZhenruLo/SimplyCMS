@@ -1,0 +1,64 @@
+<form id='text-field-form' action='' method='POST'>
+    <input id='text-field-content-uuid' type='hidden' name='content_uuid' value=''>
+    <input id='text-field-type' type='hidden' name='column_type' value='text'>
+
+    <div class='content-creator-form-body'>
+        <div class='text-fields-container'>
+            {{ input.create_text
+                (
+                    'text-field-text-id',
+                    'text-field-name',
+                    'Display Name',
+                    'column_name',
+                    custom_class='field-display-name'
+                )
+            }}
+    
+            {{ input.create_cb_text
+                (
+                    'text-default-cb-id',
+                    'text-display-name',
+                    'text',
+                    'Default Value',
+                    'column_default',
+                    'text-default-cb',
+                    'default_cb',
+                    'A default value is required if toggle on.',
+                    true,
+                )
+            }}
+        </div>
+
+        <div class='switch-fields-container'>
+            {{ input.create_yesno_switch
+                (
+                    'text-unique-switch-container',
+                    'text-unique-switch', 
+                    'Unique',
+                    'column_unique',
+                    'Toggle on to avoid duplicate value in this field',
+                )
+            }}
+    
+            {{ input.create_yesno_switch
+                (
+                    'text-required-switch-container',
+                    'text-required-switch', 
+                    'Required',
+                    'column_nullable',
+                    'Toggle on to ensure the field is always filled.',
+                )
+            }}
+        
+            {{ input.create_yesno_switch
+                (
+                    'text-private-switch-container',
+                    'text-private-switch', 
+                    'Private',
+                    'column_private',
+                    'Toggle on to prevent this field from being expose via API.',
+                )
+            }}
+        </div>
+    </div>
+</form> 

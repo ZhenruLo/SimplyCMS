@@ -25,6 +25,10 @@
     height: fit-content;
 }
 
+.pop-up-base-body#create-field-pop-up {
+    width: 90rem;
+}
+
 .pop-up-background.show .pop-up-base-body {
     --horizontal: -5rem;
     --isVisible: 0;
@@ -39,7 +43,7 @@
     display: flex;
     align-items: center;
     width: inherit;
-    height: 3.5rem;
+    height: 3rem;
     color: white;
     background-color: rgb(195, 167, 255);
     border-top-left-radius: 0.5rem;
@@ -47,8 +51,8 @@
 }
 
 .pop-up-header-text {
-    font-size: 1.5rem;
-    padding: 1rem 2rem;
+    font-size: 1.2rem;
+    padding: 1rem 1rem;
     font-family: 'Roboto', sans-serif;
     user-select: none;
 }
@@ -71,7 +75,7 @@
 }
 
 .pop-up-middle-text {
-    font-size: 3.5rem;
+    font-size: 3rem;
     margin-left: 2.5rem;
     font-family: 'Roboto', sans-serif;
 }
@@ -79,9 +83,10 @@
 .pop-up-footer {
     display: flex;
     justify-content: flex-end;
+    align-items: center;
     width: inherit;
-    padding-top: 2rem;
-    background-color: white;
+    height: fit-content;
+    background-color: whitesmoke;
     border-bottom-left-radius: 0.5rem;
     border-bottom-right-radius: 0.5rem;
 }

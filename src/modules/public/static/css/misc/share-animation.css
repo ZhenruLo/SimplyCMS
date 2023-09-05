@@ -7,6 +7,18 @@
     }
 }
 
+@keyframes blink-color {
+    0% {
+        background-color: var(--beforeColor);
+    }
+    50% {
+        background-color: var(--afterColor);
+    }
+    100% {
+        background-color: var(--beforeColor);
+    }
+}
+
 @keyframes spin-animation {
     from {
         transform: rotate(0deg);
@@ -42,17 +54,17 @@
     from {
         transform: translateY(var(--vertical));
     }
-    to {
+    to {    
         transform: translateY(0rem);
     }
 }
 
 @keyframes bounce-from-left-or-right {
     from {
-        transform: translateY(var(--horizontal));
+        transform: translateX(var(--horizontal));
     }
     to {
-        transform: translateY(0rem);
+        transform: translateX(0rem);
     }
 }
 
@@ -67,10 +79,10 @@
 
 @keyframes rebounce-from-left-or-right {
     0% {
-        transform: translateY(var(--horizontal));
+        transform: translateX(var(--horizontal));
     }
     50% {
-        transform: translateY(var(--hRebounce));
+        transform: translateX(var(--hRebounce));
     }
 }
 
@@ -90,6 +102,15 @@
 @keyframes shine {
     from { -webkit-mask-position: 150%; }
     to { -webkit-mask-position: -50%; }
+}
+
+@keyframes slide-shine {
+    0% {
+        transform: translateX(var(--startHorizontal)) skewX(var(--horizonRotate));
+    }
+    30%, 80% {
+        transform: translateX(var(--endHorizontal)) skewX(var(--horizonRotate))
+    }
 }
 
 @keyframes gradient {

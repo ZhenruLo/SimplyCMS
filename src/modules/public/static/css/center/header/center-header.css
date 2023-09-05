@@ -12,15 +12,21 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    height: inherit;
+    text-align: center;
+    width: 14rem;
+    height: 100%;
     padding: 1rem;
     text-decoration: none;
     color: rgb(117, 19, 208);
-    transition: all 0.1s ease;
+    transition: border-bottom 0.1s ease, background-color 0.2s ease;
 }
 
 .header-text-anchor:hover {
     border-bottom: 0.5rem solid rgb(179, 0, 255);
+}
+
+.header-text-anchor:active {
+    background-color: rgb(223, 223, 223);
 }
 
 .header-anchor-icon {
@@ -29,7 +35,31 @@
 
 .header-anchor-text {
     user-select: none;
-    margin-left: 0.5rem;
     color: rgb(57, 0, 128);
     font-family: 'Chakra Petch', sans-serif;
+}
+
+.center-content-header-container {
+    z-index: 1;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    position: sticky;
+    top: 0;
+    width: 100%;
+    height: 9.5rem;
+    min-height: 9.5rem;
+    background-color: white;
+    box-shadow: 0 0 0.3rem 0.1rem rgba(211, 211, 211, 0.65);
+}
+
+.center-content-header-container#content-page-header {
+    justify-content: flex-start;
+}
+
+.selected-body .center-content-header-container {
+    --isVisible: 1;
+    --vertical: -2rem;
+    animation: show-from-top-or-bottom 0.25s ease;
 }

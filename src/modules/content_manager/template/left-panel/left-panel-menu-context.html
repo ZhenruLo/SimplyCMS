@@ -1,4 +1,4 @@
-{% call(content) side.create_left_panel_container('left-panel-menu', true) %}
+{% call(content) side.create_left_panel_container('left-panel-menu', false) %}
     {% if content == 'content' %}
         {{ side.create_left_panel_menu_btn
             (
@@ -9,7 +9,7 @@
                 'icon-content',
                 'Content',
                 'View all of the content created or start building a new content.',
-                true,
+                false,
             )
         }}
         

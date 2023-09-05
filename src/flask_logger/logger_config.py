@@ -4,6 +4,7 @@ from logging.handlers import SMTPHandler
 from os import makedirs, path
 
 import colorlog
+from celery import signals
 from flask import current_app
 
 LOG_FILE_DIR = './log'
@@ -106,3 +107,10 @@ def init_mail_handler():
     
     return mail_handler
     
+@signals.setup_logging.connect
+def init_celery_logger(loglevel=logging.INFO, **kwargs):
+    logger = logging.getLogger('celery')
+    logger.propagate = True
+    fh = logging.handlers.RotatingFileHandler(path.join(LOG_FILE_DIR, "celery.log"))
+    fh.setLevel(loglevel)
+    logger.addHandler(fh)

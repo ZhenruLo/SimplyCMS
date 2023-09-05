@@ -1,0 +1,8 @@
+.switch-container {
+    margin: 0 0 1.5rem 2.25rem;
+}
+
+.custom-text-input:disabled {
+    cursor: not-allowed;
+    background-color: rgb(232, 232, 232);
+}

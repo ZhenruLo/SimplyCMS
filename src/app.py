@@ -1,9 +1,10 @@
+from async_station import create_celery, socketio
 from config import DevelopmentConfig
-from init_server import create_app
+from server_engine import create_app
 
 flask_app = create_app(DevelopmentConfig)
+celery_app = create_celery(flask_app)
 
 if __name__ == '__main__':
     context = ('./server_asset/server.crt', './server_asset/server.key')
-    # socketio.run(app, ssl_context=context, use_reloader=False)
-    flask_app.run(host='0.0.0.0', port=5000)
+    socketio.run(flask_app, host='localhost', port=5000)

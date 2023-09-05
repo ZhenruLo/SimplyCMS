@@ -1,0 +1,12 @@
+{% macro create_field_type(field_type_id, field_type_icon, field_type_title, field_type_description) -%}
+    <div class='field-type-container' id='{{ field_type_id }}'>
+        <div class='field-type-button'>
+            <i class='field-type-icon {{ field_type_icon }}'></i>
+        </div>
+        
+        <div class='field-type-text'>
+            <span class='field-type-title'>{{ field_type_title }}</span>
+            <span class='field-type-description'>{{ field_type_description }}</span>
+        </div>
+    </div>
+{%- endmacro %}

@@ -7,4 +7,6 @@ Flask-SQLAlchemy==3.0.3
 Flask-Migrate==4.0.4
 Flask-Negotiate==0.1.0
 Flask-Principal==0.4.0
+Flask-Socketio==5.3.5
 bcrypt==4.0.1
+simple-websocket==0.10.1

@@ -1,6 +1,8 @@
 {% extends 'side/side-design/side-tab-design.html' %}
 {% import 'center/center-share.html' as center %}
 {% import 'center/header/center-header-share.html' as center_header %}
+{% import 'center-panel/center-panel-share.html' as center_panel %}
+{% import 'pop-up/content-pop-up-share.html' as field_pop_up %}
 
 {% block title %}Content Manager{% endblock%}
 
@@ -11,9 +13,11 @@
     <link rel='stylesheet' href="{{ url_for('content_manager_bp.static', filename='css/left-panel/content-manager-left-panel-body.css') }}"/>
     <link rel='stylesheet' href="{{ url_for('content_manager_bp.static', filename='css/center-body/content-manager-center-header.css') }}"/>
     <link rel='stylesheet' href="{{ url_for('content_manager_bp.static', filename='css/center-body/content-manager-inner-body.css') }}"/>
+    <link rel='stylesheet' href="{{ url_for('content_manager_bp.static', filename='css/center-body/content-manager-center-column.css') }}"/>
     <link rel='stylesheet' href="{{ url_for('content_manager_bp.static', filename='css/center-body/content-manager-combined-icon.css') }}"/>
     <link rel='stylesheet' href="{{ url_for('content_manager_bp.static', filename='css/center-body/content-manager-table.css') }}"/>
     <link rel='stylesheet' href="{{ url_for('content_manager_bp.static', filename='css/pop-up/content-manager-pop-up.css') }}"/>
+    <link rel='stylesheet' href="{{ url_for('content_manager_bp.static', filename='css/pop-up/field-type-pop-up.css') }}"/>
 {% endblock static %}
 
 {% block pop_up %}
@@ -46,10 +50,13 @@
 
 {% block script %}
     {{ super() }}
-    <script src="{{ url_for('content_manager_bp.static', filename='js/content-manager.js') }}"></script>
     <script src="{{ url_for('content_manager_bp.static', filename='js/content-manager-left-panel.js') }}"></script>
     <script src="{{ url_for('content_manager_bp.static', filename='js/content-manager-center-header.js') }}"></script>
     <script src="{{ url_for('content_manager_bp.static', filename='js/content-manager-center-body.js') }}"></script>
     <script src="{{ url_for('content_manager_bp.static', filename='js/content-manager-pop-up.js') }}"></script>
     <script src="{{ url_for('content_manager_bp.static', filename='js/content-manager-content-table.js') }}"></script>
+    <script src="{{ url_for('content_manager_bp.static', filename='js/content-manager.js') }}"></script>
+    <script>
+        var state = JSON.parse('{{ state | tojson }}');
+    </script>
 {% endblock script %}

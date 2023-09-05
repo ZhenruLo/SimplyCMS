@@ -1,9 +1,10 @@
 from typing import TYPE_CHECKING
 
-from constants import WebUserRole
-from flask import current_app, url_for
+from flask import current_app, escape, url_for
 from flask_login import current_user, login_user, logout_user
 from flask_principal import AnonymousIdentity, Identity, identity_changed
+
+from constants import WebUserRole
 from models import WebUser, db
 from security import check_pw
 
@@ -18,9 +19,9 @@ def check_login_info():
     msg = 'Login failed, please try again'
 
     if form.validate_on_submit():
-        user: 'WebUser' = db.session.query(WebUser).filter(WebUser.username==form.username.data).first()
-        if user and check_pw(form.password.data, user.password.encode('utf-8')):
-            if form.remember.data:
+        user: 'WebUser' = db.session.query(WebUser).filter(WebUser.username==escape(form.username.data)).first()
+        if user and check_pw(escape(form.password.data), user.password.encode('utf-8')):
+            if escape(form.remember.data):
                 remember = True
             else: 
                 remember = False

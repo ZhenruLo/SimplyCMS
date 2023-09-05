@@ -15,10 +15,6 @@
     clip-path: inset(0 0 -0.3rem 0);
 }
 
-.left-panel-tab-container.start {
-    animation: opacity-animation 0.5s ease;
-}
-
 .left-panel-context-container {
     overflow: auto;
 }

@@ -1,6 +1,7 @@
 import uuid
 
-from sqlalchemy import func
+from sqlalchemy import DateTime, Integer, String, Text, func
+from sqlalchemy.orm import Mapped, mapped_column
 
 from .base_db_model import Base, db
 
@@ -8,16 +9,16 @@ from .base_db_model import Base, db
 class WebUser(Base, db.Model):
     __tablename__ = 'web_user'
 
-    id = db.Column(db.Integer, primary_key = True)
-    username = db.Column(db.String)
-    password = db.Column(db.String)
-    salt = db.Column(db.String)
-    email = db.Column(db.String)
-    first_name = db.Column(db.String)
-    last_name = db.Column(db.String)
-    role = db.Column(db.String)
-    user_uuid = db.Column(db.String, server_default=func.random(), unique=True)
-    created_timestamp = db.Column(db.DateTime, server_default = func.current_timestamp())
+    id: Mapped[int] = mapped_column(Integer, primary_key = True)
+    username: Mapped[str] = mapped_column(String)
+    password: Mapped[str] = mapped_column(String)
+    salt: Mapped[str] = mapped_column(String)
+    email: Mapped[str] = mapped_column(String, nullable=True)
+    first_name: Mapped[str] = mapped_column(String, nullable=True)
+    last_name: Mapped[str] = mapped_column(String, nullable=True)
+    role: Mapped[str] = mapped_column(String)
+    user_uuid: Mapped[str] = mapped_column(String, server_default=func.random(), unique=True)
+    created_timestamp: Mapped[DateTime] = mapped_column(DateTime, server_default = func.current_timestamp())
 
     def __init__(self, 
                  user_name: str, 

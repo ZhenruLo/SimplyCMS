@@ -27,8 +27,4 @@ $(function() {
     $('.mark-div').on('click', function() {
         $('.modal-container').removeClass('show-modal');
     });
-
-    $('.login-content-container').toggleClass('start');
-    $('.welcome-container').toggleClass('start');
-    $('.login-container').toggleClass('start');
 });

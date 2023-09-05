@@ -12,17 +12,119 @@
     flex-wrap: wrap;
 }
 
-.pop-up-submit-btn{
+.pop-up-submit-btn {
     height: 3.5rem;
     padding: 0 2rem;
     border-radius: 0.5rem;
-    margin: 1rem 2.5rem;
+    margin: 2rem 2.5rem;
 }
-
 
 #full-description-text {
     font-size: 1.6rem;
     color: gray;
     line-height: 2.5rem;
     padding: 0 1.5rem;
+}
+
+#field-creator-inner-body {
+    display: flex;
+    align-items: baseline;
+    justify-content: center;
+    flex-wrap: wrap;
+    flex-direction: row;
+    max-width: inherit;
+    height: fit-content;
+}
+
+.text-field-form-body {
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    width: inherit;
+    flex-wrap: wrap;
+}
+
+.text-fields-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.switch-fields-container {
+    display: flex;
+    flex-direction: column;
+    padding: 2rem;
+    margin: 1rem;
+    border-radius: 1rem;
+    background-color: whitesmoke;
+    box-shadow: 0 0 0.1rem 0.1rem whitesmoke;
+}
+
+.field-type-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    margin: 2rem;
+    width: 15rem;
+}
+
+.field-type-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    width: 8rem;
+    height: 8rem;
+    border-radius: 1rem;
+    overflow: hidden;
+    color: rgb(144, 0, 255);
+    cursor: pointer;
+    background-color: rgba(0, 0, 255, 0.05);
+}
+
+.field-type-button:before {
+    content: '';
+    position: absolute;
+    width: 70%;
+    height: 150%;
+    transform: translateX(-165%) skewX(-35deg);
+    background-color: rgba(255, 255, 255, 0.5);
+}
+
+.field-type-button:hover:before {
+    --startHorizontal: -165%;
+    --endHorizontal: 150%;
+    --horizonRotate: -35deg;
+    animation: slide-shine 1.5s ease infinite;
+}
+
+.field-type-button:active {
+    background-color: rgb(235, 217, 255);
+}
+
+.field-type-icon {
+    font-size: 4rem;
+}
+
+.field-type-text {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    font-family: 'Chakra Petch', sans-serif;
+    margin-top: 1rem;
+    text-align: center;
+    user-select: none;
+}
+
+.field-type-title {
+    font-size: 1.3rem;
+    font-weight: 600;
+}
+
+.field-type-description {
+    margin-top: 0.5rem;
+    font-size: 1.1rem;
+    color: gray;
 }

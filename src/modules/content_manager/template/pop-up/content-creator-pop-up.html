@@ -1,29 +1,31 @@
 <form id='content-creator-form' action='' method='POST'>
-    <input id='single-csrf-content-creator' type='hidden' name='csrf_token' value='{{ csrf_token() }}'>
-
     <div class='content-creator-form-body'>
-        {{ input.create_pop_up_cb_text
+        {{ input.create_cb_text
             (
+                'content-display-cb-id',
                 'content-display-name',
+                'text',
                 'Display Name',
                 'content_name',
-                'match-cb',
+                'create-match-cb',
                 'match_cb',
                 'Use the same input for route name',
             )
         }}
         
-        {{ input.create_pop_up_text
+        {{ input.create_text
             (
+                'content-display-text-id',
                 'content-route-name',
                 'API Id',
                 'route_name',
-                'A unique name used for creating and calling the database. (only lowercase and underscore are accepted)',
+                'A unique name used for creating and calling the database. (only hyphen is accepted)',
             )
         }}
         
-        {{ input.create_pop_up_textarea
+        {{ input.create_textarea
             (
+                'content-description-ta-id',
                 'content-description',
                 'Description',
                 'description',

@@ -4,7 +4,7 @@
 
 #content {
     opacity: 1;
-    transition: all 0.2s ease;
+    transition: width 0.1s ease;
 }
 
 .collapse#content {
@@ -19,8 +19,8 @@
     height: 100%;
     overflow-y: auto;
     overflow-x: hidden;
-    transition: all .2s ease;
-    background-color: #c1a0e4;
+    transition: width .2s ease;
+    background-color: #23192d;
 }
 
 .side-header-container {
@@ -64,14 +64,18 @@
     position: relative;
     cursor: pointer;
     margin: 0;
+    color: white;
     left: 2.4rem;
-    transition: all 0.3s ease;
 }
 
 .side-anchor-icon {
     font-size: 1.5rem;
-    color: white;
+    color: rgb(147, 147, 147);
     margin-left: 2.1rem;
+}
+
+.side-anchor.current-anchor .side-anchor-icon {
+    color: white;
 }
 
 .side-anchor:hover, #collapse-menu-btn:hover {
@@ -99,8 +103,12 @@
     margin-top: auto;
     width: 6rem;
     border-top: none;
-    transition: all 0.2s ease;
+    transition: width 0.2s ease;
     bottom: 0;
+}
+
+.side-menu-group#side-logout .side-anchor-icon, .side-menu-group#side-logout .side-anchor-text {
+    color: white;
 }
 
 .side-menu-list {
@@ -114,6 +122,12 @@
     width: 100%;
     height: 6rem;
     list-style-type: none;
+}
+
+.side-li.start {
+    --vertical: -2rem;
+    --isVisible: 0;
+    animation: show-from-top-or-bottom calc(0.1s * var(--li-num)) ease;
 }
 
 .side-anchor {
@@ -154,10 +168,13 @@
     font-size: 1.5rem;
     margin-left: 2rem;
     font-family: 'Poppins', sans-serif;
-    color: white;
+    color: rgb(147, 147, 147);
     pointer-events: none;
     user-select: none;
-    transition: all 0.2s ease;
+}
+
+.side-anchor.current-anchor .side-anchor-text {
+    color: white;
 }
 
 .side-tooltip {

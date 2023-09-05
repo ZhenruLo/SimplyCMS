@@ -4,8 +4,6 @@
     outline: none;
     text-align: left;
     border: none;
-    font-family: 'Roboto', sans-serif;
-    letter-spacing: 0.1rem;
     font-size: 1.3rem;
 }
 
@@ -58,7 +56,6 @@ fieldset.custom-fieldset-1:hover {
     display: flex;
     flex-direction: column;
     border-style: none;
-    user-select: none;
     margin-left: 1.5rem;
     width: fit-content;
 }
@@ -68,6 +65,7 @@ fieldset.custom-fieldset-1:hover {
     font-size: 1.2rem;
     margin-bottom: 1rem;
     color: black;
+    user-select: none;
 }
 
 .custom-textarea {
@@ -88,11 +86,17 @@ fieldset.custom-fieldset-1:hover {
     width: 30rem;
 }
 
+.match-cb-label {
+    color: gray;
+    user-select: none;
+}
+
 .under-input-text {
     width: inherit;
     font-size: 1.1rem;
     color: gray;
     line-height: 1.5rem;
+    user-select: none;
 }
 
 .custom-text-input {
@@ -105,4 +109,107 @@ fieldset.custom-fieldset-1:hover {
 
 .custom-text-input:focus {
     outline: none;
+}
+
+.custom-text-input.checked {
+    background-color: rgb(232, 232, 232);
+    color: gray;
+    cursor: not-allowed;
+}
+
+.switch-container {
+    width: 25rem;
+    height: fit-content;
+    display: flex;
+    flex-direction: column;
+}
+
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 12rem;
+    height: 3.5rem;
+    background-color: rgb(204 188 255);
+    border: 0.2rem solid rgb(204 188 255);
+    border-radius: 0.2rem;
+    transition: background-color 0.4s ease;
+}
+
+.switch::after {
+    content: 'YES';
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    pointer-events: none;
+    position: absolute;
+    font-family: 'Chakra Petch', sans-serif;
+    font-size: 1.1rem;
+    color: rgb(229, 229, 229);
+    top: 0;
+    bottom: 0;
+    right: 0;
+    width: 50%;
+}
+
+.switch-button-checkbox {
+    opacity: 0;
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    margin: 0;
+    z-index: 2;
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+}
+
+.switch-button-label {
+    display: flex;
+    height: 100%;
+    width: 50%;
+}
+
+.switch-button-label::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    height: 100%;
+    width: 50%;
+    border-radius: 0.2rem;
+    background-color: white;
+    transition: transform 0.4s ease;
+}
+
+.switch-button-label-span {
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    pointer-events: none;
+    width: 100%;
+    height: inherit;
+    font-family: 'Chakra Petch', sans-serif;
+    font-size: 1.2rem;
+    color: rgb(113, 70, 255);
+    user-select: none;
+}
+
+.switch.switch-checked .switch-button-label::before {
+    transform: translateX(6rem);
+}
+
+.switch.switch-checked::after {
+    color: rgb(113, 70, 255);
+}
+
+.switch.switch-checked .switch-button-label-span {
+    color: rgb(229, 229, 229);
+}
+
+.switch-description {
+    margin-top: 1rem;
+    color: gray;
+    font-size: 1.1rem;
+    user-select: none;
 }

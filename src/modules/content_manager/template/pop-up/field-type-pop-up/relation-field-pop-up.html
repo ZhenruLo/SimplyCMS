@@ -1,0 +1,15 @@
+<form id='relation-field-form' action='' method='POST'>
+    <input id='relation-field-content-uuid' type='hidden' name='content_uuid' value=''>
+
+    <div class='content-creator-form-body'>
+        {{ input.create_text
+            (
+                'relation-text-id',
+                'relation-field-name',
+                'Display Name',
+                'column_name',
+                custom_class='field-display-name',
+            )
+        }}
+    </div>
+</form>

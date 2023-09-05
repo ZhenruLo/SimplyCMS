@@ -6,16 +6,86 @@
     {% endif %}
 {% endcall %}
 
+{% call(content) popup.create_pop_up('create-field-pop-up', 'Field types', 'Select field type') %}
+    {% if content == 'body' %}
+        {% include 'pop-up/field-creator-pop-up.html' %}
+    {% endif %}
+{% endcall %}
+
 {% call(content) popup.create_pop_up('update-display-pop-up', 'Update content settings', 'Update') %}
     {% if content == 'body' %}
         {% include 'pop-up/display-update-pop-up.html' %}
     {% elif content == 'footer' %}
-            {{ input.create_submit_input('update-display-form', 'update-display-submit', 'Update Content', 'pop-up-submit-btn') }}
+        {{ input.create_submit_input('update-display-form', 'update-display-submit', 'Update Content', 'pop-up-submit-btn') }}
     {% endif %}
 {% endcall %}
 
 {% call(content) popup.create_pop_up('description-pop-up', 'Description', 'Description') %}
     {% if content == 'body' %}
         {% include 'pop-up/description-pop-up.html' %}
+    {% endif %}
+{% endcall %}
+
+{% call(content) popup.create_pop_up('text-field-pop-up', 'Add text field', 'Text field settings') %}
+    {% if content == 'body' %}
+        {% include 'pop-up/field-type-pop-up/text-field-pop-up.html' %}
+    {% elif content == 'footer' %}
+        {{ input.create_submit_input('text-field-form', 'text-field-submit', 'Add field', 'pop-up-submit-btn') }}
+    {% endif %}
+{% endcall %}
+
+{% call(content) popup.create_pop_up('boolean-field-pop-up', 'Add boolean field', 'Boolean field settings') %}
+    {% if content == 'body' %}
+        {% include 'pop-up/field-type-pop-up/boolean-field-pop-up.html' %}
+    {% elif content == 'footer' %}
+        {{ input.create_submit_input('boolean-field-form', 'boolean-field-submit', 'Add field', 'pop-up-submit-btn') }}
+    {% endif %}
+{% endcall %}
+
+{% call(content) popup.create_pop_up('date-field-pop-up', 'Add date field', 'Date field settings') %}
+    {% if content == 'body' %}
+        {% include 'pop-up/field-type-pop-up/date-field-pop-up.html' %}
+    {% elif content == 'footer' %}
+        {{ input.create_submit_input('date-field-form', 'date-field-submit', 'Add field', 'pop-up-submit-btn') }}
+    {% endif %}
+{% endcall %}
+
+{% call(content) popup.create_pop_up('json-field-pop-up', 'Add JSON field', 'JSON field settings') %}
+    {% if content == 'body' %}
+        {% include 'pop-up/field-type-pop-up/json-field-pop-up.html' %}
+    {% elif content == 'footer' %}
+        {{ input.create_submit_input('json-field-form', 'json-field-submit', 'Add field', 'pop-up-submit-btn') }}
+    {% endif %}
+{% endcall %}
+
+{% call(content) popup.create_pop_up('media-field-pop-up', 'Add media field', 'Media field settings') %}
+    {% if content == 'body' %}
+        {% include 'pop-up/field-type-pop-up/media-field-pop-up.html' %}
+    {% elif content == 'footer' %}
+        {{ input.create_submit_input('media-field-form', 'media-field-submit', 'Add field', 'pop-up-submit-btn') }}
+    {% endif %}
+{% endcall %}
+
+{% call(content) popup.create_pop_up('number-field-pop-up', 'Add number field', 'Number field settings') %}
+    {% if content == 'body' %}
+        {% include 'pop-up/field-type-pop-up/number-field-pop-up.html' %}
+    {% elif content == 'footer' %}
+        {{ input.create_submit_input('number-field-form', 'number-field-submit', 'Add field', 'pop-up-submit-btn') }}
+    {% endif %}
+{% endcall %}
+
+{% call(content) popup.create_pop_up('ID-field-pop-up', 'Add ID field', 'ID field settings') %}
+    {% if content == 'body' %}
+        {% include 'pop-up/field-type-pop-up/ID-field-pop-up.html' %}
+    {% elif content == 'footer' %}
+        {{ input.create_submit_input('ID-field-form', 'ID-field-submit', 'Add field', 'pop-up-submit-btn') }}
+    {% endif %}
+{% endcall %}
+
+{% call(content) popup.create_pop_up('relation-field-pop-up', 'Add relation field', 'Relation field settings') %}
+    {% if content == 'body' %}
+        {% include 'pop-up/field-type-pop-up/relation-field-pop-up.html' %}
+    {% elif content == 'footer' %}
+        {{ input.create_submit_input('relation-field-form', 'relation-field-submit', 'Add field', 'pop-up-submit-btn') }}
     {% endif %}
 {% endcall %}
